@@ -1,20 +1,22 @@
 "use strict";
 
 class Enemy {
-    constructor(position, direction, enemyData) {
+    constructor(position, direction, enemyData, enemyID) {
         this.position = position;
         this.direction = direction;
         this.enemyData = enemyData;
+        this.enemyID = enemyID;
 
         this.alive = true;
         this.target = false;
         this.reachTurret = false;
-        this.routeCheckPoint = 0
+        this.routeCheckPoint = 0;
     }
     load(data) {
         this.position = data.position;
         this.direction = data.direction;
         this.enemyData = data.enemyData;
+        this.enemyID = data.enemyID;
 
         this.alive = data.alive;
         this.target = data.target;

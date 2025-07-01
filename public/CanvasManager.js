@@ -161,6 +161,9 @@ class CanvasManager {
             } else if (order === "enemies") {
                 // ENEMIES
                 this.gameElements[order].forEach((enemy) => {
+                    if (!enemy.hasTarget()) {
+                        enemy.direction = this.gameElements.route[enemy.routeCheckPoint];
+                    }
                     enemy.move(dt);
                     if (enemy.isAlive()) {
                         this.context.drawImage(

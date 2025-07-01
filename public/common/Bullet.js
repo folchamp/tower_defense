@@ -22,7 +22,7 @@ class Bullet {
         let angle = Math.atan2(dy, dx)
         let xVelocity = this.bulletData.speed * Math.cos(angle) * timePassed;
         let yVelocity = this.bulletData.speed * Math.sin(angle) * timePassed;
-        
+
         if (this.distance(this.position, direction) < Math.sqrt(xVelocity * xVelocity + yVelocity * yVelocity)) {
             this.hit = true;
         } else {
@@ -34,6 +34,13 @@ class Bullet {
         let a = one.x - two.x;
         let b = one.y - two.y;
         return Math.sqrt(a * a + b * b);
+    }
+    findTarget(enemies) {
+        enemies.forEach((enemy) => {
+            if (this.target.enemyID === enemy.enemyID) {
+                this.target = enemy;
+            }
+        });
     }
 }
 

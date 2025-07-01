@@ -17,6 +17,10 @@ priority -> optimize the game, speed and network
 BIG REFACTOOOR
 TODO : Card and further
 
+déconnexion pas prise en compte ?
+
+tutoriel
+limiter le nombre de caractères pour le pseudo
 score calculation is different, you cannot spam waves to artificially increase your score
 la dépense de thunes et son affichage buggent parfois
 connection and disconnection : check if it really works

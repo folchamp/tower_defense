@@ -5,7 +5,6 @@ const { Util } = require("../public/common/Util.js");
 class ServerData {
     static GAME_WIDTH = 1920;
     static GAME_HEIGHT = 1080;
-    static INTERVAL_CHECK_ACTIONS = 6000 // 6 seconds
     static MAX_AMOUNT_OF_ACTIONS = 3;
     static STARTING_MONEY = 4500;
     static ENEMIES_INTERVAL = 500;
@@ -59,10 +58,6 @@ class ServerData {
         "quick_enemy",
         "quick_enemy",
         "quick_enemy",
-        "quick_enemy",
-        "quick_enemy",
-        "quick_enemy",
-        "quick_enemy",
         "basic_enemy",
         "basic_enemy",
         "basic_enemy",
@@ -77,6 +72,14 @@ class ServerData {
         strong_enemy: { name: "strong_enemy", speed: 0.05, imageName: "strong_enemy", maxHP: 15000, reward: 300 }
     };
     static towers = {
+        maki_tower: {
+            name: "maki_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, bulletData: { damage: 2000, speed: 0.2, color: "pink", size: 7 }
+        },
+        bandi_tower: {
+            name: "bandi_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, bulletData: { damage: 2000, speed: 0.2, color: "yellow", size: 7 }
+        },
         explosive_shooter: {
             name: "explosive_shooter", initialAngle: Math.PI / 2,
             reloadTime: 1000, bulletData: { damage: 500, speed: 0.3, color: "red", size: 5 }
@@ -118,7 +121,9 @@ class ServerData {
         { action: "build", text: "Mitrailleuse légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
         { action: "build", text: "Arme perce-armure", type: "air_shooter", price: 350, sellprice: 700 },
-        { action: "build", text: "Arme perce-armure", type: "air_shooter", price: 350, sellprice: 700 }
+        { action: "build", text: "Arme perce-armure", type: "air_shooter", price: 350, sellprice: 700 },
+        { action: "build", text: "Tour de Maki", type: "maki_tower", price: 700, sellprice: 1400 },
+        { action: "build", text: "Tour de Bandi", type: "bandi_tower", price: 700, sellprice: 1400 }
     ]
 }
 

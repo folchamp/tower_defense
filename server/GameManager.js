@@ -16,16 +16,7 @@ class GameManager {
         this.reset();
         this.lastTimeStamp = Date.now();
         console.log(`route length : ${this.gameElements.route.length}`);
-        // setInterval(() => {
-        // }, ServerData.INTERVAL_CHECK_ACTIONS);
         setInterval(() => {
-            if (this.hasStarted && this.gameElements.enemies.length === 0) {
-                // this.drawTime();
-                // this.refreshPlayerActions()
-                // this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR * this.playerManager.getAmountOfPlayers();
-                // this.enemiesLeftToSpawn = this.globalEnemyStrength;
-                // this.shopManager.resplenish();
-            }
             if (this.enemiesLeftToSpawn > 0) {
                 this.spawnEnemy();
                 this.enemiesLeftToSpawn--;
@@ -50,7 +41,7 @@ class GameManager {
         this.drawTime();
         this.drawTime();
         this.refreshPlayerActions()
-        this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR;// * this.playerManager.getAmountOfPlayers();
+        this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR;
         this.enemiesLeftToSpawn = this.globalEnemyStrength;
         this.shopManager.resplenish();
         this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
@@ -68,6 +59,17 @@ class GameManager {
         this.hasStarted = false;
         this.isLost = false;
         this.shopManager.reset();
+        this.resetNewGameStateElements();
+    }
+    resetNewGameStateElements() {
+        this.newGameStateElements = {
+            bullets: [],
+            enemies: [],
+            towers: [],
+            towerIDsToRemove: [],
+            enemyIDsToRemove: []
+            // bulletsToRemove: []
+        }
     }
     checkGameLost() {
         if (this.hasStarted && this.gameElements.towers.length === 0 || this.isLost) {
@@ -88,7 +90,8 @@ class GameManager {
         this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID });
     }
     refreshGameState() {
-        this.broadcast({ message: "server_refresh_game_state", gameElements: this.gameElements });
+        this.broadcast({ message: "server_refresh_game_state", gameElements: this.newGameStateElements });
+        this.resetNewGameStateElements();
     }
     giveReward(enemy) {
         for (let playerID in this.playerManager.players) {
@@ -110,6 +113,7 @@ class GameManager {
                     enemy.target = false;
                     enemy.reachTurret = false;
                 });
+                this.newGameStateElements.towerIDsToRemove.push(this.gameElements.towers[index].towerID);
                 if (this.gameElements.towers.length === index + 1) {
                     this.gameElements.towers.pop(); // the tower being analyzed is the last one of the list
                 } else {
@@ -122,6 +126,7 @@ class GameManager {
         for (let index = 0; index < this.gameElements.enemies.length; index++) {
             const enemy = this.gameElements.enemies[index];
             if (!enemy.isAlive()) {
+                this.newGameStateElements.enemyIDsToRemove.push(this.gameElements.enemies[index].enemyID);
                 if (this.gameElements.enemies.length === index + 1) {
                     this.gameElements.enemies.pop();
                 } else {
@@ -137,6 +142,7 @@ class GameManager {
             if (bullet.hit) {
                 bullet.isActive = false;
                 bullet.target.hit(bullet.bulletData.damage, bullet.bulletData.special);
+                // this.newGameStateElements.bulletsToRemove.push(this.gameElements.bullets[index]);
                 if (this.gameElements.bullets.length === index + 1) {
                     this.gameElements.bullets.pop();
                 } else {
@@ -155,12 +161,15 @@ class GameManager {
             if (tower.hasTarget()) {
                 tower.move(timePassed);
             } else {
-                tower.target = this.gameElements.enemies[Util.randomValue(0, Math.min(5, this.gameElements.enemies.length))];
+                tower.setTarget(this.gameElements.enemies[Util.randomValue(0, Math.min(5, this.gameElements.enemies.length))]);
+                this.newGameStateElements.towers.push(tower);
             }
             if (tower.stockedBullet) {
                 let bullet = new Bullet(Util.copyObject(tower.stockedBullet.position), tower.stockedBullet.target, tower.stockedBullet.bulletData)
                 this.gameElements.bullets.push(bullet);
+                this.newGameStateElements.bullets.push(bullet);
                 tower.stockedBullet = undefined;
+                this.newGameStateElements.towers.push(tower);
             }
         });
     }
@@ -184,12 +193,12 @@ class GameManager {
         let newEnemy = new Enemy(
             Util.copyObject(this.gameElements.route[0]),
             Util.copyObject(this.gameElements.route[0]),
-            Util.copyObject(ServerData.enemiesData[Util.randomFromArray(ServerData.enemies)]));
+            Util.copyObject(ServerData.enemiesData[Util.randomFromArray(ServerData.enemies)]),
+            Util.getNewID());
         newEnemy.enemyData.maxHP = newEnemy.enemyData.maxHP * this.playerManager.getAmountOfPlayers();
         newEnemy.actualHP = newEnemy.enemyData.maxHP;
-        // newEnemy.maxHP *= this.playerManager.getAmountOfPlayers();
-        // newEnemy.actualHP *= this.playerManager.getAmountOfPlayers();
         this.gameElements.enemies.push(newEnemy);
+        this.newGameStateElements.enemies.push(newEnemy);
     }
     drawTime() {
         for (let playerID in this.playerManager.players) {
@@ -225,7 +234,6 @@ class GameManager {
         let player = this.playerManager.players[data.playerID];
         if (player.handData === undefined) {
             player.handData = ServerData.generateInitialHandData();
-            // this.globalEnemyStrength += 1;
         }
         this.sendPlayerGameData(player);
     }
@@ -259,7 +267,7 @@ class GameManager {
         }
     }
     refreshPlayerList(data) {
-        // nothing to do here
+        // nothing to do here TODO strange way to implement this TODO check
         this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     useSpaceInControlZone(data) {

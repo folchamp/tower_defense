@@ -6,9 +6,10 @@ class Tower {
         this.towerData = towerData;
         this.position = position;
         this.playerName = playerName;
+        this.towerID = towerID;
+        
         this.target = undefined;
         this.totalTimePassed = 0;
-        this.towerID = towerID;
         this.angle;
         this.targettedBy = [];
         this.isAlive = true;
@@ -41,6 +42,12 @@ class Tower {
     }
     hasTarget() {
         return this.target && this.target.isAlive();
+    }
+    setTarget(target) {
+        if (target) {
+            this.target = target;
+            this.targetID = target.enemyID;
+        }
     }
     shoot() {
         this.stockedBullet = {
