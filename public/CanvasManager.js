@@ -4,19 +4,16 @@ class CanvasManager {
     constructor(canvas, gameElements, mouseCallback) {
         this.canvas = canvas;
         this.gameElements = gameElements;
-        this.context = this.canvas.getContext("2d");
         this.mouseCallback = mouseCallback;
 
+        this.context = this.canvas.getContext("2d");
         this.lastTimeStamp = Date.now();
         this.moving = false;
-
         this.mouseDrawData = { draw: false, imageName: "basic_shooter" };
         this.offset = { x: 0, y: 0 };
-
-        this.autoresize();
         this.fullscreen = false;
 
-        // this.canvas.height = window.innerHeight - this.canvas.getBoundingClientRect().top;
+        this.autoresize();
 
         ELEMENTS["fullscreenButton"].addEventListener("click", (event) => {
             if (this.fullscreen) {
@@ -34,9 +31,7 @@ class CanvasManager {
 
         this.canvas.addEventListener("click", (event) => {
             let position = this.getMousePosition(event);
-            // if (!this.moving) {
             this.mouseCallback("click", position);
-            // }
         });
 
         this.canvas.addEventListener("mousemove", (event) => {
@@ -104,8 +99,9 @@ class CanvasManager {
     touchend(touch, trueClick) {
         let position = this.getMousePosition(touch);
         this.touchStartPosition = position;
-        if (trueClick) {// && !this.moving) {
+        if (trueClick) {
             // if the mouse is used to move the canvas around, we don't want it to trigger a click on mouseup
+            // TODO check if this really works
             this.mouseCallback("click", position);
         }
         this.moving = false;
@@ -119,7 +115,7 @@ class CanvasManager {
         return position;
     }
     loop() {
-        this.canvas.height = window.innerHeight - this.canvas.getBoundingClientRect().top;
+        this.canvas.height = window.innerHeight - this.canvas.getBoundingClientRect().top; // TODO is this still necessary ?
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.drawImage(ClientData.images["background"], 0 + this.offset.x, 0 + this.offset.y);
         this.draw();
@@ -131,6 +127,7 @@ class CanvasManager {
         this.lastTimeStamp = newTimeStamp;
         this.gameElements.drawOrder.forEach((order) => {
             if (order === "auras") {
+                // AURAS
                 this.gameElements[order].forEach((aura) => {
                     this.context.fillStyle = aura.auraData.auraColor;
                     this.context.beginPath();
@@ -139,8 +136,9 @@ class CanvasManager {
                         aura.position.y + this.offset.y,
                         aura.auraData.auraRadius, 0, 2 * Math.PI);
                     this.context.fill();
-                })
+                });
             } else if (order === "towers") {
+                // TOWERS
                 this.gameElements[order].forEach((tower) => {
                     this.context.save();
                     this.context.translate(
@@ -159,6 +157,7 @@ class CanvasManager {
                     this.context.restore();
                 });
             } else if (order === "enemies") {
+                // ENEMIES
                 this.gameElements[order].forEach((enemy) => {
                     enemy.move(dt);
                     if (enemy.isAlive()) {
@@ -173,6 +172,7 @@ class CanvasManager {
                     }
                 });
             } else if (order === "bullets") {
+                // BULLETS
                 this.gameElements[order].forEach((bullet) => {
                     bullet.move(dt);
                     this.context.fillStyle = bullet.bulletData.color;
@@ -186,6 +186,7 @@ class CanvasManager {
                     }
                 })
             } else if (order === "route") {
+                // ROUTE
                 this.context.beginPath()
                 this.context.moveTo(this.gameElements[order][0].x + this.offset.x, this.gameElements[order][0].y + this.offset.y);
                 this.gameElements[order].forEach((point) => {
