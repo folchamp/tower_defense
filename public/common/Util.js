@@ -24,7 +24,11 @@ class Util {
     static getElements(elementNames) {
         let elementsToReturn = {};
         elementNames.forEach((name) => {
-            elementsToReturn[name] = document.getElementById(name);
+            let element = document.getElementById(name);
+            elementsToReturn[name] = element;
+            if (element === null) {
+                console.log(`${name} not found`);
+            }
         });
         return elementsToReturn;
     }

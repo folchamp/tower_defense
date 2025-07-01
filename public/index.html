@@ -9,37 +9,13 @@
 </head>
 
 <body>
-    <!-- Main menu  -->
-    <div id="mainMenu" class="hidden">
-        <nav>
-            <ul id="mainMenuList">
-                <li id="gameMenuLink">
-                    Jouer
-                </li>
-                <li id="aboutMenuLink">
-                    À propos
-                </li>
-                <li id="creditsMenuLink">
-                    Crédits
-                </li>
-                <li id="logsMenuLink">
-                    Logs
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <!-- Logs -->
-    <div id="logs" class="hidden">
-        <section>
-            <p id="logsContainer"></p>
-        </section>
-    </div>
     <!-- Game -->
-    <div id="game" class="hidden">
+    <div id="game">
         <div id="feedbackContainer">
             <p id="feedbackText"></p>
         </div>
         <div id="gameHeader">
+            <input type="button" value="Main" id="handButton">
             <input type="button" value="Magasin" id="shopButton">
             <input type="button" value="Joueurs" id="playersButton">
             <input type="button" value="Prochaine vague" id="nextWaveButton">
@@ -68,28 +44,6 @@
         </div>
         <canvas id="gameCanvas" width="360" height="740"></canvas>
     </div>
-    <!-- Credits -->
-    <div id="credits" class="hidden">
-        <section>
-            <p>Développement : Folchamp</p>
-        </section>
-    </div>
-    <!-- About -->
-    <div id="about" class="hidden">
-        <section>
-            <p>Tower defense coopératif.</p>
-            <p>Les joueurs ont une main de cartes, des actions et de la thune. Pour construire une tourelle, ils
-                dépensent
-                une carte, une action et une certaine quantité de thune.</p>
-            <p>Les tourelles doivent être construites dans la zone de contrôle des tourelles de contrôle. On ne commence
-                pas
-                forcément avec une tourelle de contrôle en main. La coopération est donc la clef.</p>
-            <p>Les joueurs récupèrent leurs point d'action lorsque tous les joueurs les ont consommés : il faut donc
-                jouer vite, collectivement.</p>
-            <p>Si, après dix secondes, tous les joueurs n'ont pas consommé leurs points d'action, la récupération a tout
-                de même lieu.</p>
-        </section>
-    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="common/Util.js"></script>
     <script src="ClientData.js"></script>
@@ -100,10 +54,7 @@
     <script src="Card.js"></script>
     <script src="ShopCard.js"></script>
     <script src="Shop.js"></script>
-    <script src="Logs.js"></script>
-    <script src="Page.js"></script>
     <script src="Session.js"></script>
-    <script src="Menu.js"></script>
     <script src="CanvasManager.js"></script>
     <script src="Game.js"></script>
     <script src="index.js"></script>

@@ -9,51 +9,6 @@ body {
     display: none !important;
 }
 
-.cardContainer {
-    transition: left 0.3s;
-    left: 0px;
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    padding: 4px;
-    line-height: initial;
-    width: 88px;
-    height: 63px;
-    border: 1px solid black;
-    vertical-align: top;
-    margin: 4px;
-    cursor: pointer;
-    user-select: none;
-    background-color: beige;
-
-    .cardHeaderContainer {
-        display: flex;
-        justify-content: space-between;
-
-        .cardImageContainer {
-            text-align: center;
-        }
-
-        .cardImage {
-            flex-grow: 0;
-            flex-shrink: 0;
-            width: 16px;
-            height: 16px;
-        }
-    }
-}
-
-.cardContainer:hover {
-    left: -8px;
-    background-color: wheat;
-}
-
-.unattached {
-    /* position: absolute; */
-    left: -8px;
-    background-color: wheat;
-}
-
 #mainMenu {
     nav {
         li {
@@ -82,14 +37,16 @@ body {
     #feedbackText {
         background-color: aliceblue;
         position: absolute;
-        color: red;
+        color: white;
+        background-color: darkred;
         margin: 0;
-        padding: 0;
+        padding: 2px;
         line-height: initial;
+        border: 1px solid wheat;
     }
 
-    .succesful {
-        color: darkgreen;
+    #feedbackText.successful {
+        background-color: darkgreen;
     }
 
     #gameHeader {
@@ -97,6 +54,7 @@ body {
         display: flex;
         line-height: initial;
 
+        #handButton:hover,
         #shopButton:hover,
         #playersButton:hover,
         #nextWaveButton:hover,
@@ -105,6 +63,7 @@ body {
             color: white;
         }
 
+        #handButton,
         #playersButton,
         #shopButton,
         #nextWaveButton,
@@ -120,7 +79,7 @@ body {
         display: flex;
         flex-direction: column;
         line-height: initial;
-        top: 22px;
+        top: 18px;
         padding: 4px;
 
         #playerNameContainer {
@@ -171,6 +130,11 @@ body {
                 width: 90px;
                 height: 110px;
                 background-color: beige;
+
+                .cardHeaderContainer {
+                    display: flex;
+                    justify-content: space-between;
+                }
             }
         }
     }
@@ -194,6 +158,48 @@ body {
             display: flex;
             flex-direction: column;
 
+            .cardContainer {
+                transition: left 0.3s;
+                left: 0px;
+                position: relative;
+                display: inline-block;
+                box-sizing: border-box;
+                padding: 4px;
+                line-height: initial;
+                width: 88px;
+                height: 63px;
+                border: 1px solid black;
+                vertical-align: top;
+                margin: 4px;
+                cursor: pointer;
+                user-select: none;
+                background-color: beige;
+
+                .cardHeaderContainer {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .cardImageContainer {
+                        text-align: center;
+
+                        .cardImage {
+                            width: 16px;
+                            height: 16px;
+                        }
+                    }
+                }
+            }
+
+            .cardContainer:hover {
+                left: 8px;
+                background-color: #f5deb3;
+            }
+
+            .unattached,
+            .unattached:hover {
+                left: 8px;
+                background-color: lightblue;
+            }
         }
     }
 

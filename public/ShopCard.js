@@ -8,9 +8,19 @@ class ShopCard {
     }
     buildCard() {
         this.shopCardContainer = Util.quickElement("shopCardContainer", "div", ELEMENTS["shopHandContainer"]);
-        this.shopCardTextContainer = Util.quickElement("shopCardTextContainer", "span", this.shopCardContainer);
+        this.shopCardHeaderContainer = Util.quickElement("cardHeaderContainer", "div", this.shopCardContainer);
+        this.shopCardTextContainer = Util.quickElement("shopCardTextContainer", "span", this.shopCardHeaderContainer);
+        this.cardImageContainer = Util.quickElement("cardImageContainer", "div", this.shopCardHeaderContainer);
+        if (ClientData.images[this.cardData.type]) {
+            this.cardImage = new Image();
+            this.cardImage.classList = "cardImage";
+            this.cardImage.src = ClientData.images[this.cardData.type].src;
+            this.cardImageContainer.appendChild(this.cardImage);
+        }
+        this.shopCardPriceContainer = Util.quickElement("shopCardPriceContainer", "span", this.shopCardContainer);
         this.sellBuyButton = Util.quickElement("sellBuyButton", "button", this.shopCardContainer);
-        this.shopCardTextContainer.innerHTML = `${this.cardData.text}<br>💶: ${this.cardData.sellprice}`;
+        this.shopCardTextContainer.innerHTML = `${this.cardData.text}`;
+        this.shopCardPriceContainer.innerHTML = `💶: ${this.cardData.sellprice}`;
         if (this.cardFateType === "buy") {
             this.sellBuyButton.innerHTML = "acheter";
         } else if (this.cardFateType === "sell") {
@@ -19,7 +29,6 @@ class ShopCard {
         this.sellBuyButton.addEventListener("click", (event) => {
             this.callback(this.cardFateType, this.cardData);
         });
-        // Util.hide(this.shopCardContainer);
     }
     appendTo(element) {
         element.appendChild(this.shopCardContainer);

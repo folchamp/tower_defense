@@ -20,7 +20,9 @@ class PlayerManager {
         console.log(`${count} players active`);
     }
     disconnect(socketID) {
+        console.log(socketID);
         for (let playerID in this.players) {
+            console.log(this.players[playerID].socketID);
             if (this.players[playerID].socketID === socketID) {
                 this.players[playerID].connected = false;
                 console.log(`${this.players[playerID].playerName} disconnected`);

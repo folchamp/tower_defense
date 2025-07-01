@@ -22,6 +22,7 @@ class Session {
         return id;
     }
     setPlayerName(playerName) {
+        Util.saveToLocalStorage("playerName", playerName);
         this.playerName = playerName;
     }
     getPlayerName() {

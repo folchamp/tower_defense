@@ -7,16 +7,19 @@ class ClientData {
     static CANVAS_HEIGHT = 740;
     static TOWER_SIZE = 16;
     static TOWER_HALF_SIZE = ClientData.TOWER_SIZE / 2;
-    static CARD_WIDTH = 88;
     static HEALTH_BAR_SIZE = 16;
     static imagesPaths = [
         "background",
         "basic_shooter",
         "control_tower",
-        "basic_enemy", "strong_enemy", "quick_enemy",
+        "basic_enemy",
+        "strong_enemy",
+        "quick_enemy",
         "quick_shooter",
         "explosive_shooter",
-        "air_shooter"];
+        "air_shooter",
+        "smallCard"
+    ];
     static images = {};
     static loadImages() {
         ClientData.imagesPaths.forEach((path) => {

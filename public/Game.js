@@ -24,28 +24,60 @@ class Game {
         this.hand = [];
         this.grabbedCard = undefined;
         this.mousePosition = { x: 0, y: 0 };
+        this.openedPopup = undefined;
 
         document.body.addEventListener("mousemove", (event) => {
             this.mousePosition.x = event.clientX;
             this.mousePosition.y = event.clientY;
-            if (this.grabbedCard !== undefined) {
-                this.grabbedCard.updatePosition(this.mousePosition);
-            }
         });
 
         document.body.addEventListener("click", (event) => {
             this.mouseClick(event);
         });
 
+        // MENU BUTTONS
         ELEMENTS["shopButton"].addEventListener("click", (event) => {
-            ELEMENTS["shopContainer"].classList.toggle("hidden");
-            ELEMENTS["cardsContainer"].classList.toggle("hidden");
+            if (this.openedPopup === "shop") {
+                this.openedPopup = undefined;
+                ELEMENTS["shopContainer"].classList.add("hidden");
+                ELEMENTS["cardsContainer"].classList.add("hidden");
+                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
+            } else {
+                this.openedPopup = "shop";
+                ELEMENTS["shopContainer"].classList.remove("hidden");
+                ELEMENTS["cardsContainer"].classList.add("hidden");
+                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
+            }
         });
 
         ELEMENTS["playersButton"].addEventListener("click", (event) => {
-            ELEMENTS["cardsContainer"].classList.toggle("hidden");
-            ELEMENTS["multiPlayerInfoContainer"].classList.toggle("hidden");
+            if (this.openedPopup === "players") {
+                this.openedPopup = undefined;
+                ELEMENTS["cardsContainer"].classList.add("hidden");
+                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
+                ELEMENTS["shopContainer"].classList.add("hidden");
+            } else {
+                this.openedPopup = "players";
+                ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
+                ELEMENTS["cardsContainer"].classList.add("hidden");
+                ELEMENTS["shopContainer"].classList.add("hidden");
+            }
         });
+
+        ELEMENTS["handButton"].addEventListener("click", (event) => {
+            if (this.openedPopup === "cards") {
+                this.openedPopup = undefined;
+                ELEMENTS["cardsContainer"].classList.add("hidden");
+                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
+                ELEMENTS["shopContainer"].classList.add("hidden");
+            } else {
+                this.openedPopup = "cards";
+                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
+                ELEMENTS["cardsContainer"].classList.remove("hidden");
+                ELEMENTS["shopContainer"].classList.add("hidden");
+            }
+        });
+        // END MENU BUTTONS
 
         ELEMENTS["playerNameInput"].value = this.session.getPlayerName();
 
@@ -149,16 +181,15 @@ class Game {
                 if (this.grabbedCard.cardData.action === "build") {
                     this.canvasManager.mouseDrawData.draw = true;
                     this.canvasManager.mouseDrawData.imageName = this.grabbedCard.cardData.type;
-                    // this.grabbedCard.hide();
+                } else if (this.grabbedCard.cardData.action === "power") {
+                    this.canvasManager.mouseDrawData.draw = true;
+                    this.canvasManager.mouseDrawData.imageName = "smallCard";
                 }
             }
         }
         if (eventType === "mouseleave") {
             this.canvasManager.mouseDrawData.draw = false;
             this.mouseInsideCanvas = false;
-            if (this.grabbedCard !== undefined) {
-                // this.grabbedCard.show();
-            }
         }
         if (eventType === "mousemove") {
             this.canvasManager.mouseDrawData.x = position.x;
@@ -166,13 +197,17 @@ class Game {
         }
     }
     cardClickCallback(card) {
+        let putCardDown = false;
         if (this.grabbedCard !== undefined) {
+            if (card.cardData.cardID === this.grabbedCard.cardData.cardID) {
+                putCardDown = true;
+            }
             this.grabbedCard.attach();
             this.grabbedCard = undefined;
         }
-        if (this.grabbedCard === undefined) {
+        if (this.grabbedCard === undefined && !putCardDown) {
             this.grabbedCard = card;
-            card.unattach(this.mousePosition);
+            card.unattach();
         }
     }
     constructionSuccessful(data) {
@@ -255,7 +290,6 @@ class Game {
     changePlayerName() {
         const playerName = ELEMENTS["playerNameInput"].value
         socket.emit("message", { message: "client_setPlayerName", playerID: this.session.playerID, playerName: playerName });
-        Util.saveToLocalStorage("playerName", playerName);
         this.session.setPlayerName(playerName);
     }
 }

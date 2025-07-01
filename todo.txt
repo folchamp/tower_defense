@@ -14,16 +14,18 @@ upgrade : don't shoot an enemy that's already targetted by another tower
 ***************** Must ***************** 
 priority -> optimize the game, speed and network
 
-
 BIG REFACTOOOR
 TODO : Card and further
 
-
+score calculation is different, you cannot spam waves to artificially increase your score
+la dépense de thunes et son affichage buggent parfois
+connection and disconnection : check if it really works
+next wave devient un système de votes
+les cartes bougent à droite plutôt qu'à gauche quand on les survole
 bug affichage des thunes
 cliquer sur la carte déjà sélectionnée la désélectionne
 poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat précise ?)
 server sends too much info -> need to have more intelligence duplication client-side
-feedback bicolore green red
 when you open the players menu, it closes the card menu
 image of towers on shopcards
 eco cards give money or a mix of money and draw

@@ -6,6 +6,7 @@ class Card {
         this.cardClickCallback = cardClickCallback;
         this.attached = true;
 
+        // elements
         this.cardContainer = Util.quickElement("cardContainer", "div", document.body);
         this.cardHeaderContainer = Util.quickElement("cardHeaderContainer", "div", this.cardContainer);
         this.cardTextContainer = Util.quickElement("cardTextContainer", "div", this.cardHeaderContainer);
@@ -19,6 +20,7 @@ class Card {
         this.cardPriceContainer = Util.quickElement("cardPriceContainer", "div", this.cardContainer);
         this.cardTextContainer.innerHTML = cardData.text;
         this.cardPriceContainer.innerHTML = `${cardData.price}💶`;
+
         Util.hide(this.cardContainer);
 
         this.cardContainer.addEventListener("click", (event) => {
@@ -33,25 +35,14 @@ class Card {
         this.oldParent = oldParent;
         this.oldParent.appendChild(this.cardContainer);
     }
-    unattach(position) {
+    unattach() {
         this.attached = false;
         this.cardContainer.classList.add("unattached");
-        // document.body.appendChild(this.cardContainer);
-        // this.updatePosition(position);
-    }
-    updatePosition(position) {
-        if (this.attached === false) {
-            // this.cardContainer.style.left = position.x - ClientData.CARD_WIDTH + "px";
-            // this.cardContainer.style.top = position.y + "px";
-        }
     }
     attach() {
         if (this.attached === false) {
             this.attached = true;
-            // this.oldParent.appendChild(this.cardContainer);
             this.cardContainer.classList.remove("unattached");
-            // this.cardContainer.style.left = "0px";
-            // this.cardContainer.style.top = "0px";
         }
     }
     show() {

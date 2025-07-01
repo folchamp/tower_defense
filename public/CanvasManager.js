@@ -130,12 +130,14 @@ class CanvasManager {
                 // AURAS
                 this.gameElements[order].forEach((aura) => {
                     this.context.fillStyle = aura.auraData.auraColor;
+                    this.context.globalAlpha = 0.35;
                     this.context.beginPath();
                     this.context.arc(
                         aura.position.x + this.offset.x,
                         aura.position.y + this.offset.y,
                         aura.auraData.auraRadius, 0, 2 * Math.PI);
                     this.context.fill();
+                    this.context.globalAlpha = 1;
                 });
             } else if (order === "towers") {
                 // TOWERS
