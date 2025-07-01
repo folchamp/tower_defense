@@ -1,0 +1,60 @@
+***************** Cards *****************
+draw 2
+add 1 permanent action
+build economic turret
+activate all economic turrets
+build battle turret
+sell card
+duplicate card
+wipe all
+upgrade : shoot closest
+upgrade : don't shoot an enemy that's already targetted by another tower
+***************** Turrets *****************
+
+***************** Must ***************** 
+BIG REFACTOOOR
+- Bullet
+- Enemy
+- Tower
+TODO : Util and further
+
+priority -> optimize the game, speed and network
+
+pris+coût en actions -> force de la tourelle
+tours en général moins chères (200-350)
+tours de contrôle plus chères
+poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat précise ?)
+server sends too much info -> need to have more intelligence duplication client-side
+feedback bicolore green red
+when you open the players menu, it closes the card menu
+image of towers on shopcards
+eco cards give money or a mix of money and draw
+notification end of wave
+eco towers give money
+eco towers give cards
+eco towers give actions
+there's a "next wave" button
+deck size is displayed
+enemies focus closeby towers (towers are in a 128 virtual grid)
+players can't send two waves simultaneously
+strong_enemies are less strong or arrive later
+playing with more players should be harder, no easyier
+shop closes when you click anywhere else (idem player screen)
+players can play full screen
+when you select a tower, you can't move the canvas anymore, add a x zone to remove selection
+no need to click an empty zone to use a power card
+double click sometimes double uses a card, triggering an error
+***************** Should ***************** 
+enemies use a virtual grid pathfinding
+some enemies fly
+tower:hover displays stats
+enemies are vehicles
+some towers slow down the enemies
+some towers have aoe damage
+sell a tower you don't want anymore
+***************** could ***************** 
+circular action wheel
+undo tower construction
+hotkey to reach beginning and end of route
+
+***************** Won't ***************** 

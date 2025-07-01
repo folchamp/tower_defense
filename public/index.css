@@ -1,0 +1,222 @@
+body {
+    position: relative;
+    margin: 0;
+    line-height: 0;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.cardContainer {
+    transition: left 0.3s;
+    left: 0px;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 4px;
+    line-height: initial;
+    width: 88px;
+    height: 63px;
+    border: 1px solid black;
+    vertical-align: top;
+    margin: 4px;
+    cursor: pointer;
+    user-select: none;
+    background-color: beige;
+
+    .cardHeaderContainer {
+        display: flex;
+        justify-content: space-between;
+
+        .cardImageContainer {
+            text-align: center;
+        }
+
+        .cardImage {
+            flex-grow: 0;
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+.cardContainer:hover {
+    left: -8px;
+    background-color: wheat;
+}
+
+.unattached {
+    /* position: absolute; */
+    left: -8px;
+    background-color: wheat;
+}
+
+#mainMenu {
+    nav {
+        li {
+            display: inline-block;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 4px;
+            cursor: pointer;
+            list-style-type: none;
+            user-select: none;
+        }
+
+        li:hover {
+            background-color: bisque;
+        }
+    }
+
+    #mainMenuList {
+        margin: 0;
+        line-height: initial;
+    }
+}
+
+#game {
+    #feedbackText {
+        background-color: aliceblue;
+        position: absolute;
+        color: red;
+        margin: 0;
+        padding: 0;
+        line-height: initial;
+    }
+
+    .succesful {
+        color: darkgreen;
+    }
+
+    #gameHeader {
+        position: absolute;
+        display: flex;
+        line-height: initial;
+
+        #shopButton:hover,
+        #playersButton:hover,
+        #nextWaveButton:hover,
+        #fullscreenButton:hover {
+            background-color: darkgray;
+            color: white;
+        }
+
+        #playersButton,
+        #shopButton,
+        #nextWaveButton,
+        #fullscreenButton {
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    #multiPlayerInfoContainer {
+        background-color: aqua;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        line-height: initial;
+        top: 22px;
+        padding: 4px;
+
+        #playerNameContainer {
+            padding: 4px;
+        }
+
+        #playerListContainer {
+            #playerList {
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+                margin: 0;
+
+                .playerListElement {
+                    font-weight: bold;
+                    border: 1px solid red;
+                    padding: 3px;
+                    margin: 4px;
+                    list-style-type: none;
+                    background-color: rgb(247, 223, 227);
+                }
+            }
+        }
+    }
+
+    #shopContainer {
+        top: 18px;
+        left: 0;
+        position: absolute;
+        line-height: initial;
+        background-color: aqua;
+
+        #shopHandText,
+        #shopContentText {
+            margin: 0;
+            padding: 0;
+        }
+
+        #shopHandContainer,
+        #shopContentContainer {
+            display: flex;
+            flex-wrap: wrap;
+
+            .shopCardContainer {
+                box-sizing: border-box;
+                padding: 4px;
+                margin: 4px;
+                width: 90px;
+                height: 110px;
+                background-color: beige;
+            }
+        }
+    }
+
+    #cardsContainer {
+        background-color: brown;
+        position: absolute;
+        left: 0;
+        top: 18px;
+        display: flex;
+        flex-direction: column;
+
+        #myResources {
+            line-height: initial;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        #handContainer {
+            display: flex;
+            flex-direction: column;
+
+        }
+    }
+
+    #gameCanvas {
+        background-color: green;
+    }
+}
+
+#about,
+#credits {
+    section {
+        width: 400px;
+        margin: 0px;
+        padding: 0px;
+        background-color: navy;
+        color: antiquewhite;
+        border: 2px solid black;
+        border-radius: 8px;
+        text-align: justify;
+
+        p {
+            margin: 8px;
+            padding: 8px;
+        }
+    }
+}
