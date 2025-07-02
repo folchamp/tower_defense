@@ -20,6 +20,9 @@ class GameManager {
             if (this.enemiesLeftToSpawn > 0) {
                 this.spawnEnemy();
                 this.enemiesLeftToSpawn--;
+            } else if (!this.waveFinished && this.gameElements.enemies.length === 0) {
+                this.waveFinished = true;
+                this.broadcast({ message: "server_wave_finished" });
             }
             this.checkGameLost();
         }, ServerData.ENEMIES_INTERVAL);
@@ -38,13 +41,18 @@ class GameManager {
         }, 17); // approx. 1/60 of a second
     }
     sendNextWave() {
-        this.drawTime();
-        this.drawTime();
-        this.refreshPlayerActions()
-        this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR;
-        this.enemiesLeftToSpawn = this.globalEnemyStrength;
-        this.shopManager.resplenish();
-        this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
+        if (this.waveFinished === true) {
+            this.waveCounter++;
+            this.broadcast({ message: "server_new_wave" });
+            this.waveFinished = false;
+            this.drawTime();
+            this.drawTime();
+            this.refreshPlayerActions()
+            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter / 2;
+            this.enemiesLeftToSpawn = this.globalEnemyStrength;
+            this.shopManager.resplenish();
+            this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
+        }
     }
     reset() {
         this.enemiesLeftToSpawn = 0;
@@ -60,6 +68,8 @@ class GameManager {
         this.isLost = false;
         this.shopManager.reset();
         this.resetNewGameStateElements();
+        this.waveFinished = true;
+        this.waveCounter = 0;
     }
     resetNewGameStateElements() {
         this.newGameStateElements = {
@@ -68,11 +78,10 @@ class GameManager {
             towers: [],
             towerIDsToRemove: [],
             enemyIDsToRemove: []
-            // bulletsToRemove: []
         }
     }
     checkGameLost() {
-        if (this.hasStarted && this.gameElements.towers.length === 0 || this.isLost) {
+        if ((this.hasStarted && this.gameElements.towers.length === 0) || this.isLost) {
             console.log("lost");
             this.broadcast({ message: "server_score", score: Math.round(this.globalEnemyStrength) });
             this.reset();
@@ -156,14 +165,20 @@ class GameManager {
             bullet.move(timePassed);
         });
     }
+    getRandomEnemy() {
+        return Util.randomFromArray(this.gameElements.enemies);
+    }
     towersAct(timePassed) {
         this.gameElements.towers.forEach((tower) => {
-            if (tower.hasTarget()) {
-                tower.move(timePassed);
-            } else {
-                tower.setTarget(this.gameElements.enemies[Util.randomValue(0, Math.min(5, this.gameElements.enemies.length))]);
+            if (!tower.hasTarget() || tower.towerData.name === "fire_tower" || tower.towerData.name === "ice_tower") {
+                let chosenEnemy = this.getRandomEnemy();
+                for (let index = 0; index < ServerData.SMART_AIM && chosenEnemy !== undefined && chosenEnemy.enemyData.name !== "quick_enemy"; index++) {
+                    chosenEnemy = this.getRandomEnemy();
+                }
+                tower.setTarget(chosenEnemy);
                 this.newGameStateElements.towers.push(tower);
             }
+            tower.move(timePassed);
             if (tower.stockedBullet) {
                 let bullet = new Bullet(Util.copyObject(tower.stockedBullet.position), tower.stockedBullet.target, tower.stockedBullet.bulletData)
                 this.gameElements.bullets.push(bullet);
@@ -318,6 +333,9 @@ class GameManager {
             if (data.cardData.type === "draw_two") {
                 this.playerDraw(data.playerID);
                 this.playerDraw(data.playerID);
+            }
+            if (data.cardData.type === "three_actions") {
+                player.actualAmountOfActions += 3;
             }
             if (data.cardData.type === "fire_rate_up") {
                 this.gameElements.towers.forEach((tower) => {

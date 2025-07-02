@@ -20,7 +20,9 @@ class ClientData {
         "air_shooter",
         "smallCard",
         "maki_tower",
-        "bandi_tower"
+        "bandi_tower",
+        "fire_tower",
+        "ice_tower"
     ];
     static images = {};
     static loadImages() {

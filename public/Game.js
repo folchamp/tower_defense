@@ -20,6 +20,7 @@ class Game {
         this.shop = new Shop(
             (eventType, cardData) => { return this.shopCallback(eventType, cardData); });
         this.quickFeedback = new QuickFeedback(ELEMENTS["feedbackText"]);
+        this.waveNotifier = new WaveNotifier(ELEMENTS["waveNotification"]);
 
         this.hand = [];
         this.grabbedCard = undefined;
@@ -34,6 +35,13 @@ class Game {
         document.body.addEventListener("click", (event) => {
             this.mouseClick(event);
         });
+
+        document.body.addEventListener("keydown", (event) => {
+            console.log(event.code);
+            if (event.code === "Space") {
+                socket.emit("message", { message: "client_next_wave" });
+            }
+        })
 
         // MENU BUTTONS
         ELEMENTS["shopButton"].addEventListener("click", (event) => {
@@ -120,103 +128,20 @@ class Game {
             if (message === "server_card_sold" && this.isForMe(data)) {
                 this.cardSold(data);
             }
+            if (message === "server_wave_finished") {
+                this.waveNotifier.notifyEndWave();
+                console.log("wave finished");
+            }
+            if (message === "server_new_wave") {
+                this.waveNotifier.notifyNextWave();
+                console.log("new wave");
+            }
         });
     }
     shopCallback(eventType, cardData) {
         socket.emit("message", { message: "client_buy_sell", type: eventType, cardData: cardData, playerID: this.session.playerID });
     }
 
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    refreshGameState(data) {
-        let bullets = data.gameElements.bullets;
-        let enemies = data.gameElements.enemies;
-        let towers = data.gameElements.towers;
-        let towerIDsToRemove = data.gameElements.towerIDsToRemove;
-        let enemyIDsToRemove = data.gameElements.enemyIDsToRemove;
-        // towers
-        towers.forEach((newTower) => {
-            for (let index = 0; index < this.gameElements.towers.length; index++) {
-                const tower = this.gameElements.towers[index];
-                if (tower.towerID === newTower.towerID) {
-                    let newNewTower = new Tower();
-                    newNewTower.load(newTower);
-                    this.gameElements.towers[index] = newNewTower;
-                }
-            }
-        });
-        // enemies
-        enemies.forEach((enemyData) => {
-            const enemy = new Enemy(enemyData.position, enemyData.direction, enemyData.enemyData);
-            enemy.load(enemyData);
-            this.gameElements.enemies.push(enemy);
-        });
-        // bullets
-        bullets.forEach((bulletData) => {
-            const bullet = new Bullet();
-            bullet.load(bulletData)
-            this.gameElements.bullets.push(bullet);
-            bullet.findTarget(this.gameElements.enemies);
-        });
-        towerIDsToRemove.forEach((towerIDToRemove) => {
-            let indexToRemove;
-            for (let index = 0; index < this.gameElements.towers.length; index++) {
-                const tower = this.gameElements.towers[index];
-                if (tower.towerID === towerIDToRemove) {
-                    indexToRemove = index;
-                }
-            }
-            if (indexToRemove !== undefined) {
-                this.gameElements.towers.splice(indexToRemove, 1);
-            }
-        });
-        enemyIDsToRemove.forEach((enemyIDToRemove) => {
-            let indexToRemove;
-            for (let index = 0; index < this.gameElements.enemies.length; index++) {
-                const enemy = this.gameElements.enemies[index];
-                if (enemy.enemyID === enemyIDToRemove) {
-                    indexToRemove = index;
-                }
-            }
-            if (indexToRemove !== undefined) {
-                console.log("remove enemy");
-                this.gameElements.enemies.splice(indexToRemove, 1);
-            }
-        });
-        this.cleanBullets();
-    }
-    cleanBullets() {
-        // duplicate from server
-        for (let index = 0; index < this.gameElements.bullets.length; index++) {
-            const bullet = this.gameElements.bullets[index];
-            if (bullet.hit) {
-                bullet.isActive = false;
-                bullet.target.hit(bullet.bulletData.damage, bullet.bulletData.special);
-                if (this.gameElements.bullets.length === index + 1) {
-                    this.gameElements.bullets.pop();
-                } else {
-                    this.gameElements.bullets[index] = this.gameElements.bullets.pop();
-                }
-            }
-        }
-    }
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
     isForMe(data) {
         return data.recipient === this.session.playerID;
     }
@@ -336,6 +261,21 @@ class Game {
         });
         this.shop.refreshHandData(this.hand);
     }
+    refreshPlayerList(data) {
+        Util.emptyElement(ELEMENTS["playerList"]);
+        data.playerList.forEach((player) => {
+            let playerListElement = Util.quickElement("playerListElement", "li", ELEMENTS["playerList"]);
+            playerListElement.innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money} || ${player.playerName}`;
+            if (player.playerName === this.session.getPlayerName()) {
+                ELEMENTS["myResources"].innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money}`;
+            }
+        });
+    }
+    changePlayerName() {
+        const playerName = ELEMENTS["playerNameInput"].value.substring(0, 16);
+        socket.emit("message", { message: "client_setPlayerName", playerID: this.session.playerID, playerName: playerName });
+        this.session.setPlayerName(playerName);
+    }
     refreshGameData(data) {
         this.hand = [];
         if (this.grabbedCard) {
@@ -358,27 +298,92 @@ class Game {
             const enemy = new Enemy(enemyData.position, enemyData.direction, enemyData.enemyData);
             enemy.load(enemyData);
             this.gameElements.enemies[index] = enemy;
+            if (enemy.hit === undefined) {
+                throw "wtf";
+            }
         }
         for (let index = 0; index < this.gameElements.bullets.length; index++) {
             const bulletData = this.gameElements.bullets[index];
             const bullet = new Bullet()
             bullet.load(bulletData);
+            bullet.findTarget(this.gameElements.enemies);
             this.gameElements.bullets[index] = bullet;
         }
     }
-    refreshPlayerList(data) {
-        Util.emptyElement(ELEMENTS["playerList"]);
-        data.playerList.forEach((player) => {
-            let playerListElement = Util.quickElement("playerListElement", "li", ELEMENTS["playerList"]);
-            playerListElement.innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money} || ${player.playerName}`;
-            if (player.playerName === this.session.getPlayerName()) {
-                ELEMENTS["myResources"].innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money}`;
+    refreshGameState(data) {
+        let bullets = data.gameElements.bullets;
+        let enemies = data.gameElements.enemies;
+        let towers = data.gameElements.towers;
+        let towerIDsToRemove = data.gameElements.towerIDsToRemove;
+        let enemyIDsToRemove = data.gameElements.enemyIDsToRemove;
+        // towers
+        towers.forEach((newTower) => {
+            for (let index = 0; index < this.gameElements.towers.length; index++) {
+                const tower = this.gameElements.towers[index];
+                if (tower.towerID === newTower.towerID) {
+                    let newNewTower = new Tower();
+                    newNewTower.load(newTower);
+                    this.gameElements.towers[index] = newNewTower;
+                }
             }
         });
+        // enemies
+        enemies.forEach((enemyData) => {
+            const enemy = new Enemy(enemyData.position, enemyData.direction, enemyData.enemyData);
+            enemy.load(enemyData);
+            this.gameElements.enemies.push(enemy);
+        });
+        // bullets
+        bullets.forEach((bulletData) => {
+            const bullet = new Bullet();
+            bullet.load(bulletData)
+            bullet.findTarget(this.gameElements.enemies);
+            this.gameElements.bullets.push(bullet);
+        });
+        towerIDsToRemove.forEach((towerIDToRemove) => {
+            let indexToRemove;
+            for (let index = 0; index < this.gameElements.towers.length; index++) {
+                const tower = this.gameElements.towers[index];
+                if (tower.towerID === towerIDToRemove) {
+                    indexToRemove = index;
+                }
+            }
+            if (indexToRemove !== undefined) {
+                this.gameElements.towers.splice(indexToRemove, 1);
+            }
+        });
+        enemyIDsToRemove.forEach((enemyIDToRemove) => {
+            let indexToRemove;
+            for (let index = 0; index < this.gameElements.enemies.length; index++) {
+                const enemy = this.gameElements.enemies[index];
+                if (enemy.enemyID === enemyIDToRemove) {
+                    indexToRemove = index;
+                }
+            }
+            if (indexToRemove !== undefined) {
+                console.log("remove enemy");
+                this.gameElements.enemies.splice(indexToRemove, 1);
+            }
+        });
+        this.cleanBullets();
     }
-    changePlayerName() {
-        const playerName = ELEMENTS["playerNameInput"].value.substring(0, 16);
-        socket.emit("message", { message: "client_setPlayerName", playerID: this.session.playerID, playerName: playerName });
-        this.session.setPlayerName(playerName);
+    cleanBullets() {
+        // duplicate from server
+        for (let index = 0; index < this.gameElements.bullets.length; index++) {
+            const bullet = this.gameElements.bullets[index];
+            if (bullet.hit) {
+                bullet.isActive = false;
+                if (bullet.target.hit) { // quick bugfix TODO understand why this bug happens (remove condition to test)
+                    bullet.target.hit(bullet.bulletData.damage, bullet.bulletData.special);
+                } else {
+                    console.log(bullet);
+                }
+                if (this.gameElements.bullets.length === index + 1) {
+                    this.gameElements.bullets.pop();
+                } else {
+                    this.gameElements.bullets[index] = this.gameElements.bullets.pop();
+                }
+            }
+        }
     }
 }

@@ -8,6 +8,9 @@ class ShopManager {
     }
     resplenish() {
         let temporaryShop = ServerData.generateShopContent();
+        for (let index = 0; index < ServerData.SHOP_SHIFT; index++) {
+            this.shopContent.shift();
+        }
         while (this.shopContent.length < ServerData.SHOP_SIZE) {
             this.shopContent.push(temporaryShop.pop());
         }

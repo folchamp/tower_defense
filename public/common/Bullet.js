@@ -41,6 +41,9 @@ class Bullet {
                 this.target = enemy;
             }
         });
+        if (this.target === undefined) {
+            console.log("target not found");
+        }
     }
 }
 

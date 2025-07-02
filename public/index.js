@@ -20,7 +20,8 @@ const elementNames = [
     "nextWaveButton",
     "fullscreenButton",
     "handButton",
-    "handContainer"
+    "handContainer",
+    "waveNotification"
 ]
 
 const ELEMENTS = Util.getElements(elementNames);

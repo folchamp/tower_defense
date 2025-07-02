@@ -11,6 +11,7 @@
 <body>
     <!-- Game -->
     <div id="game">
+        <div id="waveNotification" class="hidden"></div>
         <div id="feedbackContainer">
             <p id="feedbackText"></p>
         </div>
@@ -20,6 +21,7 @@
             <input type="button" value="Joueurs" id="playersButton">
             <input type="button" value="Prochaine vague" id="nextWaveButton">
             <input type="button" value="Plein écran" id="fullscreenButton">
+            <p id="myResources"></p>
         </div>
         <div id="multiPlayerInfoContainer" class="hidden">
             <div id="playerListContainer">
@@ -39,7 +41,6 @@
             <div id="shopContentContainer"></div>
         </div>
         <div id="cardsContainer">
-            <p id="myResources"></p>
             <div id="handContainer"></div>
         </div>
         <canvas id="gameCanvas" width="360" height="740"></canvas>
@@ -56,6 +57,7 @@
     <script src="Shop.js"></script>
     <script src="Session.js"></script>
     <script src="CanvasManager.js"></script>
+    <script src="WaveNotifier.js"></script>
     <script src="Game.js"></script>
     <script src="index.js"></script>
 </body>

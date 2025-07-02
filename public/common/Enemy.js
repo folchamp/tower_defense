@@ -11,6 +11,8 @@ class Enemy {
         this.target = false;
         this.reachTurret = false;
         this.routeCheckPoint = 0;
+        this.onFire = false;
+        this.onIce = false;
     }
     load(data) {
         this.position = data.position;
@@ -22,6 +24,8 @@ class Enemy {
         this.target = data.target;
         this.reachTurret = data.reachTurret;
         this.routeCheckPoint = data.routeCheckPoint
+        this.onFire = data.onFire;
+        this.onIce = data.onIce;
 
         this.speed = data.speed;
         this.imageName = data.imageName;
@@ -44,6 +48,13 @@ class Enemy {
             this.position.x += xVelocity;
             this.position.y += yVelocity;
         }
+        if (this.onFire) {
+            this.actualHP -= 2;
+        }
+        if (this.onIce) {
+            this.position.x -= xVelocity / 2;
+            this.position.y -= yVelocity / 2;
+        }
     }
     distance(one, two) {
         let a = one.x - two.x;
@@ -65,6 +76,12 @@ class Enemy {
         if (this.enemyData.name === "strong_enemy" && special === "armor_piercer") {
             this.actualHP -= damage;
             this.actualHP -= damage;
+        }
+        if (special === "fire") {
+            this.onFire = true;
+        }
+        if (special === "ice") {
+            this.onIce = true;
         }
         this.actualHP -= damage;
         if (this.actualHP <= 0) {

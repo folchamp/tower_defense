@@ -6,8 +6,10 @@ class ServerData {
     static GAME_WIDTH = 1920;
     static GAME_HEIGHT = 1080;
     static MAX_AMOUNT_OF_ACTIONS = 3;
+    static SHOP_SHIFT = 3;
+    static SMART_AIM = 5;
     static STARTING_MONEY = 4500;
-    static ENEMIES_INTERVAL = 500;
+    static ENEMIES_INTERVAL = 200;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static HAND_SIZE = 8;
     static SHOP_SIZE = 8;
@@ -67,9 +69,9 @@ class ServerData {
         "strong_enemy"
     ]
     static enemiesData = {
-        basic_enemy: { name: "basic_enemy", speed: 0.07, imageName: "basic_enemy", maxHP: 3000, reward: 45 },
-        quick_enemy: { name: "quick_enemy", speed: 0.13, imageName: "quick_enemy", maxHP: 1000, reward: 7 },
-        strong_enemy: { name: "strong_enemy", speed: 0.05, imageName: "strong_enemy", maxHP: 15000, reward: 300 }
+        basic_enemy: { name: "basic_enemy", speed: 0.07, imageName: "basic_enemy", maxHP: 5000, reward: 45 },
+        quick_enemy: { name: "quick_enemy", speed: 0.13, imageName: "quick_enemy", maxHP: 2000, reward: 7 },
+        strong_enemy: { name: "strong_enemy", speed: 0.05, imageName: "strong_enemy", maxHP: 45000, reward: 300 }
     };
     static towers = {
         maki_tower: {
@@ -99,21 +101,30 @@ class ServerData {
         control_tower: {
             name: "control_tower",
             auraData: { type: "control", auraRadius: 64, auraColor: "lightblue", spaceLeft: 5 }
+        },
+        fire_tower: {
+            name: "fire_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, bulletData: { damage: 25, speed: 0.2, color: "orange", size: 3, special: "fire" }
+        },
+        ice_tower: {
+            name: "ice_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, bulletData: { damage: 25, speed: 0.2, color: "#739BD0", size: 3, special: "ice" }
         }
     };
     static basicCardsData = [
         { action: "build", text: "Tour de contrôle", type: "control_tower", price: 1500, sellprice: 3000 },
+        // { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 }, // temp
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 },
         { action: "build", text: "Mitrailleuse légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
+        { action: "power", text: "gagner 300 💶", type: "gain_money_1", price: 100, sellprice: 200 },
+        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
+        { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 }
     ];
     static shopCardsData = [
         { action: "power", text: "gagner 300 💶", type: "gain_money_1", price: 100, sellprice: 200 },
-        { action: "power", text: "gagner 300 💶", type: "gain_money_1", price: 100, sellprice: 200 },
-        { action: "power", text: "gagner 300 💶", type: "gain_money_1", price: 100, sellprice: 200 },
-        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 400, sellprice: 800 },
-        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 400, sellprice: 800 },
-        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 400, sellprice: 800 },
+        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
+        { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 },
         { action: "power", text: "dégâts des tours++", type: "damage_up", price: 300, sellprice: 600 },
         { action: "power", text: "cadence de tir des tours++", type: "fire_rate_up", price: 300, sellprice: 600 },
         { action: "build", text: "Tour de contrôle", type: "control_tower", price: 1500, sellprice: 3000 },
@@ -121,9 +132,11 @@ class ServerData {
         { action: "build", text: "Mitrailleuse légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
         { action: "build", text: "Arme perce-armure", type: "air_shooter", price: 350, sellprice: 700 },
-        { action: "build", text: "Arme perce-armure", type: "air_shooter", price: 350, sellprice: 700 },
         { action: "build", text: "Tour de Maki", type: "maki_tower", price: 700, sellprice: 1400 },
-        { action: "build", text: "Tour de Bandi", type: "bandi_tower", price: 700, sellprice: 1400 }
+        { action: "build", text: "Tour de Bandi", type: "bandi_tower", price: 700, sellprice: 1400 },
+        { action: "build", text: "Tour de feu", type: "fire_tower", price: 700, sellprice: 1400 },
+        { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 }
+
     ]
 }
 
