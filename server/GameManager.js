@@ -189,7 +189,6 @@ class GameManager {
         });
     }
     spawnEnemy() {
-        console.log(this.playerManager.getAmountOfPlayers());
         let newEnemy = new Enemy(
             Util.copyObject(this.gameElements.route[0]),
             Util.copyObject(this.gameElements.route[0]),

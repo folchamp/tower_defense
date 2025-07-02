@@ -11,7 +11,6 @@ class ShopManager {
         while (this.shopContent.length < ServerData.SHOP_SIZE) {
             this.shopContent.push(temporaryShop.pop());
         }
-        // console.log(this.shopContent);
     }
     reset() {
         this.shopContent = ServerData.generateShopContent();

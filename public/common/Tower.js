@@ -7,7 +7,7 @@ class Tower {
         this.position = position;
         this.playerName = playerName;
         this.towerID = towerID;
-        
+
         this.target = undefined;
         this.totalTimePassed = 0;
         this.angle;
@@ -19,9 +19,10 @@ class Tower {
         this.towerData = data.towerData;
         this.position = data.position;
         this.playerName = data.playerName;
+        this.towerID = data.towerID;
+        
         this.target = data.target;
         this.totalTimePassed = data.totalTimePassed;
-        this.towerID = data.towerID;
         this.angle = data.angle;
         this.targettedBy = data.targettedBy;
         this.isAlive = data.isAlive;

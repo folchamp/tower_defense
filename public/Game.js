@@ -136,12 +136,6 @@ class Game {
     // ---------------------------------------------------------------------------
     // ---------------------------------------------------------------------------
     refreshGameState(data) {
-        if (data.gameElements.enemies.length > 0) {
-            console.log(data.gameElements.enemies);
-        }
-        if (data.gameElements.enemyIDsToRemove.length > 0) {
-            console.log(data.gameElements.enemyIDsToRemove);
-        }
         let bullets = data.gameElements.bullets;
         let enemies = data.gameElements.enemies;
         let towers = data.gameElements.towers;
@@ -187,7 +181,6 @@ class Game {
             let indexToRemove;
             for (let index = 0; index < this.gameElements.enemies.length; index++) {
                 const enemy = this.gameElements.enemies[index];
-                console.log(`${enemy.enemyID} === ${enemyIDToRemove}`);
                 if (enemy.enemyID === enemyIDToRemove) {
                     indexToRemove = index;
                 }
@@ -384,7 +377,7 @@ class Game {
         });
     }
     changePlayerName() {
-        const playerName = ELEMENTS["playerNameInput"].value
+        const playerName = ELEMENTS["playerNameInput"].value.substring(0, 16);
         socket.emit("message", { message: "client_setPlayerName", playerID: this.session.playerID, playerName: playerName });
         this.session.setPlayerName(playerName);
     }

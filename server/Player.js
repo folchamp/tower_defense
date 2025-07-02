@@ -37,14 +37,12 @@ class Player {
         return cardsToReturn;
     }
     hasCard(cardData) {
-        // console.log(cardData);
         let hasGivenCard = false;
         if (this.handData) {
             this.handData.forEach((posessedCardData) => {
                 if (posessedCardData.cardID === cardData.cardID) {
                     hasGivenCard = true;
                     for (let attribute in cardData) {
-                        // console.log(`${cardData[attribute]} === ${posessedCardData[attribute]}`);
                         if (cardData[attribute] !== posessedCardData[attribute]) {
                             hasGivenCard = false;
                         }

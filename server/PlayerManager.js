@@ -20,9 +20,8 @@ class PlayerManager {
         console.log(`${count} players active`);
     }
     disconnect(socketID) {
-        console.log(socketID);
         for (let playerID in this.players) {
-            console.log(this.players[playerID].socketID);
+            console.log(`disconnect : ${socketID} === ${this.players[playerID].socketID}`);
             if (this.players[playerID].socketID === socketID) {
                 this.players[playerID].connected = false;
                 console.log(`${this.players[playerID].playerName} disconnected`);
@@ -37,12 +36,12 @@ class PlayerManager {
         }
         this.players[playerID].connected = true;
         this.broadcast({ message: "server_new_player_arrived", playerID: playerID, socketID: socketID });
-        console.log(`${playerName} connected`);
+        console.log(`${playerName} connected (${socketID})`);
         this.countAmountOfPlayers();
         this.refreshPlayerList();
     }
     setPlayerName(playerID, playerName) {
-        this.players[playerID].playerName = playerName;
+        this.players[playerID].playerName = playerName.substring(0, 16);
         this.refreshPlayerList();
     }
     listener(data) {
