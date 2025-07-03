@@ -1,41 +1,74 @@
+***************** Must ***************** 
+user-select none sur la notif de wave
+ice tower slows less
+bug : when you select a tower, you can't move the canvas anymore without building the tower
+voir son deck et sa défausse
+deck size and discard size are always displayed
+
+***************** Todo *****************
+certaines cartes voient leur effet multiplié par la quantité de réputation qu'on a
+système de campagne plutôt que de high score ? Carte aléatoire pour plus de variété ?
+système de réputation (tour de contrôle, cartes coopératives etc.)
+code couleur pour les cartes (construction, pouvoir, coopération, réputation)
+détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
+système de coût supplémentaire pour les cartes forts (sacrifice 1 = défausser la première carte de se main) (trouver un mot-clef sympa)
+système de paliers, un nouveau type de monstre (aléatoire) apparaît toutes les 5 vagues
+les monstres ont une « valeur de difficulté » qui détermine leur fréquence
+retirer le système de vente de cartes, le remplacer par un système de destruction
+next wave devient un système de votes
+poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat précise ?)
+eco cards give money or a mix of money and draw
+eco towers give money
+eco towers give cards
+eco towers give actions
+enemies focus closeby towers (towers are in a 128 virtual grid)
+shop closes when you click anywhere else (idem player screen)
+système de communication par « ping », du genre 
+« hey, je suis prêt pour la vague suivante »
+« hey, j'ai besoin d'une tour de contrôle »
+« hey, j'ai plus de thunes, ne comptez pas sur moi ce tour-ci »
+
+***************** Bugs *****************
+déconnexion pas prise en compte ?
+connection and disconnection : check if it really works
+bug affichage des thunes
+la dépense de thunes et son affichage buggent parfois
+
+***************** Victoire *****************
+Je pensais ajouter un système de Merveille comme dans Age Of Empires. Une fois que la merveille est construite, les joueurs doivent survivre un certain nombre de vagues pour gagner la partie 
+Et donc il y en l'enjeu de la construire le plus tôt possible... ou de ne la construire que quand les défenses sont très fortes
+Je pensais aussi à quelque chose de plus agressif, genre devoir construire des tourelles d'oppression sur l'entièreté de la ligne des ennemis pour gagner
+Quand on arrive à relier le début du chemin à la fin du chemin avec des tourelles d'oppression, la partie est gagnée pour les joueurs
+
+***************** Réflexions nocturnes *****************
+peaufiner ce qui rend déjà le jeu spécifique
+mettre en avant le côté multijoueur
+ajouter plusieurs système de coopération avec un gain de réputation 
+constructions coopératives
+cartes qui combinent (à la Shards of Infinity)
+mettre en avant le côté jeu de cartes
+ajouter plein, plein de cartes
+
 ***************** Cards *****************
-draw 2
+gagner 100 thunes pour chaque lance-grenade sur le board
+tous les joueurs piochent une carte
+chaque joueur gagne une action
+partager sa thune entre tous les joueurs (sans la perdre)
+gestion du magasin (reset le magasin, virer les trois premières carte et en repiocher trois)
+récupération de la première carte de la défausse (ne marche pas quand la défausse est vide !!!)
+prochaine carte jouée est détruite
+détruire la première carte de sa main
+défausser une carte au hasard pour gagner 200 thunes et 1 action
+cantrips de cartes et cantrips d'actions
 add 1 permanent action
 build economic turret
 activate all economic turrets
-build battle turret
 sell card
 duplicate card
 wipe all
 upgrade : shoot closest
 upgrade : don't shoot an enemy that's already targetted by another tower
-***************** Turrets *****************
 
-***************** Must ***************** 
-ice tower slows less
-user-select none sur la notif de wave
-
-déconnexion pas prise en compte ?
-connection and disconnection : check if it really works
-
-next wave devient un système de votes
-
-bug affichage des thunes
-la dépense de thunes et son affichage buggent parfois
-poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat précise ?)
-
-eco cards give money or a mix of money and draw
-eco towers give money
-eco towers give cards
-eco towers give actions
-
-enemies focus closeby towers (towers are in a 128 virtual grid)
-fire tower
-slow tower
-
-deck size and money is displayed
-shop closes when you click anywhere else (idem player screen)
-when you select a tower, you can't move the canvas anymore, add a x zone to remove selection
 ***************** Should ***************** 
 no need to click an empty zone to use a power card
 tutoriel
@@ -46,6 +79,7 @@ enemies are vehicles
 some towers slow down the enemies
 some towers have aoe damage
 sell a tower you don't want anymore
+
 ***************** could ***************** 
 circular action wheel
 undo tower construction
