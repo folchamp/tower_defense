@@ -9,7 +9,7 @@ class CanvasManager {
         this.context = this.canvas.getContext("2d");
         this.lastTimeStamp = Date.now();
         this.moving = false;
-        this.mouseDrawData = { draw: false, imageName: "basic_shooter" };
+        this.mouseDrawData = { draw: false, card: "basic_shooter" };
         this.offset = { x: 0, y: 0 };
         this.fullscreen = false;
 
@@ -157,6 +157,17 @@ class CanvasManager {
                         - ClientData.TOWER_HALF_SIZE,
                         - ClientData.TOWER_HALF_SIZE);
                     this.context.restore();
+                    if (tower.towerData.range !== undefined) {
+                        this.context.strokeStyle = "red";
+                        this.context.globalAlpha = 0.2;
+                        this.context.beginPath();
+                        this.context.arc(
+                            tower.position.x + this.offset.x,
+                            tower.position.y + this.offset.y,
+                            tower.towerData.range, 0, 2 * Math.PI);
+                        this.context.stroke();
+                        this.context.globalAlpha = 1;
+                    }
                 });
             } else if (order === "enemies") {
                 // ENEMIES
@@ -192,6 +203,7 @@ class CanvasManager {
                 })
             } else if (order === "route") {
                 // ROUTE
+                this.context.strokeStyle = "grey";
                 this.context.beginPath()
                 this.context.moveTo(this.gameElements[order][0].x + this.offset.x, this.gameElements[order][0].y + this.offset.y);
                 this.gameElements[order].forEach((point) => {
@@ -201,7 +213,25 @@ class CanvasManager {
             }
         });
         if (this.mouseDrawData.draw) {
-            this.context.drawImage(ClientData.images[this.mouseDrawData.imageName], this.mouseDrawData.x - ClientData.TOWER_HALF_SIZE, this.mouseDrawData.y - ClientData.TOWER_HALF_SIZE);
+            let imageName;
+            if (this.mouseDrawData.card.cardData.action === "build") {
+                let range = this.mouseDrawData.card.cardData.range;
+                if (range !== undefined) {
+                    this.context.strokeStyle = "red";
+                    this.context.globalAlpha = 0.2;
+                    this.context.beginPath();
+                    this.context.arc(
+                        this.mouseDrawData.x,
+                        this.mouseDrawData.y,
+                        range, 0, 2 * Math.PI);
+                    this.context.stroke();
+                    this.context.globalAlpha = 1;
+                }
+                imageName = this.mouseDrawData.card.cardData.type;
+            } else if (this.mouseDrawData.card.cardData.action === "power") {
+                imageName = "smallCard";
+            }
+            this.context.drawImage(ClientData.images[imageName], this.mouseDrawData.x - ClientData.TOWER_HALF_SIZE, this.mouseDrawData.y - ClientData.TOWER_HALF_SIZE);
         }
     }
 }

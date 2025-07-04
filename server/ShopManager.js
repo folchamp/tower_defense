@@ -27,7 +27,7 @@ class ShopManager {
             }
         }
         if (indexFound === undefined) {
-            throw "card not found";
+            console.log("card not found");
         } else {
             this.shopContent.splice(indexFound, 1);
         }
@@ -40,7 +40,7 @@ class ShopManager {
             }
         });
         if (cardToReturn === undefined) {
-            throw "card not found";
+            console.log("card not found");
         }
         return cardToReturn;
     }

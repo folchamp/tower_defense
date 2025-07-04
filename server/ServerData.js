@@ -18,6 +18,7 @@ class ServerData {
         let handData = [];
         let control = Util.copyObject(this.basicCardsData[0]);
         let shooter = Util.copyObject(this.basicCardsData[1]);
+        shooter.range = ServerData.towers["basic_shooter"].range;
         // let draw = { action: "power", text: "augmenter les dégâts des tours", type: "damage_up", price: 200, sellprice: 600 };
         // draw.cardID = Util.getNewID();
         // handData.push(draw);
@@ -28,6 +29,9 @@ class ServerData {
         for (let index = 0; index < ServerData.HAND_SIZE - 2; index++) {
             let card = Util.copyObject(Util.randomFromArray(ServerData.basicCardsData));
             card.cardID = Util.getNewID();
+            if (card.action === "build") {
+                card.range = ServerData.towers[card.type].range;
+            }
             handData.push(card);
         }
         return handData;
@@ -40,7 +44,10 @@ class ServerData {
         for (let i = 0; i < ServerData.SHOP_SIZE; i++) {
             let shopCard = Util.copyObject(Util.randomFromArray(ServerData.shopCardsData));
             shopCard.shopCardID = Util.getNewID();
-            shopContent.push(shopCard)
+            if (shopCard.action === "build") {
+                shopCard.range = ServerData.towers[shopCard.type].range;
+            }
+            shopContent.push(shopCard);
         }
         return shopContent;
     }
@@ -75,28 +82,28 @@ class ServerData {
     };
     static towers = {
         maki_tower: {
-            name: "maki_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1000, bulletData: { damage: 2000, speed: 0.2, color: "pink", size: 7 }
+            name: "maki_tower", initialAngle: Math.PI / 4,
+            reloadTime: 1000, range: 175, bulletData: { damage: 2075, speed: 0.2, color: "pink", size: 7 }
         },
         bandi_tower: {
             name: "bandi_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1000, bulletData: { damage: 2000, speed: 0.2, color: "yellow", size: 7 }
+            reloadTime: 1000, range: 100, bulletData: { damage: 2150, speed: 0.2, color: "yellow", size: 7 }
         },
         explosive_shooter: {
             name: "explosive_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 1000, bulletData: { damage: 500, speed: 0.3, color: "red", size: 5 }
+            reloadTime: 1000, range: 100, bulletData: { damage: 650, speed: 0.3, color: "red", size: 5 }
         },
         quick_shooter: {
             name: "quick_shooter", initialAngle: 3 * Math.PI / 4,
-            reloadTime: 250, bulletData: { damage: 174, speed: 0.45, color: "darkred", size: 1 }
+            reloadTime: 250, range: 250, bulletData: { damage: 174, speed: 0.45, color: "darkred", size: 2 }
         },
         air_shooter: {
             name: "air_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 200, bulletData: { damage: 100, speed: 0.4, color: "blue", size: 2, special: "armor_piercer" }
+            reloadTime: 200, range: 200, bulletData: { damage: 125, speed: 0.4, color: "blue", size: 2, special: "armor_piercer" }
         },
         basic_shooter: {
             name: "basic_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 750, bulletData: { damage: 425, speed: 0.35, color: "lightgreen", size: 4 }
+            reloadTime: 750, range: 150, bulletData: { damage: 500, speed: 0.35, color: "lightgreen", size: 4 }
         },
         control_tower: {
             name: "control_tower",
@@ -104,11 +111,11 @@ class ServerData {
         },
         fire_tower: {
             name: "fire_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1000, bulletData: { damage: 25, speed: 0.2, color: "orange", size: 3, special: "fire" }
+            reloadTime: 1000, range: 100, bulletData: { damage: 100, speed: 0.2, color: "orange", size: 3, special: "fire" }
         },
         ice_tower: {
             name: "ice_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1000, bulletData: { damage: 25, speed: 0.2, color: "#739BD0", size: 3, special: "ice" }
+            reloadTime: 1000, range: 100, bulletData: { damage: 100, speed: 0.2, color: "#739BD0", size: 3, special: "ice" }
         }
     };
     static basicCardsData = [

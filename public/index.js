@@ -21,7 +21,15 @@ const elementNames = [
     "fullscreenButton",
     "handButton",
     "handContainer",
-    "waveNotification"
+    "waveNotification",
+    "deckDisplayerContainer",
+    "deckDisplayerButton",
+    "deckDisplayerHandTitle",
+    "deckDisplayerHandContainer",
+    "deckDisplayerDeckTitle",
+    "deckDisplayerDeckContainer",
+    "deckDisplayerDiscardTitle",
+    "deckDisplayerDiscardContainer"
 ]
 
 const ELEMENTS = Util.getElements(elementNames);

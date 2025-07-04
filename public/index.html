@@ -19,8 +19,9 @@
             <input type="button" value="Main" id="handButton">
             <input type="button" value="Magasin" id="shopButton">
             <input type="button" value="Joueurs" id="playersButton">
-            <input type="button" value="Prochaine vague" id="nextWaveButton">
-            <input type="button" value="Plein écran" id="fullscreenButton">
+            <input type="button" value="Deck" id="deckDisplayerButton">
+            <input type="button" value="Vague" id="nextWaveButton">
+            <input type="button" value="🖵" id="fullscreenButton">
             <p id="myResources"></p>
         </div>
         <div id="multiPlayerInfoContainer" class="hidden">
@@ -43,6 +44,14 @@
         <div id="cardsContainer">
             <div id="handContainer"></div>
         </div>
+        <div id="deckDisplayerContainer" class="hidden">
+            <h3 id="deckDisplayerHandTitle">Main</h3>
+            <p id="deckDisplayerHandContainer"></p>
+            <h3 id="deckDisplayerDeckTitle">Pioche</h3>
+            <p id="deckDisplayerDeckContainer"></p>
+            <h3 id="deckDisplayerDiscardTitle">Défausse</h3>
+            <p id="deckDisplayerDiscardContainer"></p>
+        </div>
         <canvas id="gameCanvas" width="360" height="740"></canvas>
     </div>
     <script src="/socket.io/socket.io.js"></script>
@@ -58,6 +67,7 @@
     <script src="Session.js"></script>
     <script src="CanvasManager.js"></script>
     <script src="WaveNotifier.js"></script>
+    <script src="DeckDisplayer.js"></script>
     <script src="Game.js"></script>
     <script src="index.js"></script>
 </body>

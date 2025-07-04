@@ -21,11 +21,11 @@ class Game {
             (eventType, cardData) => { return this.shopCallback(eventType, cardData); });
         this.quickFeedback = new QuickFeedback(ELEMENTS["feedbackText"]);
         this.waveNotifier = new WaveNotifier(ELEMENTS["waveNotification"]);
+        this.deckDisplayer = new DeckDisplayer();
 
         this.hand = [];
         this.grabbedCard = undefined;
         this.mousePosition = { x: 0, y: 0 };
-        this.openedPopup = undefined;
 
         document.body.addEventListener("mousemove", (event) => {
             this.mousePosition.x = event.clientX;
@@ -45,45 +45,23 @@ class Game {
 
         // MENU BUTTONS
         ELEMENTS["shopButton"].addEventListener("click", (event) => {
-            if (this.openedPopup === "shop") {
-                this.openedPopup = undefined;
-                ELEMENTS["shopContainer"].classList.add("hidden");
-                ELEMENTS["cardsContainer"].classList.add("hidden");
-                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
-            } else {
-                this.openedPopup = "shop";
-                ELEMENTS["shopContainer"].classList.remove("hidden");
-                ELEMENTS["cardsContainer"].classList.add("hidden");
-                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
-            }
+            this.closeAllPopups();
+            ELEMENTS["shopContainer"].classList.remove("hidden");
         });
 
         ELEMENTS["playersButton"].addEventListener("click", (event) => {
-            if (this.openedPopup === "players") {
-                this.openedPopup = undefined;
-                ELEMENTS["cardsContainer"].classList.add("hidden");
-                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
-                ELEMENTS["shopContainer"].classList.add("hidden");
-            } else {
-                this.openedPopup = "players";
-                ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
-                ELEMENTS["cardsContainer"].classList.add("hidden");
-                ELEMENTS["shopContainer"].classList.add("hidden");
-            }
+            this.closeAllPopups();
+            ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
         });
 
         ELEMENTS["handButton"].addEventListener("click", (event) => {
-            if (this.openedPopup === "cards") {
-                this.openedPopup = undefined;
-                ELEMENTS["cardsContainer"].classList.add("hidden");
-                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
-                ELEMENTS["shopContainer"].classList.add("hidden");
-            } else {
-                this.openedPopup = "cards";
-                ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
-                ELEMENTS["cardsContainer"].classList.remove("hidden");
-                ELEMENTS["shopContainer"].classList.add("hidden");
-            }
+            this.closeAllPopups();
+            ELEMENTS["cardsContainer"].classList.remove("hidden");
+        });
+
+        ELEMENTS["deckDisplayerButton"].addEventListener("click", (event) => {
+            this.closeAllPopups();
+            ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
         });
         // END MENU BUTTONS
 
@@ -101,6 +79,9 @@ class Game {
 
         socket.on("message", (data) => {
             let message = data.message;
+            if (message !== "server_refresh_game_state") {
+                // console.log(message);
+            }
             if (message === "server_refreshPlayerList") {
                 this.refreshPlayerList(data);
             }
@@ -136,7 +117,17 @@ class Game {
                 this.waveNotifier.notifyNextWave();
                 console.log("new wave");
             }
+            if (message === "server_all_your_cards_bro" && this.isForMe(data)) {
+                this.deckDisplayer.refreshFullDeckDisplay(data);
+            }
         });
+    }
+    closeAllPopups() {
+        ELEMENTS["shopContainer"].classList.add("hidden");
+        ELEMENTS["cardsContainer"].classList.add("hidden");
+        ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
+        ELEMENTS["deckDisplayerContainer"].classList.add("hidden");
+
     }
     shopCallback(eventType, cardData) {
         socket.emit("message", { message: "client_buy_sell", type: eventType, cardData: cardData, playerID: this.session.playerID });
@@ -178,13 +169,8 @@ class Game {
         if (eventType === "mouseenter") {
             this.mouseInsideCanvas = true;
             if (this.grabbedCard !== undefined) {
-                if (this.grabbedCard.cardData.action === "build") {
-                    this.canvasManager.mouseDrawData.draw = true;
-                    this.canvasManager.mouseDrawData.imageName = this.grabbedCard.cardData.type;
-                } else if (this.grabbedCard.cardData.action === "power") {
-                    this.canvasManager.mouseDrawData.draw = true;
-                    this.canvasManager.mouseDrawData.imageName = "smallCard";
-                }
+                this.canvasManager.mouseDrawData.draw = true;
+                this.canvasManager.mouseDrawData.card = this.grabbedCard;
             }
         }
         if (eventType === "mouseleave") {
@@ -265,7 +251,7 @@ class Game {
         Util.emptyElement(ELEMENTS["playerList"]);
         data.playerList.forEach((player) => {
             let playerListElement = Util.quickElement("playerListElement", "li", ELEMENTS["playerList"]);
-            playerListElement.innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money} || ${player.playerName}`;
+            playerListElement.innerText = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money} || ${player.playerName}`;
             if (player.playerName === this.session.getPlayerName()) {
                 ELEMENTS["myResources"].innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money}`;
             }
@@ -299,7 +285,8 @@ class Game {
             enemy.load(enemyData);
             this.gameElements.enemies[index] = enemy;
             if (enemy.hit === undefined) {
-                throw "wtf";
+                // TODO remove this
+                console.log("wtf, shouldn't happen");
             }
         }
         for (let index = 0; index < this.gameElements.bullets.length; index++) {

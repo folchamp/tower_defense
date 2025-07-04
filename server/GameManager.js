@@ -97,6 +97,7 @@ class GameManager {
     }
     sendPlayerGameData(player) {
         this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID });
+        this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
     }
     refreshGameState() {
         this.broadcast({ message: "server_refresh_game_state", gameElements: this.newGameStateElements });
@@ -170,12 +171,21 @@ class GameManager {
     }
     towersAct(timePassed) {
         this.gameElements.towers.forEach((tower) => {
-            if (!tower.hasTarget() || tower.towerData.name === "fire_tower" || tower.towerData.name === "ice_tower") {
-                let chosenEnemy = this.getRandomEnemy();
-                for (let index = 0; index < ServerData.SMART_AIM && chosenEnemy !== undefined && chosenEnemy.enemyData.name !== "quick_enemy"; index++) {
+            if (!tower.hasTarget() ||
+                tower.towerData.name === "fire_tower" ||
+                tower.towerData.name === "ice_tower" ||
+                Util.distance(tower.position, tower.target.position) > tower.towerData.range) {
+                let chosenEnemy = undefined;
+                let tooFar = true;
+                tower.loseTarget(); // in case the enemy gets out of range
+                for (let index = 0; this.gameElements.enemies.length > 0 && index < ServerData.SMART_AIM && chosenEnemy === undefined && tooFar; index++) {
                     chosenEnemy = this.getRandomEnemy();
+                    tooFar = Util.distance(tower.position, chosenEnemy.position) > tower.towerData.range;
+                    // chosenEnemy = this.getRandomEnemy();
                 }
-                tower.setTarget(chosenEnemy);
+                if (chosenEnemy !== undefined && !tooFar) {
+                    tower.setTarget(chosenEnemy);
+                }
                 this.newGameStateElements.towers.push(tower);
             }
             tower.move(timePassed);
@@ -273,12 +283,14 @@ class GameManager {
         this.broadcast({ message: "server_card_sold", cardID: card.cardID, recipient: player.playerID });
     }
     buySell(data) {
+        let player = this.playerManager.players[data.playerID];
         if (data.type === "buy") {
             this.buy(data);
         }
         if (data.type === "sell") {
             this.sell(data);
         }
+        this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
     }
     refreshPlayerList(data) {
         // nothing to do here TODO strange way to implement this TODO check
@@ -315,6 +327,7 @@ class GameManager {
         player.money -= data.cardData.price;
         player.removeCard(data.cardData);
         this.playerManager.refreshPlayerList();
+        this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
     }
     usePowerCard(data) {
         let player = this.playerManager.players[data.playerID];

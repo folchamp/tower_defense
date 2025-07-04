@@ -69,6 +69,7 @@ body {
         display: flex;
         line-height: initial;
 
+        #deckDisplayerButton:hover,
         #handButton:hover,
         #shopButton:hover,
         #playersButton:hover,
@@ -78,6 +79,7 @@ body {
             color: white;
         }
 
+        #deckDisplayerButton,
         #handButton,
         #playersButton,
         #shopButton,
@@ -94,7 +96,7 @@ body {
         display: flex;
         flex-direction: column;
         line-height: initial;
-        top: 18px;
+        top: 19px;
         padding: 4px;
 
         #playerNameContainer {
@@ -121,7 +123,7 @@ body {
     }
 
     #shopContainer {
-        top: 18px;
+        top: 19px;
         left: 0;
         position: absolute;
         line-height: initial;
@@ -161,11 +163,37 @@ body {
         background-color: white;
     }
 
+    #deckDisplayerContainer {
+        position: absolute;
+        line-height: initial;
+        left: 0;
+        top: 19px;
+        background-color: pink;
+        min-width: 200px;
+
+        #deckDisplayerHandTitle,
+        #deckDisplayerDeckTitle,
+        #deckDisplayerDiscardTitle {
+            background-color: lightblue;
+            padding: 4px;
+            margin: 0;
+            border-top: 1px solid darkblue;
+            border-bottom: 1px solid darkblue;
+        }
+
+        #deckDisplayerHandContainer,
+        #deckDisplayerDeckContainer,
+        #deckDisplayerDiscardContainer {
+            padding: 8px;
+            font-weight: bold;
+        }
+    }
+
     #cardsContainer {
         background-color: brown;
         position: absolute;
         left: 0;
-        top: 18px;
+        top: 19px;
         display: flex;
         flex-direction: column;
 

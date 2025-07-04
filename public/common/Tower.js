@@ -20,7 +20,7 @@ class Tower {
         this.position = data.position;
         this.playerName = data.playerName;
         this.towerID = data.towerID;
-        
+
         this.target = data.target;
         this.totalTimePassed = data.totalTimePassed;
         this.angle = data.angle;
@@ -42,7 +42,11 @@ class Tower {
         }
     }
     hasTarget() {
-        return this.target && this.target.isAlive();
+        return this.target !== undefined && this.target.isAlive();
+    }
+    loseTarget() {
+        this.target = undefined;
+        this.targetID = undefined;
     }
     setTarget(target) {
         if (target) {

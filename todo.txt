@@ -1,4 +1,5 @@
 ***************** Must ***************** 
+les tours ont une portée
 user-select none sur la notif de wave
 ice tower slows less
 bug : when you select a tower, you can't move the canvas anymore without building the tower
@@ -28,6 +29,9 @@ système de communication par « ping », du genre
 « hey, j'ai besoin d'une tour de contrôle »
 « hey, j'ai plus de thunes, ne comptez pas sur moi ce tour-ci »
 
+***************** Équilibrage *****************
+le lance grenade tire extrêmement lentement mais OS ses cibles
+
 ***************** Bugs *****************
 déconnexion pas prise en compte ?
 connection and disconnection : check if it really works
@@ -48,6 +52,11 @@ constructions coopératives
 cartes qui combinent (à la Shards of Infinity)
 mettre en avant le côté jeu de cartes
 ajouter plein, plein de cartes
+les routes mènent à des zones que seul un joueur peut défendre
+les joueurs peuvent prendre un rôle et débloquer une tourelle unique vraiment très spécifique
+un des rôles peut construire une tourelle d'alimentation électrique qui lui permet de donner un boost de puissance aux autre tourelles
+un joueur peut construire des bases de tourelles qui rendent les tourelles posées dessus plus puissantes
+chaque joueur défend sa zone ?
 
 ***************** Cards *****************
 gagner 100 thunes pour chaque lance-grenade sur le board

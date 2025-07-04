@@ -11,6 +11,9 @@ class Player {
         this.connected = false;
         this.reset();
     }
+    getAllCards() {
+        return { hand: this.handData, deck: Util.shuffle(this.deck), discard: this.discard };
+    }
     reset() {
         this.maxAmountOfActions = ServerData.MAX_AMOUNT_OF_ACTIONS;
         this.actualAmountOfActions = this.maxAmountOfActions;
