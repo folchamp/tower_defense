@@ -77,9 +77,9 @@ class ServerData {
         "strong_enemy"
     ]
     static enemiesData = {
-        basic_enemy: { name: "basic_enemy", speed: 0.05, imageName: "basic_enemy", maxHP: 5000, reward: 100 },
-        quick_enemy: { name: "quick_enemy", speed: 0.09, imageName: "quick_enemy", maxHP: 2000, reward: 25 },
-        strong_enemy: { name: "strong_enemy", speed: 0.04, imageName: "strong_enemy", maxHP: 30000, reward: 500 }
+        basic_enemy: { name: "basic_enemy", speed: 0.05, imageName: "basic_enemy", maxHP: 10000, reward: 100 },
+        quick_enemy: { name: "quick_enemy", speed: 0.09, imageName: "quick_enemy", maxHP: 2000, reward: 2 },
+        strong_enemy: { name: "strong_enemy", speed: 0.04, imageName: "strong_enemy", maxHP: 30000, reward: 350 }
     };
     static towers = {
         maki_tower: {

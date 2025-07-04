@@ -49,7 +49,7 @@ class GameManager {
             this.drawTime();
             this.drawTime();
             this.refreshPlayerActions()
-            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter / 2;
+            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 0.75;
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
             this.shopManager.resplenish();
             this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
