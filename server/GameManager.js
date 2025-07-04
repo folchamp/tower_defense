@@ -47,6 +47,7 @@ class GameManager {
             this.waveFinished = false;
             this.drawTime();
             this.drawTime();
+            this.drawTime();
             this.refreshPlayerActions()
             this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter / 2;
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
@@ -106,7 +107,7 @@ class GameManager {
     giveReward(enemy) {
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
-            player.money += enemy.enemyData.reward;
+            player.money += Math.max(0, enemy.enemyData.reward - this.waveCounter);
         };
         this.playerManager.refreshPlayerList();
     }
@@ -341,7 +342,15 @@ class GameManager {
             feedbackMessage = "pas assez d'argent";
         } else {
             if (data.cardData.type === "gain_money_1") {
-                player.money += 350;
+                player.money += 300;
+            }
+            if (data.cardData.type === "gain_money_2") {
+                player.money += 600;
+            }
+            if (data.cardData.type === "gain_all") {
+                player.money += 100;
+                this.playerDraw(data.playerID);
+                player.actualAmountOfActions += 1;
             }
             if (data.cardData.type === "draw_two") {
                 this.playerDraw(data.playerID);

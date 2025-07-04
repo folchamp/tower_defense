@@ -52,8 +52,8 @@ class Enemy {
             this.actualHP -= 2;
         }
         if (this.onIce) {
-            this.position.x -= xVelocity / 2;
-            this.position.y -= yVelocity / 2;
+            this.position.x -= xVelocity * 0.25;
+            this.position.y -= yVelocity * 0.25;
         }
     }
     distance(one, two) {
