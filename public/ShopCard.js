@@ -18,17 +18,19 @@ class ShopCard {
             this.cardImageContainer.appendChild(this.cardImage);
         }
         this.shopCardPriceContainer = Util.quickElement("shopCardPriceContainer", "span", this.shopCardContainer);
-        this.sellBuyButton = Util.quickElement("sellBuyButton", "button", this.shopCardContainer);
+        // this.sellBuyButton = Util.quickElement("sellBuyButton", "button", this.shopCardContainer);
         this.shopCardTextContainer.innerHTML = `${this.cardData.text}`;
-        this.shopCardPriceContainer.innerHTML = `💶: ${this.cardData.sellprice}`;
+        this.shopCardPriceContainer.innerHTML = `${this.cardData.sellprice}💶`;
         if (this.cardFateType === "buy") {
-            this.sellBuyButton.innerHTML = "acheter";
+            // this.sellBuyButton.innerHTML = "acheter";
         } else if (this.cardFateType === "sell") {
-            this.sellBuyButton.innerHTML = "vendre";
+            // this.sellBuyButton.innerHTML = "vendre";
         }
-        this.sellBuyButton.addEventListener("click", (event) => {
+        this.shopCardContainer.addEventListener("click", (event) => {
             this.callback(this.cardFateType, this.cardData);
         });
+        this.shopCardContainer.classList.add(this.cardData.action);
+
     }
     appendTo(element) {
         element.appendChild(this.shopCardContainer);

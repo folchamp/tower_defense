@@ -1,64 +1,50 @@
 ***************** Must ***************** 
-bug : when you select a tower, you can't move the canvas anymore without building the tower
-deck size and discard size are always displayed
-cards have colors (type)
-première carte de bagarre est aléatoire ?
-ping
-afficher la portée au survol 
+bouton prêt !
+
+système de ping: 
+- prêt
+- place une tour ici
+- besoin de tour de contrôle
+- lance la vague suivante
+- je suis prêt pour la vague suivante 
+- j'ai besoin d'une tour de contrôle 
+- j'ai plus de thunes, ne comptez pas sur moi ce tour-ci 
+
+numéroter les vagues dans la notif
+
+troisième couleur de carte (eco towers, damage cards, reputation cards)
+
 indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
-rendre gratuite la carte +3 actions
-p-e même toute les cartes consommable instant, pour pouvoir facilement associé la règle à un type de carte distinct (genre celles qui rapporte thunes)
-
-système de ping, prêt
-place une tour ici
-besoin de tour se contrôle
-lance la vague suivante
-chemin aléatoire
-
-halo de tour de contrôle plus visible quand full
-
-gros boss de temps en temps
-grosses tours bien chères
-une carte légendaire
-accélérer
-
 no control tower inside a control tower
-cartes actions gratuites
-troisième couleur de carte
+
+give money button
 
 ***************** Todo *****************
-16px
 cartes rares (cartes identiques avec une carac surboostée)
 certaines cartes voient leur effet multiplié par la quantité de réputation qu'on a
 système de campagne plutôt que de high score ? Carte aléatoire pour plus de variété ?
 système de réputation (tour de contrôle, cartes coopératives etc.)
 code couleur pour les cartes (construction, pouvoir, coopération, réputation)
 détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
-système de coût supplémentaire pour les cartes forts (sacrifice 1 = défausser la première carte de se main) (trouver un mot-clef sympa)
-système de paliers, un nouveau type de monstre (aléatoire) apparaît toutes les 5 vagues
+système de coût supplémentaire pour les cartes fortes (sacrifice 1 = défausser la première carte de se main) (trouver un mot-clef sympa)
 les monstres ont une « valeur de difficulté » qui détermine leur fréquence
-retirer le système de vente de cartes, le remplacer par un système de destruction
 next wave devient un système de votes
 poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat précise ?)
-eco cards give money or a mix of money and draw
 eco towers give money
 eco towers give cards
 eco towers give actions
 enemies focus closeby towers (towers are in a 128 virtual grid)
 shop closes when you click anywhere else (idem player screen)
-système de communication par « ping », du genre 
-« hey, je suis prêt pour la vague suivante »
-« hey, j'ai besoin d'une tour de contrôle »
-« hey, j'ai plus de thunes, ne comptez pas sur moi ce tour-ci »
 
 ***************** Équilibrage *****************
-le lance grenade tire extrêmement lentement mais OS ses cibles
 
 ***************** Bugs *****************
-déconnexion pas prise en compte ?
+bug : when you select a tower, you can't move the canvas anymore without building the tower
+déconnexion pas prise en compte ? (le programme compte les joueurs déconnectés)
 connection and disconnection : check if it really works
 bug affichage des thunes
 la dépense de thunes et son affichage buggent parfois
+synchronisation générale foireuse... pourquoi ? Voir thread Maki dans les bugs
 
 ***************** Victoire *****************
 Je pensais ajouter un système de Merveille comme dans Age Of Empires. Une fois que la merveille est construite, les joueurs doivent survivre un certain nombre de vagues pour gagner la partie 
@@ -67,6 +53,9 @@ Je pensais aussi à quelque chose de plus agressif, genre devoir construire des 
 Quand on arrive à relier le début du chemin à la fin du chemin avec des tourelles d'oppression, la partie est gagnée pour les joueurs
 
 ***************** Réflexions nocturnes *****************
+cartes actions gratuites
+rendre gratuite la carte +3 actions
+p-e même toute les cartes consommable instant, pour pouvoir facilement associé la règle à un type de carte distinct (genre celles qui rapporte thunes)
 peaufiner ce qui rend déjà le jeu spécifique
 mettre en avant le côté multijoueur
 ajouter plusieurs système de coopération avec un gain de réputation 
@@ -105,6 +94,12 @@ upgrade : shoot closest
 upgrade : don't shoot an enemy that's already targetted by another tower
 
 ***************** Should ***************** 
+deck size and discard size are always displayed
+chemin aléatoire
+gros boss de temps en temps
+grosses tours bien chères
+une carte légendaire
+accélérer x2, x4
 no need to click an empty zone to use a power card
 tutoriel
 enemies use a virtual grid pathfinding
@@ -114,6 +109,7 @@ enemies are vehicles
 some towers slow down the enemies
 some towers have aoe damage
 sell a tower you don't want anymore
+afficher la portée au survol 
 
 ***************** could ***************** 
 circular action wheel
@@ -121,3 +117,8 @@ undo tower construction
 hotkey to reach beginning and end of route
 
 ***************** Won't ***************** 
+magasin perso avec les cartes pouvoir
+scale la taille du magasin
+piocher deux cartes pas assez cher ??? (selon Vincent)
+halo de tour de contrôle plus visible quand full
+retirer le système de vente de cartes, le remplacer par un système de destruction

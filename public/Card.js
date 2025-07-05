@@ -10,7 +10,7 @@ class Card {
         this.cardContainer = Util.quickElement("cardContainer", "div", document.body);
         this.cardHeaderContainer = Util.quickElement("cardHeaderContainer", "div", this.cardContainer);
         this.cardTextContainer = Util.quickElement("cardTextContainer", "div", this.cardHeaderContainer);
-        this.cardImageContainer = Util.quickElement("cardImageContainer", "div", this.cardHeaderContainer);
+        this.cardImageContainer = Util.quickElement("cardImageContainer", "div", this.cardContainer);
         if (ClientData.images[this.cardData.type]) {
             this.cardImage = new Image();
             this.cardImage.classList = "cardImage";
@@ -27,6 +27,8 @@ class Card {
             event.stopPropagation();
             this.cardClickCallback(this);
         })
+
+        this.cardContainer.classList.add(this.cardData.action);
     }
     destroy() {
         this.cardContainer.remove();

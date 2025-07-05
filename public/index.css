@@ -9,30 +9,6 @@ body {
     display: none !important;
 }
 
-#mainMenu {
-    nav {
-        li {
-            display: inline-block;
-            padding: 8px;
-            text-align: center;
-            border: 1px solid black;
-            border-radius: 4px;
-            cursor: pointer;
-            list-style-type: none;
-            user-select: none;
-        }
-
-        li:hover {
-            background-color: bisque;
-        }
-    }
-
-    #mainMenuList {
-        margin: 0;
-        line-height: initial;
-    }
-}
-
 #game {
     #waveNotification {
         position: absolute;
@@ -123,40 +99,6 @@ body {
         }
     }
 
-    #shopContainer {
-        top: 22px;
-        left: 0;
-        position: absolute;
-        line-height: initial;
-        background-color: aqua;
-
-        #shopHandText,
-        #shopContentText {
-            margin: 0;
-            padding: 0;
-        }
-
-        #shopHandContainer,
-        #shopContentContainer {
-            display: flex;
-            flex-wrap: wrap;
-
-            .shopCardContainer {
-                box-sizing: border-box;
-                padding: 4px;
-                margin: 4px;
-                width: 90px;
-                height: 110px;
-                background-color: beige;
-
-                .cardHeaderContainer {
-                    display: flex;
-                    justify-content: space-between;
-                }
-            }
-        }
-    }
-
     #myResources {
         line-height: initial;
         margin: 0;
@@ -190,6 +132,86 @@ body {
         }
     }
 
+    #shopContainer .build,
+    #cardsContainer .build {
+        background-image: url("images/card_background.png");
+        background-color: #FFD54F;
+    }
+
+    #cardsContainer .build:hover {
+        background-color: #FFE082;
+    }
+
+    #cardsContainer .build.unattached,
+    #cardsContainer .build.unattached:hover {
+        background-color: #FFA000;
+    }
+
+    #shopContainer .power,
+    #cardsContainer .power {
+        background-image: url("images/card_background.png");
+        background-color: #4FC3F7;
+    }
+
+    #cardsContainer .power:hover {
+        background-color: #81D4FA;
+    }
+
+    #cardsContainer .power.unattached,
+    #cardsContainer .power.unattached:hover {
+        background-color: #0288D1;
+    }
+
+    #shopContainer {
+        top: 22px;
+        left: 0;
+        position: absolute;
+        line-height: initial;
+        background-color: aqua;
+
+        #shopHandText,
+        #shopContentText {
+            margin: 0;
+            padding: 0;
+        }
+
+        #shopHandContainer,
+        #shopContentContainer {
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 4px;
+
+            .shopCardContainer {
+                transition: top 0.3s;
+                top: 0px;
+                border-radius: 6px;
+                position: relative;
+                box-sizing: border-box;
+                line-height: initial;
+                width: 90px;
+                height: 110px;
+                margin: 4px;
+                padding: 8px;
+                cursor: pointer;
+                user-select: none;
+                font-weight: bold;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+
+                .cardHeaderContainer {
+                    border-bottom: 1px solid black;
+                }
+
+            }
+
+            .shopCardContainer:hover {
+                top: -8px;
+            }
+        }
+    }
+
     #cardsContainer {
         background-color: brown;
         position: absolute;
@@ -205,52 +227,49 @@ body {
             flex-wrap: wrap;
 
             .cardContainer {
+                border-radius: 6px;
                 transition: left 0.3s;
                 left: 0px;
                 position: relative;
-                display: inline-block;
                 box-sizing: border-box;
-                padding: 4px;
                 line-height: initial;
                 width: 90px;
                 height: 110px;
-                border: 1px solid black;
-                vertical-align: top;
                 margin: 4px;
+                padding: 8px;
                 cursor: pointer;
                 user-select: none;
-                background-color: beige;
+                font-weight: bold;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
 
                 .cardHeaderContainer {
-                    display: flex;
-                    justify-content: space-between;
+                    border-bottom: 1px solid black;
+                }
 
-                    .cardImageContainer {
-                        text-align: center;
+                .cardImageContainer {
 
-                        .cardImage {
-                            width: 16px;
-                            height: 16px;
-                        }
+                    .cardImage {
+                        width: 16px;
+                        height: 16px;
                     }
                 }
             }
 
             .cardContainer:hover {
                 left: 8px;
-                background-color: #f5deb3;
             }
 
             .unattached,
             .unattached:hover {
                 left: 8px;
-                background-color: lightblue;
             }
         }
     }
 
     #gameCanvas {
-        /* background: url("images/background_tile_yard.png"); */
         background: #74952F;
     }
 }
