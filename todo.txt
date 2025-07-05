@@ -1,12 +1,34 @@
 ***************** Must ***************** 
-les tours ont une portée
-user-select none sur la notif de wave
-ice tower slows less
 bug : when you select a tower, you can't move the canvas anymore without building the tower
-voir son deck et sa défausse
 deck size and discard size are always displayed
+cards have colors (type)
+première carte de bagarre est aléatoire ?
+ping
+afficher la portée au survol 
+indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
+rendre gratuite la carte +3 actions
+p-e même toute les cartes consommable instant, pour pouvoir facilement associé la règle à un type de carte distinct (genre celles qui rapporte thunes)
+
+système de ping, prêt
+place une tour ici
+besoin de tour se contrôle
+lance la vague suivante
+chemin aléatoire
+
+halo de tour de contrôle plus visible quand full
+
+gros boss de temps en temps
+grosses tours bien chères
+une carte légendaire
+accélérer
+
+no control tower inside a control tower
+cartes actions gratuites
+troisième couleur de carte
 
 ***************** Todo *****************
+16px
+cartes rares (cartes identiques avec une carac surboostée)
 certaines cartes voient leur effet multiplié par la quantité de réputation qu'on a
 système de campagne plutôt que de high score ? Carte aléatoire pour plus de variété ?
 système de réputation (tour de contrôle, cartes coopératives etc.)
@@ -59,6 +81,10 @@ un joueur peut construire des bases de tourelles qui rendent les tourelles posé
 chaque joueur défend sa zone ?
 
 ***************** Cards *****************
+carte qui ajoute une carte rare au magasin (remplace la première carte, la plus ancienne)
+augmente temporairement la portée/vitesse/dégâts de toutes les tours
+l'ennemi ciblé devient la cible prioritaire de toutes les tours
+infliger 500 dégâts à tous les enemis dans la zone
 gagner 100 thunes pour chaque lance-grenade sur le board
 tous les joueurs piochent une carte
 chaque joueur gagne une action

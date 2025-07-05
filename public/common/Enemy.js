@@ -11,6 +11,7 @@ class Enemy {
         this.target = false;
         this.reachTurret = false;
         this.routeCheckPoint = 0;
+        this.routeID = 0;
         this.onFire = false;
         this.onIce = false;
     }
@@ -24,6 +25,7 @@ class Enemy {
         this.target = data.target;
         this.reachTurret = data.reachTurret;
         this.routeCheckPoint = data.routeCheckPoint
+        this.routeID = data.routeID;
         this.onFire = data.onFire;
         this.onIce = data.onIce;
 
@@ -73,7 +75,7 @@ class Enemy {
         return this.alive;
     }
     hit(damage, special) {
-        if (this.enemyData.name === "strong_enemy" && special === "armor_piercer") {
+        if (this.enemyData.maxHP > 19000 && special === "armor_piercer") {
             this.actualHP -= damage;
             this.actualHP -= damage;
         }

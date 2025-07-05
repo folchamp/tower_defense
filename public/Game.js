@@ -5,12 +5,12 @@ class Game {
         ClientData.loadImages();
 
         this.gameElements = {
-            drawOrder: ["auras", "towers", "enemies", "bullets", "route"],
+            drawOrder: ["auras", "towers", "enemies", "bullets", "routes"],
             auras: [],
             towers: [],
             enemies: [],
             bullets: [],
-            route: [{ x: 0, y: 0 }]
+            routes: [[{ x: 0, y: 0 }]]
         };
         this.session = new Session();
         this.canvasManager = new CanvasManager(
@@ -263,6 +263,7 @@ class Game {
         this.session.setPlayerName(playerName);
     }
     refreshGameData(data) {
+        console.log(data.gameElements.routes);
         this.hand = [];
         if (this.grabbedCard) {
             this.grabbedCard.attach();

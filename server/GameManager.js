@@ -1,5 +1,6 @@
 "use strict";
 
+const { Maps } = require("./Maps.js");
 const { ServerData } = require("./ServerData.js");
 const { ShopManager } = require("./ShopManager.js");
 const { Bullet } = require("../public/common/Bullet.js");
@@ -15,7 +16,6 @@ class GameManager {
 
         this.reset();
         this.lastTimeStamp = Date.now();
-        console.log(`route length : ${this.gameElements.route.length}`);
         setInterval(() => {
             if (this.enemiesLeftToSpawn > 0) {
                 this.spawnEnemy();
@@ -49,7 +49,7 @@ class GameManager {
             this.drawTime();
             this.drawTime();
             this.refreshPlayerActions()
-            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 0.75;
+            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1.5;
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
             this.shopManager.resplenish();
             this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
@@ -59,7 +59,7 @@ class GameManager {
         this.enemiesLeftToSpawn = 0;
         this.globalEnemyStrength = 0;
         this.gameElements = {
-            route: ServerData.ROUTE,
+            routes: Util.randomFromArray(Maps.allMaps),
             auras: [],
             towers: [],
             enemies: [],
@@ -97,6 +97,7 @@ class GameManager {
         }
     }
     sendPlayerGameData(player) {
+        console.log("top");
         this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID });
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
     }
@@ -206,22 +207,26 @@ class GameManager {
                 // enemy.setTarget(Util.randomFromArray(this.gameElements.towers));
             }
             if (!enemy.hasTarget()) {
-                if (enemy.routeCheckPoint === this.gameElements.route.length - 1) {
+                if (enemy.routeCheckPoint === this.gameElements.routes[enemy.routeID].length - 1) {
                     this.isLost = true;
                 }
-                enemy.direction = this.gameElements.route[enemy.routeCheckPoint];
+                enemy.direction = this.gameElements.routes[enemy.routeID][enemy.routeCheckPoint];
             }
             enemy.move(timePassed);
         });
     }
     spawnEnemy() {
+        let newEnemyType = ServerData.enemies[Util.randomValue(0, Math.min(this.waveCounter, ServerData.enemies.length - 1))];
+        let routeID = Util.randomValue(0, this.gameElements.routes.length - 1);
         let newEnemy = new Enemy(
-            Util.copyObject(this.gameElements.route[0]),
-            Util.copyObject(this.gameElements.route[0]),
-            Util.copyObject(ServerData.enemiesData[Util.randomFromArray(ServerData.enemies)]),
+            Util.copyObject(this.gameElements.routes[routeID][0]),
+            Util.copyObject(this.gameElements.routes[routeID][0]),
+            Util.copyObject(ServerData.enemiesData[newEnemyType]),
             Util.getNewID());
+        newEnemy.routeID = routeID;
         newEnemy.enemyData.maxHP = newEnemy.enemyData.maxHP * this.playerManager.getAmountOfPlayers();
         newEnemy.actualHP = newEnemy.enemyData.maxHP;
+        newEnemy.enemyData.speed += (this.waveCounter / 500);
         this.gameElements.enemies.push(newEnemy);
         this.newGameStateElements.enemies.push(newEnemy);
     }

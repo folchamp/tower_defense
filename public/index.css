@@ -2,7 +2,7 @@ body {
     position: relative;
     margin: 0;
     line-height: 0;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .hidden {
@@ -42,6 +42,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        user-select: none;
 
         .waveNotifierText {
             font-size: 200px;
@@ -96,7 +97,7 @@ body {
         display: flex;
         flex-direction: column;
         line-height: initial;
-        top: 19px;
+        top: 22px;
         padding: 4px;
 
         #playerNameContainer {
@@ -123,7 +124,7 @@ body {
     }
 
     #shopContainer {
-        top: 19px;
+        top: 22px;
         left: 0;
         position: absolute;
         line-height: initial;
@@ -167,7 +168,7 @@ body {
         position: absolute;
         line-height: initial;
         left: 0;
-        top: 19px;
+        top: 22px;
         background-color: pink;
         min-width: 200px;
 
@@ -193,7 +194,7 @@ body {
         background-color: brown;
         position: absolute;
         left: 0;
-        top: 19px;
+        top: 22px;
         display: flex;
         flex-direction: column;
 
@@ -209,8 +210,8 @@ body {
                 box-sizing: border-box;
                 padding: 4px;
                 line-height: initial;
-                width: 88px;
-                height: 63px;
+                width: 90px;
+                height: 110px;
                 border: 1px solid black;
                 vertical-align: top;
                 margin: 4px;
@@ -247,7 +248,7 @@ body {
     }
 
     #gameCanvas {
-        background-color: green;
+        background: url("images/background_tile_yard.png");
     }
 }
 

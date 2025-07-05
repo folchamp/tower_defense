@@ -158,22 +158,22 @@ class CanvasManager {
                         - ClientData.TOWER_HALF_SIZE);
                     this.context.restore();
                     if (tower.towerData.range !== undefined) {
-                        this.context.strokeStyle = "red";
-                        this.context.globalAlpha = 0.2;
-                        this.context.beginPath();
-                        this.context.arc(
-                            tower.position.x + this.offset.x,
-                            tower.position.y + this.offset.y,
-                            tower.towerData.range, 0, 2 * Math.PI);
-                        this.context.stroke();
-                        this.context.globalAlpha = 1;
+                        // this.context.strokeStyle = "red";
+                        // this.context.globalAlpha = 0.2;
+                        // this.context.beginPath();
+                        // this.context.arc(
+                        //     tower.position.x + this.offset.x,
+                        //     tower.position.y + this.offset.y,
+                        //     tower.towerData.range, 0, 2 * Math.PI);
+                        // this.context.stroke();
+                        // this.context.globalAlpha = 1;
                     }
                 });
             } else if (order === "enemies") {
                 // ENEMIES
                 this.gameElements[order].forEach((enemy) => {
-                    if (!enemy.hasTarget()) {
-                        enemy.direction = this.gameElements.route[enemy.routeCheckPoint];
+                    if (!enemy.hasTarget() && enemy.routeCheckPoint < this.gameElements.routes[enemy.routeID].length - 1) {
+                        enemy.direction = this.gameElements.routes[enemy.routeID][enemy.routeCheckPoint];
                     }
                     enemy.move(dt);
                     if (enemy.isAlive()) {
@@ -201,15 +201,17 @@ class CanvasManager {
                         this.context.fill();
                     }
                 })
-            } else if (order === "route") {
+            } else if (order === "routes") {
                 // ROUTE
-                this.context.strokeStyle = "grey";
-                this.context.beginPath()
-                this.context.moveTo(this.gameElements[order][0].x + this.offset.x, this.gameElements[order][0].y + this.offset.y);
-                this.gameElements[order].forEach((point) => {
-                    this.context.lineTo(point.x + this.offset.x, point.y + this.offset.y);
-                })
-                this.context.stroke();
+                this.gameElements[order].forEach((route) => {
+                    this.context.strokeStyle = "red";
+                    this.context.beginPath()
+                    this.context.moveTo(route[0].x + this.offset.x, route[0].y + this.offset.y);
+                    route.forEach((point) => {
+                        this.context.lineTo(point.x + this.offset.x, point.y + this.offset.y);
+                    });
+                    this.context.stroke();
+                });
             }
         });
         if (this.mouseDrawData.draw) {

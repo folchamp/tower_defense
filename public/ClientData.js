@@ -22,7 +22,19 @@ class ClientData {
         "maki_tower",
         "bandi_tower",
         "fire_tower",
-        "ice_tower"
+        "ice_tower",
+        "tank_enemy",
+        "scout_enemy",
+        "brute_enemy",
+        "swarm_enemy",
+        "elite_enemy",
+        "ghost_enemy",
+        "armored_enemy",
+        "mutant_enemy",
+        "boss_enemy",
+        "infected_enemy",
+        "kamikaze_enemy",
+        "veteran_enemy"
     ];
     static images = {};
     static loadImages() {

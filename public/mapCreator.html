@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            position: relative;
+            line-height: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: red;
+        }
+    </style>
+    <title>Map Creator</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="1920" height="1080"></canvas>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let context = canvas.getContext("2d");
+        let mousePositions = [];
+        let lastPosition;
+        let drawing = false;
+        document.body.addEventListener("mousedown", (event) => {
+            console.log("down");
+            context.strokeStyle = "blue";
+            drawing = true;
+            lastPosition = { x: event.clientX, y: event.clientY };
+            mousePositions.push(lastPosition);
+            context.beginPath();
+            context.moveTo(lastPosition.x, lastPosition.y);
+        });
+        document.body.addEventListener("mousemove", (event) => {
+            if (drawing) {
+                console.log("move");
+                lastPosition = { x: event.clientX, y: event.clientY };
+                context.lineTo(lastPosition.x, lastPosition.y);
+                context.stroke();
+                context.beginPath();
+                context.moveTo(lastPosition.x, lastPosition.y);
+                mousePositions.push(lastPosition);
+            }
+        });
+        document.body.addEventListener("mouseup", (event) => {
+            if (drawing) {
+                console.log("up");
+                lastPosition = { x: event.clientX, y: event.clientY };
+                mousePositions.push(lastPosition);
+                context.lineTo(lastPosition.x, lastPosition.y);
+                context.stroke();
+                console.log(JSON.stringify(mousePositions));
+                mousePositions = [];
+            }
+            drawing = false;
+        });
+    </script>
+</body>
+
+</html>
