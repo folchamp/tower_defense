@@ -201,6 +201,8 @@ body {
         #handContainer {
             display: flex;
             flex-direction: column;
+            max-height: 354px;
+            flex-wrap: wrap;
 
             .cardContainer {
                 transition: left 0.3s;

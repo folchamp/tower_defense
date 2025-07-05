@@ -49,7 +49,7 @@ class GameManager {
             this.drawTime();
             this.drawTime();
             this.refreshPlayerActions()
-            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1.5;
+            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1.25;
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
             this.shopManager.resplenish();
             this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
@@ -207,7 +207,7 @@ class GameManager {
                 // enemy.setTarget(Util.randomFromArray(this.gameElements.towers));
             }
             if (!enemy.hasTarget()) {
-                if (enemy.routeCheckPoint === this.gameElements.routes[enemy.routeID].length - 1) {
+                if (enemy.routeCheckPoint >= this.gameElements.routes[enemy.routeID].length - 1) {
                     this.isLost = true;
                 }
                 enemy.direction = this.gameElements.routes[enemy.routeID][enemy.routeCheckPoint];
@@ -216,7 +216,7 @@ class GameManager {
         });
     }
     spawnEnemy() {
-        let newEnemyType = ServerData.enemies[Util.randomValue(0, Math.min(this.waveCounter, ServerData.enemies.length - 1))];
+        let newEnemyType = ServerData.enemies[Util.randomValue(0, Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
         let routeID = Util.randomValue(0, this.gameElements.routes.length - 1);
         let newEnemy = new Enemy(
             Util.copyObject(this.gameElements.routes[routeID][0]),

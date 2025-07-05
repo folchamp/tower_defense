@@ -14,10 +14,10 @@ class ServerData {
     static STARTING_HAND_SIZE = 3;
     static HAND_SIZE = 8;
     static SHOP_SIZE = 8;
-    static DIFFICULTY_FACTOR = 4;
+    static DIFFICULTY_FACTOR = 3;
     static generateInitialHandData() {
         let handData = [];
-        let control = Util.copyObject(this.basicCardsData[0]);
+        let control = Util.copyObject(this.shopCardsData[0]);
         let shooter = Util.copyObject(this.basicCardsData[1]);
         shooter.range = ServerData.towers["basic_shooter"].range;
         // let draw = { action: "power", text: "augmenter les dégâts des tours", type: "damage_up", price: 200, sellprice: 600 };
@@ -93,13 +93,13 @@ class ServerData {
     };
     static basicCardsData = [
         // { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 }, // temp
-        { action: "build", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 },
         { action: "build", text: "Mitrailleuse légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
-        { action: "power", text: "gagner 300 💶", type: "gain_money_1", price: 100, sellprice: 200 },
-        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
-        { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 }
+        // { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
+        // { action: "power", text: "gagner 300 💶", type: "gain_money_1", price: 100, sellprice: 200 },
+        // { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 }
+        // { action: "build", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
     ];
     static shopCardsData = [
         { action: "build", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
@@ -120,15 +120,15 @@ class ServerData {
         { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 }
 
     ]
-    
+
     static enemies = [
         "quick_enemy",
-        "basic_enemy",
         "swarm_enemy",
         "kamikaze_enemy",
         "scout_enemy",
         "ghost_enemy",
         "infected_enemy",
+        "basic_enemy",
         "elite_enemy",
         "mutant_enemy",
         "veteran_enemy",

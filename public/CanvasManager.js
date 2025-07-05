@@ -172,7 +172,7 @@ class CanvasManager {
             } else if (order === "enemies") {
                 // ENEMIES
                 this.gameElements[order].forEach((enemy) => {
-                    if (!enemy.hasTarget() && enemy.routeCheckPoint < this.gameElements.routes[enemy.routeID].length - 1) {
+                    if (!enemy.hasTarget() && enemy.routeCheckPoint <= this.gameElements.routes[enemy.routeID].length - 1) {
                         enemy.direction = this.gameElements.routes[enemy.routeID][enemy.routeCheckPoint];
                     }
                     enemy.move(dt);
