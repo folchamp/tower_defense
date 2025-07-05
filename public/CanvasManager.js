@@ -126,19 +126,34 @@ class CanvasManager {
         let dt = newTimeStamp - this.lastTimeStamp;
         this.lastTimeStamp = newTimeStamp;
         this.gameElements.drawOrder.forEach((order) => {
-            if (order === "auras") {
+            if (order === "routes") {
+                // ROUTE
+                this.context.save();
+                this.context.strokeStyle = "darkgreen";
+                this.context.lineWidth = 40;
+                this.context.globalAlpha = 0.35;
+                this.gameElements[order].forEach((route) => {
+                    this.context.beginPath()
+                    this.context.moveTo(route[0].x + this.offset.x, route[0].y + this.offset.y);
+                    route.forEach((point) => {
+                        this.context.lineTo(point.x + this.offset.x, point.y + this.offset.y);
+                    });
+                    this.context.stroke();
+                });
+                this.context.restore();
+            } else if (order === "auras") {
                 // AURAS
+                this.context.globalAlpha = 0.35;
                 this.gameElements[order].forEach((aura) => {
                     this.context.fillStyle = aura.auraData.auraColor;
-                    this.context.globalAlpha = 0.35;
                     this.context.beginPath();
                     this.context.arc(
                         aura.position.x + this.offset.x,
                         aura.position.y + this.offset.y,
                         aura.auraData.auraRadius, 0, 2 * Math.PI);
                     this.context.fill();
-                    this.context.globalAlpha = 1;
                 });
+                this.context.globalAlpha = 1;
             } else if (order === "towers") {
                 // TOWERS
                 this.gameElements[order].forEach((tower) => {
@@ -201,17 +216,6 @@ class CanvasManager {
                         this.context.fill();
                     }
                 })
-            } else if (order === "routes") {
-                // ROUTE
-                this.gameElements[order].forEach((route) => {
-                    this.context.strokeStyle = "red";
-                    this.context.beginPath()
-                    this.context.moveTo(route[0].x + this.offset.x, route[0].y + this.offset.y);
-                    route.forEach((point) => {
-                        this.context.lineTo(point.x + this.offset.x, point.y + this.offset.y);
-                    });
-                    this.context.stroke();
-                });
             }
         });
         if (this.mouseDrawData.draw) {

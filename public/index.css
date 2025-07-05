@@ -250,7 +250,8 @@ body {
     }
 
     #gameCanvas {
-        background: url("images/background_tile_yard.png");
+        /* background: url("images/background_tile_yard.png"); */
+        background: #74952F;
     }
 }
 

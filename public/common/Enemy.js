@@ -50,8 +50,8 @@ class Enemy {
             this.position.x += xVelocity;
             this.position.y += yVelocity;
         }
-        if (this.onFire) {
-            this.actualHP -= 2;
+        if (this.onFire && this.actualHP > 5) {
+            this.actualHP -= 5;
         }
         if (this.onIce) {
             this.position.x -= xVelocity * 0.25;

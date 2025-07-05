@@ -108,7 +108,7 @@ class GameManager {
     giveReward(enemy) {
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
-            player.money += Math.max(0, enemy.enemyData.reward - this.waveCounter);
+            player.money += Math.max(0, enemy.enemyData.reward);// - this.waveCounter);
         };
         this.playerManager.refreshPlayerList();
     }
