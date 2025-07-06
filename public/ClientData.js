@@ -44,7 +44,10 @@ class ClientData {
         "mini_enemy",
         "crawler_enemy",
         "buzz_enemy",
-        "drone_enemy"
+        "drone_enemy",
+        "ping",
+        "wonder_tower",
+        "bank_tower"
     ];
     static images = {};
     static loadImages() {

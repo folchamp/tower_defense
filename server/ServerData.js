@@ -18,13 +18,13 @@ class ServerData {
     static generateInitialHandData() {
         let handData = [];
         let control = Util.copyObject(this.shopCardsData[0]);
-        let shooter = Util.copyObject(this.basicCardsData[1]);
+        let shooter = Util.copyObject(this.basicCardsData[0]);
+        let draw = Util.copyObject(this.shopCardsData[1]);
         shooter.range = ServerData.towers["basic_shooter"].range;
-        // let draw = { action: "power", text: "augmenter les dégâts des tours", type: "damage_up", price: 200, sellprice: 600 };
-        // draw.cardID = Util.getNewID();
-        // handData.push(draw);
+        draw.cardID = Util.getNewID();
         control.cardID = Util.getNewID();
         shooter.cardID = Util.getNewID();
+        handData.push(draw);
         handData.push(control);
         handData.push(shooter);
         for (let index = 0; index < ServerData.STARTING_HAND_SIZE - 2; index++) {
@@ -54,6 +54,17 @@ class ServerData {
     }
     static ROUTE = [{ "x": 200, "y": 0 }, { "x": 475, "y": 281 }, { "x": 605, "y": 318 }, { "x": 710, "y": 337 }, { "x": 892, "y": 344 }, { "x": 1108, "y": 338 }, { "x": 1211, "y": 387 }, { "x": 1263, "y": 463 }, { "x": 1267, "y": 555 }, { "x": 1229, "y": 612 }, { "x": 1116, "y": 631 }, { "x": 969, "y": 654 }, { "x": 802, "y": 660 }, { "x": 683, "y": 649 }, { "x": 601, "y": 676 }, { "x": 554, "y": 739 }, { "x": 542, "y": 823 }, { "x": 546, "y": 889 }, { "x": 573, "y": 946 }, { "x": 638, "y": 999 }, { "x": 749, "y": 1023 }, { "x": 831, "y": 1003 }, { "x": 928, "y": 976 }, { "x": 1025, "y": 994 }, { "x": 1151, "y": 1021 }, { "x": 1286, "y": 1049 }, { "x": 1339, "y": 1089 }, { "x": 3200, "y": 3000 }]
     static towers = {
+
+        bank_tower: {
+            name: "bank_tower", type: "support", moneyPerWave: 125
+        },
+        wonder_tower: {
+            name: "wonder_tower", type: "support"
+        },
+        control_tower: {
+            name: "control_tower", type: "support",
+            auraData: { type: "control", auraRadius: 64, auraColor: "lightblue", spaceLeft: 5 }
+        },
         maki_tower: {
             name: "maki_tower", initialAngle: Math.PI / 4,
             reloadTime: 800, range: 275, bulletData: { damage: 2000, speed: 0.2, color: "pink", size: 7 }
@@ -78,10 +89,6 @@ class ServerData {
             name: "basic_shooter", initialAngle: Math.PI / 2,
             reloadTime: 750, range: 250, bulletData: { damage: 500, speed: 0.35, color: "lightgreen", size: 4 }
         },
-        control_tower: {
-            name: "control_tower",
-            auraData: { type: "control", auraRadius: 64, auraColor: "lightblue", spaceLeft: 5 }
-        },
         fire_tower: {
             name: "fire_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 200, bulletData: { damage: 100, speed: 0.2, color: "orange", size: 3, special: "fire" }
@@ -91,7 +98,7 @@ class ServerData {
             reloadTime: 1200, range: 200, bulletData: { damage: 100, speed: 0.2, color: "#739BD0", size: 3, special: "ice" }
         },
         railgun_tower: {
-            name: "railgun_tower", initialAngle: Math.PI,
+            name: "railgun_tower", initialAngle: Math.PI / 2,
             reloadTime: 1800, range: 400,
             bulletData: { damage: 5000, speed: 0.6, color: "silver", size: 8, special: "piercing" }
         },
@@ -127,7 +134,10 @@ class ServerData {
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
     ];
     static shopCardsData = [
-        { action: "build", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
+        { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
+        { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 },
+        { action: "build", subType: "support", text: "Merveille", type: "wonder_tower", price: 8000, sellprice: 500 },
+
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 },
         { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
@@ -183,14 +193,13 @@ class ServerData {
         "tank_enemy",
         "boss_enemy",
     ]
-
     static enemiesData = {
         mini_enemy: {
             name: "mini_enemy",
             speed: 0.1,
             imageName: "mini_enemy",
             maxHP: 700,
-            reward: 8
+            reward: 6
         },
 
         crawler_enemy: {
@@ -198,7 +207,7 @@ class ServerData {
             speed: 0.06,
             imageName: "crawler_enemy",
             maxHP: 1200,
-            reward: 12
+            reward: 9
         },
 
         buzz_enemy: {
@@ -206,7 +215,7 @@ class ServerData {
             speed: 0.14,
             imageName: "buzz_enemy",
             maxHP: 500,
-            reward: 6,
+            reward: 5,
             abilities: ["zigzag_movement"]
         },
 
@@ -215,106 +224,139 @@ class ServerData {
             speed: 0.11,
             imageName: "drone_enemy",
             maxHP: 1000,
-            reward: 10,
+            reward: 8,
             abilities: ["air_unit"]
         },
-        basic_enemy: { name: "basic_enemy", speed: 0.05, imageName: "basic_enemy", maxHP: 10000, reward: 100 },
-        quick_enemy: { name: "quick_enemy", speed: 0.09, imageName: "quick_enemy", maxHP: 2000, reward: 20 },
-        strong_enemy: { name: "strong_enemy", speed: 0.04, imageName: "strong_enemy", maxHP: 30000, reward: 275 },
+
+        basic_enemy: {
+            name: "basic_enemy",
+            speed: 0.05,
+            imageName: "basic_enemy",
+            maxHP: 10000,
+            reward: 85
+        },
+
+        quick_enemy: {
+            name: "quick_enemy",
+            speed: 0.09,
+            imageName: "quick_enemy",
+            maxHP: 2000,
+            reward: 16
+        },
+
+        strong_enemy: {
+            name: "strong_enemy",
+            speed: 0.04,
+            imageName: "strong_enemy",
+            maxHP: 30000,
+            reward: 240
+        },
+
         tank_enemy: {
             name: "tank_enemy",
             speed: 0.03,
             imageName: "tank_enemy",
             maxHP: 50000,
-            reward: 400,
+            reward: 350,
             abilities: ["high_armor", "slow_resistance"]
         },
+
         scout_enemy: {
             name: "scout_enemy",
             speed: 0.12,
             imageName: "scout_enemy",
             maxHP: 1500,
-            reward: 15,
+            reward: 12,
             abilities: ["evasion", "low_profile"]
         },
+
         brute_enemy: {
             name: "brute_enemy",
             speed: 0.035,
             imageName: "brute_enemy",
             maxHP: 40000,
-            reward: 320,
+            reward: 275,
             abilities: ["knockback_attack", "rage_mode"]
         },
+
         swarm_enemy: {
             name: "swarm_enemy",
             speed: 0.11,
             imageName: "swarm_enemy",
             maxHP: 800,
-            reward: 10,
+            reward: 7,
             abilities: ["spawn_in_groups", "fast_spawn_rate"]
         },
+
         elite_enemy: {
             name: "elite_enemy",
             speed: 0.06,
             imageName: "elite_enemy",
             maxHP: 15000,
-            reward: 180,
+            reward: 150,
             abilities: ["shield", "area_resistance"]
         },
+
         ghost_enemy: {
             name: "ghost_enemy",
             speed: 0.10,
             imageName: "ghost_enemy",
             maxHP: 2500,
-            reward: 30,
+            reward: 24,
             abilities: ["invisibility", "phase_through_walls"]
         },
+
         armored_enemy: {
             name: "armored_enemy",
             speed: 0.045,
             imageName: "armored_enemy",
             maxHP: 25000,
-            reward: 220,
+            reward: 190,
             abilities: ["bullet_resistance", "slow_immune"]
         },
+
         mutant_enemy: {
             name: "mutant_enemy",
             speed: 0.07,
             imageName: "mutant_enemy",
             maxHP: 18000,
-            reward: 200,
+            reward: 170,
             abilities: ["hp_regeneration", "mutation_on_death"]
         },
+
         boss_enemy: {
             name: "boss_enemy",
             speed: 0.025,
             imageName: "boss_enemy",
             maxHP: 100000,
-            reward: 1000,
+            reward: 850,
             abilities: ["summon_minions", "area_damage", "shield"]
         },
+
         infected_enemy: {
             name: "infected_enemy",
             speed: 0.065,
             imageName: "infected_enemy",
             maxHP: 12000,
-            reward: 140,
+            reward: 120,
             abilities: ["poison_aura", "spread_infection"]
         },
+
         kamikaze_enemy: {
             name: "kamikaze_enemy",
             speed: 0.13,
             imageName: "kamikaze_enemy",
             maxHP: 1000,
-            reward: 35,
+            reward: 28,
             abilities: ["self_explode", "armor_piercing"]
         },
+
         veteran_enemy: {
             name: "veteran_enemy",
             speed: 0.055,
             imageName: "veteran_enemy",
             maxHP: 20000,
-            reward: 250,
+            reward: 210,
             abilities: ["adaptive_tactics", "resist_slow", "return_fire"]
         }
     };

@@ -40,6 +40,7 @@ class GameManager {
         this.cleanEnemies();
         this.refreshGameState();
         this.checkGameLost();
+        this.checkGameWon();
 
         // try to stay as close as possible to 17ms
         this.timeLost += (dt - 17);
@@ -49,9 +50,22 @@ class GameManager {
             this.loop();
         }, 17 - this.timeToWinThisTime);
     }
+    ecoTowersAct() {
+        this.gameElements.towers.forEach((tower) => {
+            if (tower.towerData.moneyPerWave !== undefined) {
+                for (let playerID in this.playerManager.players) {
+                    let player = this.playerManager.players[playerID];
+                    console.log(player.money);
+                    player.money += Math.round(tower.towerData.moneyPerWave / this.playerManager.getAmountOfPlayers());
+                    console.log(player.money);
+                }
+            }
+        });
+    }
     sendNextWave(data) {
         this.playerManager.setReady(data.playerID);
         if (this.waveFinished === true && this.playerManager.isEveryoneReady()) {
+            this.ecoTowersAct();
             this.playerManager.setEveryoneUnready();
             this.waveCounter++;
             this.broadcast({ message: "server_new_wave", waveCounter: this.waveCounter });
@@ -64,6 +78,9 @@ class GameManager {
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
             this.shopManager.resplenish();
             this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
+            if (this.wonderBuilt) {
+                this.spawnEnemy("boss_enemy");
+            }
         }
     }
     reset() {
@@ -83,6 +100,15 @@ class GameManager {
         this.resetNewGameStateElements();
         this.waveFinished = true;
         this.waveCounter = 0;
+        this.wonderBuilt = false;
+        for (let playerID in this.playerManager.players) {
+            let player = this.playerManager.players[playerID];
+            player.handData = ServerData.generateInitialHandData();
+            player.reset();
+            this.sendPlayerGameData(player);
+        }
+        this.refreshGameState();
+        this.playerManager.refreshPlayerList();
     }
     resetNewGameStateElements() {
         this.newGameStateElements = {
@@ -93,19 +119,18 @@ class GameManager {
             enemyIDsToRemove: []
         }
     }
+    checkGameWon() {
+        if (this.wonderBuilt && this.waveFinished) {
+            console.log("won");
+            this.broadcast({ message: "server_score", win: true, score: Math.round(this.globalEnemyStrength), waveCounter: this.waveCounter });
+            this.reset();
+        }
+    }
     checkGameLost() {
         if ((this.hasStarted && this.gameElements.towers.length === 0) || this.isLost) {
             console.log("lost");
-            this.broadcast({ message: "server_score", score: Math.round(this.globalEnemyStrength), waveCounter: this.waveCounter });
+            this.broadcast({ message: "server_score", win: false, score: Math.round(this.globalEnemyStrength), waveCounter: this.waveCounter });
             this.reset();
-            for (let playerID in this.playerManager.players) {
-                let player = this.playerManager.players[playerID];
-                player.handData = ServerData.generateInitialHandData();
-                player.reset();
-                this.sendPlayerGameData(player);
-            }
-            this.refreshGameState();
-            this.playerManager.refreshPlayerList();
         }
     }
     sendPlayerGameData(player) {
@@ -120,7 +145,7 @@ class GameManager {
     giveReward(enemy) {
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
-            player.money += Math.max(0, enemy.enemyData.reward);// - this.waveCounter);
+            player.money += Math.max(0, enemy.enemyData.reward - this.waveCounter);
         };
         this.playerManager.refreshPlayerList();
     }
@@ -227,8 +252,13 @@ class GameManager {
             enemy.move(timePassed);
         });
     }
-    spawnEnemy() {
-        let newEnemyType = ServerData.enemies[Util.randomValue(0, Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
+    spawnEnemy(enemyName) {
+        let newEnemyType
+        if (enemyName !== undefined) {
+            newEnemyType = ServerData.enemies[enemyName];
+        } else {
+            newEnemyType = ServerData.enemies[Util.randomValue(0, Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
+        }
 
         // if (this.temporaryEnemySpawnedYet === undefined) {
         //     this.temporaryEnemySpawnedYet = true;
@@ -426,6 +456,8 @@ class GameManager {
             feedbackMessage = "vous ne possédez pas cette carte";
         } else if (cardData.type !== "control_tower" && !this.spaceLeftInsideControlZone(data)) {
             feedbackMessage = "plus de place dans cette zone";
+        } else if (cardData.type === "control_tower" && this.isInsideControlZone(data)) {
+            feedbackMessage = "zone déjà contrôlée";
         } else {
             success = true;
             feedbackMessage = "construction validée";
@@ -450,6 +482,9 @@ class GameManager {
             returnData.tower = tower;
             this.hasStarted = true; // start spawning enemies
             this.broadcast(returnData);
+            if (cardData.type === "wonder_tower") {
+                this.wonderBuilt = true;
+            }
         }
         this.broadcast({
             message: "server_card_feedback",

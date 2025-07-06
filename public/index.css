@@ -163,31 +163,46 @@ body {
     #shopContainer .build,
     #cardsContainer .build {
         background-image: url("images/card_background.png");
-        background-color: #FFD54F;
+        background-color: #FFA000;
     }
 
     #cardsContainer .build:hover {
-        background-color: #FFE082;
+        background-color: #FFD54F;
     }
 
     #cardsContainer .build.unattached,
     #cardsContainer .build.unattached:hover {
-        background-color: #FFA000;
+        background-color: #FFE082;
     }
 
     #shopContainer .power,
     #cardsContainer .power {
         background-image: url("images/card_background.png");
-        background-color: #4FC3F7;
+        background-color: #0288D1;
     }
 
     #cardsContainer .power:hover {
-        background-color: #81D4FA;
+        background-color: #4FC3F7;
     }
 
     #cardsContainer .power.unattached,
     #cardsContainer .power.unattached:hover {
-        background-color: #0288D1;
+        background-color: #81D4FA;
+    }
+
+    #shopContainer .support,
+    #cardsContainer .support {
+        background-image: url("images/card_background.png");
+        background-color: #388E3C;
+    }
+
+    #cardsContainer .support:hover {
+        background-color: #81C784;
+    }
+
+    #cardsContainer .support.unattached,
+    #cardsContainer .support.unattached:hover {
+        background-color: #A5D6A7;
     }
 
     #shopContainer {

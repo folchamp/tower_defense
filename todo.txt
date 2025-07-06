@@ -1,22 +1,13 @@
 ***************** Must ***************** 
-bouton prêt !
-
-système de ping: 
-- prêt
-- place une tour ici
-- besoin de tour de contrôle
-- lance la vague suivante
-- je suis prêt pour la vague suivante 
-- j'ai besoin d'une tour de contrôle 
-- j'ai plus de thunes, ne comptez pas sur moi ce tour-ci 
-
 troisième couleur de carte (eco towers, damage cards, reputation cards)
 
 indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
-no control tower inside a control tower
 
 give money button
-
+deck display pas à jour après nouvelle vague
+piocher deux cartes : retirer la carte avant d'effectuer la pioche (sinon on pioche une carte de moins à main full)
+réduire les revenus après la vague 8 ou 9 (qui semble être une vague-clef)
+La première tour posée a une trop grande porteé ?!
 ***************** Todo *****************
 cartes rares (cartes identiques avec une carac surboostée)
 certaines cartes voient leur effet multiplié par la quantité de réputation qu'on a
@@ -44,7 +35,6 @@ bug affichage des thunes
 la dépense de thunes et son affichage buggent parfois
 
 ***************** Victoire *****************
-Je pensais ajouter un système de Merveille comme dans Age Of Empires. Une fois que la merveille est construite, les joueurs doivent survivre un certain nombre de vagues pour gagner la partie 
 Et donc il y en l'enjeu de la construire le plus tôt possible... ou de ne la construire que quand les défenses sont très fortes
 Je pensais aussi à quelque chose de plus agressif, genre devoir construire des tourelles d'oppression sur l'entièreté de la ligne des ennemis pour gagner
 Quand on arrive à relier le début du chemin à la fin du chemin avec des tourelles d'oppression, la partie est gagnée pour les joueurs

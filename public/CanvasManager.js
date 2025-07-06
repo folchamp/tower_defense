@@ -87,6 +87,9 @@ class CanvasManager {
     displayPing(data) {
         console.log(data);
         this.pingData = data;
+        setTimeout(() => {
+            this.pingData = undefined;
+        }, 3500);
     }
     autoresize() {
         this.offset = { x: window.innerWidth / 2 - ClientData.GAME_WIDTH / 2, y: window.innerHeight / 2 - ClientData.GAME_HEIGHT / 2 }
@@ -230,7 +233,9 @@ class CanvasManager {
         });
         if (this.pingData) {
             // console.log(this.pingData);
-            this.context.fillText(`${this.pingData.sender} : ${this.pingData.pingText}`, this.pingData.position.x + this.offset.x, this.pingData.position.y + this.offset.y);
+            this.context.drawImage(ClientData.images["ping"], this.pingData.position.x + this.offset.x - 50, this.pingData.position.y + this.offset.y - 100);
+            this.context.fillText(`${this.pingData.pingText}`, this.pingData.position.x + this.offset.x - this.context.measureText(this.pingData.pingText).width / 2, this.pingData.position.y + this.offset.y + 25);
+            this.context.fillText(`${this.pingData.sender}`, this.pingData.position.x + this.offset.x - this.context.measureText(this.pingData.sender).width / 2, this.pingData.position.y + this.offset.y + 15);
         }
         if (this.mouseDrawData.draw) {
             let imageName;

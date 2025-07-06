@@ -102,7 +102,11 @@ class Game {
                 this.refreshGameState(data);
             }
             if (message === "server_score") {
-                alert(`Score : ${data.score}\nVague : ${data.waveCounter}`);
+                if (data.win) {
+                    alert(`Victoire\nScore : ${data.score}\nVague : ${data.waveCounter}`);
+                } else {
+                    alert(`Défaite\nScore : ${data.score}\nVague : ${data.waveCounter}`);
+                }
             }
             if (message === "server_shop_content") {
                 this.shop.refreshShopContent(data.shopContent);

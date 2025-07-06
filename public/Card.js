@@ -28,7 +28,11 @@ class Card {
             this.cardClickCallback(this);
         });
 
-        this.cardContainer.classList.add(this.cardData.action);
+        if (this.cardData.subType !== undefined) {
+            this.cardContainer.classList.add(this.cardData.subType);
+        } else {
+            this.cardContainer.classList.add(this.cardData.action);
+        }
     }
     destroy() {
         this.cardContainer.remove();

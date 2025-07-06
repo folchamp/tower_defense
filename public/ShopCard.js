@@ -29,8 +29,12 @@ class ShopCard {
         this.shopCardContainer.addEventListener("click", (event) => {
             this.callback(this.cardFateType, this.cardData);
         });
-        this.shopCardContainer.classList.add(this.cardData.action);
 
+        if (this.cardData.subType !== undefined) {
+            this.shopCardContainer.classList.add(this.cardData.subType);
+        } else {
+            this.shopCardContainer.classList.add(this.cardData.action);
+        }
     }
     appendTo(element) {
         element.appendChild(this.shopCardContainer);
