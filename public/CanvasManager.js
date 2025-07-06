@@ -27,11 +27,17 @@ class CanvasManager {
                     this.fullscreen = true;
                 });
             }
-        })
+        });
 
         this.canvas.addEventListener("click", (event) => {
             let position = this.getMousePosition(event);
             this.mouseCallback("click", position);
+        });
+
+        this.canvas.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            let position = this.getMousePosition(event);
+            this.mouseCallback("contextmenu", position);
         });
 
         this.canvas.addEventListener("mousemove", (event) => {
@@ -77,6 +83,10 @@ class CanvasManager {
             this.touchend(event, false);
         });
         this.loop();
+    }
+    displayPing(data) {
+        console.log(data);
+        this.pingData = data;
     }
     autoresize() {
         this.offset = { x: window.innerWidth / 2 - ClientData.GAME_WIDTH / 2, y: window.innerHeight / 2 - ClientData.GAME_HEIGHT / 2 }
@@ -218,6 +228,10 @@ class CanvasManager {
                 })
             }
         });
+        if (this.pingData) {
+            // console.log(this.pingData);
+            this.context.fillText(`${this.pingData.sender} : ${this.pingData.pingText}`, this.pingData.position.x + this.offset.x, this.pingData.position.y + this.offset.y);
+        }
         if (this.mouseDrawData.draw) {
             let imageName;
             if (this.mouseDrawData.card.cardData.action === "build") {

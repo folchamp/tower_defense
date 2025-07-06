@@ -26,7 +26,7 @@ class Card {
         this.cardContainer.addEventListener("click", (event) => {
             event.stopPropagation();
             this.cardClickCallback(this);
-        })
+        });
 
         this.cardContainer.classList.add(this.cardData.action);
     }

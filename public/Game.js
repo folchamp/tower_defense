@@ -22,6 +22,7 @@ class Game {
         this.quickFeedback = new QuickFeedback(ELEMENTS["feedbackText"]);
         this.waveNotifier = new WaveNotifier(ELEMENTS["waveNotification"]);
         this.deckDisplayer = new DeckDisplayer();
+        this.pingManager = new PingManager((data) => { this.sendPingCallback(data); }, (data) => { this.canvasManager.displayPing(data); });
 
         this.hand = [];
         this.grabbedCard = undefined;
@@ -32,9 +33,9 @@ class Game {
             this.mousePosition.y = event.clientY;
         });
 
-        document.body.addEventListener("click", (event) => {
-            this.mouseClick(event);
-        });
+        // document.body.addEventListener("click", (event) => {
+        //     this.mouseClick(event);
+        // });
 
         document.body.addEventListener("keydown", (event) => {
             console.log(event.code);
@@ -119,6 +120,16 @@ class Game {
             if (message === "server_all_your_cards_bro" && this.isForMe(data)) {
                 this.deckDisplayer.refreshFullDeckDisplay(data);
             }
+            if (message === "server_ping") {
+                console.log(data);
+                this.pingManager.displayPing(data);
+            }
+        });
+    }
+    sendPingCallback(data) {
+        console.log(data);
+        socket.emit("message", {
+            message: "client_ping", position: data.position, pingText: data.pingText, sender: this.session.getPlayerName()
         });
     }
     newWaveArrives(data) {
@@ -155,6 +166,7 @@ class Game {
     }
     canvasMouseCallback(eventType, position) {
         if (eventType === "click") {
+            this.pingManager.closePingSender();
             this.mousePosition = position;
             if (this.grabbedCard !== undefined) {
                 if (this.grabbedCard.cardData.action === "build") {
@@ -188,6 +200,10 @@ class Game {
         if (eventType === "mousemove") {
             this.canvasManager.mouseDrawData.x = position.x;
             this.canvasManager.mouseDrawData.y = position.y;
+        }
+        if (eventType === "contextmenu") {
+            let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
+            this.pingManager.openPingSender(position, offsetPosition);
         }
     }
     cardClickCallback(card) {

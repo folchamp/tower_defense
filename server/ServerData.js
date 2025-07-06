@@ -89,6 +89,36 @@ class ServerData {
         ice_tower: {
             name: "ice_tower", initialAngle: Math.PI / 2,
             reloadTime: 1200, range: 200, bulletData: { damage: 100, speed: 0.2, color: "#739BD0", size: 3, special: "ice" }
+        },
+        railgun_tower: {
+            name: "railgun_tower", initialAngle: Math.PI,
+            reloadTime: 1800, range: 400,
+            bulletData: { damage: 5000, speed: 0.6, color: "silver", size: 8, special: "piercing" }
+        },
+        venom_tower: {
+            name: "venom_tower", initialAngle: Math.PI / 3,
+            reloadTime: 900, range: 250,
+            bulletData: { damage: 300, speed: 0.3, color: "purple", size: 3, special: "poison" }
+        },
+        sniper_tower: {
+            name: "sniper_tower", initialAngle: Math.PI / 2,
+            reloadTime: 2000, range: 600,
+            bulletData: { damage: 8000, speed: 0.8, color: "black", size: 5 }
+        },
+        storm_tower: {
+            name: "storm_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, range: 300,
+            bulletData: { damage: 500, speed: 0.4, color: "cyan", size: 3, special: "chain_lightning" }
+        },
+        decay_tower: {
+            name: "decay_tower", initialAngle: Math.PI / 2,
+            reloadTime: 750, range: 275,
+            bulletData: { damage: 150, speed: 0.25, color: "darkgreen", size: 4, special: "armor_break" }
+        },
+        multi_shot_tower: {
+            name: "multi_shot_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, range: 225,
+            bulletData: { damage: 300, speed: 0.35, color: "white", size: 2, special: "triple_shot" }
         }
     };
     static basicCardsData = [
@@ -101,15 +131,26 @@ class ServerData {
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 },
         { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
+        { action: "build", text: "Perce-armure", type: "air_shooter", price: 350, sellprice: 700 },
+        { action: "build", text: "Tour de Maki", type: "maki_tower", price: 700, sellprice: 1400 },
+        { action: "build", text: "Tour de Bandi", type: "bandi_tower", price: 700, sellprice: 1400 },
+        { action: "build", text: "Tour de feu", type: "fire_tower", price: 700, sellprice: 1400 },
+        { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 },
+        { action: "build", text: "Canon rail", type: "railgun_tower", price: 1200, sellprice: 2400 },
+        { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
+        { action: "build", text: "Tour sniper", type: "sniper_tower", price: 1500, sellprice: 3000 },
+        { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1600 },
+        { action: "build", text: "Tour de corrosion", type: "decay_tower", price: 550, sellprice: 1100 },
+        { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 650, sellprice: 1300 },
+
         { action: "power", text: "gagner 300💶", type: "gain_money_1", price: 100, sellprice: 200 },
         { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
         { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 },
         { action: "power", text: "gagner 600💶", type: "gain_money_2", price: 300, sellprice: 600 },
-        { action: "build", text: "Arme perce-armure", type: "air_shooter", price: 350, sellprice: 700 },
-        { action: "build", text: "Tour de Maki", type: "maki_tower", price: 700, sellprice: 1400 },
-        { action: "build", text: "Tour de Bandi", type: "bandi_tower", price: 700, sellprice: 1400 },
-        { action: "build", text: "Tour de feu", type: "fire_tower", price: 700, sellprice: 1400 },
-        { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 }
+        { action: "power", text: "gagner 300💶", type: "gain_money_1", price: 100, sellprice: 200 },
+        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
+        { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 },
+        { action: "power", text: "gagner 600💶", type: "gain_money_2", price: 300, sellprice: 600 }
 
     ]
     // { action: "power", text: "une carte, une action, 100💶", type: "gain_all", price: 50, sellprice: 100 },
@@ -127,9 +168,13 @@ class ServerData {
         "kamikaze_enemy",
         "scout_enemy",
         "ghost_enemy",
-        "infected_enemy",
+        "drone_enemy",
         "basic_enemy",
+        "buzz_enemy",
+        "infected_enemy",
+        "crawler_enemy",
         "elite_enemy",
+        "mini_enemy",
         "mutant_enemy",
         "veteran_enemy",
         "armored_enemy",
@@ -140,6 +185,39 @@ class ServerData {
     ]
 
     static enemiesData = {
+        mini_enemy: {
+            name: "mini_enemy",
+            speed: 0.1,
+            imageName: "mini_enemy",
+            maxHP: 700,
+            reward: 8
+        },
+
+        crawler_enemy: {
+            name: "crawler_enemy",
+            speed: 0.06,
+            imageName: "crawler_enemy",
+            maxHP: 1200,
+            reward: 12
+        },
+
+        buzz_enemy: {
+            name: "buzz_enemy",
+            speed: 0.14,
+            imageName: "buzz_enemy",
+            maxHP: 500,
+            reward: 6,
+            abilities: ["zigzag_movement"]
+        },
+
+        drone_enemy: {
+            name: "drone_enemy",
+            speed: 0.11,
+            imageName: "drone_enemy",
+            maxHP: 1000,
+            reward: 10,
+            abilities: ["air_unit"]
+        },
         basic_enemy: { name: "basic_enemy", speed: 0.05, imageName: "basic_enemy", maxHP: 10000, reward: 100 },
         quick_enemy: { name: "quick_enemy", speed: 0.09, imageName: "quick_enemy", maxHP: 2000, reward: 20 },
         strong_enemy: { name: "strong_enemy", speed: 0.04, imageName: "strong_enemy", maxHP: 30000, reward: 275 },
@@ -151,7 +229,6 @@ class ServerData {
             reward: 400,
             abilities: ["high_armor", "slow_resistance"]
         },
-
         scout_enemy: {
             name: "scout_enemy",
             speed: 0.12,
@@ -160,7 +237,6 @@ class ServerData {
             reward: 15,
             abilities: ["evasion", "low_profile"]
         },
-
         brute_enemy: {
             name: "brute_enemy",
             speed: 0.035,
@@ -169,7 +245,6 @@ class ServerData {
             reward: 320,
             abilities: ["knockback_attack", "rage_mode"]
         },
-
         swarm_enemy: {
             name: "swarm_enemy",
             speed: 0.11,
@@ -178,7 +253,6 @@ class ServerData {
             reward: 10,
             abilities: ["spawn_in_groups", "fast_spawn_rate"]
         },
-
         elite_enemy: {
             name: "elite_enemy",
             speed: 0.06,
@@ -187,7 +261,6 @@ class ServerData {
             reward: 180,
             abilities: ["shield", "area_resistance"]
         },
-
         ghost_enemy: {
             name: "ghost_enemy",
             speed: 0.10,
@@ -196,7 +269,6 @@ class ServerData {
             reward: 30,
             abilities: ["invisibility", "phase_through_walls"]
         },
-
         armored_enemy: {
             name: "armored_enemy",
             speed: 0.045,
@@ -205,7 +277,6 @@ class ServerData {
             reward: 220,
             abilities: ["bullet_resistance", "slow_immune"]
         },
-
         mutant_enemy: {
             name: "mutant_enemy",
             speed: 0.07,
@@ -214,7 +285,6 @@ class ServerData {
             reward: 200,
             abilities: ["hp_regeneration", "mutation_on_death"]
         },
-
         boss_enemy: {
             name: "boss_enemy",
             speed: 0.025,
@@ -223,7 +293,6 @@ class ServerData {
             reward: 1000,
             abilities: ["summon_minions", "area_damage", "shield"]
         },
-
         infected_enemy: {
             name: "infected_enemy",
             speed: 0.065,
@@ -232,7 +301,6 @@ class ServerData {
             reward: 140,
             abilities: ["poison_aura", "spread_infection"]
         },
-
         kamikaze_enemy: {
             name: "kamikaze_enemy",
             speed: 0.13,
@@ -241,7 +309,6 @@ class ServerData {
             reward: 35,
             abilities: ["self_explode", "armor_piercing"]
         },
-
         veteran_enemy: {
             name: "veteran_enemy",
             speed: 0.055,

@@ -31,7 +31,8 @@ const elementNames = [
     "deckDisplayerDiscardTitle",
     "deckDisplayerDiscardContainer",
     "gameHeader",
-    "readyDisplayer"
+    "readyDisplayer",
+    "pingSendContainer"
 ]
 
 const ELEMENTS = Util.getElements(elementNames);

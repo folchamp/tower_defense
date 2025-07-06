@@ -460,6 +460,11 @@ class GameManager {
         });
     }
     listener(data) {
+        if (data.message === "client_ping") {
+            this.broadcast({
+                message: "server_ping", position: data.position, pingText: data.pingText, sender: data.sender
+            });
+        }
         if (data.message === "client_next_wave") {
             this.sendNextWave(data);
         }

@@ -10,6 +10,24 @@ body {
 }
 
 #game {
+    #pingSendContainer {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        line-height: initial;
+
+        .pingSendText {
+            background-color: white;
+            cursor: pointer;
+            padding: 4px;
+            border-bottom: #FFD54F 1px solid;
+        }
+
+        .pingSendText:hover {
+            background-color: wheat;
+        }
+    }
+
     #waveNotification {
         position: absolute;
         width: 100%;

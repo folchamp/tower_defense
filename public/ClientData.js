@@ -34,7 +34,17 @@ class ClientData {
         "boss_enemy",
         "infected_enemy",
         "kamikaze_enemy",
-        "veteran_enemy"
+        "veteran_enemy",
+        "railgun_tower",
+        "venom_tower",
+        "sniper_tower",
+        "storm_tower",
+        "decay_tower",
+        "multi_shot_tower",
+        "mini_enemy",
+        "crawler_enemy",
+        "buzz_enemy",
+        "drone_enemy"
     ];
     static images = {};
     static loadImages() {
