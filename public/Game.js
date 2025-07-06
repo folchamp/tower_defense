@@ -39,7 +39,7 @@ class Game {
         document.body.addEventListener("keydown", (event) => {
             console.log(event.code);
             if (event.code === "Space") {
-                socket.emit("message", { message: "client_next_wave" });
+                this.readyForNextWave();
             }
         })
 
@@ -72,7 +72,7 @@ class Game {
         });
 
         ELEMENTS["nextWaveButton"].addEventListener("click", (event) => {
-            socket.emit("message", { message: "client_next_wave" });
+            this.readyForNextWave();
         });
 
         socket.emit("message", { message: "client_connection", playerID: this.session.playerID, playerName: this.session.getPlayerName() });
@@ -101,7 +101,7 @@ class Game {
                 this.refreshGameState(data);
             }
             if (message === "server_score") {
-                alert(`Score : ${data.score}`);
+                alert(`Score : ${data.score}\nVague : ${data.waveCounter}`);
             }
             if (message === "server_shop_content") {
                 this.shop.refreshShopContent(data.shopContent);
@@ -114,13 +114,21 @@ class Game {
                 console.log("wave finished");
             }
             if (message === "server_new_wave") {
-                this.waveNotifier.notifyNextWave();
-                console.log("new wave");
+                this.newWaveArrives(data);
             }
             if (message === "server_all_your_cards_bro" && this.isForMe(data)) {
                 this.deckDisplayer.refreshFullDeckDisplay(data);
             }
         });
+    }
+    newWaveArrives(data) {
+        Util.hide(ELEMENTS["readyDisplayer"]);
+        this.waveNotifier.notifyNextWave(data.waveCounter);
+        console.log("new wave");
+    }
+    readyForNextWave() {
+        Util.show(ELEMENTS["readyDisplayer"]);
+        socket.emit("message", { message: "client_next_wave", playerID: this.session.playerID });
     }
     closeAllPopups() {
         ELEMENTS["shopContainer"].classList.add("hidden");

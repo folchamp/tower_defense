@@ -29,7 +29,9 @@ const elementNames = [
     "deckDisplayerDeckTitle",
     "deckDisplayerDeckContainer",
     "deckDisplayerDiscardTitle",
-    "deckDisplayerDiscardContainer"
+    "deckDisplayerDiscardContainer",
+    "gameHeader",
+    "readyDisplayer"
 ]
 
 const ELEMENTS = Util.getElements(elementNames);

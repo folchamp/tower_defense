@@ -9,6 +9,7 @@ class Player {
         this.playerID = playerID;
         this.socketID = socketID;
         this.connected = false;
+        this.ready = false;
         this.reset();
     }
     getAllCards() {

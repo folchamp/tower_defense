@@ -10,8 +10,6 @@ système de ping:
 - j'ai besoin d'une tour de contrôle 
 - j'ai plus de thunes, ne comptez pas sur moi ce tour-ci 
 
-numéroter les vagues dans la notif
-
 troisième couleur de carte (eco towers, damage cards, reputation cards)
 
 indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
@@ -44,7 +42,6 @@ déconnexion pas prise en compte ? (le programme compte les joueurs déconnecté
 connection and disconnection : check if it really works
 bug affichage des thunes
 la dépense de thunes et son affichage buggent parfois
-synchronisation générale foireuse... pourquoi ? Voir thread Maki dans les bugs
 
 ***************** Victoire *****************
 Je pensais ajouter un système de Merveille comme dans Age Of Empires. Une fois que la merveille est construite, les joueurs doivent survivre un certain nombre de vagues pour gagner la partie 

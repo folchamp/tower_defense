@@ -6,12 +6,12 @@ class WaveNotifier {
 
         this.waveNotifierText = Util.quickElement("waveNotifierText", "p", this.container);
     }
-    notifyNextWave() {
-        this.waveNotifierText.innerHTML = "New wave !";
+    notifyNextWave(waveCounter) {
+        this.waveNotifierText.innerHTML = `Vague ${waveCounter}`;
         this.showThenHide();
     }
     notifyEndWave() {
-        this.waveNotifierText.innerHTML = "Wave cleared !";
+        this.waveNotifierText.innerHTML = "Fin de vague";
         this.showThenHide();
     }
     showThenHide() {

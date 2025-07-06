@@ -8,13 +8,34 @@ class PlayerManager {
         this.players = {};
         this.amountOfPlayers = 0;
     }
+    setEveryoneUnready() {
+        for (let playerID in this.players) {
+            let player = this.players[playerID];
+            player.ready = false;
+        }
+    }
+    setReady(playerID) {
+        this.players[playerID].ready = true;
+    }
+    isEveryoneReady() {
+        let letsgo = true;
+        for (let playerID in this.players) {
+            let player = this.players[playerID];
+            if (player.connected && !player.ready) {
+                letsgo = false;
+            }
+        }
+        return letsgo;
+    }
     getAmountOfPlayers() {
         return this.amountOfPlayers;
     }
     countAmountOfPlayers() {
         let count = 0;
         for (let playerID in this.players) {
-            count++;
+            if (this.players[playerID].connected) {
+                count++;
+            }
         }
         this.amountOfPlayers = count;
         console.log(`${count} players active`);

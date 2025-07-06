@@ -24,26 +24,37 @@ class GameManager {
                 this.waveFinished = true;
                 this.broadcast({ message: "server_wave_finished" });
             }
-            this.checkGameLost();
         }, ServerData.ENEMIES_INTERVAL);
-        setInterval(() => {
-            let now = Date.now();
-            let dt = now - this.lastTimeStamp;
-            this.lastTimeStamp = now;
-            this.checkActionsDone();
-            this.enemiesAct(dt);
-            this.towersAct(dt);
-            this.bulletsAct(dt);
-            this.cleanBullets();
-            this.cleanTowers();
-            this.cleanEnemies();
-            this.refreshGameState();
-        }, 17); // approx. 1/60 of a second
+        this.loop();
     }
-    sendNextWave() {
-        if (this.waveFinished === true) {
+    loop() {
+        let now = Date.now();
+        let dt = now - this.lastTimeStamp;
+        this.lastTimeStamp = now;
+        this.checkActionsDone();
+        this.enemiesAct(dt);
+        this.towersAct(dt);
+        this.bulletsAct(dt);
+        this.cleanBullets();
+        this.cleanTowers();
+        this.cleanEnemies();
+        this.refreshGameState();
+        this.checkGameLost();
+
+        // try to stay as close as possible to 17ms
+        this.timeLost += (dt - 17);
+        this.timeToWinThisTime = Math.min(7, 17 - this.timeLost); // 7 is arbitrary to not make two loops too close
+
+        setTimeout(() => {
+            this.loop();
+        }, 17 - this.timeToWinThisTime);
+    }
+    sendNextWave(data) {
+        this.playerManager.setReady(data.playerID);
+        if (this.waveFinished === true && this.playerManager.isEveryoneReady()) {
+            this.playerManager.setEveryoneUnready();
             this.waveCounter++;
-            this.broadcast({ message: "server_new_wave" });
+            this.broadcast({ message: "server_new_wave", waveCounter: this.waveCounter });
             this.waveFinished = false;
             this.drawTime();
             this.drawTime();
@@ -56,6 +67,7 @@ class GameManager {
         }
     }
     reset() {
+        this.timeLost = 0;
         this.enemiesLeftToSpawn = 0;
         this.globalEnemyStrength = 0;
         this.gameElements = {
@@ -84,7 +96,7 @@ class GameManager {
     checkGameLost() {
         if ((this.hasStarted && this.gameElements.towers.length === 0) || this.isLost) {
             console.log("lost");
-            this.broadcast({ message: "server_score", score: Math.round(this.globalEnemyStrength) });
+            this.broadcast({ message: "server_score", score: Math.round(this.globalEnemyStrength), waveCounter: this.waveCounter });
             this.reset();
             for (let playerID in this.playerManager.players) {
                 let player = this.playerManager.players[playerID];
@@ -217,6 +229,11 @@ class GameManager {
     }
     spawnEnemy() {
         let newEnemyType = ServerData.enemies[Util.randomValue(0, Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
+
+        // if (this.temporaryEnemySpawnedYet === undefined) {
+        //     this.temporaryEnemySpawnedYet = true;
+        //     newEnemyType = "quick_enemy";
+
         let routeID = Util.randomValue(0, this.gameElements.routes.length - 1);
         let newEnemy = new Enemy(
             Util.copyObject(this.gameElements.routes[routeID][0]),
@@ -229,6 +246,7 @@ class GameManager {
         newEnemy.enemyData.speed += (this.waveCounter / 500);
         this.gameElements.enemies.push(newEnemy);
         this.newGameStateElements.enemies.push(newEnemy);
+        // }
     }
     drawTime() {
         for (let playerID in this.playerManager.players) {

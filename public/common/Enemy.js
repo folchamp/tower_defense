@@ -45,6 +45,9 @@ class Enemy {
                 this.reachTurret = true;
             } else {
                 this.routeCheckPoint++;
+                this.position.x = this.direction.x;
+                this.position.y = this.direction.y;
+                // console.log(`${this.position.x}, ${this.position.y}, ${timePassed}`);
             }
         } else {
             this.position.x += xVelocity;
@@ -57,6 +60,7 @@ class Enemy {
             this.position.x -= xVelocity * 0.25;
             this.position.y -= yVelocity * 0.25;
         }
+
     }
     distance(one, two) {
         let a = one.x - two.x;
