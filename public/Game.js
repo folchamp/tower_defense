@@ -42,6 +42,22 @@ class Game {
             if (event.code === "Space") {
                 this.readyForNextWave();
             }
+            if (event.code === "KeyQ") {
+                this.closeAllPopups();
+                ELEMENTS["cardsContainer"].classList.remove("hidden");
+            }
+            if (event.code === "KeyW") {
+                this.closeAllPopups();
+                ELEMENTS["shopContainer"].classList.remove("hidden");
+            }
+            if (event.code === "KeyE") {
+                this.closeAllPopups();
+                ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
+            }
+            if (event.code === "KeyR") {
+                this.closeAllPopups();
+                ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
+            }
         })
 
         // MENU BUTTONS
