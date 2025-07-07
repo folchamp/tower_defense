@@ -189,8 +189,8 @@ class Game {
             this.pingManager.closePingSender();
             this.mousePosition = position;
             if (this.grabbedCard !== undefined) {
+                let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
                 if (this.grabbedCard.cardData.action === "build") {
-                    let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
                     socket.emit("message", {
                         message: "client_buildTowerHere",
                         cardData: this.grabbedCard.cardData,
@@ -201,6 +201,7 @@ class Game {
                     socket.emit("message", {
                         message: "client_power_card",
                         cardData: this.grabbedCard.cardData,
+                        position: offsetPosition,
                         playerID: this.session.playerID
                     });
                 }

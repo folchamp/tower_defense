@@ -18,9 +18,9 @@ class ServerData {
     static generateInitialHandData() {
         let handData = [];
         let control = Util.copyObject(this.shopCardsData[0]);
-        let shooter = Util.copyObject(this.basicCardsData[0]);
         let draw = Util.copyObject(this.shopCardsData[1]);
-        shooter.range = ServerData.towers["basic_shooter"].range;
+        let shooter = Util.copyObject(this.basicCardsData[0]);
+        shooter.range = ServerData.towers[shooter.type].range;
         draw.cardID = Util.getNewID();
         control.cardID = Util.getNewID();
         shooter.cardID = Util.getNewID();
@@ -129,15 +129,17 @@ class ServerData {
         }
     };
     static basicCardsData = [
-        { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 },
+        { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 }, // auto-include
         { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
     ];
     static shopCardsData = [
-        { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
-        { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 },
+        { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },  // auto-include
+        { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500 }, // WIP
+        { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 }, // auto-include
         { action: "build", subType: "support", text: "Merveille", type: "wonder_tower", price: 8000, sellprice: 500 },
 
+        { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 },
         { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 500 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
@@ -147,7 +149,6 @@ class ServerData {
         { action: "build", text: "Tour de feu", type: "fire_tower", price: 700, sellprice: 1400 },
         { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 },
         { action: "build", text: "Canon rail", type: "railgun_tower", price: 1200, sellprice: 2400 },
-        { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Tour sniper", type: "sniper_tower", price: 1500, sellprice: 3000 },
         { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1600 },
         { action: "build", text: "Tour de corrosion", type: "decay_tower", price: 550, sellprice: 1100 },

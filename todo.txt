@@ -6,8 +6,18 @@ indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
 give money button
 deck display pas à jour après nouvelle vague
 piocher deux cartes : retirer la carte avant d'effectuer la pioche (sinon on pioche une carte de moins à main full)
-réduire les revenus après la vague 8 ou 9 (qui semble être une vague-clef)
-La première tour posée a une trop grande porteé ?!
+
+__control tower upgrade__
+control tower becomes an attack tower
+(0) check if a control tower is targetted
+(1) remove aura
+(2) change visuals
+(3) create a new towerData with best stats
+    - sum of damage
+    - highest range
+    - lowest reload time
+(4) remove the towers inside the aura
+
 ***************** Todo *****************
 cartes rares (cartes identiques avec une carac surboostée)
 certaines cartes voient leur effet multiplié par la quantité de réputation qu'on a

@@ -383,6 +383,24 @@ class GameManager {
         this.playerManager.refreshPlayerList();
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
     }
+    targetsControlTower(data) {
+        let targets = false;
+        this.gameElements.towers.forEach((tower) => {
+            if (tower.cardData.type === "control_tower" && Util.distance(tower.position, data.position) <= 16) {
+                targets = true;
+            }
+        });
+        return targets;
+    }
+    getTargettedControlTower(data) {
+        let target;
+        this.gameElements.towers.forEach((tower) => {
+            if (tower.cardData.type === "control_tower" && Util.distance(tower.position, data.position) <= 16) {
+                target = tower;
+            }
+        });
+        return target;
+    }
     usePowerCard(data) {
         let player = this.playerManager.players[data.playerID];
         let feedbackMessage = "";
@@ -393,7 +411,17 @@ class GameManager {
             feedbackMessage = "plus d'actions disponibles";
         } else if (data.cardData.price > player.money) {
             feedbackMessage = "pas assez d'argent";
+        } else if (data.cardData.type === "upgrade_control" && !this.targetsControlTower(data)) {
+            feedbackMessage = "pas sur une tour de contrôle"
         } else {
+            if (data.cardData.type === "upgrade_control") {
+                let controlTower = this.getTargettedControlTower(data);
+                controlTower.towerData.name = "upgraded_control_tower";
+                // controlTower.towerData.size = 32;
+                delete controlTower.towerData.auraData;
+                // TODO finish this upgrade
+                console.log("upgrade control");
+            }
             if (data.cardData.type === "gain_money_1") {
                 player.money += 300;
             }

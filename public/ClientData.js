@@ -47,7 +47,8 @@ class ClientData {
         "drone_enemy",
         "ping",
         "wonder_tower",
-        "bank_tower"
+        "bank_tower",
+        "upgraded_control_tower"
     ];
     static images = {};
     static loadImages() {
