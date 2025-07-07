@@ -18,13 +18,13 @@ class ServerData {
     static generateInitialHandData() {
         let handData = [];
         let control = Util.copyObject(this.shopCardsData[0]);
-        let draw = Util.copyObject(this.shopCardsData[1]);
+        // let draw = Util.copyObject(this.shopCardsData[1]);
         let shooter = Util.copyObject(this.basicCardsData[0]);
         shooter.range = ServerData.towers[shooter.type].range;
-        draw.cardID = Util.getNewID();
+        // draw.cardID = Util.getNewID();
         control.cardID = Util.getNewID();
         shooter.cardID = Util.getNewID();
-        handData.push(draw);
+        // handData.push(draw);
         handData.push(control);
         handData.push(shooter);
         for (let index = 0; index < ServerData.STARTING_HAND_SIZE - 2; index++) {
@@ -67,40 +67,48 @@ class ServerData {
         },
         maki_tower: {
             name: "maki_tower", initialAngle: Math.PI / 4,
-            reloadTime: 800, range: 275, bulletData: { damage: 2000, speed: 0.2, color: "pink", size: 7 }
+            reloadTime: 800, range: 275,
+            bulletData: { damage: 2000, speed: 0.2, color: "pink", size: 7 }
         },
         bandi_tower: {
             name: "bandi_tower", initialAngle: Math.PI / 2,
-            reloadTime: 900, range: 200, bulletData: { damage: 2500, speed: 0.2, color: "yellow", size: 7 }
+            reloadTime: 900, range: 200,
+            bulletData: { damage: 2500, speed: 0.2, color: "yellow", size: 7 }
         },
         explosive_shooter: {
             name: "explosive_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 800, range: 200, bulletData: { damage: 1000, speed: 0.3, color: "red", size: 5 }
+            reloadTime: 800, range: 200,
+            bulletData: { damage: 1000, speed: 0.3, color: "red", size: 5 }
         },
         quick_shooter: {
             name: "quick_shooter", initialAngle: 3 * Math.PI / 4,
-            reloadTime: 250, range: 350, bulletData: { damage: 174, speed: 0.45, color: "darkred", size: 2 }
+            reloadTime: 250, range: 350,
+            bulletData: { damage: 174, speed: 0.45, color: "darkred", size: 2 }
         },
         air_shooter: {
             name: "air_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 200, range: 300, bulletData: { damage: 125, speed: 0.4, color: "blue", size: 2, special: "armor_piercer" }
+            reloadTime: 200, range: 300,
+            bulletData: { damage: 125, speed: 0.4, color: "blue", size: 2, special: "armor_piercer" }
         },
         basic_shooter: {
             name: "basic_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 750, range: 250, bulletData: { damage: 500, speed: 0.35, color: "lightgreen", size: 4 }
+            reloadTime: 700, range: 400,
+            bulletData: { damage: 500, speed: 0.35, color: "lightgreen", size: 4 }
         },
         fire_tower: {
             name: "fire_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1000, range: 200, bulletData: { damage: 100, speed: 0.2, color: "orange", size: 3, special: "fire" }
+            reloadTime: 1000, range: 200,
+            bulletData: { damage: 100, speed: 0.2, color: "orange", size: 3, special: "fire" }
         },
         ice_tower: {
             name: "ice_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1200, range: 200, bulletData: { damage: 100, speed: 0.2, color: "#739BD0", size: 3, special: "ice" }
+            reloadTime: 1200, range: 200,
+            bulletData: { damage: 100, speed: 0.2, color: "#739BD0", size: 3, special: "ice" }
         },
         railgun_tower: {
             name: "railgun_tower", initialAngle: Math.PI / 2,
             reloadTime: 1800, range: 400,
-            bulletData: { damage: 5000, speed: 0.6, color: "silver", size: 8, special: "piercing" }
+            bulletData: { damage: 5000, speed: 0.6, color: "silver", size: 8, special: "armor_piercer" }
         },
         venom_tower: {
             name: "venom_tower", initialAngle: Math.PI / 3,
@@ -119,8 +127,8 @@ class ServerData {
         },
         decay_tower: {
             name: "decay_tower", initialAngle: Math.PI / 2,
-            reloadTime: 750, range: 275,
-            bulletData: { damage: 150, speed: 0.25, color: "darkgreen", size: 4, special: "armor_break" }
+            reloadTime: 50, range: 100,
+            bulletData: { damage: 75, speed: 0.8, color: "darkgreen", size: 4, special: "armor_piercer" }
         },
         multi_shot_tower: {
             name: "multi_shot_tower", initialAngle: Math.PI / 2,
@@ -135,8 +143,8 @@ class ServerData {
     ];
     static shopCardsData = [
         { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },  // auto-include
-        { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500 }, // WIP
-        { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 }, // auto-include
+        { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500 },
+        { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 },
         { action: "build", subType: "support", text: "Merveille", type: "wonder_tower", price: 8000, sellprice: 500 },
 
         { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
@@ -217,7 +225,6 @@ class ServerData {
             imageName: "buzz_enemy",
             maxHP: 500,
             reward: 5,
-            abilities: ["zigzag_movement"]
         },
 
         drone_enemy: {
@@ -226,7 +233,6 @@ class ServerData {
             imageName: "drone_enemy",
             maxHP: 1000,
             reward: 8,
-            abilities: ["air_unit"]
         },
 
         basic_enemy: {
@@ -259,7 +265,6 @@ class ServerData {
             imageName: "tank_enemy",
             maxHP: 50000,
             reward: 350,
-            abilities: ["high_armor", "slow_resistance"]
         },
 
         scout_enemy: {
@@ -268,7 +273,6 @@ class ServerData {
             imageName: "scout_enemy",
             maxHP: 1500,
             reward: 12,
-            abilities: ["evasion", "low_profile"]
         },
 
         brute_enemy: {
@@ -277,7 +281,6 @@ class ServerData {
             imageName: "brute_enemy",
             maxHP: 40000,
             reward: 275,
-            abilities: ["knockback_attack", "rage_mode"]
         },
 
         swarm_enemy: {
@@ -286,7 +289,6 @@ class ServerData {
             imageName: "swarm_enemy",
             maxHP: 800,
             reward: 7,
-            abilities: ["spawn_in_groups", "fast_spawn_rate"]
         },
 
         elite_enemy: {
@@ -295,7 +297,6 @@ class ServerData {
             imageName: "elite_enemy",
             maxHP: 15000,
             reward: 150,
-            abilities: ["shield", "area_resistance"]
         },
 
         ghost_enemy: {
@@ -304,7 +305,6 @@ class ServerData {
             imageName: "ghost_enemy",
             maxHP: 2500,
             reward: 24,
-            abilities: ["invisibility", "phase_through_walls"]
         },
 
         armored_enemy: {
@@ -313,7 +313,6 @@ class ServerData {
             imageName: "armored_enemy",
             maxHP: 25000,
             reward: 190,
-            abilities: ["bullet_resistance", "slow_immune"]
         },
 
         mutant_enemy: {
@@ -322,7 +321,6 @@ class ServerData {
             imageName: "mutant_enemy",
             maxHP: 18000,
             reward: 170,
-            abilities: ["hp_regeneration", "mutation_on_death"]
         },
 
         boss_enemy: {
@@ -331,7 +329,6 @@ class ServerData {
             imageName: "boss_enemy",
             maxHP: 100000,
             reward: 850,
-            abilities: ["summon_minions", "area_damage", "shield"]
         },
 
         infected_enemy: {
@@ -340,7 +337,6 @@ class ServerData {
             imageName: "infected_enemy",
             maxHP: 12000,
             reward: 120,
-            abilities: ["poison_aura", "spread_infection"]
         },
 
         kamikaze_enemy: {
@@ -349,7 +345,6 @@ class ServerData {
             imageName: "kamikaze_enemy",
             maxHP: 1000,
             reward: 28,
-            abilities: ["self_explode", "armor_piercing"]
         },
 
         veteran_enemy: {
@@ -358,7 +353,6 @@ class ServerData {
             imageName: "veteran_enemy",
             maxHP: 20000,
             reward: 210,
-            abilities: ["adaptive_tactics", "resist_slow", "return_fire"]
         }
     };
 }

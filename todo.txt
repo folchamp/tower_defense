@@ -7,9 +7,25 @@ give money button
 deck display pas à jour après nouvelle vague
 piocher deux cartes : retirer la carte avant d'effectuer la pioche (sinon on pioche une carte de moins à main full)
 
-__control tower upgrade__
-control tower becomes an attack tower
-(1) remove aura
+bug : shop cards flicker
+
+            abilities: ["adaptive_tactics", "resist_slow", "return_fire"]
+            abilities: ["self_explode", "armor_piercing"]
+            abilities: ["poison_aura", "spread_infection"]
+            abilities: ["summon_minions", "area_damage", "shield"]
+            abilities: ["hp_regeneration", "mutation_on_death"]
+            abilities: ["bullet_resistance", "slow_immune"]
+            abilities: ["invisibility", "phase_through_walls"]
+            abilities: ["shield", "area_resistance"]
+            abilities: ["spawn_in_groups", "fast_spawn_rate"]
+            abilities: ["knockback_attack", "rage_mode"]
+            abilities: ["evasion", "low_profile"]
+            abilities: ["high_armor", "slow_resistance"]
+            abilities: ["air_unit"]
+            abilities: ["zigzag_movement"]
+
+triple shot
+chain lightning
 
 ***************** Todo *****************
 cartes rares (cartes identiques avec une carac surboostée)

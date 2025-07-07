@@ -90,7 +90,6 @@ class Enemy {
             this.onIce = true;
         }
         if (special === "poison") {
-            // TODO
             this.routeCheckPoint = Math.max(this.routeCheckPoint - 1, 0);
         }
         this.actualHP -= damage;
