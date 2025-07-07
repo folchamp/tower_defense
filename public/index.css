@@ -60,9 +60,22 @@ body {
     }
 
     #gameHeader {
-        position: absolute;
+        /* position: absolute;
         display: flex;
-        line-height: initial;
+        line-height: initial; */
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: linear-gradient(to right, #121a24, #0a0f17);
+        border-bottom: 1px solid #2a3a4d;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 2px 6px rgba(0, 255, 255, 0.05);
 
         #deckDisplayerButton:hover,
         #handButton:hover,
@@ -70,8 +83,9 @@ body {
         #playersButton:hover,
         #nextWaveButton:hover,
         #fullscreenButton:hover {
-            background-color: darkgray;
-            color: white;
+            background-color: #66f2ff;
+            color: #000;
+            box-shadow: 0 0 8px #66f2ff44;
         }
 
         #deckDisplayerButton,
@@ -80,8 +94,19 @@ body {
         #shopButton,
         #nextWaveButton,
         #fullscreenButton {
-            border: none;
+            background: transparent;
+            border: 1px solid #2a3a4d;
+            color: #66f2ff;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.3rem;
+            border-radius: 6px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            height: 31px;
+            margin: 6px;
         }
 
         #readyDisplayer {
@@ -96,12 +121,13 @@ body {
     }
 
     #multiPlayerInfoContainer {
-        background-color: aqua;
+        background: rgba(10, 20, 30, 0.8);
+        color: #66f2ff;
         position: absolute;
         display: flex;
         flex-direction: column;
         line-height: initial;
-        top: 22px;
+        top: 60px;
         padding: 4px;
 
         #playerNameContainer {
@@ -121,31 +147,49 @@ body {
                     padding: 3px;
                     margin: 4px;
                     list-style-type: none;
-                    background-color: rgb(247, 223, 227);
+                    background-color: rgb(41, 8, 13);
                 }
             }
         }
     }
 
-    #myResources {
-        line-height: initial;
-        margin: 0;
-        padding: 0;
-        background-color: white;
+    #resourcesContainer {
+        position: fixed;
+        top: 60px;
+        right: 0px;
+        background: rgba(10, 20, 30, 0.8);
+        border: 1px solid #2a3a4d;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        color: #66f2ff;
+        font-size: 0.9rem;
+        font-family: 'Orbitron', sans-serif;
+        z-index: 998;
+        box-shadow: 0 0 10px #00f2ff22;
+
+        #myResources {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
     }
 
     #deckDisplayerContainer {
         position: absolute;
         line-height: initial;
         left: 0;
-        top: 22px;
-        background-color: pink;
+        top: 60px;
+        background: rgba(10, 20, 30, 0.8);
+        color: #66f2ff;
         min-width: 200px;
 
         #deckDisplayerHandTitle,
         #deckDisplayerDeckTitle,
         #deckDisplayerDiscardTitle {
-            background-color: lightblue;
+            background-color: rgb(41, 8, 13);
             padding: 4px;
             margin: 0;
             border-top: 1px solid darkblue;
@@ -206,11 +250,12 @@ body {
     }
 
     #shopContainer {
-        top: 22px;
+        top: 60px;
         left: 0;
         position: absolute;
         line-height: initial;
-        background-color: aqua;
+        background: rgba(10, 20, 30, 0.8);
+        color: #66f2ff;
 
         #shopHandText,
         #shopContentText {
@@ -256,10 +301,10 @@ body {
     }
 
     #cardsContainer {
-        background-color: brown;
+        background: rgba(10, 20, 30, 0.8);
         position: absolute;
         left: 0;
-        top: 22px;
+        top: 60px;
         display: flex;
         flex-direction: column;
 
@@ -314,24 +359,5 @@ body {
 
     #gameCanvas {
         background: #74952F;
-    }
-}
-
-#about,
-#credits {
-    section {
-        width: 400px;
-        margin: 0px;
-        padding: 0px;
-        background-color: navy;
-        color: antiquewhite;
-        border: 2px solid black;
-        border-radius: 8px;
-        text-align: justify;
-
-        p {
-            margin: 8px;
-            padding: 8px;
-        }
     }
 }
