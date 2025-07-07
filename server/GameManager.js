@@ -210,6 +210,7 @@ class GameManager {
     }
     towersAct(timePassed) {
         this.gameElements.towers.forEach((tower) => {
+            // TODO change fire_tower and ice_tower with hasIceBullets and hasFireBullets
             if (!tower.hasTarget() ||
                 tower.towerData.name === "fire_tower" ||
                 tower.towerData.name === "ice_tower" ||
@@ -401,6 +402,39 @@ class GameManager {
         });
         return target;
     }
+    getTowerDataFromAura(controlTower) {
+        // also remove the towers ?
+        let data = { reloadTime: 9999, range: 0, damage: 0, speed: 0.01, color: "blue", size: 2 };
+        this.gameElements.towers.forEach((tower) => {
+            if (Util.distance(tower.position, controlTower.position) <= controlTower.towerData.auraData.auraRadius && controlTower.towerID !== tower.towerID) {
+                console.log("In control zone");
+                console.log(tower);
+                tower.isAlive = false;
+                if (tower.towerData.reloadTime !== undefined && tower.towerData.reloadTime < data.reloadTime) {
+                    data.reloadTime = tower.towerData.reloadTime;
+                }
+                if (tower.towerData.range !== undefined && tower.towerData.range > data.range) {
+                    data.range = tower.towerData.range;
+                }
+                if (tower.towerData.bulletData !== undefined) {
+                    data.damage += tower.towerData.bulletData.damage;
+                    if (tower.towerData.bulletData.speed !== undefined && tower.towerData.bulletData.speed > data.speed) {
+                        data.speed = tower.towerData.bulletData.speed;
+                    }
+                    if (tower.towerData.bulletData.size !== undefined && tower.towerData.bulletData.size > data.size) {
+                        data.size = tower.towerData.bulletData.size;
+                    }
+                    if (tower.towerData.bulletData.special !== undefined) {
+                        data.special = tower.towerData.bulletData.special;
+                    }
+                }
+            }
+        });
+        console.log("new data");
+        console.log(data);
+        data.size++; // for sports
+        return data
+    }
     usePowerCard(data) {
         let player = this.playerManager.players[data.playerID];
         let feedbackMessage = "";
@@ -415,12 +449,24 @@ class GameManager {
             feedbackMessage = "pas sur une tour de contrôle"
         } else {
             if (data.cardData.type === "upgrade_control") {
-                let controlTower = this.getTargettedControlTower(data);
-                controlTower.towerData.name = "upgraded_control_tower";
-                // controlTower.towerData.size = 32;
-                delete controlTower.towerData.auraData;
-                // TODO finish this upgrade
                 console.log("upgrade control");
+                let controlTower = this.getTargettedControlTower(data);
+                let newTowerData = this.getTowerDataFromAura(controlTower); // also removes the towers ?
+                controlTower.towerData.name = "upgraded_control_tower";
+                controlTower.towerData.reloadTime = newTowerData.reloadTime;
+                controlTower.towerData.range = newTowerData.range;
+                controlTower.towerData.bulletData = {
+                    damage: newTowerData.damage,
+                    speed: newTowerData.speed,
+                    color: newTowerData.color,
+                    size: newTowerData.size,
+                    special: newTowerData.special
+                };
+                this.newGameStateElements.towers.push(controlTower);
+                // controlTower.towerData.size = 32;
+                // delete controlTower.towerData.auraData;
+                // TODO finish this upgrade
+                console.log("end upgrade");
             }
             if (data.cardData.type === "gain_money_1") {
                 player.money += 300;

@@ -9,14 +9,7 @@ piocher deux cartes : retirer la carte avant d'effectuer la pioche (sinon on pio
 
 __control tower upgrade__
 control tower becomes an attack tower
-(0) check if a control tower is targetted
 (1) remove aura
-(2) change visuals
-(3) create a new towerData with best stats
-    - sum of damage
-    - highest range
-    - lowest reload time
-(4) remove the towers inside the aura
 
 ***************** Todo *****************
 cartes rares (cartes identiques avec une carac surboostée)
