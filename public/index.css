@@ -60,15 +60,11 @@ body {
     }
 
     #gameHeader {
-        /* position: absolute;
-        display: flex;
-        line-height: initial; */
-
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 60px;
+        height: 40px;
         background: linear-gradient(to right, #121a24, #0a0f17);
         border-bottom: 1px solid #2a3a4d;
         display: flex;
@@ -127,7 +123,7 @@ body {
         display: flex;
         flex-direction: column;
         line-height: initial;
-        top: 60px;
+        top: 40px;
         padding: 4px;
 
         #playerNameContainer {
@@ -155,7 +151,7 @@ body {
 
     #resourcesContainer {
         position: fixed;
-        top: 60px;
+        top: 40px;
         right: 0px;
         background: rgba(10, 20, 30, 0.8);
         border: 1px solid #2a3a4d;
@@ -181,7 +177,7 @@ body {
         position: absolute;
         line-height: initial;
         left: 0;
-        top: 60px;
+        top: 40px;
         background: rgba(10, 20, 30, 0.8);
         color: #66f2ff;
         min-width: 200px;
@@ -204,53 +200,8 @@ body {
         }
     }
 
-    #shopContainer .build,
-    #cardsContainer .build {
-        background-image: url("images/card_background.png");
-        background-color: #FFA000;
-    }
-
-    #cardsContainer .build:hover {
-        background-color: #FFD54F;
-    }
-
-    #cardsContainer .build.unattached,
-    #cardsContainer .build.unattached:hover {
-        background-color: #FFE082;
-    }
-
-    #shopContainer .power,
-    #cardsContainer .power {
-        background-image: url("images/card_background.png");
-        background-color: #0288D1;
-    }
-
-    #cardsContainer .power:hover {
-        background-color: #4FC3F7;
-    }
-
-    #cardsContainer .power.unattached,
-    #cardsContainer .power.unattached:hover {
-        background-color: #81D4FA;
-    }
-
-    #shopContainer .support,
-    #cardsContainer .support {
-        background-image: url("images/card_background.png");
-        background-color: #388E3C;
-    }
-
-    #cardsContainer .support:hover {
-        background-color: #81C784;
-    }
-
-    #cardsContainer .support.unattached,
-    #cardsContainer .support.unattached:hover {
-        background-color: #A5D6A7;
-    }
-
     #shopContainer {
-        top: 60px;
+        top: 40px;
         left: 0;
         position: absolute;
         line-height: initial;
@@ -279,18 +230,19 @@ body {
                 width: 90px;
                 height: 110px;
                 margin: 4px;
-                padding: 8px;
                 cursor: pointer;
                 user-select: none;
-                font-weight: bold;
                 text-align: center;
+                padding: 12px;
+                border-radius: 12px;
+                box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+                font-family: 'Orbitron', sans-serif;
                 display: flex;
-                justify-content: space-between;
                 flex-direction: column;
-
-                .cardHeaderContainer {
-                    border-bottom: 1px solid black;
-                }
+                justify-content: space-between;
+                color: #fff;
+                border: 2px solid #444;
+                background: linear-gradient(145deg, #1a1a1a, #2c2c2c);
 
             }
 
@@ -304,7 +256,7 @@ body {
         background: rgba(10, 20, 30, 0.8);
         position: absolute;
         left: 0;
-        top: 60px;
+        top: 40px;
         display: flex;
         flex-direction: column;
 
@@ -315,7 +267,6 @@ body {
             flex-wrap: wrap;
 
             .cardContainer {
-                border-radius: 6px;
                 transition: left 0.3s;
                 left: 0px;
                 position: relative;
@@ -324,18 +275,19 @@ body {
                 width: 90px;
                 height: 110px;
                 margin: 4px;
-                padding: 8px;
                 cursor: pointer;
                 user-select: none;
-                font-weight: bold;
                 text-align: center;
+                padding: 12px;
+                border-radius: 12px;
+                box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+                font-family: 'Orbitron', sans-serif;
                 display: flex;
-                justify-content: space-between;
                 flex-direction: column;
-
-                .cardHeaderContainer {
-                    border-bottom: 1px solid black;
-                }
+                justify-content: space-between;
+                color: #fff;
+                border: 2px solid #444;
+                background: linear-gradient(145deg, #1a1a1a, #2c2c2c);
 
                 .cardImageContainer {
 

@@ -298,7 +298,7 @@ class Game {
             let playerListElement = Util.quickElement("playerListElement", "li", ELEMENTS["playerList"]);
             playerListElement.innerText = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money} || ${player.playerName}`;
             if (player.playerName === this.session.getPlayerName()) {
-                ELEMENTS["myResources"].innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money}`;
+                ELEMENTS["myResources"].innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 🪙: ${player.money}`;
             }
         });
     }

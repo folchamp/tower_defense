@@ -25,6 +25,9 @@ class CanvasManager {
                 document.body.requestFullscreen().then(() => {
                     this.autoresize();
                     this.fullscreen = true;
+                    setTimeout(() => {
+                        this.autoresize();
+                    }, 500);
                 });
             }
         });
