@@ -27,10 +27,10 @@ class ServerData {
         handData.push(control);
         handData.push(shooter);
         // auto-include for testing
-        let draw = Util.copyObject(this.shopCardsData[1]);
-        draw.cardID = Util.getNewID();
-        draw.range = ServerData.towers[draw.type].range;
-        handData.push(draw);
+        // let draw = Util.copyObject(this.shopCardsData[1]);
+        // draw.cardID = Util.getNewID();
+        // draw.range = ServerData.towers[draw.type].range;
+        // handData.push(draw);
         // autoinclude for testing
         for (let index = 0; index < ServerData.STARTING_HAND_SIZE - 2; index++) {
             let card = Util.copyObject(Util.randomFromArray(ServerData.basicCardsData));
@@ -142,8 +142,8 @@ class ServerData {
         }
     };
     static basicCardsData = [
-        { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 600 }, // auto-include
-        { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 500 },
+        { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 400 }, // auto-include
+        { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 400 },
         { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
     ];
     static shopCardsData = [
@@ -151,7 +151,7 @@ class ServerData {
 
 
         // autoinclude for testing
-        { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
+        // { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
         // { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 650, sellprice: 1300 }, // temp auto-include
         // { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         // end autoinclude for testing
