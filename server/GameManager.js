@@ -491,6 +491,9 @@ class GameManager {
                 // TODO finish this upgrade
                 console.log("end upgrade");
             }
+            if (data.cardData.type === "everyone_draws") {
+                this.drawTime();
+            }
             if (data.cardData.type === "new_shop") {
                 this.shopManager.reset();
             }

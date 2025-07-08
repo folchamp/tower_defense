@@ -175,10 +175,12 @@ class ServerData {
         { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 650, sellprice: 1000 },
 
         { action: "power", text: "nouveau magasin", type: "new_shop", price: 400, sellprice: 400 },
-        { action: "power", text: "gagner 300💶", type: "gain_money_1", price: 100, sellprice: 200 },
         { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
         { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 },
+        { action: "power", text: "gagner 300💶", type: "gain_money_1", price: 100, sellprice: 200 },
         { action: "power", text: "gagner 600💶", type: "gain_money_2", price: 300, sellprice: 600 },
+
+        { action: "power", text: "pioche pour tous", type: "everyone_draws", price: 200, sellprice: 400 },
         // { action: "power", text: "gagner 300💶", type: "gain_money_1", price: 100, sellprice: 200 },
         // { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
         // { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 },
