@@ -192,8 +192,23 @@ class GameManager {
         for (let index = 0; index < this.gameElements.bullets.length; index++) {
             const bullet = this.gameElements.bullets[index];
             if (bullet.hit) {
-                bullet.isActive = false;
+
+                if (bullet.hasSpecial("chain_lightning")) {
+                    let chosenEnemy;
+                    let tooFar = true;
+                    for (let index = 0; this.gameElements.enemies.length > 0 && index < ServerData.SMART_AIM && chosenEnemy === undefined && tooFar; index++) {
+                        chosenEnemy = this.getRandomEnemy();
+                        tooFar = Util.distance(bullet.position, chosenEnemy.position) > ServerData.CHAIN_LIGHTNING_RANGE;
+                    }
+                    if (chosenEnemy !== undefined && !tooFar) {
+                        let newBullet = new Bullet(Util.copyObject(bullet.position), chosenEnemy, bullet.bulletData)
+                        this.gameElements.bullets.push(newBullet);
+                        this.newGameStateElements.bullets.push(newBullet);
+                    }
+                }
+
                 bullet.target.hit(bullet.bulletData.damage, bullet.bulletData.special);
+                bullet.isActive = false;
                 // this.newGameStateElements.bulletsToRemove.push(this.gameElements.bullets[index]);
                 if (this.gameElements.bullets.length === index + 1) {
                     this.gameElements.bullets.pop();
@@ -209,11 +224,13 @@ class GameManager {
         //     bulletData: this.towerData.bulletData
         // };
 
-        // let bullet = new Bullet(Util.copyObject(tower.stockedBullet.position), tower.stockedBullet.target, tower.stockedBullet.bulletData)
-        // this.gameElements.bullets.push(bullet);
-        // this.newGameStateElements.bullets.push(bullet);
+
         // tower.stockedBullet = undefined;
         // this.newGameStateElements.towers.push(tower);
+
+        // Util.distance(tower.position, tower.target.position) > tower.towerData.range) 
+
+        // tower.loseTarget(); // in case the enemy gets out of range
 
     }
     bulletsAct(timePassed) {
