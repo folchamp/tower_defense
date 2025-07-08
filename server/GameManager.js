@@ -202,6 +202,19 @@ class GameManager {
                 }
             }
         }
+
+        // this.stockedBullet = {
+        //     position: this.position,
+        //     target: this.target,
+        //     bulletData: this.towerData.bulletData
+        // };
+
+        // let bullet = new Bullet(Util.copyObject(tower.stockedBullet.position), tower.stockedBullet.target, tower.stockedBullet.bulletData)
+        // this.gameElements.bullets.push(bullet);
+        // this.newGameStateElements.bullets.push(bullet);
+        // tower.stockedBullet = undefined;
+        // this.newGameStateElements.towers.push(tower);
+
     }
     bulletsAct(timePassed) {
         this.gameElements.bullets.forEach((bullet) => {

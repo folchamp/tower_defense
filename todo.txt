@@ -1,10 +1,7 @@
 ***************** Must ***************** 
-troisième couleur de carte (eco towers, damage cards, reputation cards)
-
 indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
 
 give money button
-deck display pas à jour après nouvelle vague
 piocher deux cartes : retirer la carte avant d'effectuer la pioche (sinon on pioche une carte de moins à main full)
 
 bug : shop cards flicker
@@ -24,7 +21,6 @@ bug : shop cards flicker
             abilities: ["air_unit"]
             abilities: ["zigzag_movement"]
 
-triple shot
 chain lightning
 
 ***************** Todo *****************
