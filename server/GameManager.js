@@ -77,7 +77,8 @@ class GameManager {
             this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1.25;
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
             this.shopManager.resplenish();
-            this.playerManager.refreshPlayerList(); // only refreshes shop when not broadcasted... TODO change this behavior
+            this.playerManager.refreshPlayerList();
+            this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
             if (this.wonderBuilt) {
                 this.spawnEnemy("boss_enemy");
             }
@@ -109,6 +110,7 @@ class GameManager {
         }
         this.refreshGameState();
         this.playerManager.refreshPlayerList();
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     resetNewGameStateElements() {
         this.newGameStateElements = {
@@ -137,6 +139,7 @@ class GameManager {
         console.log("top");
         this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID });
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     refreshGameState() {
         this.broadcast({ message: "server_refresh_game_state", gameElements: this.newGameStateElements });
@@ -212,8 +215,9 @@ class GameManager {
         this.gameElements.towers.forEach((tower) => {
             // TODO change fire_tower and ice_tower with hasIceBullets and hasFireBullets
             if (!tower.hasTarget() ||
-                tower.towerData.name === "fire_tower" ||
-                tower.towerData.name === "ice_tower" ||
+                tower.hasSpecial("fire") ||
+                tower.hasSpecial("ice") ||
+                tower.hasSpecial("poison") ||
                 Util.distance(tower.position, tower.target.position) > tower.towerData.range) {
                 let chosenEnemy = undefined;
                 let tooFar = true;
@@ -288,6 +292,8 @@ class GameManager {
         let player = this.playerManager.players[playerID];
         let drawnCards = player.draw();
         this.broadcast({ message: "server_draw_cards", recipient: player.playerID, drawnCards: drawnCards });
+        this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     refreshPlayerActions() {
         for (let playerID in this.playerManager.players) {
@@ -295,6 +301,7 @@ class GameManager {
             player.actualAmountOfActions = player.maxAmountOfActions;
         }
         this.playerManager.refreshPlayerList();
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     checkActionsDone() {
         let done = true;
@@ -326,6 +333,7 @@ class GameManager {
             player.discard.push(card);
         }
         this.playerManager.refreshPlayerList();
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     sell(data) {
         let player = this.playerManager.players[data.playerID];
@@ -336,6 +344,7 @@ class GameManager {
         }
         this.playerManager.refreshPlayerList();
         this.broadcast({ message: "server_card_sold", cardID: card.cardID, recipient: player.playerID });
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     buySell(data) {
         let player = this.playerManager.players[data.playerID];
@@ -346,10 +355,10 @@ class GameManager {
             this.sell(data);
         }
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     refreshPlayerList(data) {
-        // nothing to do here TODO strange way to implement this TODO check
-        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
+        // nothing to do here 
     }
     useSpaceInControlZone(data) {
         this.gameElements.auras.forEach((aura) => {
@@ -383,6 +392,7 @@ class GameManager {
         player.removeCard(data.cardData);
         this.playerManager.refreshPlayerList();
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
     targetsControlTower(data) {
         let targets = false;
@@ -404,7 +414,7 @@ class GameManager {
     }
     getTowerDataFromAura(controlTower) {
         // also remove the towers ?
-        let data = { reloadTime: 9999, range: 0, damage: 0, speed: 0.01, color: "blue", size: 2 };
+        let data = { reloadTime: 9999, range: 0, damage: 0, speed: 0.01, color: "blue", size: 2, special: [] };
         this.gameElements.towers.forEach((tower) => {
             if (Util.distance(tower.position, controlTower.position) <= controlTower.towerData.auraData.auraRadius && controlTower.towerID !== tower.towerID) {
                 console.log("In control zone");
@@ -425,7 +435,7 @@ class GameManager {
                         data.size = tower.towerData.bulletData.size;
                     }
                     if (tower.towerData.bulletData.special !== undefined) {
-                        data.special = tower.towerData.bulletData.special;
+                        data.special.push(...tower.towerData.bulletData.special);
                     }
                 }
             }
@@ -467,6 +477,9 @@ class GameManager {
                 // delete controlTower.towerData.auraData;
                 // TODO finish this upgrade
                 console.log("end upgrade");
+            }
+            if (data.cardData.type === "new_shop") {
+                this.shopManager.reset();
             }
             if (data.cardData.type === "gain_money_1") {
                 player.money += 300;

@@ -79,17 +79,17 @@ class Enemy {
         return this.alive;
     }
     hit(damage, special) {
-        if (this.enemyData.maxHP > 19000 && special === "armor_piercer") {
+        if (this.enemyData.maxHP > 19000 && special !== undefined && special.includes("armor_piercer")) {
             this.actualHP -= damage;
             this.actualHP -= damage;
         }
-        if (special === "fire") {
+        if (special !== undefined && special.includes("fire")) {
             this.onFire = true;
         }
-        if (special === "ice") {
+        if (special !== undefined && special.includes("ice")) {
             this.onIce = true;
         }
-        if (special === "poison") {
+        if (special !== undefined && special.includes("poison")) {
             this.routeCheckPoint = Math.max(this.routeCheckPoint - 1, 0);
         }
         this.actualHP -= damage;

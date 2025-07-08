@@ -13,6 +13,7 @@ class Tower {
         this.angle;
         this.targettedBy = [];
         this.isAlive = true;
+        this.specialData = {};
     }
     load(data) {
         this.cardData = data.cardData;
@@ -26,16 +27,35 @@ class Tower {
         this.angle = data.angle;
         this.targettedBy = data.targettedBy;
         this.isAlive = data.isAlive;
+        this.specialData = data.specialData;
+    }
+    hasSpecial(specialName) {
+        return this.towerData.bulletData !== undefined && this.towerData.bulletData.special !== undefined && this.towerData.bulletData.special.includes(specialName);
     }
     isTargetetBy(enemy) {
         this.targettedBy.push(enemy);
     }
     move(timePassed) {
+        // multi-shot
+        if (this.hasSpecial("triple_shot")) {
+            if (this.specialData.shots === undefined) {
+                this.specialData.shots = 1;
+            }
+        }
+        // end multi-shot
         this.totalTimePassed += timePassed;
         if (this.totalTimePassed > this.towerData.reloadTime) {
             if (this.hasTarget()) {
                 this.totalTimePassed -= this.towerData.reloadTime;
                 this.shoot();
+
+                if (this.hasSpecial("triple_shot") && this.specialData.shots < 3) {
+                    this.totalTimePassed += this.towerData.reloadTime - 75;
+                    this.specialData.shots++;
+                } else {
+                    this.specialData.shots = 1;
+                }
+
             } else {
                 this.totalTimePassed = this.towerData.reloadTime;
             }
