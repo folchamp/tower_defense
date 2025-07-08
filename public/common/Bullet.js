@@ -8,6 +8,9 @@ class Bullet {
         this.hit = false;
         this.isActive = true;
     }
+    hasSpecial(specialName) {
+        return this.bulletData !== undefined && this.bulletData.special !== undefined && this.bulletData.special.includes(specialName);
+    }
     load(data) {
         this.position = data.position;
         this.target = data.target;

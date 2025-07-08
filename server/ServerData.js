@@ -16,6 +16,7 @@ class ServerData {
     static HAND_SIZE = 8;
     static SHOP_SIZE = 8;
     static DIFFICULTY_FACTOR = 3;
+    static CHAIN_LIGHTNING_RANGE = 250;
     static generateInitialHandData() {
         let handData = [];
         let control = Util.copyObject(this.shopCardsData[0]);
@@ -26,10 +27,10 @@ class ServerData {
         handData.push(control);
         handData.push(shooter);
         // auto-include for testing
-        // let draw = Util.copyObject(this.shopCardsData[1]);
-        // draw.cardID = Util.getNewID();
-        // draw.range = ServerData.towers[draw.type].range;
-        // handData.push(draw);
+        let draw = Util.copyObject(this.shopCardsData[1]);
+        draw.cardID = Util.getNewID();
+        draw.range = ServerData.towers[draw.type].range;
+        handData.push(draw);
         // autoinclude for testing
         for (let index = 0; index < ServerData.STARTING_HAND_SIZE - 2; index++) {
             let card = Util.copyObject(Util.randomFromArray(ServerData.basicCardsData));
@@ -127,7 +128,7 @@ class ServerData {
         storm_tower: {
             name: "storm_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 300,
-            bulletData: { damage: 500, speed: 0.4, color: "cyan", size: 3, special: ["chain_lightning"] }
+            bulletData: { damage: 100, speed: 0.4, color: "cyan", size: 3, special: ["chain_lightning"] }
         },
         decay_tower: {
             name: "decay_tower", initialAngle: Math.PI / 2,
@@ -150,6 +151,7 @@ class ServerData {
 
 
         // autoinclude for testing
+        { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
         // { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 650, sellprice: 1300 }, // temp auto-include
         // { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         // end autoinclude for testing
