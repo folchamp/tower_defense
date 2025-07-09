@@ -59,4 +59,101 @@ class ClientData {
             ClientData.images[path] = sample;
         });
     }
+    static enemiesDescriptions = {
+        "mini_enemy": {
+            "loreName": "Fouisseur",
+            "description": "Ancien rongeur de compagnie, son squelette a été renforcé d'un châssis métallique. Ses pattes s’enfoncent dans le sol avec des mouvements erratiques. Ses yeux clignotent avec une fréquence inquiétant. L’huile noire goutte de son dos décharné.",
+            "abilities": "Rapide"
+        },
+        "crawler_enemy": {
+            "loreName": "Rampant",
+            "description": "Ce monstre était probablement un chien, autrefois. Son abdomen est ouvert sur une sorte de chenille roulante qu'il utiliser pour se mouvoir. Il laisse une traînée d’huile noire sur son chemin. Son crâne est encastré dans une coque d’acier.",
+            "abilities": "Lent, un peu résistant"
+        },
+        "buzz_enemy": {
+            "loreName": "Grésilleur",
+            "description": "Ressemblant vaguement à une mouche, cette créature vole à basse altitude à l’aide d’ailes hybrides, noircies par un procédé méconnu. Son thorax transparent laisse entrevoir un cœur mécanique pulsant si vite que l'œil peine à le suivre. Il émet un sifflement strident lorsqu'il repère des proies humaines.",
+            "abilities": "Rapide, fragile"
+        },
+        "drone_enemy": {
+            "loreName": "Chasseur",
+            "description": "Appareil civil de surveillance détourné. Son châssis est couvert d'un matière visqueuse et noire. Il vole droit, vite, comme absorbé par une cible. Vous.",
+            "abilities": "Rapide, un peu résistant"
+        },
+        "basic_enemy": {
+            "loreName": "Contaminé",
+            "description": "Humanoïde dont les organes principaux ont été remplacés par des artifices complexes imaginés par l'huile. Ses membres sont couverts de pointes et de lames dégoulinantes d'huile.",
+            "abilities": "Lent, très résistant"
+        },
+        "quick_enemy": {
+            "loreName": "Sprinter",
+            "description": "Ses jambes, solidifiées par des armatures en acier, l'entraînent en avant à grande vitesse.",
+            "abilities": "Rapide, fragile"
+        },
+        "strong_enemy": {
+            "loreName": "Charognard",
+            "description": "Probablement une bête de somme contaminée. Son torse a été entièrement blindé avec des plaques de métal rouillé. Il avance comme au ralenti mais peut encaisser de nombreuses attaques. De l’huile s’écoule par les défauts de son armure.",
+            "abilities": "Très résistant, très lent"
+        },
+        "tank_enemy": {
+            "loreName": "Blindé",
+            "description": "Ancien véhicule militaire fusionné avec ses pilotes contaminés. Sa coque respire avec de violentes saccades, comme s'il était doté d'une vie propre.",
+            "abilities": "Très résistant, très lent"
+        },
+        "scout_enemy": {
+            "loreName": "Éclaireur",
+            "description": "Petit corps humanoïde allégé pour la reconnaissance. Une antenne tordue sort de son crâne. Il court avec une surprenante agilité. Ses yeux brillent d’un vert toxique.",
+            "abilities": "Rapide, fragile"
+        },
+        "brute_enemy": {
+            "loreName": "Casseur d’os",
+            "description": "Le torse d’un gorille, les jambes robotiques, comme d'immondes prothèses couvertes d'huile. Son visage est figé dans une grimace simiesque. Chaque pas qu'il fait fait trembler le sol.",
+            "abilities": "Lent, résistant"
+        },
+        "swarm_enemy": {
+            "loreName": "Vermine",
+            "description": "Multiples créatures de petite taille – oiseaux, rongeurs, insectes – amalgamés en une masse grouillante. Ce nuage de bestioles émet des cliquetis constants comme un broyeur à déchets qui tourne fou.",
+            "abilities": "Fragile"
+        },
+        "elite_enemy": {
+            "loreName": "Alpha",
+            "description": "Un ancien soldat. Son uniforme est en loques. Un canon est intégré à son torse, heureusement inactif. Son regard chercheur trahit une forme de conscience résiduelle. Il marche avec autorité, le dos droit, comme il devait le faire avant la contagion.",
+            "abilities": "Résistant, rapide"
+        },
+        "ghost_enemy": {
+            "loreName": "Spectre Noir",
+            "description": "Spectre à la peau blanche, presque translucide. Il avance vite et sans bruit, flottant à quelques centimètres du sol. Les projectiles semblent le traverser sans effet.",
+            "abilities": "Rapide, résistant"
+        },
+        "armored_enemy": {
+            "loreName": "Paladin du Ravage",
+            "description": "Exosquelette militaire greffé à son pilote contaminé, ses bras sont encore marqués de logos d'une armée aujourd'hui disparue. Chaque membre est renforcé par des barres métalliques grossièrement soudées. Il encaisse. Il avance.",
+            "abilities": "Très résistant"
+        },
+        "mutant_enemy": {
+            "loreName": "Mutant",
+            "description": "Une bête non-identifiable, peut-être la fusion de plusieurs être vivants. Sa chair est molle mais résistante, déchirée ci-et-là, suintant d'huile. Elle émet un grognement sourd, dernier vestige de sa vie passée.",
+            "abilities": "Résistant, lent"
+        },
+        "boss_enemy": {
+            "loreName": "Le Colosse",
+            "description": "C’est une colline en marche. Réacteur nucléaire sur pattes. Commandé par une force distante, la Reine elle-même. Il avance lentement, implacablement, portant sur son dos les restes de ses victimes.",
+            "abilities": "Boss"
+        },
+        "infected_enemy": {
+            "loreName": "Corps contaminé",
+            "description": "Un humain, fraîchement transformé. Ses traits sont encore reconnaissables. Des câbles sortent de sa bouche. Ses mouvements sont saccadés, comme s’il luttait encore. L’huile lui coule des yeux et des oreilles.",
+            "abilities": ""
+        },
+        "kamikaze_enemy": {
+            "loreName": "Hurleur",
+            "description": "Petit corps compact, truffé de réservoirs d'huile. Il fonce en ligne droite, propulsé par des jambes métalliques. Son abdomen vibre dangereusement, prêt à se rompre. Il se jette contre tout ce qui vit.",
+            "abilities": "Très rapide"
+        },
+        "veteran_enemy": {
+            "loreName": "Passé",
+            "description": "Un ancien défenseur humain tombé dans le no-man’s land. Son armure est fondue, son arme arrachée. L’huile l’a ressuscité sans le reconstruire entièrement. Il marche comme un mort, mais son regard familier ne vous lâche pas.",
+            "abilities": "Résistant"
+        }
+    }
 }

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 1rem;
+        }
+
+        .popup-card {
+            background: linear-gradient(145deg, #1b1b1b, #101010);
+            border: 1px solid #303030;
+            border-radius: 10px;
+            box-shadow: 0 0 18px rgba(0, 255, 160, 0.05), 0 0 4px rgba(0, 255, 160, 0.1);
+            color: #ccc;
+            padding: 1rem;
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            font-family: 'Courier New', monospace;
+        }
+
+        .popup-card::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border: 1px dashed rgba(0, 255, 160, 0.05);
+            pointer-events: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #777;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #0fa;
+        }
+
+        .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .popup-icon {
+            width: 48px;
+            height: 48px;
+            background: #222;
+            border-radius: 4px;
+            border: 1px solid #333;
+        }
+
+        .popup-title h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #0fa;
+            text-shadow: 0 0 3px #0fa2;
+        }
+
+        .popup-subtitle {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .popup-description {
+            font-size: 0.92rem;
+            line-height: 1.45;
+            color: #aaa;
+            margin-bottom: 0.75rem;
+        }
+
+        .popup-stats p {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed #333;
+            margin: 1rem 0;
+        }
+
+        @media (min-width: 600px) {
+            .popup-card {
+                padding: 1.5rem;
+            }
+
+            .popup-title h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup-overlay" id="infoPopup">
+        <div class="popup-card">
+            <button class="close-btn" onclick="closePopup()">✕</button>
+            <div class="popup-header">
+                <img src="assets/enemies/mini_enemy.png" alt="mini_enemy" class="popup-icon" />
+                <div class="popup-title">
+                    <h2>Mini-Chasseur</h2>
+                    <p class="popup-subtitle">Infecté – faible dangerosité</p>
+                </div>
+            </div>
+            <div class="popup-content">
+                <p class="popup-description">
+                    Autrefois un rongeur urbain, il est désormais déformé par l’huile noire. Sa carcasse semi-organique
+                    est rapide mais fragile. Il agit par réflexe, fonçant vers les bastions sans jamais ralentir.
+                </p>
+                <hr />
+                <div class="popup-stats">
+                    <p><strong>PV :</strong> 700</p>
+                    <p><strong>Vitesse :</strong> Lente</p>
+                    <p><strong>Récompense :</strong> 6 💰</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

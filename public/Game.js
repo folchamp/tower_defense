@@ -58,7 +58,16 @@ class Game {
                 this.closeAllPopups();
                 ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
             }
-        })
+            if (event.code === "Escape") {
+                this.closeAllPopups();
+                Util.hide(ELEMENTS["infoPopupContainer"]);
+            }
+        });
+
+        ELEMENTS["infoPopupCloseButton"].addEventListener("click", (event) => {
+            Util.hide(ELEMENTS["infoPopupContainer"]);
+        });
+
 
         // MENU BUTTONS
         ELEMENTS["shopButton"].addEventListener("click", (event) => {
@@ -175,21 +184,21 @@ class Game {
     isForMe(data) {
         return data.recipient === this.session.playerID;
     }
-    mouseClick(event) {
-        if (!this.mouseInsideCanvas) {
-            if (this.grabbedCard !== undefined) {
-                // put card back in hand
-                this.grabbedCard.attach();
-                this.grabbedCard = undefined;
-            }
-        }
-    }
+    // mouseClick(event) {
+    //     if (!this.mouseInsideCanvas) {
+    //         if (this.grabbedCard !== undefined) {
+    //             // put card back in hand
+    //             this.grabbedCard.attach();
+    //             this.grabbedCard = undefined;
+    //         }
+    //     }
+    // }
     canvasMouseCallback(eventType, position) {
         if (eventType === "click") {
             this.pingManager.closePingSender();
             this.mousePosition = position;
+            let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
             if (this.grabbedCard !== undefined) {
-                let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
                 if (this.grabbedCard.cardData.action === "build") {
                     socket.emit("message", {
                         message: "client_buildTowerHere",
@@ -205,6 +214,20 @@ class Game {
                         playerID: this.session.playerID
                     });
                 }
+            } else {
+                console.log("top");
+                this.gameElements.enemies.forEach((enemy) => {
+                    if (Util.distance(offsetPosition, enemy.position) <= 16) {
+                        Util.show(ELEMENTS["infoPopupContainer"]);
+                        ELEMENTS["infoPopupBigTitle"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].loreName;
+                        ELEMENTS["infoPopupSubtitle"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].abilities;
+                        ELEMENTS["infoPopupDescription"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].description;
+                        ELEMENTS["infoPopupVrac"].innerHTML =
+                            `Endurance : ${enemy.enemyData.maxHP} || Récompense : ${enemy.enemyData.reward}`;
+                        ELEMENTS["infoPopupImage"].src = `images/${enemy.enemyData.imageName}.png`;
+                    }
+                })
+                // TODO add event listener to close popup
             }
         }
         if (eventType === "mouseenter") {
@@ -308,7 +331,6 @@ class Game {
         this.session.setPlayerName(playerName);
     }
     refreshGameData(data) {
-        console.log(data.gameElements.routes);
         this.hand = [];
         if (this.grabbedCard) {
             this.grabbedCard.attach();

@@ -32,7 +32,14 @@ const elementNames = [
     "deckDisplayerDiscardContainer",
     "gameHeader",
     "readyDisplayer",
-    "pingSendContainer"
+    "pingSendContainer",
+    "infoPopupContainer",
+    "infoPopupBigTitle",
+    "infoPopupSubtitle",
+    "infoPopupDescription",
+    "infoPopupVrac",
+    "infoPopupCloseButton",
+    "infoPopupImage"
 ]
 
 const ELEMENTS = Util.getElements(elementNames);

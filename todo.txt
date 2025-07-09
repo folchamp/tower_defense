@@ -24,6 +24,9 @@ retirer le clignotement du ping
 réduire la vitesse d'attaque de la tour de corrosion
 popup de description
 lore d'accueil
+des artefacts spawnent aléatoirement sur la carte, rapportent de la thune quand ils sont récupérés + popup de lore
+
+escape closes all tabs + popups
 
 __cartes__ 
 tous les joueurs piochent une carte
