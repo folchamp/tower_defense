@@ -8,8 +8,8 @@ class ServerData {
     static MAX_AMOUNT_OF_ACTIONS = 3;
     static SHOP_SHIFT = 3;
     static SMART_AIM = 5;
-    static STARTING_MONEY = 4500;
-    // static STARTING_MONEY = 450000;
+    // static STARTING_MONEY = 4500;
+    static STARTING_MONEY = 450000;
     static ENEMIES_INTERVAL = 200;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static STARTING_HAND_SIZE = 3;
@@ -62,6 +62,9 @@ class ServerData {
 
         bank_tower: {
             name: "bank_tower", type: "support", moneyPerWave: 125
+        },
+        micro_agence_tower: {
+            name: "micro_agence_tower", type: "support", moneyPerWave: 50
         },
         wonder_tower: {
             name: "wonder_tower", type: "support"
@@ -132,8 +135,8 @@ class ServerData {
         },
         decay_tower: {
             name: "decay_tower", initialAngle: Math.PI / 2,
-            reloadTime: 100, range: 100,
-            bulletData: { damage: 75, speed: 0.4, color: "darkgreen", size: 4, special: ["armor_piercer"] }
+            reloadTime: 200, range: 100,
+            bulletData: { damage: 100, speed: 0.2, color: "darkgreen", size: 5, special: ["armor_piercer"] }
         },
         multi_shot_tower: {
             name: "multi_shot_tower", initialAngle: 3 * Math.PI / 4,
@@ -159,6 +162,7 @@ class ServerData {
 
         { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500 },
         { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 },
+        { action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 150, sellprice: 300 },
         { action: "build", subType: "support", text: "Merveille", type: "wonder_tower", price: 8000, sellprice: 500 },
 
         { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1000 },

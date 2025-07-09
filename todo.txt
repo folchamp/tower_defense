@@ -16,6 +16,15 @@
 
             portée sur tablette
 
+ennemi qui absorbe les dégâts à la place d'un autre
+protéger le serveur contre les crashs
+superposition du texte fin de vague
+indiquer quel menu est ouvert
+retirer le clignotement du ping
+réduire la vitesse d'attaque de la tour de corrosion
+popup de description
+lore d'accueil
+
 __cartes__ 
 tous les joueurs piochent une carte
 chaque joueur gagne une action
