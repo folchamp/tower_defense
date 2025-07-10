@@ -156,4 +156,79 @@ class ClientData {
             "abilities": "Résistant"
         }
     }
+
+    static towersDescriptions = {
+        "bank_tower": {
+            "description": "Vestige d'un CCLA (comptoir commercial local automatisé), cette tour a été modifiée pour racler les maigres ressources qui traînent encore dans le no-man's land.",
+            "capacity": "Génère 125 thunes par vague."
+        },
+        "micro_agence_tower": {
+            "description": "Petite structure semblable à un bureau de poste de l'ancien temps, elle trie et recycle automatiquement les vieilleries du no-man's land qui l'entourent pour subvenir aux besoin de matériaux des ingénieurs. Peu productive mais facile à installer.",
+            "capacity": "Génère 50 thunes par vague."
+        },
+        "wonder_tower": {
+            "description": "Personne ne se souvient vraiment de sa fonction d'origine. Elle émet d'étranges signaux, comme si elle cherchait à entrer en contact avec un ailleurs oublié. Une relique qui, peut-être, révélera sa fonction un jour.",
+            "capacity": "Effets mystérieux."
+        },
+        "control_tower": {
+            "description": "Assemblage délicat de divers systèmes de communication et de logistique. Cette tourelle tactique, augmente la cohésion locale en diffusant des ordres envoyés par une antique IA militaire. Elle donne un semblant d'odre dans le chaos du no-man's land.",
+            "capacity": "Crée une zone de 5 emplacements de construction."
+        },
+        "maki_tower": {
+            "description": "Une tourelle d'artillerie rotative ultra-puissante montée sur un trépied hydraulique. Surnommée Maki en souvenir de son créateur, un ingénieur survivaliste, élu beau gosse de l'année 3014, aujourd'hui déclaré MIA (missing in action). Elle allie style et puissance.",
+            "capacity": "Gros dégâts. Gros canon."
+        },
+        "bandi_tower": {
+            "description": "Construite à partir d’un exosquelette de chantier (ultra-moderne à l'époque), cette tourelle tire des salves lumineuses avec une précision brutale. Les lueurs jaunes de ses projectiles évoquent inspirent la peur, d'abord. Puis l'espoir. Son inventeur est à la première page des ingénieurs les plus aimés du système.",
+            "capacity": "Tire des projectiles incandescants qui éblouissent ses admirateurs."
+        },
+        "explosive_shooter": {
+            "description": "Simple lance-patates automatisé, cette tour utilise des projectiles légers qui explosent à l’impact. Grenades, batons de dynamites, têtes de mortier, elle a un des meilleurs ratio dégâts/coût du bastion.",
+            "capacity": "Tire des projectiles mortels sur une courte distance."
+        },
+        "quick_shooter": {
+            "description": "Cette petite tourelle, une fois en action, claque et craque sans cesse. Construite à partir d'anciens moteurs de grues portuaires, elle est capable d'envoyer des projectils à un rythme effréné.",
+            "capacity": "Dégâts faibles, cadence élevée."
+        },
+        "air_shooter": {
+            "description": "Cette tourelle, basée sur d'anciens systèmes de DCA (Defensive Counterair), fonctionne presque comme à l'origine. Ses opérateurs, dorénavant robotiques, utilisent l'arme pour projeter des billets perforantes à haute vitesse.",
+            "capacity": "Tire des projectiles perçants (efficaces contre les gros monstres) à haute fréquence."
+        },
+        "basic_shooter": {
+            "description": "Tourelle standard bricolée à partir d’un découpeur laser industriel. Elle offre un équilibre efficace entre cadence, portée et puissance.",
+            "capacity": "Bonne portée. Bon dégâts. Bonne cadence. Une tourelle qui a rendu de fiers services et qui continera à en rendre."
+        },
+        "fire_tower": {
+            "description": "Un simple lance-flamme automatisé affecté à la destructions de monstres. Il couvre les ennemis de substances inflammables (carburant ou napalm) puis change de cible immédiatement.",
+            "capacity": "Met les ennemis en feu, un par un, inlassablement."
+        },
+        "ice_tower": {
+            "description": "Système d'extinction d'incendie de réacteur d'avion greffé à un robot d'assemblage industriel, cette tourelle tente de ralentir la progression ennemie par le froid.",
+            "capacity": "Tirs glacés ralentissant la cible."
+        },
+        "railgun_tower": {
+            "description": "Fruit d’une technologie prototypaire de la fin de l'Âge des Humains, cette arme magnétique accumule de l'énergie cynétique dans un projectile dévastateur.",
+            "capacity": "Dégâts massifs, cadence lente."
+        },
+        "venom_tower": {
+            "description": "Une tour bricolée par la classe de première année de l'école des ingénieurs, elle tire des flasques biologiques. Ce système aurait été interdit par la Convention de Genève à l'époque. Les ennemis, nerveusement désorientés, sont forcés de faire demi-tour.",
+            "capacity": "Tirs de poison qui font reculer l'ennemi."
+        },
+        "sniper_tower": {
+            "description": "Surélevée, cette tourelle semble réfléchir avant de lâcher un trait noir d’une létalité rare.",
+            "capacity": "Dégâts très élevés, portée extrême."
+        },
+        "storm_tower": {
+            "description": "Système de tir simple, munitions ultra-technologiques qui rebondissent entre les ennemis. Nom de code : STORM",
+            "capacity": "Munitions rebondissantes."
+        },
+        "decay_tower": {
+            "description": "Cette tour maintient ses canons en rotation lente pour gagner du temps de préparation lorsque l'ennemi apparaît. Elle est fumante, grinçante, et dégage une odeur de brûlé. Ses tirs broient les armures.",
+            "capacity": "Petits projectiles efficaces contre les cibles blindées. Haute cadence de tir."
+        },
+        "multi_shot_tower": {
+            "description": "Tourelle laser, son faisceau passe par un prisme qui le divise en trois éclats distincts, capables de toucher plusieurs cibles simultanément.",
+            "capacity": "Tire trois projectiles à chaque salve. Dégâts moyens."
+        }
+    }
 }

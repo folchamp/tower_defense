@@ -14,19 +14,20 @@
             abilities: ["air_unit"]
             abilities: ["zigzag_movement"]
 
-            portée sur tablette
-
+portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs
 superposition du texte fin de vague
-indiquer quel menu est ouvert
 retirer le clignotement du ping
-réduire la vitesse d'attaque de la tour de corrosion
-popup de description
+popup de description tours
 lore d'accueil
 des artefacts spawnent aléatoirement sur la carte, rapportent de la thune quand ils sont récupérés + popup de lore
 
-escape closes all tabs + popups
+personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
+
+le dernier mob fait spawner un artefact qui est une carte qui pourrit le deck et peut être revendue 
+certaines tours ont une portée minimum
+certaines tours tirent en masse pendant quelques secondes puis s'épuisent
 
 __cartes__ 
 tous les joueurs piochent une carte

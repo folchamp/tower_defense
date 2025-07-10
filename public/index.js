@@ -39,7 +39,8 @@ const elementNames = [
     "infoPopupDescription",
     "infoPopupVrac",
     "infoPopupCloseButton",
-    "infoPopupImage"
+    "infoPopupImage",
+    "continueButton"
 ]
 
 const ELEMENTS = Util.getElements(elementNames);

@@ -45,18 +45,23 @@ class Game {
             if (event.code === "KeyQ") {
                 this.closeAllPopups();
                 ELEMENTS["cardsContainer"].classList.remove("hidden");
+                ELEMENTS["handButton"].classList.add("selectedMenuElement");
+
             }
             if (event.code === "KeyW") {
                 this.closeAllPopups();
                 ELEMENTS["shopContainer"].classList.remove("hidden");
+                ELEMENTS["shopButton"].classList.add("selectedMenuElement");
             }
             if (event.code === "KeyE") {
                 this.closeAllPopups();
                 ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
+                ELEMENTS["playersButton"].classList.add("selectedMenuElement");
             }
             if (event.code === "KeyR") {
                 this.closeAllPopups();
                 ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
+                ELEMENTS["deckDisplayerButton"].classList.add("selectedMenuElement");
             }
             if (event.code === "Escape") {
                 this.closeAllPopups();
@@ -68,26 +73,33 @@ class Game {
             Util.hide(ELEMENTS["infoPopupContainer"]);
         });
 
+        ELEMENTS["continueButton"].addEventListener("click", (event) => {
+            Util.hide(ELEMENTS["infoPopupContainer"]);
+        });
 
         // MENU BUTTONS
         ELEMENTS["shopButton"].addEventListener("click", (event) => {
             this.closeAllPopups();
             ELEMENTS["shopContainer"].classList.remove("hidden");
+            ELEMENTS["shopButton"].classList.add("selectedMenuElement");
         });
 
         ELEMENTS["playersButton"].addEventListener("click", (event) => {
             this.closeAllPopups();
             ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
+            ELEMENTS["playersButton"].classList.add("selectedMenuElement");
         });
 
         ELEMENTS["handButton"].addEventListener("click", (event) => {
             this.closeAllPopups();
             ELEMENTS["cardsContainer"].classList.remove("hidden");
+            ELEMENTS["handButton"].classList.add("selectedMenuElement");
         });
 
         ELEMENTS["deckDisplayerButton"].addEventListener("click", (event) => {
             this.closeAllPopups();
             ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
+            ELEMENTS["deckDisplayerButton"].classList.add("selectedMenuElement");
         });
         // END MENU BUTTONS
 
@@ -176,6 +188,10 @@ class Game {
         ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
         ELEMENTS["deckDisplayerContainer"].classList.add("hidden");
 
+        ELEMENTS["handButton"].classList.remove("selectedMenuElement");
+        ELEMENTS["shopButton"].classList.remove("selectedMenuElement");
+        ELEMENTS["playersButton"].classList.remove("selectedMenuElement");
+        ELEMENTS["deckDisplayerButton"].classList.remove("selectedMenuElement");
     }
     shopCallback(eventType, cardData) {
         socket.emit("message", { message: "client_buy_sell", type: eventType, cardData: cardData, playerID: this.session.playerID });
@@ -215,7 +231,6 @@ class Game {
                     });
                 }
             } else {
-                console.log("top");
                 this.gameElements.enemies.forEach((enemy) => {
                     if (Util.distance(offsetPosition, enemy.position) <= 16) {
                         Util.show(ELEMENTS["infoPopupContainer"]);
@@ -226,8 +241,23 @@ class Game {
                             `Endurance : ${enemy.enemyData.maxHP} || Récompense : ${enemy.enemyData.reward}`;
                         ELEMENTS["infoPopupImage"].src = `images/${enemy.enemyData.imageName}.png`;
                     }
-                })
-                // TODO add event listener to close popup
+                });
+                this.gameElements.towers.forEach((tower) => {
+                    if (Util.distance(offsetPosition, tower.position) <= 16) {
+                        console.log(tower);
+                        Util.show(ELEMENTS["infoPopupContainer"]);
+                        ELEMENTS["infoPopupBigTitle"].innerHTML = `Codename : ${tower.towerData.name.toUpperCase()}`;
+                        if (tower.towerData.bulletData !== undefined && tower.towerData.bulletData.special !== undefined) {
+                            ELEMENTS["infoPopupSubtitle"].innerHTML = `${JSON.stringify(tower.towerData.bulletData.special)}`;
+                        } else {
+                            ELEMENTS["infoPopupSubtitle"].innerHTML = ``;
+                        }
+                        ELEMENTS["infoPopupDescription"].innerHTML = ClientData.towersDescriptions[tower.towerData.name].description;
+                        ELEMENTS["infoPopupVrac"].innerHTML =
+                            `${ClientData.towersDescriptions[tower.towerData.name].capacity}`;
+                        ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
+                    }
+                });
             }
         }
         if (eventType === "mouseenter") {

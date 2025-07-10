@@ -10,6 +10,7 @@ body {
 }
 
 #infoPopupContainer {
+    user-select: none;
     line-height: initial;
     position: fixed;
     top: 0;
@@ -83,11 +84,36 @@ body {
         }
 
         #infoPopupContent {
-            #infoPopupDescription, #infoPopupVrac {
+
+            #infoPopupDescription,
+            #infoPopupVrac {
                 font-size: 16px;
                 line-height: 1.45;
                 color: #aaa;
                 margin-bottom: 0.75rem;
+            }
+
+            #continueButton {
+                background: transparent;
+                border: 1px solid #2a3a4d;
+                color: #66f2ff;
+                font-size: 0.85rem;
+                padding: 0.3rem 0.3rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-family: 'Orbitron', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                height: 31px;
+                margin: 6px;
+                margin-left: 300px;
+            }
+
+            #continueButton:hover {
+                background-color: #66f2ff;
+                color: #000;
+                box-shadow: 0 0 8px #66f2ff44;
             }
         }
     }
@@ -113,6 +139,7 @@ body {
     }
 
     #waveNotification {
+        line-height: initial;
         position: absolute;
         width: 100%;
         height: 100vh;
@@ -123,8 +150,9 @@ body {
         user-select: none;
 
         .waveNotifierText {
-            font-size: 200px;
+            font-size: 100px;
             color: white;
+            text-align: center;
         }
     }
 
@@ -162,7 +190,13 @@ body {
         #shopButton:hover,
         #playersButton:hover,
         #nextWaveButton:hover,
-        #fullscreenButton:hover {
+        #fullscreenButton:hover,
+        #deckDisplayerButton.selectedMenuElement,
+        #handButton.selectedMenuElement,
+        #shopButton.selectedMenuElement,
+        #playersButton.selectedMenuElement,
+        #nextWaveButton.selectedMenuElement,
+        #fullscreenButton.selectedMenuElement {
             background-color: #66f2ff;
             color: #000;
             box-shadow: 0 0 8px #66f2ff44;
