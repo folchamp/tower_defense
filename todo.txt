@@ -17,10 +17,7 @@
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs
-superposition du texte fin de vague
 retirer le clignotement du ping
-popup de description tours
-lore d'accueil
 des artefacts spawnent aléatoirement sur la carte, rapportent de la thune quand ils sont récupérés + popup de lore
 
 personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
