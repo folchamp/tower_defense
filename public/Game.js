@@ -23,6 +23,7 @@ class Game {
         this.waveNotifier = new WaveNotifier(ELEMENTS["waveNotification"]);
         this.deckDisplayer = new DeckDisplayer();
         this.pingManager = new PingManager((data) => { this.sendPingCallback(data); }, (data) => { this.canvasManager.displayPing(data); });
+        this.soundManager = new SoundManager();
 
         this.hand = [];
         this.grabbedCard = undefined;
@@ -66,11 +67,13 @@ class Game {
             if (event.code === "Escape") {
                 this.closeAllPopups();
                 Util.hide(ELEMENTS["infoPopupContainer"]);
+                this.soundManager.go();
             }
         });
 
         ELEMENTS["infoPopupCloseButton"].addEventListener("click", (event) => {
             Util.hide(ELEMENTS["infoPopupContainer"]);
+            this.soundManager.go();
         });
 
         ELEMENTS["continueButton"].addEventListener("click", (event) => {
@@ -176,11 +179,13 @@ class Game {
     newWaveArrives(data) {
         Util.hide(ELEMENTS["readyDisplayer"]);
         this.waveNotifier.notifyNextWave(data.waveCounter);
+        // AUDIO["wave_start"].play();
         console.log("new wave");
     }
     readyForNextWave() {
         Util.show(ELEMENTS["readyDisplayer"]);
         socket.emit("message", { message: "client_next_wave", playerID: this.session.playerID });
+        // AUDIO["one_ready1"].play();
     }
     closeAllPopups() {
         ELEMENTS["shopContainer"].classList.add("hidden");

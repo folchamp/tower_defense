@@ -17,7 +17,6 @@
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs
-retirer le clignotement du ping
 des artefacts spawnent aléatoirement sur la carte, rapportent de la thune quand ils sont récupérés + popup de lore
 
 personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
@@ -26,6 +25,22 @@ le dernier mob fait spawner un artefact qui est une carte qui pourrit le deck et
 certaines tours ont une portée minimum
 certaines tours tirent en masse pendant quelques secondes puis s'épuisent
 
+sound design
+- one audio class that listens to socket messages
+- sound for shooting
+- sound for building
+
+bug visual popup super control
+
+nouvelles barres de vie
+
+réassigner les images
+
+tower built -> add player id
+munition shot -> add player id
+enemy killed -> add player id
+---> stats
+
 __cartes__ 
 tous les joueurs piochent une carte
 chaque joueur gagne une action
@@ -33,6 +48,10 @@ tout le monde gagne de la thune
 add 1 permanent action (tower)
 déclenche les tourelles économiques
 récupération de la première carte de la défausse (ne marche pas quand la défausse est vide !!!)
+
+*** credits     ***
+Dark Post Apocalyptic Background 1 (-5db).wav by SolarPhasing -- https://freesound.org/s/436041/ -- License: Attribution 4.0
+https://swarajthegreat.itch.io/post-apocalyptic-soundscapes
 
 ***************** Must ***************** 
 give money button

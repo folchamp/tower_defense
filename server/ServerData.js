@@ -8,8 +8,8 @@ class ServerData {
     static MAX_AMOUNT_OF_ACTIONS = 3;
     static SHOP_SHIFT = 3;
     static SMART_AIM = 5;
-    // static STARTING_MONEY = 4500;
-    static STARTING_MONEY = 450000;
+    static STARTING_MONEY = 4500;
+    // static STARTING_MONEY = 450000;
     static ENEMIES_INTERVAL = 200;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static STARTING_HAND_SIZE = 3;
@@ -89,7 +89,7 @@ class ServerData {
             bulletData: { damage: 1000, speed: 0.3, color: "red", size: 5 }
         },
         quick_shooter: {
-            name: "quick_shooter", initialAngle: 3 * Math.PI / 4,
+            name: "quick_shooter", initialAngle: Math.PI / 2,
             reloadTime: 250, range: 350,
             bulletData: { damage: 174, speed: 0.45, color: "darkred", size: 2 }
         },
@@ -119,7 +119,7 @@ class ServerData {
             bulletData: { damage: 5000, speed: 0.6, color: "silver", size: 8, special: ["armor_piercer"] }
         },
         venom_tower: {
-            name: "venom_tower", initialAngle: Math.PI / 3,
+            name: "venom_tower", initialAngle: 3 * Math.PI / 4,
             reloadTime: 900, range: 250,
             bulletData: { damage: 300, speed: 0.3, color: "purple", size: 3, special: ["poison"] }
         },
@@ -160,7 +160,7 @@ class ServerData {
         // end autoinclude for testing
 
 
-        { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500 },
+        { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500, size: 24 },
         { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 },
         { action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 150, sellprice: 300 },
         { action: "build", subType: "support", text: "Merveille", type: "wonder_tower", price: 8000, sellprice: 500 },
@@ -203,25 +203,25 @@ class ServerData {
     // { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 }, // temp
 
     static enemies = [
-        "quick_enemy",
+        "buzz_enemy",
+        "mini_enemy",
         "swarm_enemy",
         "kamikaze_enemy",
+        "drone_enemy",
+        "crawler_enemy",
         "scout_enemy",
         "ghost_enemy",
-        "drone_enemy",
-        "basic_enemy",
-        "buzz_enemy",
-        "infected_enemy",
-        "crawler_enemy",
-        "elite_enemy",
-        "mini_enemy",
-        "mutant_enemy",
+        "quick_enemy",
         "veteran_enemy",
+        "mutant_enemy",
+        "infected_enemy",
+        "basic_enemy",
+        "elite_enemy",
         "armored_enemy",
-        "strong_enemy",
         "brute_enemy",
+        "strong_enemy",
         "tank_enemy",
-        "boss_enemy",
+        "boss_enemy"
     ]
     static enemiesData = {
         mini_enemy: {
@@ -246,6 +246,7 @@ class ServerData {
             imageName: "buzz_enemy",
             maxHP: 500,
             reward: 5,
+            size: 24
         },
 
         drone_enemy: {
@@ -261,7 +262,8 @@ class ServerData {
             speed: 0.05,
             imageName: "basic_enemy",
             maxHP: 10000,
-            reward: 85
+            reward: 85,
+            size: 30
         },
 
         quick_enemy: {
@@ -326,6 +328,7 @@ class ServerData {
             imageName: "ghost_enemy",
             maxHP: 2500,
             reward: 24,
+            size: 22
         },
 
         armored_enemy: {
@@ -342,6 +345,7 @@ class ServerData {
             imageName: "mutant_enemy",
             maxHP: 18000,
             reward: 170,
+            size: 18
         },
 
         boss_enemy: {
@@ -358,6 +362,7 @@ class ServerData {
             imageName: "infected_enemy",
             maxHP: 12000,
             reward: 120,
+            size: 30
         },
 
         kamikaze_enemy: {
@@ -366,6 +371,7 @@ class ServerData {
             imageName: "kamikaze_enemy",
             maxHP: 1000,
             reward: 28,
+            size: 24
         },
 
         veteran_enemy: {
@@ -374,6 +380,7 @@ class ServerData {
             imageName: "veteran_enemy",
             maxHP: 20000,
             reward: 210,
+            size: 24
         }
     };
 }

@@ -191,7 +191,7 @@ class ClientData {
             "capacity": "Dégâts faibles, cadence élevée."
         },
         "air_shooter": {
-            "description": "Cette tourelle, basée sur d'anciens systèmes de DCA (Defensive Counterair), fonctionne presque comme à l'origine. Ses opérateurs, dorénavant robotiques, utilisent l'arme pour projeter des billets perforantes à haute vitesse.",
+            "description": "Cette tourelle, basée sur d'anciens systèmes de DCA (Defensive Counterair), fonctionne presque comme à l'origine. Ses opérateurs, dorénavant robotiques, utilisent l'arme pour projeter des billes perforantes à haute vitesse.",
             "capacity": "Tire des projectiles perçants (efficaces contre les gros monstres) à haute fréquence."
         },
         "basic_shooter": {

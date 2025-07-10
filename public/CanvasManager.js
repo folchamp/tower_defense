@@ -12,6 +12,7 @@ class CanvasManager {
         this.mouseDrawData = { draw: false, card: "basic_shooter" };
         this.offset = { x: 0, y: 0 };
         this.fullscreen = false;
+        this.pingCounter = 0;
 
         this.autoresize();
 
@@ -90,8 +91,12 @@ class CanvasManager {
     displayPing(data) {
         console.log(data);
         this.pingData = data;
+        this.pingCounter++;
         setTimeout(() => {
-            this.pingData = undefined;
+            this.pingCounter--;
+            if (this.pingCounter < 1) {
+                this.pingData = undefined;
+            }
         }, 3500);
     }
     autoresize() {
@@ -185,8 +190,8 @@ class CanvasManager {
                     }
                     this.context.drawImage(
                         ClientData.images[tower.towerData.name],
-                        - ClientData.TOWER_HALF_SIZE,
-                        - ClientData.TOWER_HALF_SIZE);
+                        - (tower.towerData.size ? tower.towerData.size / 2 : ClientData.TOWER_HALF_SIZE),
+                        - (tower.towerData.size ? tower.towerData.size / 2 : ClientData.TOWER_HALF_SIZE));
                     this.context.restore();
                     if (tower.towerData.range !== undefined) {
                         // this.context.strokeStyle = "red";
@@ -210,8 +215,8 @@ class CanvasManager {
                     if (enemy.isAlive()) {
                         this.context.drawImage(
                             ClientData.images[enemy.enemyData.imageName],
-                            enemy.position.x - ClientData.TOWER_HALF_SIZE + this.offset.x,
-                            enemy.position.y - ClientData.TOWER_HALF_SIZE + this.offset.y);
+                            enemy.position.x - (enemy.enemyData.size ? enemy.enemyData.size / 2 : ClientData.TOWER_HALF_SIZE) + this.offset.x,
+                            enemy.position.y - (enemy.enemyData.size ? enemy.enemyData.size / 2 : ClientData.TOWER_HALF_SIZE) + this.offset.y);
                         this.context.fillStyle = "red";
                         this.context.fillRect(enemy.position.x - 8 + this.offset.x, enemy.position.y + this.offset.y - 16, ClientData.HEALTH_BAR_SIZE, 4);
                         this.context.fillStyle = "lightgreen";
@@ -236,6 +241,7 @@ class CanvasManager {
         });
         if (this.pingData) {
             // console.log(this.pingData);
+            this.context.fillStyle = "black";
             this.context.drawImage(ClientData.images["ping"], this.pingData.position.x + this.offset.x - 50, this.pingData.position.y + this.offset.y - 100);
             this.context.fillText(`${this.pingData.pingText}`, this.pingData.position.x + this.offset.x - this.context.measureText(this.pingData.pingText).width / 2, this.pingData.position.y + this.offset.y + 25);
             this.context.fillText(`${this.pingData.sender}`, this.pingData.position.x + this.offset.x - this.context.measureText(this.pingData.sender).width / 2, this.pingData.position.y + this.offset.y + 15);
@@ -259,7 +265,7 @@ class CanvasManager {
             } else if (this.mouseDrawData.card.cardData.action === "power") {
                 imageName = "smallCard";
             }
-            this.context.drawImage(ClientData.images[imageName], this.mouseDrawData.x - ClientData.TOWER_HALF_SIZE, this.mouseDrawData.y - ClientData.TOWER_HALF_SIZE);
+            this.context.drawImage(ClientData.images[imageName], this.mouseDrawData.x - (this.mouseDrawData.card.size ? this.mouseDrawData.card.size / 2 : ClientData.TOWER_HALF_SIZE), this.mouseDrawData.y - (this.mouseDrawData.card.size ? this.mouseDrawData.card.size / 2 : ClientData.TOWER_HALF_SIZE));
         }
     }
 }

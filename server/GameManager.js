@@ -444,7 +444,7 @@ class GameManager {
     }
     getTowerDataFromAura(controlTower) {
         // also remove the towers ?
-        let data = { reloadTime: 9999, range: 0, damage: 0, speed: 0.01, color: "blue", size: 2, special: [] };
+        let data = { reloadTime: 9999, range: 0, damage: 0, speed: 0.01, color: "blue", size: 2, special: [], towerSize: 24, initialAngle: Math.PI / 2 };
         this.gameElements.towers.forEach((tower) => {
             if (Util.distance(tower.position, controlTower.position) <= controlTower.towerData.auraData.auraRadius && controlTower.towerID !== tower.towerID) {
                 tower.isAlive = false;
@@ -493,6 +493,8 @@ class GameManager {
                 controlTower.towerData.name = "upgraded_control_tower";
                 controlTower.towerData.reloadTime = newTowerData.reloadTime;
                 controlTower.towerData.range = newTowerData.range;
+                controlTower.towerData.size = newTowerData.towerSize;
+                controlTower.towerData.initialAngle = newTowerData.initialAngle;
                 controlTower.towerData.bulletData = {
                     damage: newTowerData.damage,
                     speed: newTowerData.speed,

@@ -21,6 +21,18 @@ class Util {
     static hide(element) {
         element.classList.add("hidden");
     }
+    static loadSounds(urls) {
+        let audios = {};
+        for(let name in urls) {
+            let url = urls[name];
+            let element = new Audio(url);
+            audios[name] = element;
+            element.addEventListener("canplaythrough", (event) => {
+                console.log(`${name} is loaded.`);
+            });
+        }
+        return audios;
+    }
     static getElements(elementNames) {
         let elementsToReturn = {};
         elementNames.forEach((name) => {
