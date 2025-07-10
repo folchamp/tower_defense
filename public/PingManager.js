@@ -10,11 +10,15 @@ class PingManager {
         this.offsetPosition = { x: 0, y: 0 };
 
         this.pings = [
+            "GG !",
+            "Oui",
+            "Non",
             "Danger ici",
             "Je suis prêt",
             "Placez une tour ici",
             "Placez un tour de contrôle ici",
             "Je suis trop pauvre",
+            "Plus d'actions",
             "Longue vie au développeur ♥"
         ]
 

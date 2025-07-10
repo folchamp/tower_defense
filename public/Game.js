@@ -67,13 +67,13 @@ class Game {
             if (event.code === "Escape") {
                 this.closeAllPopups();
                 Util.hide(ELEMENTS["infoPopupContainer"]);
-                this.soundManager.go();
+                // this.soundManager.go();
             }
         });
 
         ELEMENTS["infoPopupCloseButton"].addEventListener("click", (event) => {
             Util.hide(ELEMENTS["infoPopupContainer"]);
-            this.soundManager.go();
+            // this.soundManager.go();
         });
 
         ELEMENTS["continueButton"].addEventListener("click", (event) => {

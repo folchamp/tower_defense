@@ -14,6 +14,21 @@
             abilities: ["air_unit"]
             abilities: ["zigzag_movement"]
 
+orage rebondit de beaucoup plus loin
+orage ne rebondit que 3 fois
+
+quand l'ennemi qui invoque à la mort disparaît du cycle, l'ennemi qui invoque en continu apparaît
+un ennemi qui invoque en continue pourrait plus tard invoquer des ennemis qui invoquent à la mort
+créer des ennemis immunisés contre certaines tours (genre tour d'orage)
+
+bug sur le popup, l'endurance et la récompense des mobs n'est pas effacée
+
+angle tour venimeuse
+
+bug quand on veut écrire son nom, les fenêtres s'ouvrent (azer)
+
+achat simultané en magasin, possibilité d'erreurs
+
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs

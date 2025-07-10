@@ -174,10 +174,24 @@ class GameManager {
             }
         }
     }
+    randomizePosition(newEnemy) {
+        newEnemy.position.x += Util.randomValue(-20, 20);
+        newEnemy.position.y += Util.randomValue(-20, 20);
+    }
     cleanEnemies() {
         for (let index = 0; index < this.gameElements.enemies.length; index++) {
             const enemy = this.gameElements.enemies[index];
             if (!enemy.isAlive()) {
+                if (enemy.hasAbility("summon_minions")) {
+                    for (let index = 0; index < 4; index++) {
+                        let newEnemy = this.spawnEnemy("swarm_enemy");
+                        newEnemy.position.x = enemy.position.x;
+                        newEnemy.position.y = enemy.position.y;
+                        newEnemy.routeCheckPoint = enemy.routeCheckPoint;
+                        newEnemy.routeID = enemy.routeID;
+                        this.randomizePosition(newEnemy);
+                    }
+                }
                 this.newGameStateElements.enemyIDsToRemove.push(this.gameElements.enemies[index].enemyID);
                 if (this.gameElements.enemies.length === index + 1) {
                     this.gameElements.enemies.pop();
@@ -193,7 +207,7 @@ class GameManager {
             const bullet = this.gameElements.bullets[index];
             if (bullet.hit) {
 
-                if (bullet.hasSpecial("chain_lightning")) {
+                if (bullet.hasSpecial("chain_lightning") && this.gameElements.enemies.length > 10) {
                     let chosenEnemy;
                     let tooFar = true;
                     for (let index = 0; this.gameElements.enemies.length > 0 && index < ServerData.SMART_AIM && chosenEnemy === undefined && tooFar; index++) {
@@ -290,9 +304,9 @@ class GameManager {
     spawnEnemy(enemyName) {
         let newEnemyType
         if (enemyName !== undefined) {
-            newEnemyType = ServerData.enemies[enemyName];
+            newEnemyType = enemyName;
         } else {
-            newEnemyType = ServerData.enemies[Util.randomValue(0, Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
+            newEnemyType = ServerData.enemies[Util.randomValue(Math.max(0, this.waveCounter - 3), Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
         }
 
         // if (this.temporaryEnemySpawnedYet === undefined) {
@@ -311,6 +325,7 @@ class GameManager {
         newEnemy.enemyData.speed += (this.waveCounter / 500);
         this.gameElements.enemies.push(newEnemy);
         this.newGameStateElements.enemies.push(newEnemy);
+        return newEnemy;
         // }
     }
     drawTime() {

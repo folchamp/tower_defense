@@ -14,6 +14,7 @@ class Enemy {
         this.routeID = 0;
         this.onFire = false;
         this.onIce = false;
+        // this.specialCounters = {};
     }
     load(data) {
         this.position = data.position;
@@ -28,6 +29,7 @@ class Enemy {
         this.routeID = data.routeID;
         this.onFire = data.onFire;
         this.onIce = data.onIce;
+        // this.specialCounters = data.specialCounters;
 
         this.speed = data.speed;
         this.imageName = data.imageName;
@@ -78,7 +80,13 @@ class Enemy {
     isAlive() {
         return this.alive;
     }
+    hasAbility(name) {
+        return this.enemyData.abilities !== undefined && this.enemyData.abilities.includes(name);
+    }
     hit(damage, special) {
+        // if (this.hasAbility("armor")) {
+
+        // }
         if (this.enemyData.maxHP > 19000 && special !== undefined && special.includes("armor_piercer")) {
             this.actualHP -= damage;
             this.actualHP -= damage;

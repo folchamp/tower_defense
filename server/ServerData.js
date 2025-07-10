@@ -205,6 +205,9 @@ class ServerData {
     static enemies = [
         "buzz_enemy",
         "mini_enemy",
+        
+        "veteran_enemy",
+        
         "swarm_enemy",
         "kamikaze_enemy",
         "drone_enemy",
@@ -212,7 +215,7 @@ class ServerData {
         "scout_enemy",
         "ghost_enemy",
         "quick_enemy",
-        "veteran_enemy",
+        
         "mutant_enemy",
         "infected_enemy",
         "basic_enemy",
@@ -224,21 +227,6 @@ class ServerData {
         "boss_enemy"
     ]
     static enemiesData = {
-        mini_enemy: {
-            name: "mini_enemy",
-            speed: 0.1,
-            imageName: "mini_enemy",
-            maxHP: 700,
-            reward: 6
-        },
-
-        crawler_enemy: {
-            name: "crawler_enemy",
-            speed: 0.06,
-            imageName: "crawler_enemy",
-            maxHP: 1200,
-            reward: 9
-        },
 
         buzz_enemy: {
             name: "buzz_enemy",
@@ -248,62 +236,12 @@ class ServerData {
             reward: 5,
             size: 24
         },
-
-        drone_enemy: {
-            name: "drone_enemy",
-            speed: 0.11,
-            imageName: "drone_enemy",
-            maxHP: 1000,
-            reward: 8,
-        },
-
-        basic_enemy: {
-            name: "basic_enemy",
-            speed: 0.05,
-            imageName: "basic_enemy",
-            maxHP: 10000,
-            reward: 85,
-            size: 30
-        },
-
-        quick_enemy: {
-            name: "quick_enemy",
-            speed: 0.09,
-            imageName: "quick_enemy",
-            maxHP: 2000,
-            reward: 16
-        },
-
-        strong_enemy: {
-            name: "strong_enemy",
-            speed: 0.04,
-            imageName: "strong_enemy",
-            maxHP: 30000,
-            reward: 240
-        },
-
-        tank_enemy: {
-            name: "tank_enemy",
-            speed: 0.03,
-            imageName: "tank_enemy",
-            maxHP: 50000,
-            reward: 350,
-        },
-
-        scout_enemy: {
-            name: "scout_enemy",
-            speed: 0.12,
-            imageName: "scout_enemy",
-            maxHP: 1500,
-            reward: 12,
-        },
-
-        brute_enemy: {
-            name: "brute_enemy",
-            speed: 0.035,
-            imageName: "brute_enemy",
-            maxHP: 40000,
-            reward: 275,
+        mini_enemy: {
+            name: "mini_enemy",
+            speed: 0.1,
+            imageName: "mini_enemy",
+            maxHP: 700,
+            reward: 6
         },
 
         swarm_enemy: {
@@ -312,57 +250,6 @@ class ServerData {
             imageName: "swarm_enemy",
             maxHP: 800,
             reward: 7,
-        },
-
-        elite_enemy: {
-            name: "elite_enemy",
-            speed: 0.06,
-            imageName: "elite_enemy",
-            maxHP: 15000,
-            reward: 150,
-        },
-
-        ghost_enemy: {
-            name: "ghost_enemy",
-            speed: 0.10,
-            imageName: "ghost_enemy",
-            maxHP: 2500,
-            reward: 24,
-            size: 22
-        },
-
-        armored_enemy: {
-            name: "armored_enemy",
-            speed: 0.045,
-            imageName: "armored_enemy",
-            maxHP: 25000,
-            reward: 190,
-        },
-
-        mutant_enemy: {
-            name: "mutant_enemy",
-            speed: 0.07,
-            imageName: "mutant_enemy",
-            maxHP: 18000,
-            reward: 170,
-            size: 18
-        },
-
-        boss_enemy: {
-            name: "boss_enemy",
-            speed: 0.025,
-            imageName: "boss_enemy",
-            maxHP: 100000,
-            reward: 850,
-        },
-
-        infected_enemy: {
-            name: "infected_enemy",
-            speed: 0.065,
-            imageName: "infected_enemy",
-            maxHP: 12000,
-            reward: 120,
-            size: 30
         },
 
         kamikaze_enemy: {
@@ -374,14 +261,131 @@ class ServerData {
             size: 24
         },
 
+        drone_enemy: {
+            name: "drone_enemy",
+            speed: 0.11,
+            imageName: "drone_enemy",
+            maxHP: 1000,
+            reward: 8,
+        },
+
+        crawler_enemy: {
+            name: "crawler_enemy",
+            speed: 0.06,
+            imageName: "crawler_enemy",
+            maxHP: 1200,
+            reward: 9
+        },
+
+        scout_enemy: {
+            name: "scout_enemy",
+            speed: 0.12,
+            imageName: "scout_enemy",
+            maxHP: 1500,
+            reward: 12,
+        },
+
+        ghost_enemy: {
+            name: "ghost_enemy",
+            speed: 0.10,
+            imageName: "ghost_enemy",
+            maxHP: 2500,
+            reward: 24,
+            size: 22
+        },
+
+        quick_enemy: {
+            name: "quick_enemy",
+            speed: 0.09,
+            imageName: "quick_enemy",
+            maxHP: 2000,
+            reward: 16
+        },
+
         veteran_enemy: {
             name: "veteran_enemy",
             speed: 0.055,
             imageName: "veteran_enemy",
+            maxHP: 5000,
+            reward: 150,
+            size: 24,
+            abilities : ["summon_minions"]
+        },
+
+        mutant_enemy: {
+            name: "mutant_enemy",
+            speed: 0.07,
+            imageName: "mutant_enemy",
+            maxHP: 10000,
+            reward: 100,
+            size: 18
+        },
+
+        infected_enemy: {
+            name: "infected_enemy",
+            speed: 0.065,
+            imageName: "infected_enemy",
+            maxHP: 15000,
+            reward: 100,
+            size: 30
+        },
+
+        basic_enemy: {
+            name: "basic_enemy",
+            speed: 0.05,
+            imageName: "basic_enemy",
             maxHP: 20000,
-            reward: 210,
-            size: 24
-        }
+            reward: 85,
+            size: 30
+        },
+
+        elite_enemy: {
+            name: "elite_enemy",
+            speed: 0.06,
+            imageName: "elite_enemy",
+            maxHP: 25000,
+            reward: 100,
+        },
+
+        armored_enemy: {
+            name: "armored_enemy",
+            speed: 0.045,
+            imageName: "armored_enemy",
+            maxHP: 30000,
+            reward: 100,
+        },
+
+        brute_enemy: {
+            name: "brute_enemy",
+            speed: 0.035,
+            imageName: "brute_enemy",
+            maxHP: 35000,
+            reward: 100,
+        },
+
+        strong_enemy: {
+            name: "strong_enemy",
+            speed: 0.04,
+            imageName: "strong_enemy",
+            maxHP: 40000,
+            reward: 100
+        },
+
+        tank_enemy: {
+            name: "tank_enemy",
+            speed: 0.03,
+            imageName: "tank_enemy",
+            maxHP: 50000,
+            reward: 100,
+        },
+
+        boss_enemy: {
+            name: "boss_enemy",
+            speed: 0.025,
+            imageName: "boss_enemy",
+            maxHP: 100000,
+            reward: 100,
+        },
     };
 }
 
