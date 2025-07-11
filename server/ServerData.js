@@ -17,7 +17,7 @@ class ServerData {
     static SHOP_SIZE = 8;
     static DIFFICULTY_FACTOR = 2;
     static CHAIN_LIGHTNING_RANGE = 750;
-    static SUMMON_CHANCE = 0.994;
+    static SUMMON_CHANCE = 0.9995;
     static generateInitialHandData() {
         let handData = [];
         let control = Util.copyObject(this.shopCardsData[0]);
@@ -229,12 +229,12 @@ class ServerData {
 
         "armored_enemy",
 
-        "brute_enemy", // venom immune
-
+        
         "strong_enemy",
         "tank_enemy",
         "boss_enemy",
-
+        
+        "brute_enemy", // venom immune
         "swarm_enemy", // summoned enemy
     ]
     static enemiesData = {
@@ -332,7 +332,7 @@ class ServerData {
             name: "mutant_enemy",
             speed: 0.1,
             imageName: "mutant_enemy",
-            maxHP: 10000,
+            maxHP: 8000,
             reward: 25,
             size: 18,
             abilities: ["summoner"]
@@ -366,15 +366,6 @@ class ServerData {
             abilities : ["accelerates"]
         },
 
-        brute_enemy: {
-            name: "brute_enemy",
-            speed: 0.035,
-            imageName: "brute_enemy",
-            maxHP: 35000,
-            reward: 25,
-            abilities : ["immunity"]
-        },
-
         strong_enemy: {
             name: "strong_enemy",
             speed: 0.04,
@@ -400,6 +391,15 @@ class ServerData {
             maxHP: 100000,
             reward: 25,
             abilities : ["immunity", "summoner"]
+        },
+        
+        brute_enemy: {
+            name: "brute_enemy",
+            speed: 0.035,
+            imageName: "brute_enemy",
+            maxHP: 3500,
+            reward: 25,
+            abilities : ["immunity"]
         },
 
         swarm_enemy: {
