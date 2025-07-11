@@ -87,6 +87,10 @@ class Enemy {
         // if (this.hasAbility("armor")) {
 
         // }
+        if (this.hasAbility("jump_forward_on_hit")) {
+            this.position.x = this.direction.x;
+            this.position.y = this.direction.y;
+        }
         if (this.enemyData.maxHP > 19000 && special !== undefined && special.includes("armor_piercer")) {
             this.actualHP -= damage;
             this.actualHP -= damage;

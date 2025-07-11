@@ -14,10 +14,8 @@
             abilities: ["air_unit"]
             abilities: ["zigzag_movement"]
 
-orage rebondit de beaucoup plus loin
-orage ne rebondit que 3 fois
+une capacité tous les deux monstres
 
-quand l'ennemi qui invoque à la mort disparaît du cycle, l'ennemi qui invoque en continu apparaît
 un ennemi qui invoque en continue pourrait plus tard invoquer des ennemis qui invoquent à la mort
 créer des ennemis immunisés contre certaines tours (genre tour d'orage)
 

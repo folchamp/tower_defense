@@ -7,7 +7,7 @@ class ServerData {
     static GAME_HEIGHT = 1080;
     static MAX_AMOUNT_OF_ACTIONS = 3;
     static SHOP_SHIFT = 3;
-    static SMART_AIM = 5;
+    static SMART_AIM = 10;
     static STARTING_MONEY = 4500;
     // static STARTING_MONEY = 450000;
     static ENEMIES_INTERVAL = 200;
@@ -16,7 +16,8 @@ class ServerData {
     static HAND_SIZE = 8;
     static SHOP_SIZE = 8;
     static DIFFICULTY_FACTOR = 3;
-    static CHAIN_LIGHTNING_RANGE = 250;
+    static CHAIN_LIGHTNING_RANGE = 750;
+    static SUMMON_CHANCE = 0.994;
     static generateInitialHandData() {
         let handData = [];
         let control = Util.copyObject(this.shopCardsData[0]);
@@ -157,6 +158,7 @@ class ServerData {
         // { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
         // { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 650, sellprice: 1300 }, // temp auto-include
         // { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
+        // { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
         // end autoinclude for testing
 
 
@@ -205,26 +207,32 @@ class ServerData {
     static enemies = [
         "buzz_enemy",
         "mini_enemy",
-        
-        "veteran_enemy",
-        
-        "swarm_enemy",
+
+        "veteran_enemy", // summon on death
+
         "kamikaze_enemy",
-        "drone_enemy",
         "crawler_enemy",
+
+        "drone_enemy", // fly
+
+        "basic_enemy", // pretty tanky but we need to make the game harder at this point
+
         "scout_enemy",
-        "ghost_enemy",
+
+        "ghost_enemy", // teleports 
+
         "quick_enemy",
-        
-        "mutant_enemy",
+        "mutant_enemy", // summons
+
         "infected_enemy",
-        "basic_enemy",
         "elite_enemy",
         "armored_enemy",
         "brute_enemy",
         "strong_enemy",
         "tank_enemy",
-        "boss_enemy"
+        "boss_enemy",
+
+        "swarm_enemy", // summoned enemy
     ]
     static enemiesData = {
 
@@ -233,7 +241,7 @@ class ServerData {
             speed: 0.14,
             imageName: "buzz_enemy",
             maxHP: 500,
-            reward: 5,
+            reward: 10,
             size: 24
         },
         mini_enemy: {
@@ -241,65 +249,7 @@ class ServerData {
             speed: 0.1,
             imageName: "mini_enemy",
             maxHP: 700,
-            reward: 6
-        },
-
-        swarm_enemy: {
-            name: "swarm_enemy",
-            speed: 0.11,
-            imageName: "swarm_enemy",
-            maxHP: 800,
-            reward: 7,
-        },
-
-        kamikaze_enemy: {
-            name: "kamikaze_enemy",
-            speed: 0.13,
-            imageName: "kamikaze_enemy",
-            maxHP: 1000,
-            reward: 28,
-            size: 24
-        },
-
-        drone_enemy: {
-            name: "drone_enemy",
-            speed: 0.11,
-            imageName: "drone_enemy",
-            maxHP: 1000,
-            reward: 8,
-        },
-
-        crawler_enemy: {
-            name: "crawler_enemy",
-            speed: 0.06,
-            imageName: "crawler_enemy",
-            maxHP: 1200,
-            reward: 9
-        },
-
-        scout_enemy: {
-            name: "scout_enemy",
-            speed: 0.12,
-            imageName: "scout_enemy",
-            maxHP: 1500,
-            reward: 12,
-        },
-
-        ghost_enemy: {
-            name: "ghost_enemy",
-            speed: 0.10,
-            imageName: "ghost_enemy",
-            maxHP: 2500,
-            reward: 24,
-            size: 22
-        },
-
-        quick_enemy: {
-            name: "quick_enemy",
-            speed: 0.09,
-            imageName: "quick_enemy",
-            maxHP: 2000,
-            reward: 16
+            reward: 10
         },
 
         veteran_enemy: {
@@ -307,9 +257,70 @@ class ServerData {
             speed: 0.055,
             imageName: "veteran_enemy",
             maxHP: 5000,
-            reward: 150,
+            reward: 25,
             size: 24,
-            abilities : ["summon_minions"]
+            abilities: ["summon_minions"]
+        },
+
+        kamikaze_enemy: {
+            name: "kamikaze_enemy",
+            speed: 0.13,
+            imageName: "kamikaze_enemy",
+            maxHP: 1000,
+            reward: 25,
+            size: 24
+        },
+
+        crawler_enemy: {
+            name: "crawler_enemy",
+            speed: 0.06,
+            imageName: "crawler_enemy",
+            maxHP: 1200,
+            reward: 25
+        },
+
+        drone_enemy: {
+            name: "drone_enemy",
+            speed: 0.11,
+            imageName: "drone_enemy",
+            maxHP: 1000,
+            reward: 25,
+            abilities: ["fly"]
+        },
+
+        basic_enemy: {
+            name: "basic_enemy",
+            speed: 0.04,
+            imageName: "basic_enemy",
+            maxHP: 5000,
+            reward: 25,
+            size: 30
+        },
+
+        scout_enemy: {
+            name: "scout_enemy",
+            speed: 0.12,
+            imageName: "scout_enemy",
+            maxHP: 1500,
+            reward: 25,
+        },
+
+        ghost_enemy: {
+            name: "ghost_enemy",
+            speed: 0.10,
+            imageName: "ghost_enemy",
+            maxHP: 2500,
+            reward: 25,
+            size: 22,
+            abilities: ["jump_forward_on_hit"]
+        },
+
+        quick_enemy: {
+            name: "quick_enemy",
+            speed: 0.09,
+            imageName: "quick_enemy",
+            maxHP: 2000,
+            reward: 25
         },
 
         mutant_enemy: {
@@ -317,8 +328,9 @@ class ServerData {
             speed: 0.07,
             imageName: "mutant_enemy",
             maxHP: 10000,
-            reward: 100,
-            size: 18
+            reward: 25,
+            size: 18,
+            abilities: ["summoner"]
         },
 
         infected_enemy: {
@@ -326,16 +338,7 @@ class ServerData {
             speed: 0.065,
             imageName: "infected_enemy",
             maxHP: 15000,
-            reward: 100,
-            size: 30
-        },
-
-        basic_enemy: {
-            name: "basic_enemy",
-            speed: 0.05,
-            imageName: "basic_enemy",
-            maxHP: 20000,
-            reward: 85,
+            reward: 25,
             size: 30
         },
 
@@ -344,7 +347,7 @@ class ServerData {
             speed: 0.06,
             imageName: "elite_enemy",
             maxHP: 25000,
-            reward: 100,
+            reward: 25,
         },
 
         armored_enemy: {
@@ -352,7 +355,7 @@ class ServerData {
             speed: 0.045,
             imageName: "armored_enemy",
             maxHP: 30000,
-            reward: 100,
+            reward: 25,
         },
 
         brute_enemy: {
@@ -360,7 +363,7 @@ class ServerData {
             speed: 0.035,
             imageName: "brute_enemy",
             maxHP: 35000,
-            reward: 100,
+            reward: 25,
         },
 
         strong_enemy: {
@@ -368,7 +371,7 @@ class ServerData {
             speed: 0.04,
             imageName: "strong_enemy",
             maxHP: 40000,
-            reward: 100
+            reward: 25
         },
 
         tank_enemy: {
@@ -376,7 +379,7 @@ class ServerData {
             speed: 0.03,
             imageName: "tank_enemy",
             maxHP: 50000,
-            reward: 100,
+            reward: 25,
         },
 
         boss_enemy: {
@@ -384,7 +387,15 @@ class ServerData {
             speed: 0.025,
             imageName: "boss_enemy",
             maxHP: 100000,
-            reward: 100,
+            reward: 25,
+        },
+
+        swarm_enemy: {
+            name: "swarm_enemy",
+            speed: 0.11,
+            imageName: "swarm_enemy",
+            maxHP: 800,
+            reward: 1
         },
     };
 }

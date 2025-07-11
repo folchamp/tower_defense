@@ -85,11 +85,13 @@ class GameManager {
         }
     }
     reset() {
+        let mapNumber = Util.randomValue(0, Maps.allMaps.length - 1);
+        console.log(`Map number : ${mapNumber}`);
         this.timeLost = 0;
         this.enemiesLeftToSpawn = 0;
         this.globalEnemyStrength = 0;
         this.gameElements = {
-            routes: Util.randomFromArray(Maps.allMaps),
+            routes: Maps.allMaps[mapNumber],
             auras: [],
             towers: [],
             enemies: [],
@@ -184,12 +186,7 @@ class GameManager {
             if (!enemy.isAlive()) {
                 if (enemy.hasAbility("summon_minions")) {
                     for (let index = 0; index < 4; index++) {
-                        let newEnemy = this.spawnEnemy("swarm_enemy");
-                        newEnemy.position.x = enemy.position.x;
-                        newEnemy.position.y = enemy.position.y;
-                        newEnemy.routeCheckPoint = enemy.routeCheckPoint;
-                        newEnemy.routeID = enemy.routeID;
-                        this.randomizePosition(newEnemy);
+                        this.spawnEnemyHere("swarm_enemy", enemy);
                     }
                 }
                 this.newGameStateElements.enemyIDsToRemove.push(this.gameElements.enemies[index].enemyID);
@@ -207,15 +204,19 @@ class GameManager {
             const bullet = this.gameElements.bullets[index];
             if (bullet.hit) {
 
-                if (bullet.hasSpecial("chain_lightning") && this.gameElements.enemies.length > 10) {
+                if (bullet.hasSpecial("chain_lightning")) {
                     let chosenEnemy;
                     let tooFar = true;
+                    if (bullet.lightningCounter === undefined) {
+                        bullet.lightningCounter = 0;
+                    }
                     for (let index = 0; this.gameElements.enemies.length > 0 && index < ServerData.SMART_AIM && chosenEnemy === undefined && tooFar; index++) {
                         chosenEnemy = this.getRandomEnemy();
                         tooFar = Util.distance(bullet.position, chosenEnemy.position) > ServerData.CHAIN_LIGHTNING_RANGE;
                     }
-                    if (chosenEnemy !== undefined && !tooFar) {
+                    if (chosenEnemy !== undefined && !tooFar && bullet.lightningCounter <= 3) {
                         let newBullet = new Bullet(Util.copyObject(bullet.position), chosenEnemy, bullet.bulletData)
+                        newBullet.lightningCounter = bullet.lightningCounter + 1;
                         this.gameElements.bullets.push(newBullet);
                         this.newGameStateElements.bullets.push(newBullet);
                     }
@@ -298,8 +299,19 @@ class GameManager {
                 }
                 enemy.direction = this.gameElements.routes[enemy.routeID][enemy.routeCheckPoint];
             }
+            if (enemy.hasAbility("summoner") && Math.random() > ServerData.SUMMON_CHANCE) {
+                this.spawnEnemyHere("swarm_enemy", enemy);
+            }
             enemy.move(timePassed);
         });
+    }
+    spawnEnemyHere(enemyName, summoner) {
+        let newEnemy = this.spawnEnemy(enemyName);
+        newEnemy.position.x = summoner.position.x;
+        newEnemy.position.y = summoner.position.y;
+        newEnemy.routeCheckPoint = summoner.routeCheckPoint;
+        newEnemy.routeID = summoner.routeID;
+        this.randomizePosition(newEnemy);
     }
     spawnEnemy(enemyName) {
         let newEnemyType
@@ -323,6 +335,9 @@ class GameManager {
         newEnemy.enemyData.maxHP = newEnemy.enemyData.maxHP * this.playerManager.getAmountOfPlayers();
         newEnemy.actualHP = newEnemy.enemyData.maxHP;
         newEnemy.enemyData.speed += (this.waveCounter / 500);
+        if (newEnemy.hasAbility("fly")) {
+            newEnemy.routeCheckPoint = this.gameElements.routes[newEnemy.routeID].length - 2;
+        }
         this.gameElements.enemies.push(newEnemy);
         this.newGameStateElements.enemies.push(newEnemy);
         return newEnemy;
