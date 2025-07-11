@@ -305,7 +305,7 @@ class GameManager {
                 enemy.direction = this.gameElements.routes[enemy.routeID][enemy.routeCheckPoint];
             }
             if (enemy.hasAbility("summoner") && Math.random() > ServerData.SUMMON_CHANCE) {
-                this.spawnEnemyHere("swarm_enemy", enemy);
+                this.spawnEnemyHere("veteran_enemy", enemy);
             }
             enemy.move(timePassed);
         });

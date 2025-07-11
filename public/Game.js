@@ -244,6 +244,9 @@ class Game {
                         ELEMENTS["infoPopupDescription"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].description;
                         ELEMENTS["infoPopupVrac"].innerHTML =
                             `Endurance : ${enemy.enemyData.maxHP} || Récompense : ${enemy.enemyData.reward}`;
+                        if (enemy.enemyData.abilities !== undefined) {
+                            ELEMENTS["infoPopupVrac"].innerHTML += `<br>${JSON.stringify(enemy.enemyData.abilities)}`
+                        }
                         ELEMENTS["infoPopupImage"].src = `images/${enemy.enemyData.imageName}.png`;
                     }
                 });

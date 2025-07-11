@@ -15,7 +15,7 @@ class ServerData {
     static STARTING_HAND_SIZE = 3;
     static HAND_SIZE = 8;
     static SHOP_SIZE = 8;
-    static DIFFICULTY_FACTOR = 3;
+    static DIFFICULTY_FACTOR = 2;
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.994;
     static generateInitialHandData() {
@@ -278,8 +278,9 @@ class ServerData {
             name: "crawler_enemy",
             speed: 0.06,
             imageName: "crawler_enemy",
-            maxHP: 1200,
-            reward: 25
+            maxHP: 2100,
+            reward: 25,
+            abilities : ["accelerates"]
         },
 
         drone_enemy: {
@@ -297,7 +298,8 @@ class ServerData {
             imageName: "basic_enemy",
             maxHP: 5000,
             reward: 25,
-            size: 30
+            size: 30,
+            abilities : ["accelerates"]
         },
 
         scout_enemy: {
@@ -328,7 +330,7 @@ class ServerData {
 
         mutant_enemy: {
             name: "mutant_enemy",
-            speed: 0.07,
+            speed: 0.1,
             imageName: "mutant_enemy",
             maxHP: 10000,
             reward: 25,
@@ -342,7 +344,8 @@ class ServerData {
             imageName: "infected_enemy",
             maxHP: 15000,
             reward: 25,
-            size: 30
+            size: 30,
+            abilities : ["accelerates"]
         },
 
         elite_enemy: {
@@ -360,6 +363,7 @@ class ServerData {
             imageName: "armored_enemy",
             maxHP: 30000,
             reward: 25,
+            abilities : ["accelerates"]
         },
 
         brute_enemy: {

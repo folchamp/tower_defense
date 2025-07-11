@@ -84,9 +84,9 @@ class Enemy {
         return this.enemyData.abilities !== undefined && this.enemyData.abilities.includes(name);
     }
     hit(damage, special) {
-        // if (this.hasAbility("armor")) {
-
-        // }
+        if (this.hasAbility("accelerates")) {
+            this.enemyData.speed += 0.005;
+        }
         if (this.hasAbility("jump_forward_on_hit")) {
             this.position.x = this.direction.x;
             this.position.y = this.direction.y;
