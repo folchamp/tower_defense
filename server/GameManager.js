@@ -189,6 +189,11 @@ class GameManager {
                         this.spawnEnemyHere("swarm_enemy", enemy);
                     }
                 }
+                if (enemy.hasAbility("summon_drones")) {
+                    for (let index = 0; index < 3; index++) {
+                        this.spawnEnemyHere("drone_enemy", enemy);
+                    }
+                }
                 this.newGameStateElements.enemyIDsToRemove.push(this.gameElements.enemies[index].enemyID);
                 if (this.gameElements.enemies.length === index + 1) {
                     this.gameElements.enemies.pop();

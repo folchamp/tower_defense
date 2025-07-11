@@ -225,9 +225,12 @@ class ServerData {
         "mutant_enemy", // summons
 
         "infected_enemy",
-        "elite_enemy",
+        "elite_enemy", // on death, summons drones
+
         "armored_enemy",
-        "brute_enemy",
+
+        "brute_enemy", // venom immune
+
         "strong_enemy",
         "tank_enemy",
         "boss_enemy",
@@ -256,7 +259,7 @@ class ServerData {
             name: "veteran_enemy",
             speed: 0.055,
             imageName: "veteran_enemy",
-            maxHP: 5000,
+            maxHP: 3500,
             reward: 25,
             size: 24,
             abilities: ["summon_minions"]
@@ -348,6 +351,7 @@ class ServerData {
             imageName: "elite_enemy",
             maxHP: 25000,
             reward: 25,
+            abilities: ["summon_drones"]
         },
 
         armored_enemy: {
@@ -364,6 +368,7 @@ class ServerData {
             imageName: "brute_enemy",
             maxHP: 35000,
             reward: 25,
+            abilities : ["immunity"]
         },
 
         strong_enemy: {
@@ -371,7 +376,8 @@ class ServerData {
             speed: 0.04,
             imageName: "strong_enemy",
             maxHP: 40000,
-            reward: 25
+            reward: 25,
+            abilities : ["fly", "summon_drones"]
         },
 
         tank_enemy: {
@@ -380,6 +386,7 @@ class ServerData {
             imageName: "tank_enemy",
             maxHP: 50000,
             reward: 25,
+            abilities : ["immunity", "jump_forward_on_hit"]
         },
 
         boss_enemy: {
@@ -388,6 +395,7 @@ class ServerData {
             imageName: "boss_enemy",
             maxHP: 100000,
             reward: 25,
+            abilities : ["immunity", "summoner"]
         },
 
         swarm_enemy: {

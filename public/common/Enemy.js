@@ -95,13 +95,13 @@ class Enemy {
             this.actualHP -= damage;
             this.actualHP -= damage;
         }
-        if (special !== undefined && special.includes("fire")) {
+        if (special !== undefined && special.includes("fire") && !this.hasAbility("immunity")) {
             this.onFire = true;
         }
-        if (special !== undefined && special.includes("ice")) {
+        if (special !== undefined && special.includes("ice") && !this.hasAbility("immunity")) {
             this.onIce = true;
         }
-        if (special !== undefined && special.includes("poison")) {
+        if (special !== undefined && special.includes("poison") && !this.hasAbility("immunity")) {
             this.routeCheckPoint = Math.max(this.routeCheckPoint - 1, 0);
         }
         this.actualHP -= damage;
