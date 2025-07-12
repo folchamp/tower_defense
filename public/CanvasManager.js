@@ -213,14 +213,36 @@ class CanvasManager {
                     }
                     enemy.move(dt);
                     if (enemy.isAlive()) {
+                        let size = enemy.enemyData.size ? enemy.enemyData.size / 2 : ClientData.TOWER_HALF_SIZE;
                         this.context.drawImage(
                             ClientData.images[enemy.enemyData.imageName],
-                            enemy.position.x - (enemy.enemyData.size ? enemy.enemyData.size / 2 : ClientData.TOWER_HALF_SIZE) + this.offset.x,
-                            enemy.position.y - (enemy.enemyData.size ? enemy.enemyData.size / 2 : ClientData.TOWER_HALF_SIZE) + this.offset.y);
+                            enemy.position.x - size + this.offset.x,
+                            enemy.position.y - size + this.offset.y);
                         this.context.fillStyle = "red";
                         this.context.fillRect(enemy.position.x - 8 + this.offset.x, enemy.position.y + this.offset.y - 16, ClientData.HEALTH_BAR_SIZE, 4);
                         this.context.fillStyle = "lightgreen";
                         this.context.fillRect(enemy.position.x - 8 + this.offset.x, enemy.position.y - 16 + this.offset.y, (enemy.actualHP / enemy.enemyData.maxHP) * ClientData.HEALTH_BAR_SIZE, 4);
+                        if (enemy.resistanceTimer !== undefined && enemy.resistanceTimer > 0) {
+                            this.context.globalAlpha = 0.5;
+                            this.context.fillStyle = "blue";
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x,
+                                enemy.position.y - size * 2 + this.offset.y,
+                                size * 4,
+                                size * 4
+                            );
+                        }
+                        if (enemy.regenerateTimer !== undefined && enemy.regenerateTimer > 0) {
+                            this.context.globalAlpha = 0.5;
+                            this.context.fillStyle = "green";
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x,
+                                enemy.position.y - size * 2 + this.offset.y,
+                                size * 4,
+                                size * 4
+                            );
+                        }
+
                     }
                 });
             } else if (order === "bullets") {

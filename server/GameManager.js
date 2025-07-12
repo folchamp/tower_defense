@@ -104,6 +104,7 @@ class GameManager {
         this.waveFinished = true;
         this.waveCounter = 0;
         this.wonderBuilt = false;
+        this.bossKilled = false;
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
             player.handData = ServerData.generateInitialHandData();
@@ -124,7 +125,7 @@ class GameManager {
         }
     }
     checkGameWon() {
-        if (this.wonderBuilt && this.waveFinished) {
+        if (this.wonderBuilt && this.waveFinished && this.bossKilled) {
             console.log("won");
             this.broadcast({ message: "server_score", win: true, score: Math.round(this.globalEnemyStrength), waveCounter: this.waveCounter });
             this.reset();
@@ -193,6 +194,9 @@ class GameManager {
                     for (let index = 0; index < 3; index++) {
                         this.spawnEnemyHere("drone_enemy", enemy);
                     }
+                }
+                if (enemy.enemyData.name === "boss_enemy") {
+                    this.bossKilled = true;
                 }
                 this.newGameStateElements.enemyIDsToRemove.push(this.gameElements.enemies[index].enemyID);
                 if (this.gameElements.enemies.length === index + 1) {

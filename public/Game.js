@@ -41,28 +41,37 @@ class Game {
         document.body.addEventListener("keydown", (event) => {
             console.log(event.code);
             if (event.code === "Space") {
-                this.readyForNextWave();
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.readyForNextWave();
+                }
             }
             if (event.code === "KeyQ") {
-                this.closeAllPopups();
-                ELEMENTS["cardsContainer"].classList.remove("hidden");
-                ELEMENTS["handButton"].classList.add("selectedMenuElement");
-
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.closeAllPopups();
+                    ELEMENTS["cardsContainer"].classList.remove("hidden");
+                    ELEMENTS["handButton"].classList.add("selectedMenuElement");
+                }
             }
             if (event.code === "KeyW") {
-                this.closeAllPopups();
-                ELEMENTS["shopContainer"].classList.remove("hidden");
-                ELEMENTS["shopButton"].classList.add("selectedMenuElement");
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.closeAllPopups();
+                    ELEMENTS["shopContainer"].classList.remove("hidden");
+                    ELEMENTS["shopButton"].classList.add("selectedMenuElement");
+                }
             }
             if (event.code === "KeyE") {
-                this.closeAllPopups();
-                ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
-                ELEMENTS["playersButton"].classList.add("selectedMenuElement");
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.closeAllPopups();
+                    ELEMENTS["multiPlayerInfoContainer"].classList.remove("hidden");
+                    ELEMENTS["playersButton"].classList.add("selectedMenuElement");
+                }
             }
             if (event.code === "KeyR") {
-                this.closeAllPopups();
-                ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
-                ELEMENTS["deckDisplayerButton"].classList.add("selectedMenuElement");
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.closeAllPopups();
+                    ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
+                    ELEMENTS["deckDisplayerButton"].classList.add("selectedMenuElement");
+                }
             }
             if (event.code === "Escape") {
                 this.closeAllPopups();

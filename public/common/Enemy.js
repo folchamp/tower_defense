@@ -42,6 +42,13 @@ class Enemy {
         let xVelocity = this.enemyData.speed * Math.cos(angle) * timePassed;
         let yVelocity = this.enemyData.speed * Math.sin(angle) * timePassed;
 
+        if (this.resistanceTimer) {
+            this.resistanceTimer -= timePassed;
+        }
+        if (this.regenerateTimer) {
+            this.regenerateTimer -= timePassed;
+        }
+
         if (this.distance(this.position, this.direction) < Math.sqrt(xVelocity * xVelocity + yVelocity * yVelocity)) {
             if (this.hasTarget()) {
                 this.reachTurret = true;
@@ -49,6 +56,12 @@ class Enemy {
                 this.routeCheckPoint++;
                 this.position.x = this.direction.x;
                 this.position.y = this.direction.y;
+                if (this.hasAbility("regenerates")) {
+                    if (this.actualHP < this.enemyData.maxHP) {
+                        this.regenerateTimer = 150;
+                    }
+                    this.actualHP = Math.min(this.enemyData.maxHP, this.actualHP + 400);
+                }
                 // console.log(`${this.position.x}, ${this.position.y}, ${timePassed}`);
             }
         } else {
@@ -104,7 +117,11 @@ class Enemy {
         if (special !== undefined && special.includes("poison") && !this.hasAbility("immunity")) {
             this.routeCheckPoint = Math.max(this.routeCheckPoint - 1, 0);
         }
-        this.actualHP -= damage;
+        if (!this.hasAbility("resistant") || damage <= 500) {
+            this.actualHP -= damage; // actual damage formula
+        } else {
+            this.resistanceTimer = 150;
+        }
         if (this.actualHP <= 0) {
             this.alive = false;
         }
