@@ -122,7 +122,8 @@ class GameManager {
             towers: [],
             artifacts: [],
             towerIDsToRemove: [],
-            enemyIDsToRemove: []
+            enemyIDsToRemove: [],
+            artifactIDsToRemove: []
         }
     }
     checkGameWon() {
@@ -206,7 +207,8 @@ class GameManager {
                 }
                 if (Util.randomValue(0, ServerData.ARTIFACT_SPAWN_CHANCE) === 0) {
                     console.log("artifact spawns");
-                    let newArtifact = new Artifact(Util.copyObject(ServerData.artifacts[0]), Util.copyObject(enemy.position));
+                    let newArtifact = new Artifact(Util.copyObject(Util.randomFromArray(ServerData.artifacts)), Util.copyObject(enemy.position), Util.getNewID());
+                    console.log(newArtifact);
                     this.gameElements.artifacts.push(newArtifact);
                     this.newGameStateElements.artifacts.push(newArtifact);
                 }
@@ -542,6 +544,9 @@ class GameManager {
             if (data.cardData.type === "new_shop") {
                 this.shopManager.reset();
             }
+            if (data.cardData.type === "gain_money_3") {
+                player.money += 50;
+            }
             if (data.cardData.type === "gain_money_1") {
                 player.money += 300;
             }
@@ -642,7 +647,32 @@ class GameManager {
             feedbackMessage: feedbackMessage
         });
     }
+    pickArtifactUp(data) {
+        let player = this.playerManager.players[data.playerID];
+        let artifactID = data.artifactID;
+        let indexToRemove;
+        for (let id in this.gameElements.artifacts) {
+            if (this.gameElements.artifacts[id].artifactID === artifactID) {
+                indexToRemove = id;
+            }
+        }
+        if (indexToRemove !== undefined) {
+            this.gameElements.artifacts.splice(indexToRemove, 1);
+            this.newGameStateElements.artifactIDsToRemove.push(artifactID);
+            console.log(player)
+            console.log(`artifact picked up : ${data.artifactID}`);
+            console.log(data);
+            let cardData = { action: "power", text: "Artefact (50💶)", type: "gain_money_3", price: 1, sellprice: 250 };
+            player.discard.push(cardData);
+            this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+        } else {
+            console.log("artifact not found");
+        }
+    }
     listener(data) {
+        if (data.message === "artifact_picked_up") {
+            this.pickArtifactUp(data);
+        }
         if (data.message === "client_ping") {
             this.broadcast({
                 message: "server_ping", position: data.position, pingText: data.pingText, sender: data.sender

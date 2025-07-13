@@ -230,7 +230,7 @@ class CanvasManager {
                                 size * 4,
                                 size * 4
                             );
-                this.context.globalAlpha = 1;
+                            this.context.globalAlpha = 1;
 
                         }
                         if (enemy.regenerateTimer !== undefined && enemy.regenerateTimer > 0) {
@@ -243,7 +243,7 @@ class CanvasManager {
                                 size * 4
                             );
                         }
-                this.context.globalAlpha = 1;
+                        this.context.globalAlpha = 1;
 
                     }
                 });
@@ -265,11 +265,10 @@ class CanvasManager {
                 // ARTIFACTS
                 this.gameElements[order].forEach((artifact) => {
                     this.context.fillStyle = "black";
-                    this.context.fillRect(
-                        artifact.position.x + this.offset.x,
-                        artifact.position.y + this.offset.y,
-                        ClientData.TOWER_HALF_SIZE,
-                        ClientData.TOWER_HALF_SIZE
+                    this.context.drawImage(
+                        ClientData.images["artifact"],
+                        artifact.position.x + this.offset.x - ClientData.TOWER_HALF_SIZE,
+                        artifact.position.y + this.offset.y - ClientData.TOWER_HALF_SIZE,
                     );
                 });
             }

@@ -266,15 +266,18 @@ class Game {
                     }
                 });
                 this.gameElements.artifacts.forEach((artifact) => {
+                    // ARTIFACTS
                     if (Util.distance(offsetPosition, artifact.position) <= 16) {
-                        let artifactData = Util.randomFromArray(ClientData.artifactsDescription);
+                        // let artifactData = Util.randomFromArray(ClientData.artifactsDescription);
                         Util.show(ELEMENTS["infoPopupContainer"]);
-                        ELEMENTS["infoPopupBigTitle"].innerHTML = artifactData.title;
+                        ELEMENTS["infoPopupBigTitle"].innerHTML = artifact.artifactData.title;
                         ELEMENTS["infoPopupSubtitle"].innerHTML = "";
-                        ELEMENTS["infoPopupDescription"].innerHTML = artifactData.description;
+                        ELEMENTS["infoPopupDescription"].innerHTML = artifact.artifactData.description;
                         ELEMENTS["infoPopupVrac"].innerHTML = "";
-                        ELEMENTS["infoPopupImage"].src = `images/${artifactData.imageName}.png`;
-
+                        ELEMENTS["infoPopupImage"].src = `images/${artifact.artifactData.imageName}.png`;
+                        socket.emit("message",
+                            { message: "artifact_picked_up", artifactID: artifact.artifactID, playerID: this.session.playerID });
+                        console.log(artifact);
                     }
                 });
             }
@@ -396,6 +399,7 @@ class Game {
         for (let attribute in data.gameElements) {
             this.gameElements[attribute] = data.gameElements[attribute];
         }
+        console.log(this.gameElements.artifacts);
         for (let index = 0; index < this.gameElements.enemies.length; index++) {
             const enemyData = this.gameElements.enemies[index];
             const enemy = new Enemy(enemyData.position, enemyData.direction, enemyData.enemyData);
@@ -421,6 +425,7 @@ class Game {
         let artifacts = data.gameElements.artifacts;
         let towerIDsToRemove = data.gameElements.towerIDsToRemove;
         let enemyIDsToRemove = data.gameElements.enemyIDsToRemove;
+        let artifactIDsToRemove = data.gameElements.artifactIDsToRemove;
         // towers
         towers.forEach((newTower) => {
             for (let index = 0; index < this.gameElements.towers.length; index++) {
@@ -448,8 +453,10 @@ class Game {
         // artifacts
         artifacts.forEach((artifactData) => {
             console.log("new artifact !");
-            const artifact = new Artifact(artifactData.artifactData, artifactData.position);
+            console.log(artifactData);
+            const artifact = new Artifact(artifactData.artifactData, artifactData.position, artifactData.artifactID);
             artifact.load(artifactData);
+            console.log(artifact);
             this.gameElements.artifacts.push(artifact);
         });
         // clean towers
@@ -477,6 +484,20 @@ class Game {
             if (indexToRemove !== undefined) {
                 console.log("remove enemy");
                 this.gameElements.enemies.splice(indexToRemove, 1);
+            }
+        });
+        // clean enemies
+        artifactIDsToRemove.forEach((artifactIDToRemove) => {
+            let indexToRemove;
+            for (let index = 0; index < this.gameElements.artifacts.length; index++) {
+                const artifact = this.gameElements.artifacts[index];
+                if (artifact.artifactID === artifactIDToRemove) {
+                    indexToRemove = index;
+                }
+            }
+            if (indexToRemove !== undefined) {
+                console.log("remove artifact");
+                this.gameElements.artifacts.splice(indexToRemove, 1);
             }
         });
         // clean bullets

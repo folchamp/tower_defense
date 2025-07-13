@@ -8,10 +8,10 @@ class ServerData {
     static MAX_AMOUNT_OF_ACTIONS = 3;
     static SHOP_SHIFT = 3;
     static SMART_AIM = 10;
-    // static ARTIFACT_SPAWN_CHANCE = 100;
-    static ARTIFACT_SPAWN_CHANCE = 10; // for testing
-    // static STARTING_MONEY = 6000;
-    static STARTING_MONEY = 450000; // for testing
+    static ARTIFACT_SPAWN_CHANCE = 100;
+    // static ARTIFACT_SPAWN_CHANCE = 10; // for testing
+    static STARTING_MONEY = 6000;
+    // static STARTING_MONEY = 450000; // for testing
     static ENEMIES_INTERVAL = 300;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static STARTING_HAND_SIZE = 3;
@@ -415,7 +415,105 @@ class ServerData {
     };
 
     static artifacts = [
-        { name: "testArtifact" }
+        {
+            title: "Journal d’un éclaireur des mines de Zekk",
+            description: "On était certain de forer dans un monde où la vie n'avait jamais éclos. Aujourd'hui, on a perçu du mouvement. Notre auxiliaire a enregistré des sons que nos machines ne pourraient pas avoir émis. Quelque chose suinte de la paroi.",
+            imageName: "artifact"
+        },
+        {
+            title: "Transcription d’un captif",
+            description: "Il parlait, parfois. Difficilement. Comme si son corps et son esprit se bagarraient. Il a dit : 'Orrak-Tar... mère m'attend'",
+            imageName: "artifact"
+        },
+        {
+            title: "Plan d'un souterrain",
+            description: "Une cavité immense sous le tunnel 03-Nova. Rayée en rouge. Dossier classé NON-EXPLOITABLE. Un titre manuscrit, presque illisible. Orrak-Tar.",
+            imageName: "artifact"
+        },
+        {
+            title: "Schéma trouvé dans un abri isolé",
+            description: "« Une carte. Des flèches. Quelques équations mathémathiques. Au centre, une annotation griffonnée à la hâte. « C’est là qu’elle est née. C’est là qu’on la tuera. » Aucun nom, aucune signature. Juste une phrase. « J’y vais seul. Si je ne reviens pas, prévenez mes enfants. »",
+            imageName: "artifact"
+        },
+        {
+            title: "Entrée d’un journal personnel retrouvé dans le no-man's land",
+            description: "J’ai vu l’un d’eux de près, trop près. Je crois que c’était un médecin, autrefois, son badge était encore accroché à sa chemise. Il m’a regardé et je jure qu’il a hésité. Ils ne sont pas morts, j'ai l'impression. Ils sont coincés.",
+            imageName: "artifact"
+        },
+        {
+            title: "Note manuscrite, refuge du Secteur N3",
+            description: "Ils en reste, tu sais, des enfants. On les protège dans les salles inférieures. Ils ne voient jamais le ciel, mais ils rient. Ils dessinent des étoiles. Peut-être qu’un jour, ils les verront pour de vrai.",
+            imageName: "artifact"
+        },
+        {
+            title: "Carnet d’un technicien, Forteresse orbitale Delta",
+            description: "Ce ne sont pas des armes, mais des bricolages de matériel de recupération. Des morceaux de machines agricoles, de découpeurs de glace, de drones de maintenance. On les assemble comme on peut et on espère que ça tire dans la bonne direction.",
+            imageName: "artifact"
+        },
+        {
+            title: "Enregistrement détérioré",
+            description: "[...] Que le souvenir de notre échec serve de leçon à ceux qui survivront. Nous avons voulu soumettre l’univers à nos besoins et il nous exprime sa colère. Que chaque bastion se prépare car nous ne serons plus là pour les guider.",
+            imageName: "artifact"
+        },
+        {
+            title: "Journal d’un stratège militaire, archive classifiée",
+            description: "Nous avons sacrifié sept mondes, pour l'instant. L'arme nucléaire a servi à des fins de guerre, ce n'était plus arrivé depuis 1945. Les scientifiques pensait que l’Huile n’irait pas là où la vie était impossible et... ils se sont trompés.",
+            imageName: "artifact"
+        },
+        {
+            title: "Note vocale civile, module de transit 17-Theta",
+            description: "Ils ont bloqué les docks. Seule une navette sur cinq est encore opérationnelle. On se bat pour entrer. J’ai vu un officier tirer sur une mère pour prendre sa place. Je la revois chaque nuit. Pourquoi ai-je survécu ?",
+            imageName: "artifact"
+        },
+        {
+            title: "Transmission d'urgence, Planète Miri-Hek, ex-colonie civile",
+            description: "L'huile ne suit aucune logique biologique et nous rappelle les enseignements des vieux sages : en fait, nous ne savons rien. Elle traverse le sol et la fibre, survit au vide et coule même sans gravité. Comment lui échapper ?",
+            imageName: "artifact"
+        },
+        {
+            title: "Journal scientifique, fragment récupéré - Station Rhéa IX",
+            description: "L’échantillon est arrivé par erreur, il n'était pas sur l'inventaire de la cargaison. Une masse noire, scellée dans une capsule marquée d'un sceau inconnu. Le labo 4 l'a ouvert, Georges n'a jamais pu contenir sa curiosité. Trente heures plus tard, plus personne de son équipe ne répondait à la radio. Nous avons verrouillé le secteur, mais c'est impossible de dire si nous avons agi suffisamment vite.",
+            imageName: "artifact"
+        },
+        {
+            title: "Message gravé sur un mur du bastion Sigma",
+            description: "On ne parle plus des planètes perdues, ni des morts. Il ne reste que nous, sur ce monde-ci, je crois. L’Huile n’a pas tout ravagé, l'espoir persiste. Nous vivons encore.",
+            imageName: "artifact"
+        },
+        {
+            title: "Fragment d’échange radio",
+            description: "- Tu crois qu’on peut gagner ? - Gagner ? Non. Mais tenir un jour de plus, oui. Et après, on verra.",
+            imageName: "artifact"
+        },
+        {
+            title: "Photographie ancienne avec annotation manuscrite",
+            description: "Ma sœur portait encore ses bottes de mineuse. Son armure était une simple plaque de métal rouillé sur la poitrine. Elle tuait ces horreurs avec un marteau géant et, chaque soir, elle recousait ses vêtements et rassassait les souvenirs d'avant.",
+            imageName: "artifact"
+        },
+        // {
+        //     title: "",
+        //     description: ""
+        // },
+        // {
+        //     title: "",
+        //     description: ""
+        // },
+        // {
+        //     title: "",
+        //     description: ""
+        // },
+        // {
+        //     title: "",
+        //     description: ""
+        // },
+        // {
+        //     title: "",
+        //     description: ""
+        // },
+        // {
+        //     title: "",
+        //     description: ""
+        // },
     ]
 }
 

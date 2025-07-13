@@ -22,6 +22,8 @@ achat simultané en magasin, possibilité d'erreurs
 
 bug image super controle dans le popup
 
+créer une fonction splice from array avec une fonction
+
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs

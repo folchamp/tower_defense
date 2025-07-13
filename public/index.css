@@ -34,7 +34,7 @@ body {
         color: #ccc;
         padding: 1rem;
         max-width: 90vw;
-        width: 100%;
+        width: 600px;
         position: relative;
         font-family: 'Courier New', monospace;
 
@@ -95,6 +95,7 @@ body {
             }
 
             #continueButton {
+                display: block;
                 background: transparent;
                 border: 1px solid #2a3a4d;
                 color: #66f2ff;
@@ -108,7 +109,8 @@ body {
                 letter-spacing: 0.5px;
                 height: 31px;
                 margin: 6px;
-                margin-left: 200px;
+                /* margin-left: 200px; */
+                margin: auto;
             }
 
             #continueButton:hover {
