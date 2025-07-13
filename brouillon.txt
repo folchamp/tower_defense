@@ -39,3 +39,842 @@ Accrochée à flanc de falaise sur un monde balayé par les tempêtes, la Citade
 
 14. Cavité de Morn
 Sous la roche noire, la Cavité de Morn abrite un écosystème souterrain fragile, préservé miraculeusement. Les habitants ont bâti des galeries silencieuses, d’où ils observent les Thiraks passer au-dessus… jusqu’à ce qu’ils creusent trop profond.
+
+
+Bruits de surface
+
+Le silence, ici, n’est jamais complet. Même au plus profond du bastion, la vie bourdonne. Le bruit d’un générateur, le ronron d’un recyclateur à demi désossé, les pas feutrés de ceux qui évitent de déranger. On se parle à voix basse. On rit discrètement. Pas par peur, mais par respect.
+
+Mais parfois, le silence devient autre chose.
+
+Quand les premiers éclats retentissent au-dessus — sourds et lointains, pareils à des coups de marteau dans un tombeau — les conversations s’interrompent. Dans les salles communes, les enfants fixent le plafond, comme si leurs yeux pouvaient traverser les étages de métal et les kilomètres de roche. Les adultes, eux, ne lèvent plus les yeux depuis longtemps. Ils regardent le mur. Le mur d’affichage.
+
+Sur ce mur, un flux d’informations s’écoule. Positions des tourelles, température de surface, vibration des structures, niveau de munitions, débit des canalisations. Et puis, surtout, le nombre. Celui des Thirak détectés. Il grimpe. Lentement, puis trop vite. Et parfois, il chute brutalement. Une tourelle a fait son œuvre. L’ingéniosité humaine a résisté, une fois de plus. Mais à quel prix ?
+
+
+---
+
+Le retour
+
+Parfois, une expédition revient. Rarement entière. Le sas d’entrée crache un grondement qui traverse le bastion entier. On s’attroupe, on fait semblant de ne pas attendre, mais chacun espère voir l’un des siens réapparaître. Les ingénieurs, couverts de poussière noire, parfois de sang, arrivent chargés. Parfois avec un outil cassé, parfois avec un fragment de tourelle, parfois avec un artefact — une chose que la dernière salve a mis à jour dans les entrailles d’un Thirak abattu.
+
+On les dépose sur l’autel des archives. Ce n’est qu’un établi rouillé, mais dans les cœurs, c’est plus sacré que la salle des réacteurs. Les archivistes, une poignée d’anciens ou de volontaires, scrutent chaque objet avec précaution. Un boîtier contenant une puce, un morceau de journal imprimé, une plaque militaire tordue. Tous racontent quelque chose. Et souvent, on lit dans leur regard ce mélange d’horreur et de fascination : l’histoire de l’huile n’est pas finie. Elle n’est peut-être même pas encore entièrement connue.
+
+
+---
+
+La salle d'observation
+
+Il existe, dans les étages supérieurs, une salle où personne ne parle. Ce n’est pas interdit. C’est juste… inutile. Cette salle, c’est l’œil du bastion. Une demi-douzaine de postes, alimentés par les caméras des tourelles. Les images sont floues, hachées par le bruit, mais elles montrent ce que personne ne veut voir : le monde de la surface.
+
+Un champ de débris calcinés. Des tours mécaniques, telles des insectes géants, dressées contre le vent noir. Et, à l’horizon, toujours, des ombres. En marche. Implacables.
+
+Certains ingénieurs viennent ici avant une sortie. Pour se préparer. D'autres, pour comprendre à quoi ils s'opposent vraiment. Quelques civils obtiennent un accès exceptionnel. Souvent, après avoir perdu quelqu’un. Ils montent, regardent, repartent. Plus silencieux encore qu’avant.
+
+
+---
+
+La rumeur du Veilleur
+
+On murmure que le Veilleur — le joueur — n’est pas seul. Qu’il est entouré d’un réseau de données oublié, d’algorithmes anciens, ou même de consciences synthétiques dérivées d’avant la chute. D’autres croient qu’il est humain, simplement plus clairvoyant, plus calme, plus prêt. Un survivant parmi les survivants. Mais personne ne connaît son visage.
+
+Un jeune garçon, dans le quartier C-17, aurait vu passer un message sur un ancien écran : "Tourelle 6 réparée. Bonne nuit."
+Un autre prétend avoir entendu sa voix dans un canal de maintenance : une simple phrase, métallique et fatiguée : "Tenez encore une vague."
+
+Quoi qu’il en soit, il est là.
+
+Et tant qu’il est là… les portes ne s’ouvriront pas. Les murs ne céderont pas. Et l’espoir, ce feu qui ne brûle plus mais qui fume encore, ne s’éteindra pas tout à fait.
+
+Vie au Bastion : entre silence et sidération
+
+Quand la terre tremble, même doucement, tout le monde s’arrête. Ce n’est pas un séisme, ni une explosion. Ce sont les tourelles. Elles tirent. Et chaque détonation qui parvient, étouffée par des centaines de tonnes de béton et de métal, rappelle que dehors, la guerre continue. Même si personne n’en voit jamais la surface.
+
+La vie dans le bastion est lente, méticuleuse, encadrée. Les enfants jouent, mais jamais sans supervision. Les cuisines tournent sur des cycles rigides, les systèmes d’oxygène sont vérifiés toutes les heures, et chaque unité de recyclage d’eau est sanctifiée comme une relique. Ce n’est pas le confort — mais c’est la survie. L’habitude s’est installée comme une carapace.
+
+Et pourtant, parfois, une alarme douce sonne. Un appel. L’ascenseur central s’ouvre. Trois ou quatre silhouettes se tiennent prêtes. Casques à visière noire, combinaison blindée, sacoches d’outils lourds. Les ingénieurs. Ceux qui montent. Ceux qui, par groupes toujours restreints, osent s’aventurer dans le no-man’s land pour entretenir les tourelles, ajuster les capteurs, vider les conduits d’éjection, ou, parfois, récupérer un artefact qu’un projectile a mis à nu. Leur retour est toujours attendu — et souvent retardé. Chaque mission hors du bastion est une tension sourde pour les familles, un murmure dans les quartiers d’habitation, une prière prononcée même par ceux qui ne croient plus.
+
+Le contraste entre le temps d’entretien et le temps d’attaque est brutal. Pendant les réparations, la lumière est stable, les routines sont respectées, et l’on entend parfois un rire dans les couloirs. Mais lorsque les capteurs détectent un mouvement, lorsque le système évalue une vague en approche, tout change. Les couloirs se vident. Les affichages virent au rouge. Les communications internes se taisent. Même au cœur du bastion, les survivants ressentent une pression ancienne, comme un instinct de mammifère traqué. Le monde s’arrête. Et tout repose sur les tourelles, là-haut — et sur lui.
+
+Lui, le chef en surface, ou plutôt : le stratège en retrait. On ne l’a jamais vu. Peut-être ne vit-il même pas dans le bastion. Certains pensent qu’il habite un niveau inconnu, ou qu’il se connecte depuis un satellite isolé. Ce qu’on sait, c’est qu’il veille. Il active les défenses, choisit les priorités, coordonne les mises à feu. Il décide. Les anciens l’appellent "le Veilleur". Les plus jeunes l’imaginent comme un spectre, un survivant de la première chute. On ne lui parle pas. Mais on lui doit la vie.
+
+Dans les quartiers calmes, sur les murs de fortune ou les écrans éteints, on voit parfois apparaître un mot griffonné : "il est encore là."
+Et tant qu’il est là, le bastion tient.
+
+🌌 Contexte général
+
+L'humanité n'habite plus la Terre depuis longtemps. Des siècles de colonisation spatiale ont conduit les humains à s’étendre dans des systèmes variés, de plus en plus reculés, laissant derrière eux une humanité fragmentée, technologique et nomade.
+Avant l’apparition de la menace, les humains vivaient dans des ruches-planètes, des stations artificielles, des mondes terraformés et des complexes automatisés, parfois dirigés partiellement par des IA civiles.
+
+
+---
+
+🛢️ L’Orrak-Tar et l’huile
+
+Un jour, une matière noire et visqueuse a émergé : une huile aux propriétés corrosives, infectieuses, et surtout altérantes. Elle fusionne avec toute matière organique ou technologique, remodelant la chair et le métal en hybrides grotesques.
+Cette corruption n’est pas une simple contagion. Elle est dirigée à distance, comme un essaim contrôlé par un esprit lointain, une entité collective ou un trône invisible. On ignore s’il s’agit d’une intelligence étrangère, d’une divinité synthétique, ou d’un processus autonome. Les artefacts désignent son origine présumée sous le nom d’🕳️ Orrak-Tar, un lieu caché, souterrain, jadis ignoré, tapi non loin des bastions humains.
+
+
+---
+
+🧟 Les Thiraks
+
+Les êtres altérés par l’huile sont appelés Thiraks. Ils n’ont plus de libre arbitre. Leur transformation est définitive. Leur apparence est variée, car n’importe quelle créature, humaine ou non, peut devenir Thirak.
+Ils ne ressentent pas de peur, de douleur, ou de doute. Certains Thiraks — surtout ceux qui furent humains — parlent encore, récitent des souvenirs, obéissent avec zèle. Quelques-uns sont même capables d’improviser ou de tendre des embuscades rudimentaires.
+
+Les Thiraks ne se battent pas pour conquérir ou pour survivre. Ils avancent pour convertir, contaminer, ramener la matière vivante vers Orrak-Tar.
+
+
+---
+
+🏰 Les humains survivants
+
+Face à cette invasion, l’humanité a fui les routes principales, abandonné ses grands centres, et s’est réfugiée dans des bastions isolés, souterrains ou orbitaux, protégés par des IA locales.
+La défense est assurée par des tourelles automatiques patchwork, conçues à partir de technologie ancienne, modifiée, alimentée au diesel ou à l’énergie chimique. Ces structures sont dirigées à distance, via caméras, antennes relais et modules IA rudimentaires.
+
+Les humains n’interviennent presque jamais physiquement : seuls les ingénieurs les plus fous ou désespérés pénètrent dans le No-man’s land pour réparer une tourelle. Le reste du temps, les machines font le travail, selon les ordres donnés à distance.
+
+
+---
+
+💥 Le gameplay justifié dans le monde
+
+Le joueur incarne une conscience tactique humaine, une IA militaire résiduelle, ou un opérateur distant d’un centre de commandement.
+
+Il programme, positionne et optimise les tourelles autonomes, et collecte des artéfacts narratifs laissés par les Thiraks ou par les anciennes lignes de défense.
+
+Les vagues ennemies sont organisées par des Thiraks "chefs" obéissant à une volonté invisible.
+
+Les tourelles ne sont jamais attaquées car l’huile ne reconnaît pas les machines comme des cibles prioritaires. Seule la matière vivante intéresse les Thiraks.
+
+
+
+---
+
+📜 Les Artéfacts
+
+À chaque fin de vague, un artefact est laissé derrière les restes d’un Thirak ou d’un ancien défenseur.
+Ce sont des fragments d’histoire : notes de terrain, journaux audio, gravures, dialogues captés, messages codés. Ensemble, ils reconstruisent les grands axes suivants :
+
+La descente dans le désespoir humain.
+
+Les premiers signes de l’huile.
+
+La révélation progressive d’Orrak-Tar.
+
+Les premiers Thiraks doués de parole.
+
+Les expéditions suicides pour localiser ou sceller la source.
+
+Les illuminés qui rêvent encore de victoire.
+
+
+Certains artéfacts contiennent des éléments contradictoires (mensonges, erreurs humaines, délires). Cela renforce la sensation d’une vérité éclatée, à reconstruire.
+
+
+---
+
+🧬 Résistances et capacités spéciales
+
+Les Thiraks sont de plus en plus évolués :
+
+Certains sont rapides, d’autres massifs, d’autres encore résistants à l’usure.
+
+Une forme de résistance logarithmique permet à certains d’entre eux de réduire les dégâts au fil des attaques subies : plus on les frappe, moins cela leur fait mal.
+
+Le système de capacités sera déployé progressivement, en gardant les premières vagues simples, lisibles, et tactiquement équilibrées.
+
+
+
+---
+
+🔮 Vision narrative globale
+
+Le ton du jeu est sombre mais pas nihiliste.
+Les humains n’idolâtrent jamais l’huile. Ils la haïssent. Elle n’a rien d’admirable, rien de séduisant. Elle détruit, mutile, altère. Mais une poignée de survivants ose encore rêver d’un monde après elle.
+
+🧠 Univers & Lore
+
+1. Origine et nature de l’huile : pas encore « fixée »
+
+Problème : On ne sait pas exactement si l’huile est naturelle, technologique, extraterrestre ou une création humaine ancienne. Ce flou est utile narrativement, mais un point d’origine plus tranché pourrait renforcer la tension.
+
+Suggestion : Laisse le mystère planer côté joueur, mais toi, définis-le clairement en interne pour éviter les contradictions dans les artéfacts ou le ton global.
+
+
+2. Les Thiraks : entre bêtes, machines et esclaves
+
+Problème : Tu as établi que les Thiraks ne pensent pas par eux-mêmes et obéissent à distance, mais certains parlent et font preuve de créativité.
+
+Incohérence : Cela les rend plus complexes qu’annoncé. Si certains sont capables de parler et réfléchir un peu, alors l’intelligence collective ou graduée devrait exister (ex : niveau d’autonomie en fonction du grade).
+
+Suggestion : Intègre une hiérarchie mentale : les Thiraks de base sont muets et purement obéissants, d'autres (anciens humains, éclaireurs, hérauts…) conservent un fragment de leur esprit, ce qui expliquerait leur langage ou ruse.
+
+
+3. Position géographique d’Orrak-Tar
+
+Problème : Tu dis qu’Orrak-Tar est très proche, peut-être souterrain, mais cela n’a jamais été perçu par les humains avant les dernières vagues. Comment ont-ils raté ça ?
+
+Suggestion : Propose une explication dans les artéfacts : camouflage, sous une zone interdite, ou caché sous des infrastructures humaines anciennes. Ou peut-être était-il scellé par une civilisation antérieure ?
+
+
+
+---
+
+🎮 Gameplay & Game Design
+
+4. Les monstres n’attaquent jamais les tourelles
+
+Problème : Cela peut sembler illogique, surtout si les Thiraks sont capables de parler ou faire preuve de stratégie. Pourquoi ne visent-ils pas les armes ennemies ?
+
+Justification possible : Leur seul objectif est la souillure — ils ne cherchent pas à dominer militairement, mais à contaminer les vivants.
+
+Suggestion : Intègre cette idée dans le lore. Tu pourrais aussi imaginer une capacité rare ou une sous-classe de Thiraks qui désactive temporairement les tourelles ou les ignore mais les sabote indirectement.
+
+
+5. L’autonomie totale des tourelles
+
+Problème : Tu dis que les humains ne sortent presque jamais et que les IA sont simples. Mais comment se fait l’amélioration du système ? Comment le joueur agit-il narrativement ?
+
+Suggestion : Introduis une unité distante dans le lore — un opérateur humain dans un centre de commandement, ou une IA tactique humaine qui « simule » les choix du joueur. Cela renforcerait l’immersion.
+
+
+
+---
+
+📜 Narration et Artefacts
+
+6. Tonalité parfois trop uniforme
+
+Problème : Même si tu fais attention, la narration des artefacts reste souvent dans un ton mélancolique et grave, ce qui peut diluer l'impact émotionnel.
+
+Suggestion : Varie les points de vue : ajoute des artefacts satiriques, faux, menteurs, optimistes, religieux, etc. Des voix divergentes rendent l’univers plus riche.
+
+
+7. Répétition des thèmes
+
+Problème : Certains artefacts reviennent plusieurs fois à des notions similaires (la peur, la corruption, la solitude, la guerre perdue).
+
+Suggestion : Crée des fils narratifs parallèles :
+
+La paranoïa d’une secte humaine.
+
+Un scientifique devenu fou.
+
+Un Thirak qui parle trop.
+
+Une IA civile qui raconte l'histoire à sa manière.
+
+Une légende urbaine tenace sur un remède.
+
+
+
+
+---
+
+🧱 Terminologie et identité
+
+8. Utilisation des noms propres : Orrak-Tar et Thiraks
+
+Problème : L’usage progressif des termes est bien vu, mais il faudra un moment clé où le mot Orrak-Tar est nommé pleinement et assumé, sinon cela risque de rester flou trop longtemps.
+
+Suggestion : Prépare un artefact-charnière ou une cinématique de révélation, avec une carte ou une confession, où un Thirak parle du retour vers Orrak-Tar comme d’un « retour à la source ».
+
+
+
+---
+
+🧩 Autres pistes d’amélioration
+
+9. Manque de diversité des relations humaines
+
+Problème : Tu parles peu des relations entre survivants. Est-ce une société ? Une faction ? Des bastions isolés ?
+
+Suggestion : Introduis des tensions humaines dans les artéfacts : divergences idéologiques, conflits de commandement, trahisons, abandons.
+
+
+10. Le joueur n’est pas encore "narrativisé"
+
+Problème : Le joueur contrôle, améliore, et observe, mais n’a pas encore d’identité claire dans le monde.
+
+Suggestion : Même s’il est une entité distante, donne-lui une fonction : ancien stratège, conscience d’une IA tactique, survivant relié à distance au champ de bataille, etc.
+
+
+🧠 UNIVERS & LORE
+
+🔥 Contexte général
+
+Ton jeu se déroule dans un futur sombre, post-apocalyptique, où l’humanité, jadis étendue sur plusieurs systèmes stellaires, a été brutalement renversée par une contamination venue de sous la surface : une substance appelée l’huile.
+
+> L’huile est une matière noire, visqueuse, corrompante, dépourvue de toute qualité rédemptrice. Elle transforme les êtres vivants en machines hybrides, appelées Thiraks. Cette infection n'est pas cosmique mais terrestre, souterraine, originaire d’un lieu secret et terrifiant : Orrak-Tar.
+
+
+
+🌍 Orrak-Tar
+
+Lieu d'origine de l’huile.
+
+Longtemps cru situé dans les confins galactiques.
+
+Révélé plus tard comme très proche, peut-être sous les pieds des survivants.
+
+Mystérieux, enfoui, protégé, il n’a été que rarement approché par les humains.
+
+Les premières expéditions vers Orrak-Tar suggèrent qu’il existait bien avant l’expansion humaine, en sommeil.
+
+
+👹 Les Thiraks
+
+Anciens êtres vivants, corrompus par l’huile.
+
+Présentent des formes physiques très variées.
+
+Sont guidés à distance par une volonté supérieure.
+
+Leur organisation obéit à une hiérarchie obscure, dirigée non par le plus fort, mais par le plus malin.
+
+Ne crient pas, ne communiquent pas ouvertement… sauf quand ils parlent.
+
+Certains, surtout ceux ayant été humains, peuvent s’exprimer.
+
+Ils peuvent parfois montrer une forme de créativité, mais ne sont pas adaptatifs.
+
+
+
+
+---
+
+🧱 GAME DESIGN
+
+🎯 But du joueur
+
+Protéger un bastion humain contre des vagues successives de Thiraks.
+
+Utiliser des tourelles autonomes, construites à partir de technologie humaine modifiée, souvent alimentée au diesel.
+
+Placer et améliorer ces défenses pour repousser l’infection.
+
+
+🛠️ Les tourelles
+
+Entièrement automatisées, fonctionnant avec des IA rudimentaires et des caméras.
+
+Les humains n’interviennent plus directement sur le champ de bataille.
+
+Les ingénieurs n'entretiennent que rarement les structures, parfois au péril de leur vie.
+
+Esthétique : fonctionnelle, patchwork, avec des éléments récupérés, modifiés, vieillis.
+
+
+👾 Les ennemis (Thiraks)
+
+Tous tirés de formes vivantes contaminées.
+
+Chaque ennemi possède :
+
+Un nom technique
+
+Un nom dans le lore
+
+Des caractéristiques (vitesse, PV, récompense)
+
+
+Certains ont des capacités spéciales :
+
+Résistance progressive logarithmique
+
+Vitesse accrue
+
+Tactiques étranges (ex: arrêt soudain, coordination)
+
+
+
+
+---
+
+🧩 NARRATION & IMMERSION
+
+📜 Artefacts narratifs
+
+Après chaque vague, le joueur peut cliquer sur un artefact tombé du dernier Thirak éliminé.
+Ce dernier révèle un fragment narratif.
+
+Types d’artefacts :
+
+Objets personnels (journal, plaque, message, dessin)
+
+Équipement Thirak (masques, runes, implants)
+
+Éléments audio/textes (boîtiers, affiches, drones, etc.)
+
+
+Fonctions des artefacts :
+
+Éclairent progressivement le passé de l’univers
+
+Font monter en puissance les termes-clés (Thirak, Orrak-Tar, huile)
+
+Montrent la progression du désespoir humain
+
+Suggèrent parfois une faiblesse chez les ennemis ou une possibilité de victoire
+
+
+
+---
+
+🎨 ESTHÉTIQUE
+
+🌑 Ton visuel
+
+Post-apo sale, mécanique, rouillé
+
+Couleurs : gris, noir, brun, rouge terne, vert industriel
+
+Interface sobre, mobile first, HTML/CSS modulaire
+
+Les effets visuels appuient une atmosphère lourde et menaçante
+
+
+
+---
+
+🔧 TECHNIQUE
+
+🧪 Stack technologique
+
+Jeu web développé en Node.js
+
+Front-end géré en HTML/CSS/JS (tu t’occupes du JS)
+
+Interface pensée pour le mobile d'abord
+
+Architecture modulaire, prête à évoluer
+
+
+🧱 Fonctions spécifiques notées
+
+Pop-up info pour monstres et tourelles
+
+Artefacts post-vague
+
+Système de résistances logarithmiques pour ennemis spéciaux
+
+Tris dynamiques (par exemple des ennemis triés par HP)
+
+
+
+---
+
+🔮 PHILOSOPHIE DU MONDE
+
+L’huile est une malédiction, un poison.
+
+Aucun humain ne lui trouve de vertu.
+
+Le monde est brisé, non rachetable, mais certains humains y croient encore.
+
+Certains artefacts parlent de résistance, d’espoir insensé ou de revanche.
+
+La question de l’origine humaine de l’huile commence à émerger…
+
+Le monde n’a peut-être jamais été propre.
+
+Les Thiraks ne sont pas des envahisseurs venus d’ailleurs, mais une résurgence d’un mal plus ancien, réveillé par la curiosité humaine.
+
+Artefact 44 – “Graffiti retrouvé dans une station-service abandonnée”
+
+> "ILS N’ONT JAMAIS VU LE CIEL.
+NOUS SOMMES LEUR SURFACE.
+ORRAK-TAR SAIGNE PAR NOUS."
+
+
+
+
+---
+
+Artefact 45 – “Débriefing audio d’une expédition ratée”
+
+> "On pensait descendre quelques niveaux. Juste une inspection. Mais les murs respiraient. On a vu des marques dans la roche, comme si… comme si quelque chose avait rampé là pendant des siècles.
+Un des nôtres a hurlé : 'C’est vivant ! Orrak-Tar est vivant !'"
+
+
+
+
+---
+
+Artefact 46 – “Lettre jamais envoyée, retrouvée dans une capsule d’ascenseur”
+
+> "Si tu lis ça, c’est que je ne suis pas remonté. Les voix deviennent claires, ici. Elles ne crient pas. Elles chuchotent. J’ai peur de comprendre ce qu’elles disent.
+J’ai peur d’y répondre."
+
+
+
+
+---
+
+Artefact 47 – “Murmurologue – Rapport fragmenté”
+
+> "Certains Thiraks, surtout ceux à base humaine, semblent communiquer par symboles sonores.
+Le mot 'Tar' revient. Avec des modulations.
+'Orrak' pourrait signifier 'racine' ou 'origine'.
+Une forme de religion mécanique ?"
+
+
+
+
+---
+
+Artefact 48 – “Ébauche d’un traité interdit”
+
+> "Et si Orrak-Tar n’était pas un lieu, mais une matrice ? Une matrice ancrée dans nos planètes, une mémoire souterraine ?
+Une conscience enfouie… et qui attendait qu’on creuse."
+
+
+
+
+---
+
+Artefact 49 – “Fragment vidéo retrouvé sur une balise de surface”
+
+> [Image floue : un humain, ensanglanté, parle à la caméra]
+“Ils ne sont pas tombés du ciel.
+Ils sont montés.”
+
+
+
+
+---
+
+Artefact 50 – “Inscription sur une plaque métallique enfoncée dans le sol”
+
+> "EN DESSOUS COMMENCE ORRAK-TAR
+NE CREUSEZ PAS"
+
+
+Artefact 31 – “Note griffonnée dans une boîte à outils”
+
+> "Ces formes ne viennent pas d’ici. Même pas de ce système. C’est pas juste de la mutation. C’est un plan. Un modèle. Un motif qu’on ne comprend pas encore. Une voix a parlé dans le canal de maintenance : 'Ora-Tar'. Ou 'Ora-Ktar'. Un bruit. Mais je l’ai noté."
+
+
+
+
+---
+
+Artefact 32 – “Écho radio enregistré sur bande usée”
+
+> "— ici base G-77… nous n’avons plus de contact avec l’avant-poste Archeon… la ligne noire s’étend… ça ne brûle pas… ça prend… Orrak… Orrak-Ta…"
+
+
+
+
+---
+
+Artefact 33 – “Mémo militaire partiellement effacé”
+
+> "Certains analystes pensent que les Thiraks sont rappelés. Qu’ils marchent vers un point d’origine. On ne sait pas si ce lieu existe encore, ou même s’il est réel. Un nom revient : Orrak-Tar. On ignore sa nature. Peut-être un mythe. Peut-être un système oublié."
+
+
+
+
+---
+
+Artefact 34 – “Rapport de surveillance d’un satellite désaffecté”
+
+> "Une anomalie gravitationnelle a été détectée dans le secteur K-Rho. Elle correspond à la trajectoire estimée de plusieurs hordes Thiraks. Coordonnées non exploitables. Nom de fichier automatique généré : ORAK_TAR.LOG."
+
+
+
+
+---
+
+Artefact 35 – “Graffiti retrouvé sur la coque d’un abri mobile”
+
+> "ILS SONT NÉS DANS LE FOND.
+ILS REVIENNENT TOUS À ORRAK TAR."
+
+
+
+
+---
+
+Artefact 36 – “Message perdu retrouvé dans une sonde autonome”
+
+> "Données récoltées sur sept planètes ravagées : aucune activité cérébrale indépendante chez les Thiraks. Tous les signaux captés pointent vers un schéma fixe, une signature récurrente : OT-19. Probable abréviation pour Orrak-Tar, selon l’équipe d’archivistes de Ligrane."
+
+
+
+
+---
+
+Artefact 37 – “Fragment de rêve documenté par une coloniste isolée”
+
+> "Je ne dors plus, mais je vois quand même. Je suis dans un couloir sans fin, fait de métal et de tendons. Ils rampent tous vers l’avant. Ils murmurent un mot qu’ils ne peuvent pas prononcer. Je crois que c’est Orrak-Tar."
+
+
+
+
+---
+
+Artefact 38 – “Archive d’un forum crypté civil”
+
+> "Il y avait un astéroïde dans le secteur C-0N, noté inactive. Mais des reflets ont été perçus. Comme des formes. On a dit que c’était là que tout avait commencé. L’ancien nom du fichier était ORAK_TAR_INIT."
+
+
+
+
+---
+
+Artefact 39 – “Carte d’exploration annotée à la main”
+
+> "Zone morte. Trois sondes perdues. Aucun retour. Le capitaine a gribouillé un mot sur la carte avant de disparaître. On ne peut pas lire les lettres, sauf trois. TAR. C’est une direction, ou une menace."
+
+
+
+
+---
+
+Artefact 40 – “Extrait d’entretien psychiatrique civil”
+
+> "Vous dites qu’ils vont quelque part. Vous dites que tous les Thiraks… reviennent. Mais revenez d’où ?
+— …Orrak-Tar. Je crois que c’est une bouche. Une porte. Ou un souvenir. Et ils veulent rentrer chez eux."
+
+
+Artefact 21 – “Tag gravé sur un mur anti-décompression”
+
+> "Un de plus ce matin. Une silhouette de chien, mais trop long, trop mince. J’ai vidé un chargeur. Il n’a pas crié. Il a juste continué. Jusqu’à tomber."
+— Anonyme
+
+
+
+
+---
+
+Artefact 22 – “Étiquette de maintenance rouillée”
+
+> "Tourelle 3B réparée. Moteur d’orientation partiellement grippé. A tenu la vague. Trop de petits modèles, rapides. Plus jamais seul dehors."
+
+
+
+
+---
+
+Artefact 23 – “Bloc de données civil – extrait”
+
+> "Nous sommes entrés dans l’abri de fortune sur Hestia-4. Rien ne bougeait. Mais tout était couvert. Des traces noires, grasses. Comme si l’endroit avait su qu’on venait."
+
+
+
+
+---
+
+Artefact 24 – “Image thermique déformée – rapport technique”
+
+> "L’entité semble conserver une température stable malgré l’environnement. Forme hybride : partie supérieure humanoïde, partie inférieure arthropode. Aucun signe d’intention. Se déplace par trajectoire directe."
+
+
+
+
+---
+
+Artefact 25 – “Enregistrement audio partiel”
+
+> [grésillements] "…pas d’yeux, mais ça suivait quand même. Ça s’est arrêté devant moi, comme s’il attendait un signal. Et puis il a foncé." [fin de l’extrait]
+
+
+
+
+---
+
+Artefact 26 – “Plaque d’identité civile fondue”
+
+> "On avait appelé ça le “Marcheur du silence”. C’était un surnom idiot. Mais ça nous rassurait de penser qu’il y en avait un seul. Maintenant, on sait qu’ils sont légion."
+
+
+
+
+---
+
+Artefact 27 – “Page arrachée d’un carnet logistique”
+
+> "On ne compte plus les formes. Certains ont des visages, d’autres non. Certains rampent, d’autres courent. Mais tous avancent. C’est la seule constante."
+
+
+
+
+---
+
+Artefact 28 – “Disque optique personnel”
+
+> "Je me suis mis à les dessiner. Tous ceux qu’on voit passer entre les tourelles. Ils sont différents, tous. Un cheval avec une mâchoire humaine. Une femme aux bras d’insecte. On dirait des cauchemars dessinés par un enfant malade."
+
+
+
+
+---
+
+Artefact 29 – “Message réseau retrouvé”
+
+> "Ils n’attaquent pas les tours. Jamais. Comme s’ils ne les voyaient même pas. Ils traversent, vers le centre. Vers nous. Toujours."
+
+
+
+
+---
+
+Artefact 30 – “Boîte noire d’un transporteur de ravitaillement”
+
+> "Bruits de grattement sur la coque à 3:42. Aucun signal. Aucun message. Juste le frottement lent. Puis, plus rien pendant deux heures. Quand on est sortis, les jerricans étaient éventrés. Et tout était... enduit."
+
+
+Artefact 11 – “Fragment de blindage calciné”
+
+> « On a essayé de les ralentir avec du feu. On pensait que la chair aurait peur des flammes. Mais ce n’était plus de la chair. Quand l’un d’eux a traversé le brasier, la masse noire qui couvrait son crâne s’est mise à bouillir… et il a hurlé. Pas de douleur. Un cri de ralliement. Les autres l’ont suivi. »
+
+
+
+
+---
+
+Artefact 12 – “Message brouillé du relais Sigma-13”
+
+> « ...structure non identifiable en approche... formation irrégulière... non biologiques, non mécaniques... les civils ont été extraits, je répète... grésillements... quelque chose les guide, quelque chose parle à travers eux... »
+
+
+
+
+---
+
+Artefact 13 – “Carnet de Silas Drehn, ingénieur du dôme de Khelt”
+
+> « Ils ne cherchent pas à tuer. Ils avancent, absorbent, contaminent. Comme s’ils poursuivaient un objectif lointain que même eux ne comprennent pas. Chaque Thirak qu’on abat est remplacé par dix autres. Et certains, j’en suis sûr, écoutent. »
+
+
+
+
+---
+
+Artefact 14 – “Sceau en céramite fracturée”
+
+> « Le mot est revenu. Dans les prières, dans les rêves, même sur la peau des mourants. Orrak-Tar. Ce n’est pas une planète. Ce n’est pas un lieu. C’est une volonté. Une bouche sans fond. »
+
+
+
+
+---
+
+Artefact 15 – “Mémoire d’un automate de forage reconverti”
+
+> « Nous avons laissé des avant-postes derrière nous. Des tours, des drones, des barrières. Bricolées, fissurées, mais armées. C’est toute la technologie humaine : tordue, ressoudée, alimentée au diesel et à la peur. Ça tire droit. Et ça retarde les horreurs. Parfois. »
+
+
+
+
+---
+
+Artefact 16 – “Lettre non envoyée, trouvée dans un casque isolant”
+
+> « Je voulais rentrer. Pas sur Terre, elle est morte depuis longtemps. Mais dans un monde normal. Où les machines ne saignent pas, où les cris des Thiraks ne résonnent pas dans les tunnels. Je voulais te serrer encore une fois. Et j’ai raté le dernier vaisseau. »
+
+
+
+
+---
+
+Artefact 17 – “Éclat de console du Bastion Damar”
+
+> « Rapport final : l'huile s’est infiltrée dans le système d'aération. La zone 4 est compromise. Nos propres drones ont été retournés. L’ordre est tombé : sceller l’ensemble du dôme. Aucune extraction. Aucune exception. »
+
+
+
+
+---
+
+Artefact 18 – “Plaque d’identité rongée par l’huile”
+
+> [Le métal est gravé d’un seul mot, au dos, avec une pointe rouillée :]
+« THIRAK »
+[Rien d’autre.]
+
+
+
+
+---
+
+Artefact 19 – “Journal de mission du sergent Avelar, fragment 2”
+
+> « Il y a eu une époque où l’on gagnait. Où nos lignes tenaient, où chaque balle trouvait sa cible. Mais quelque chose a changé. Les Thiraks adaptent. Ils n’apprennent pas comme nous. Ils mémorisent. Ils transmettent. On a tué des milliers de fois le même visage. Et il revient. »
+
+
+
+
+---
+
+Artefact 20 – “Étoile brûlée suspendue à un collier de fortune”
+
+> « Les enfants l’ont appelée "la Bête sans bruit". Un Thirak qui ne court pas. Qui ne grogne pas. Il attend. Camouflé dans la suie, dans le métal. Quand il attaque, c’est rapide. Chirurgical. Comme si… il savait. »
+
+
+🧩 Artefact 11 — "Protocole 17-B"
+
+> Note de terrain, réseau de maintenance autonome
+« On a retrouvé un robot de jardinage dans une serre ensevelie. Il avait électrifié 36 contaminés avec ses outils avant que sa batterie lâche. L’équipe l’a réactivé, modifié, blindé. Il bosse pour nous, maintenant. On l’a renommé Rage-Pétunia. »
+
+
+
+
+---
+
+🧩 Artefact 12 — "Tomber en silence"
+
+> Dernier message d’une station relais isolée
+« Il ne reste plus que moi. Je n’ai plus d’amis, plus de chien, plus de musique. L’Huile a tout pris. Parfois je monte sur le toit pour gueuler dans le vide, juste pour qu’elle sache que je suis encore là. Qu’elle n’a pas gagné. Pas tout à fait. »
+
+
+
+
+---
+
+🧩 Artefact 13 — "Nés sous les planches"
+
+> Journal mural, camp de survivants
+« Les enfants ne connaissent pas le ciel. Ils sont nés dans les tunnels, entre les machines et les alarmes. On leur raconte des histoires de vent et de pluie. Ils nous demandent ce que c’est. On ment mal, mais ils écoutent. Alors on continue. »
+
+
+
+
+---
+
+🧩 Artefact 14 — "Soudés à la vie"
+
+> Note d’atelier d’un technicien
+« On a récupéré deux bras de forage, une nacelle de chantier et un torse d’exo-miner. On a mis tout ça sur un trépied hydraulique. Ça a tenu trois minutes, puis ça a craché un obus à l’envers. On a ri comme des cons. On recommence demain. »
+
+
+
+
+---
+
+🧩 Artefact 15 — "La voix de Milo"
+
+> Enregistrement audio partiel
+« Ici Milo. C’est ma septième journée seul. J’ai collé des piques autour de ma capsule et trafiqué le système de survie pour faire bouillir les murs. L’Huile tourne en bas. Elle attend. Mais je l’emmerde. Je dors avec un œil ouvert. »
+
+
+
+
+---
+
+🧩 Artefact 16 — "Pas de gloire"
+
+> Carnet d’un éclaireur anonyme
+« Y’a pas de médaille. Pas de fanfare. On court, on crève, on est oubliés. On bouche des trous que personne ne voit. Mais sans nous, tout s’écroule. Alors ouais, on continue. Même si personne nous regarde. Surtout parce que personne nous regarde. »
+
+
+
+
+---
+
+🧩 Artefact 17 — "Tombeau mobile"
+
+> Gravure sur la coque d’un rover d’exode
+« Ici ont voyagé 42 âmes. 11 sont mortes, 2 ont hurlé trop longtemps, 1 a trahi. Les autres ont survécu. Pour combien de temps ? Nul ne le sait. Mais ce rover est allé plus loin que l’Huile. Et c’est tout ce qui compte. »
+

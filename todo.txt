@@ -20,6 +20,8 @@ bug sur le popup, l'endurance et la récompense des mobs n'est pas effacée
 
 achat simultané en magasin, possibilité d'erreurs
 
+bug image super controle dans le popup
+
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs

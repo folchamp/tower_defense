@@ -212,15 +212,6 @@ class Game {
     isForMe(data) {
         return data.recipient === this.session.playerID;
     }
-    // mouseClick(event) {
-    //     if (!this.mouseInsideCanvas) {
-    //         if (this.grabbedCard !== undefined) {
-    //             // put card back in hand
-    //             this.grabbedCard.attach();
-    //             this.grabbedCard = undefined;
-    //         }
-    //     }
-    // }
     canvasMouseCallback(eventType, position) {
         if (eventType === "click") {
             this.pingManager.closePingSender();
@@ -244,6 +235,7 @@ class Game {
                 }
             } else {
                 this.gameElements.enemies.forEach((enemy) => {
+                    // ENEMIES
                     if (Util.distance(offsetPosition, enemy.position) <= 16) {
                         Util.show(ELEMENTS["infoPopupContainer"]);
                         ELEMENTS["infoPopupBigTitle"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].loreName;
@@ -258,6 +250,7 @@ class Game {
                     }
                 });
                 this.gameElements.towers.forEach((tower) => {
+                    // TOWERS
                     if (Util.distance(offsetPosition, tower.position) <= 16) {
                         Util.show(ELEMENTS["infoPopupContainer"]);
                         ELEMENTS["infoPopupBigTitle"].innerHTML = `Codename : ${tower.towerData.name.toUpperCase()}`;
@@ -270,6 +263,18 @@ class Game {
                         ELEMENTS["infoPopupVrac"].innerHTML =
                             `${ClientData.towersDescriptions[tower.towerData.name].capacity}`;
                         ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
+                    }
+                });
+                this.gameElements.artifacts.forEach((artifact) => {
+                    if (Util.distance(offsetPosition, artifact.position) <= 16) {
+                        let artifactData = Util.randomFromArray(ClientData.artifactsDescription);
+                        Util.show(ELEMENTS["infoPopupContainer"]);
+                        ELEMENTS["infoPopupBigTitle"].innerHTML = artifactData.title;
+                        ELEMENTS["infoPopupSubtitle"].innerHTML = "";
+                        ELEMENTS["infoPopupDescription"].innerHTML = artifactData.description;
+                        ELEMENTS["infoPopupVrac"].innerHTML = "";
+                        ELEMENTS["infoPopupImage"].src = `images/${artifactData.imageName}.png`;
+
                     }
                 });
             }

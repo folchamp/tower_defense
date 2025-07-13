@@ -526,6 +526,7 @@ class GameManager {
                 controlTower.towerData.range = newTowerData.range;
                 controlTower.towerData.size = newTowerData.towerSize;
                 controlTower.towerData.initialAngle = newTowerData.initialAngle;
+                controlTower.towerData.name = "upgraded_control_tower";
                 controlTower.towerData.bulletData = {
                     damage: newTowerData.damage,
                     speed: newTowerData.speed,
