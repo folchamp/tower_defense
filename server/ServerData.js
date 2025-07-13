@@ -8,9 +8,10 @@ class ServerData {
     static MAX_AMOUNT_OF_ACTIONS = 3;
     static SHOP_SHIFT = 3;
     static SMART_AIM = 10;
-    static ARTIFACT_SPAWN_CHANCE = 100;
+    // static ARTIFACT_SPAWN_CHANCE = 100;
+    static ARTIFACT_SPAWN_CHANCE = 10; // for testing
     // static STARTING_MONEY = 6000;
-    static STARTING_MONEY = 450000;
+    static STARTING_MONEY = 450000; // for testing
     static ENEMIES_INTERVAL = 300;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static STARTING_HAND_SIZE = 3;
@@ -416,6 +417,10 @@ class ServerData {
             reward: 1
         },
     };
+
+    static artifacts = [
+        {name : "testArtifact"}
+    ]
 }
 
 exports.ServerData = ServerData;

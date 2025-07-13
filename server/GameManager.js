@@ -3,6 +3,7 @@
 const { Maps } = require("./Maps.js");
 const { ServerData } = require("./ServerData.js");
 const { ShopManager } = require("./ShopManager.js");
+const { Artifact } = require("../public/common/Artifact.js");
 const { Bullet } = require("../public/common/Bullet.js");
 const { Tower } = require("../public/common/Tower.js");
 const { Enemy } = require("../public/common/Enemy.js");
@@ -95,7 +96,8 @@ class GameManager {
             auras: [],
             towers: [],
             enemies: [],
-            bullets: []
+            bullets: [],
+            artifacts: [],
         };
         this.hasStarted = false;
         this.isLost = false;
@@ -120,6 +122,7 @@ class GameManager {
             bullets: [],
             enemies: [],
             towers: [],
+            artifacts: [],
             towerIDsToRemove: [],
             enemyIDsToRemove: []
         }
@@ -203,6 +206,12 @@ class GameManager {
                     this.gameElements.enemies.pop();
                 } else {
                     this.gameElements.enemies[index] = this.gameElements.enemies.pop();
+                }
+                if (Util.randomValue(0, ServerData.ARTIFACT_SPAWN_CHANCE) === 0) {
+                    console.log("artifact spawns");
+                    let newArtifact = new Artifact(Util.copyObject(ServerData.artifacts[0]), Util.copyObject(enemy.position));
+                    this.gameElements.artifacts.push(newArtifact);
+                    this.newGameStateElements.artifacts.push(newArtifact);
                 }
                 this.giveReward(enemy);
             }

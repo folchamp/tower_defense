@@ -5,11 +5,12 @@ class Game {
         ClientData.loadImages();
 
         this.gameElements = {
-            drawOrder: ["auras", "towers", "enemies", "bullets", "routes"],
+            drawOrder: ["auras", "towers", "artifacts", "enemies", "bullets", "routes"],
             auras: [],
             towers: [],
             enemies: [],
             bullets: [],
+            artifacts: [],
             routes: [[{ x: 0, y: 0 }]]
         };
         this.session = new Session();
@@ -416,6 +417,7 @@ class Game {
         let bullets = data.gameElements.bullets;
         let enemies = data.gameElements.enemies;
         let towers = data.gameElements.towers;
+        let artifacts = data.gameElements.artifacts;
         let towerIDsToRemove = data.gameElements.towerIDsToRemove;
         let enemyIDsToRemove = data.gameElements.enemyIDsToRemove;
         // towers
@@ -442,6 +444,14 @@ class Game {
             bullet.findTarget(this.gameElements.enemies);
             this.gameElements.bullets.push(bullet);
         });
+        // artifacts
+        artifacts.forEach((artifactData) => {
+            console.log("new artifact !");
+            const artifact = new Artifact(artifactData.artifactData, artifactData.position);
+            artifact.load(artifactData);
+            this.gameElements.artifacts.push(artifact);
+        });
+        // clean towers
         towerIDsToRemove.forEach((towerIDToRemove) => {
             let indexToRemove;
             for (let index = 0; index < this.gameElements.towers.length; index++) {
@@ -454,6 +464,7 @@ class Game {
                 this.gameElements.towers.splice(indexToRemove, 1);
             }
         });
+        // clean enemies
         enemyIDsToRemove.forEach((enemyIDToRemove) => {
             let indexToRemove;
             for (let index = 0; index < this.gameElements.enemies.length; index++) {
@@ -467,6 +478,7 @@ class Game {
                 this.gameElements.enemies.splice(indexToRemove, 1);
             }
         });
+        // clean bullets
         this.cleanBullets();
     }
     cleanBullets() {
