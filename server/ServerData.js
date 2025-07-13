@@ -384,14 +384,14 @@ class ServerData {
             imageName: "tank_enemy",
             maxHP: 8000,
             reward: 25,
-            abilities: ["immunity", "jump_forward_on_hit"]
+            abilities: ["immunity", "jump_forward_on_hit", "resistance"]
         },
 
         boss_enemy: {
             name: "boss_enemy",
             speed: 0.025,
             imageName: "boss_enemy",
-            maxHP: 100000,
+            maxHP: 200000,
             reward: 25,
             abilities: ["immunity", "summoner", "regenerates"]
         },

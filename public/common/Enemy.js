@@ -48,6 +48,9 @@ class Enemy {
         if (this.regenerateTimer) {
             this.regenerateTimer -= timePassed;
         }
+        if (this.piercingTimer) {
+            this.piercingTimer -= timePassed;
+        }
 
         if (this.distance(this.position, this.direction) < Math.sqrt(xVelocity * xVelocity + yVelocity * yVelocity)) {
             if (this.hasTarget()) {
@@ -103,9 +106,10 @@ class Enemy {
             this.position.x = this.direction.x;
             this.position.y = this.direction.y;
         }
-        if (this.enemyData.maxHP > 19000 && special !== undefined && special.includes("armor_piercer")) {
+        if (this.enemyData.maxHP > 2250 && special !== undefined && special.includes("armor_piercer")) {
             this.actualHP -= damage;
             this.actualHP -= damage;
+            this.piercingTimer = 150;
         }
         if (special !== undefined && special.includes("fire") && !this.hasAbility("immunity")) {
             this.onFire = true;

@@ -243,6 +243,16 @@ class CanvasManager {
                                 size * 4
                             );
                         }
+                        if (enemy.piercingTimer !== undefined && enemy.piercingTimer > 0) {
+                            this.context.globalAlpha = 0.5;
+                            this.context.fillStyle = "red";
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x,
+                                enemy.position.y - size * 2 + this.offset.y,
+                                size * 4,
+                                size * 4
+                            );
+                        }
                         this.context.globalAlpha = 1;
 
                     }
