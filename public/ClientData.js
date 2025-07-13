@@ -50,7 +50,8 @@ class ClientData {
         "bank_tower",
         "upgraded_control_tower",
         "micro_agence_tower",
-        "artifact"
+        "artifact",
+        "tiring_tower"
     ];
     static images = {};
     static loadImages() {
@@ -230,6 +231,10 @@ class ClientData {
         "multi_shot_tower": {
             "description": "Tourelle laser, son faisceau passe par un prisme qui le divise en trois éclats distincts, capables de toucher plusieurs cibles simultanément.",
             "capacity": "Tire trois projectiles à chaque salve. Dégâts moyens."
+        },
+        "upgraded_control_tower": {
+            "description" : "Un ingénieur a improvisé. Il a rassemblé cinq tourelles complémentaires pour produire une arme de destruction massive. Les Thirak n'ont qu'à bien se tenir.",
+            "capacity": "Combine les capacités des tours dans la portée d'une tour de contrôle."
         }
     }
 }

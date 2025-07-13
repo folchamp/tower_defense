@@ -145,6 +145,7 @@ class Game {
                 this.drawCards(data);
             }
             if (message === "server_construction_successful") {
+                console.log(data);
                 this.constructionSuccessful(data);
             }
             if (message === "server_refresh_game_state") {
@@ -263,6 +264,11 @@ class Game {
                         ELEMENTS["infoPopupVrac"].innerHTML =
                             `${ClientData.towersDescriptions[tower.towerData.name].capacity}`;
                         ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
+                        console.log(tower.towerData.name);
+                        setTimeout(() => {
+                            // TODO quickfix, may not be necessary anymore
+                            ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
+                        }, 1000);
                     }
                 });
                 this.gameElements.artifacts.forEach((artifact) => {

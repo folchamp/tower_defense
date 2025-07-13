@@ -565,22 +565,22 @@ class GameManager {
             if (data.cardData.type === "three_actions") {
                 player.actualAmountOfActions += 3;
             }
-            if (data.cardData.type === "fire_rate_up") {
-                this.gameElements.towers.forEach((tower) => {
-                    if (tower.towerData.bulletData !== undefined) {
-                        tower.towerData = Util.copyObject(tower.towerData);
-                        tower.towerData.reloadTime = Math.floor(tower.towerData.reloadTime * 0.99);
-                    }
-                });
-            }
-            if (data.cardData.type === "damage_up") {
-                this.gameElements.towers.forEach((tower) => {
-                    if (tower.towerData.bulletData !== undefined) {
-                        tower.towerData.bulletData = Util.copyObject(tower.towerData.bulletData);
-                        tower.towerData.bulletData.damage += 15;
-                    }
-                });
-            }
+            // if (data.cardData.type === "fire_rate_up") {
+            //     this.gameElements.towers.forEach((tower) => {
+            //         if (tower.towerData.bulletData !== undefined) {
+            //             tower.towerData = Util.copyObject(tower.towerData);
+            //             tower.towerData.reloadTime = Math.floor(tower.towerData.reloadTime * 0.99);
+            //         }
+            //     });
+            // }
+            // if (data.cardData.type === "damage_up") {
+            //     this.gameElements.towers.forEach((tower) => {
+            //         if (tower.towerData.bulletData !== undefined) {
+            //             tower.towerData.bulletData = Util.copyObject(tower.towerData.bulletData);
+            //             tower.towerData.bulletData.damage += 15;
+            //         }
+            //     });
+            // }
             feedbackMessage = "pouvoir utilisé";
             success = true;
             this.cleanAfterCardSucces(data);
@@ -620,6 +620,10 @@ class GameManager {
             let returnData = {};
             let towerData = ServerData.towers[cardData.type];
             let tower = new Tower(cardData, Util.copyObject(towerData), position, player.playerName, Util.getNewID());
+            if (tower.towerData.name === "tiring_tower") {
+                console.log("top");
+                tower.totalTimePassed === 25000;
+            }
             this.gameElements.towers.push(tower);
             if (tower.towerData.auraData !== undefined) {
                 tower.towerData.auraData = Util.copyObject(tower.towerData.auraData);

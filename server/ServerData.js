@@ -10,8 +10,8 @@ class ServerData {
     static SMART_AIM = 10;
     static ARTIFACT_SPAWN_CHANCE = 100;
     // static ARTIFACT_SPAWN_CHANCE = 10; // for testing
-    static STARTING_MONEY = 6000;
-    // static STARTING_MONEY = 450000; // for testing
+    // static STARTING_MONEY = 6000;
+    static STARTING_MONEY = 450000; // for testing
     static ENEMIES_INTERVAL = 300;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static STARTING_HAND_SIZE = 3;
@@ -56,6 +56,7 @@ class ServerData {
                 shopCard.range = ServerData.towers[shopCard.type].range;
             }
             shopContent.push(shopCard);
+            console.log(shopCard.text);
         }
         return shopContent;
     }
@@ -144,7 +145,12 @@ class ServerData {
             name: "multi_shot_tower", initialAngle: 3 * Math.PI / 4,
             reloadTime: 1000, range: 225,
             bulletData: { damage: 400, speed: 0.35, color: "white", size: 2, special: ["triple_shot"] }
-        }
+        },
+        tiring_tower: {
+            name: "tiring_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, range: 300, size : 20,
+            bulletData: { damage: 450, speed: 0.8, color: "black", size: 2 }
+        },
     };
     static basicCardsData = [
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 400 }, // auto-include
@@ -165,6 +171,7 @@ class ServerData {
         { action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 150, sellprice: 300 },
         { action: "build", subType: "support", text: "Merveille", type: "wonder_tower", price: 8000, sellprice: 500 },
 
+        { action: "build", text: "Tour de secours", type: "tiring_tower", price: 200, sellprice: 400 },
         { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1000 },
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 400 },
         { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 400 },

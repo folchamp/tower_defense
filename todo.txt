@@ -1,63 +1,29 @@
 ***************** Todo *****************
-            abilities: ["adaptive_tactics", "resist_slow", "return_fire"]
-            abilities: ["self_explode", "armor_piercing"]
-            abilities: ["poison_aura", "spread_infection"]
-            abilities: ["summon_minions", "area_damage", "shield"]
-            abilities: ["hp_regeneration", "mutation_on_death"]
-            abilities: ["bullet_resistance", "slow_immune"]
-            abilities: ["invisibility", "phase_through_walls"]
-            abilities: ["shield", "area_resistance"]
-            abilities: ["spawn_in_groups", "fast_spawn_rate"]
-            abilities: ["knockback_attack", "rage_mode"]
-            abilities: ["evasion", "low_profile"]
-            abilities: ["high_armor", "slow_resistance"]
-            abilities: ["air_unit"]
-            abilities: ["zigzag_movement"]
-
-un ennemi qui invoque en continu pourrait plus tard invoquer des ennemis qui invoquent à la mort
 cartes à usage unique
-bug sur le popup, l'endurance et la récompense des mobs n'est pas effacée
-
 achat simultané en magasin, possibilité d'erreurs
-
-bug image super controle dans le popup
-
 créer une fonction splice from array avec une fonction
-
-animation, marquage, piercing (decay+air)
-
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs
-des artefacts spawnent aléatoirement sur la carte, rapportent de la thune quand ils sont récupérés + popup de lore
-
 personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
-
-le dernier mob fait spawner un artefact qui est une carte qui pourrit le deck et peut être revendue 
 certaines tours ont une portée minimum
 certaines tours tirent en masse pendant quelques secondes puis s'épuisent
-
-améliorer map onze (premier checkpoint est très long)
-map 4, checkpoints trop long à la fin
 
 sound design
 - one audio class that listens to socket messages
 - sound for shooting
 - sound for building
 
-bug visual popup super control
-
 nouvelles barres de vie
-
 réassigner les images
 
 Envoyer le nom de la carte
 Aficher le nom et la description de la carte
 
-tower built -> add player id
-munition shot -> add player id
-enemy killed -> add player id
----> stats
+stats
+- tower built -> add player id
+- munition shot -> add player id + tower id
+- enemy killed -> add player id + tower id
 
 __cartes__ 
 tous les joueurs piochent une carte
