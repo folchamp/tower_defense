@@ -56,9 +56,7 @@ class GameManager {
             if (tower.towerData.moneyPerWave !== undefined) {
                 for (let playerID in this.playerManager.players) {
                     let player = this.playerManager.players[playerID];
-                    console.log(player.money);
                     player.money += Math.round(tower.towerData.moneyPerWave / this.playerManager.getAmountOfPlayers());
-                    console.log(player.money);
                 }
             }
         });
@@ -142,7 +140,6 @@ class GameManager {
         }
     }
     sendPlayerGameData(player) {
-        console.log("top");
         this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID });
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
@@ -194,7 +191,7 @@ class GameManager {
                     }
                 }
                 if (enemy.hasAbility("summon_drones")) {
-                    for (let index = 0; index < 3; index++) {
+                    for (let index = 0; index < 2; index++) {
                         this.spawnEnemyHere("drone_enemy", enemy);
                     }
                 }
@@ -521,7 +518,6 @@ class GameManager {
             feedbackMessage = "pas sur une tour de contrôle"
         } else {
             if (data.cardData.type === "upgrade_control") {
-                console.log("upgrade control");
                 let controlTower = this.getTargettedControlTower(data);
                 let newTowerData = this.getTowerDataFromAura(controlTower); // also removes the towers ?
                 controlTower.totalTimePassed = newTowerData.totalTimePassed;
@@ -538,10 +534,6 @@ class GameManager {
                     special: newTowerData.special
                 };
                 this.newGameStateElements.towers.push(controlTower);
-                // controlTower.towerData.size = 32;
-                // delete controlTower.towerData.auraData;
-                // TODO finish this upgrade
-                console.log("end upgrade");
             }
             if (data.cardData.type === "everyone_draws") {
                 this.drawTime();

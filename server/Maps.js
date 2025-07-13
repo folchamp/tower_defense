@@ -58,6 +58,22 @@ class Maps {
         [{ "x": -100, "y": -100 }, { "x": 95, "y": 118 }, { "x": 145, "y": 156 }, { "x": 195, "y": 194 }, { "x": 250, "y": 232 }, { "x": 280, "y": 272 }, { "x": 300, "y": 312 }, { "x": 325, "y": 354 }, { "x": 380, "y": 390 }, { "x": 425, "y": 426 }, { "x": 440, "y": 470 }, { "x": 415, "y": 516 }, { "x": 380, "y": 558 }, { "x": 335, "y": 594 }, { "x": 290, "y": 632 }, { "x": 240, "y": 670 }, { "x": 185, "y": 710 }, { "x": 160, "y": 750 }, { "x": 150, "y": 794 }, { "x": 145, "y": 838 }, { "x": 155, "y": 884 }, { "x": 165, "y": 926 }, { "x": 185, "y": 970 }, { "x": 230, "y": 1006 }, { "x": 340, "y": 1016 }, { "x": 440, "y": 1008 }, { "x": 540, "y": 980 }, { "x": 625, "y": 946 }, { "x": 695, "y": 916 }, { "x": 740, "y": 878 }, { "x": 765, "y": 836 }, { "x": 790, "y": 794 }, { "x": 800, "y": 754 }, { "x": 830, "y": 712 }, { "x": 910, "y": 684 }, { "x": 1000, "y": 666 }, { "x": 1095, "y": 688 }, { "x": 1155, "y": 722 }, { "x": 1210, "y": 760 }, { "x": 1265, "y": 796 }, { "x": 1320, "y": 832 }, { "x": 1385, "y": 868 }, { "x": 1450, "y": 902 }, { "x": 1515, "y": 936 }, { "x": 1580, "y": 970 }, { "x": 1645, "y": 1006 }, { "x": 1715, "y": 1036 }, { "x": 1785, "y": 1066 }, { "x": 1870, "y": 1112 }, { "x": 1870, "y": 1112 }, { "x": 2020, "y": 1180 }, { "x": 2020, "y": 1180 }, { "x": 2020, "y": 1180 }]
     ]
     static allMaps = [Maps.mapZero, Maps.mapOne, Maps.mapTwo, Maps.mapThree, Maps.mapFour, Maps.mapFive, Maps.mapSix, Maps.mapSeven, Maps.mapEight, Maps.mapNine, Maps.mapTen, Maps.mapEleven, Maps.mapTwelve, Maps.mapFourteen];
+    static mapNames = [
+        "Exploitation Minière de Calderan", // 0
+        "Rempart de Rhen", // 1
+        "Halte de l'Exode", // 2
+        "Refuge de Kaël-Sur", // 3
+        "Station Auréole", // 4
+        "Dôme d’Ysil", // 5
+        "Portail d'Althir", // 6
+        "Havre de la Faille", // 7
+        "Bastion de la Crête du Serpent", // 8
+        "Tourbière de l'Ordalie", // 9
+        "Abri de la Crevasse", // 10
+        "Belisle, côté Est", // 11
+        "Citadelle des Vents", // 12
+        "Cavité de Morn", // 14
+    ]
 }
 
 exports.Maps = Maps;

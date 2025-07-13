@@ -1,106 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Intro Popup</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at center, #0a0f17, #010409);
-      color: #d0d0d0;
-      overflow: hidden;
-    }
+0. Exploitation Minière de Calderan
+Creusée jusqu’au noyau d’un astéroïde aride, Calderan était autrefois l’un des piliers de l’expansion humaine. Désormais à l’arrêt, ses tunnels abandonnés servent d’abri de fortune. On y entend encore les échos des machines profondes… ou autre chose.
 
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+1. Rempart de Rhen
+Rhen n’a jamais été une ville, seulement un mur. Une ligne de défense bâtie dans l’urgence, devenue frontière sacrée. C’est ici que l’on tient, coûte que coûte. Chaque brique suinte le souvenir d’un repli héroïque.
 
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 1rem;
-    }
+2. Halte de l'Exode
+Sur les routes stellaires, certains lieux prenaient des airs de sanctuaire. Cette station de transit fut transformée en refuge temporaire… qui devint définitif. Tout y est figé dans une attente sans fin, entre départ manqué et destin brisé.
 
-    .popup-content {
-      background: linear-gradient(145deg, #121a24, #0a0f17);
-      border: 1px solid #2a3a4d;
-      border-radius: 12px;
-      max-width: 420px;
-      width: 100%;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-      animation: fadeIn 0.8s ease-out;
-    }
+3. Refuge de Kaël-Sur
+Enfoui sous les sables, Kaël-Sur est l’un des rares abris ayant su rester caché des Thiraks. Isolés mais debout, ses habitants cultivent l’espoir, comme on cultive des mousses sous lampe UV : fragile, mais persistant.
 
-    .popup-content h1 {
-      font-size: 1.4rem;
-      color: #66f2ff;
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+4. Station Auréole
+Ancien observatoire de la ceinture d’Auréole, ce site semi-orbital fut abandonné quand les communications tombèrent. Récupéré récemment, il sert de poste avancé et d’œil dans les ténèbres. Ses antennes grésillent de rumeurs venues du vide.
 
-    .popup-content p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1.4rem;
-      color: #c0d8f0;
-    }
+5. Dôme d’Ysil
+Ville-jardin transformée en forteresse, Ysil fut l’un des rares bastions à conserver une part de beauté. Sous son dôme fracturé, des survivants s’organisent, se protègent… et cultivent quelques fleurs, comme une insulte à l’huile.
 
-    .popup-content button {
-      background-color: #66f2ff;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+6. Portail d'Althir
+L’ancien portail d’Althir reliait autrefois les systèmes d’Outre-Noyau. Son effondrement fut une blessure stratégique majeure. Aujourd’hui, c’est une tombe technologique, un amas de carcasses orbitales reconverti en barrière contre les incursions Thiraks.
 
-    .popup-content button:hover {
-      background-color: #44cce2;
-    }
+7. Havre de la Faille
+Taillé dans la paroi d’un canyon stellaire, ce site d’extraction gravitationnelle fut converti en point de repli. L’huile s’y infiltre mal, ralentie par les courants électromagnétiques instables. Cela suffit à en faire un havre… temporaire.
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
+8. Bastion de la Crête du Serpent
+Nichée sur une crête montagneuse en forme de spirale, cette base surplombe une plaine ravagée. L'accès est difficile, les lignes de vue parfaites. On dit que c’est là qu’est tombée la première forme Thirak. On s’en souvient — et on riposte.
 
-    @media (max-width: 480px) {
-      .popup-content h1 {
-        font-size: 1.1rem;
-      }
-      .popup-content p {
-        font-size: 0.85rem;
-      }
-    }
-  </style>
-</head>
-<body>
+9. Tourbière de l'Ordalie
+Rien ne pousse ici, mais tout s’enlise. Ces marécages radioactifs forment un labyrinthe naturel qui ralentit même les plus féroces Thiraks. Ceux qui traversent la tourbière sont jugés dignes… et abattus dès qu’ils émergent.
 
-<div class="popup-overlay" id="popup">
-  <div class="popup-content">
-    <h1>Réveil Système</h1>
-    <p>
-      Cycle inconnu. Dernier bastion détecté.<br>
-      Vous incarnez une IA tactique réactivée par les survivants humains.<br><br>
-      Utilisez vos <strong>cartes mémoire</strong> pour invoquer des défenses anciennes et repousser des vagues d’ennemis mi-organiques, mi-synthétiques.<br><br>
-      Ce jeu est un <strong>Tower Defense coopératif</strong> mêlé à des éléments de <strong>deckbuilding stratégique</strong>.
-    </p>
-    <button onclick="document.getElementById('popup').style.display='none'">Continuer</button>
-  </div>
-</div>
+10. Abri de la Crevasse
+Lorsque la station orbitale s’est écrasée ici, elle a laissé une cicatrice béante dans la croûte de cette lune. Des débris, des carcasses, un gouffre : on a fait avec. L’abri s’est installé là où les ombres sont les plus épaisses.
 
-</body>
-</html>
+11. Belisle, côté Est
+Belisle était un joyau de colonisation terraformée. Le côté Est, plus montagneux, a tenu plus longtemps que le reste. Il ne reste que quelques couloirs praticables, défendus avec une précision presque maniaque. Les cartes datent, mais les pièges fonctionnent.
+
+12. Citadelle des Vents
+Accrochée à flanc de falaise sur un monde balayé par les tempêtes, la Citadelle veille. Ici, les bourrasques font tomber les faibles et dissimulent les manœuvres des ingénieurs. Seuls les plus endurants tiennent bon. Et ils tiennent bon.
+
+14. Cavité de Morn
+Sous la roche noire, la Cavité de Morn abrite un écosystème souterrain fragile, préservé miraculeusement. Les habitants ont bâti des galeries silencieuses, d’où ils observent les Thiraks passer au-dessus… jusqu’à ce qu’ils creusent trop profond.

@@ -89,7 +89,6 @@ class CanvasManager {
         this.loop();
     }
     displayPing(data) {
-        console.log(data);
         this.pingData = data;
         this.pingCounter++;
         setTimeout(() => {
@@ -231,6 +230,8 @@ class CanvasManager {
                                 size * 4,
                                 size * 4
                             );
+                this.context.globalAlpha = 1;
+
                         }
                         if (enemy.regenerateTimer !== undefined && enemy.regenerateTimer > 0) {
                             this.context.globalAlpha = 0.5;
@@ -242,6 +243,7 @@ class CanvasManager {
                                 size * 4
                             );
                         }
+                this.context.globalAlpha = 1;
 
                     }
                 });
@@ -273,7 +275,6 @@ class CanvasManager {
             }
         });
         if (this.pingData) {
-            // console.log(this.pingData);
             this.context.fillStyle = "black";
             this.context.drawImage(ClientData.images["ping"], this.pingData.position.x + this.offset.x - 50, this.pingData.position.y + this.offset.y - 100);
             this.context.fillText(`${this.pingData.pingText}`, this.pingData.position.x + this.offset.x - this.context.measureText(this.pingData.pingText).width / 2, this.pingData.position.y + this.offset.y + 25);

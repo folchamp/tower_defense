@@ -31,6 +31,9 @@ le dernier mob fait spawner un artefact qui est une carte qui pourrit le deck et
 certaines tours ont une portée minimum
 certaines tours tirent en masse pendant quelques secondes puis s'épuisent
 
+améliorer map onze (premier checkpoint est très long)
+map 4, checkpoints trop long à la fin
+
 sound design
 - one audio class that listens to socket messages
 - sound for shooting
@@ -41,6 +44,9 @@ bug visual popup super control
 nouvelles barres de vie
 
 réassigner les images
+
+Envoyer le nom de la carte
+Aficher le nom et la description de la carte
 
 tower built -> add player id
 munition shot -> add player id
@@ -82,6 +88,8 @@ shop closes when you click anywhere else (idem player screen)
 ***************** Bugs *****************
 bug : when you select a tower, you can't move the canvas anymore without building the tower
 déconnexion pas prise en compte ? (le programme compte les joueurs déconnectés)
+- quand il y a une déconnexion, pinger tous les joueurs pour voir qui est encore là ?
+
 connection and disconnection : check if it really works
 bug affichage des thunes
 la dépense de thunes et son affichage buggent parfois
