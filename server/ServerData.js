@@ -8,6 +8,7 @@ class ServerData {
     static MAX_AMOUNT_OF_ACTIONS = 3;
     static SHOP_SHIFT = 3;
     static SMART_AIM = 10;
+    static ARTIFACT_SPAWN_CHANCE = 100;
     // static STARTING_MONEY = 6000;
     static STARTING_MONEY = 450000;
     static ENEMIES_INTERVAL = 300;
@@ -366,9 +367,9 @@ class ServerData {
             name: "armored_enemy",
             speed: 0.045,
             imageName: "armored_enemy",
-            maxHP: 6000,
+            maxHP: 3500,
             reward: 25,
-            abilities: ["accelerates"]
+            abilities: ["accelerates", "summons_on_hit"]
         },
 
         strong_enemy: {
@@ -395,7 +396,7 @@ class ServerData {
             imageName: "boss_enemy",
             maxHP: 100000,
             reward: 25,
-            abilities: ["immunity", "summoner"]
+            abilities: ["immunity", "summoner", "regenerates"]
         },
 
         brute_enemy: {

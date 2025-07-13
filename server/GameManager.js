@@ -230,7 +230,9 @@ class GameManager {
                         this.newGameStateElements.bullets.push(newBullet);
                     }
                 }
-
+                if (bullet.target.hasAbility("summons_on_hit")) {
+                    this.spawnEnemyHere("mini_enemy", bullet.target);
+                }
                 bullet.target.hit(bullet.bulletData.damage, bullet.bulletData.special);
                 bullet.isActive = false;
                 // this.newGameStateElements.bulletsToRemove.push(this.gameElements.bullets[index]);
@@ -241,21 +243,6 @@ class GameManager {
                 }
             }
         }
-
-        // this.stockedBullet = {
-        //     position: this.position,
-        //     target: this.target,
-        //     bulletData: this.towerData.bulletData
-        // };
-
-
-        // tower.stockedBullet = undefined;
-        // this.newGameStateElements.towers.push(tower);
-
-        // Util.distance(tower.position, tower.target.position) > tower.towerData.range) 
-
-        // tower.loseTarget(); // in case the enemy gets out of range
-
     }
     bulletsAct(timePassed) {
         this.gameElements.bullets.forEach((bullet) => {
