@@ -5,7 +5,6 @@ class DeckDisplayer {
 
     }
     refreshFullDeckDisplay(data) {
-        // console.log(data);
         let hand = data.allCards.hand;
         let deck = data.allCards.deck;
         let discard = data.allCards.discard;

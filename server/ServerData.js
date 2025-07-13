@@ -9,39 +9,38 @@ class ServerData {
     static SHOP_SHIFT = 3;
     static SMART_AIM = 10;
     static ARTIFACT_SPAWN_CHANCE = 100;
-    // static STARTING_MONEY = 6000;
-    static STARTING_MONEY = 450000;
+    static STARTING_MONEY = 6000;
+    // static STARTING_MONEY = 450000;
     static ENEMIES_INTERVAL = 300;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static STARTING_HAND_SIZE = 3;
     static HAND_SIZE = 8;
     static SHOP_SIZE = 8;
-    static DIFFICULTY_FACTOR = 2;
+    static DIFFICULTY_FACTOR = 1.5;
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.9995;
     static generateInitialHandData() {
         let handData = [];
-        let control = Util.copyObject(this.shopCardsData[0]);
-        let shooter = Util.copyObject(this.basicCardsData[0]);
-        shooter.range = ServerData.towers[shooter.type].range;
-        control.cardID = Util.getNewID();
-        shooter.cardID = Util.getNewID();
-        handData.push(control);
-        handData.push(shooter);
+        // let control = Util.copyObject(this.shopCardsData[0]);
+        // let shooter = Util.copyObject(this.basicCardsData[0]);
+        // shooter.range = ServerData.towers[shooter.type].range;
+        // control.cardID = Util.getNewID();
+        // shooter.cardID = Util.getNewID();
+        // handData.push(control);
+        // handData.push(shooter);
         // auto-include for testing
         // let draw = Util.copyObject(this.shopCardsData[1]);
         // draw.cardID = Util.getNewID();
         // draw.range = ServerData.towers[draw.type].range;
         // handData.push(draw);
         // autoinclude for testing
-        for (let index = 0; index < ServerData.STARTING_HAND_SIZE - 2; index++) {
-            let card = Util.copyObject(Util.randomFromArray(ServerData.basicCardsData));
+        ServerData.basicCardsData.forEach((card) => {
             card.cardID = Util.getNewID();
             if (card.action === "build") {
                 card.range = ServerData.towers[card.type].range;
             }
             handData.push(card);
-        }
+        });
         return handData;
     }
     static generateStartingPosition() {
@@ -148,20 +147,17 @@ class ServerData {
     };
     static basicCardsData = [
         { action: "build", text: "Petit canon", type: "basic_shooter", price: 300, sellprice: 400 }, // auto-include
-        { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 400 },
-        { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 },
+        { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 }, // auto-include
+        { action: "build", text: "Arme légère", type: "quick_shooter", price: 250, sellprice: 400 }, // auto-include
+        { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },  // auto-include
     ];
     static shopCardsData = [
-        { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },  // auto-include
-
-
         // autoinclude for testing
         // { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
         // { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 650, sellprice: 1300 }, // temp auto-include
         // { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         // { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
         // end autoinclude for testing
-
 
         { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500, size: 24 },
         { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 },
@@ -219,7 +215,7 @@ class ServerData {
         "basic_enemy", // pretty tanky but we need to make the game harder at this point
 
         "ghost_enemy", // teleports 
-        
+
         "scout_enemy",
 
         "quick_enemy",
@@ -312,7 +308,7 @@ class ServerData {
             imageName: "scout_enemy",
             maxHP: 1500,
             reward: 25,
-            abilities : ["regenerates"]
+            abilities: ["regenerates"]
         },
 
         ghost_enemy: {

@@ -130,7 +130,6 @@ class Game {
         socket.on("message", (data) => {
             let message = data.message;
             if (message !== "server_refresh_game_state") {
-                // console.log(message);
             }
             if (message === "server_refreshPlayerList") {
                 this.refreshPlayerList(data);
@@ -174,13 +173,11 @@ class Game {
                 this.deckDisplayer.refreshFullDeckDisplay(data);
             }
             if (message === "server_ping") {
-                console.log(data);
                 this.pingManager.displayPing(data);
             }
         });
     }
     sendPingCallback(data) {
-        console.log(data);
         socket.emit("message", {
             message: "client_ping", position: data.position, pingText: data.pingText, sender: this.session.getPlayerName()
         });
@@ -261,7 +258,6 @@ class Game {
                 });
                 this.gameElements.towers.forEach((tower) => {
                     if (Util.distance(offsetPosition, tower.position) <= 16) {
-                        console.log(tower);
                         Util.show(ELEMENTS["infoPopupContainer"]);
                         ELEMENTS["infoPopupBigTitle"].innerHTML = `Codename : ${tower.towerData.name.toUpperCase()}`;
                         if (tower.towerData.bulletData !== undefined && tower.towerData.bulletData.special !== undefined) {
@@ -478,7 +474,6 @@ class Game {
                 if (bullet.target.hit) { // quick bugfix TODO understand why this bug happens (remove condition to test)
                     bullet.target.hit(bullet.bulletData.damage, bullet.bulletData.special);
                 } else {
-                    console.log(bullet);
                 }
                 if (this.gameElements.bullets.length === index + 1) {
                     this.gameElements.bullets.pop();

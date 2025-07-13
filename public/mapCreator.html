@@ -31,7 +31,6 @@
         let lastPosition;
         let drawing = false;
         document.body.addEventListener("mousedown", (event) => {
-            console.log("down");
             context.strokeStyle = "blue";
             drawing = true;
             lastPosition = { x: event.clientX, y: event.clientY };
@@ -41,7 +40,6 @@
         });
         document.body.addEventListener("mousemove", (event) => {
             if (drawing) {
-                console.log("move");
                 lastPosition = { x: event.clientX, y: event.clientY };
                 context.lineTo(lastPosition.x, lastPosition.y);
                 context.stroke();
@@ -52,12 +50,10 @@
         });
         document.body.addEventListener("mouseup", (event) => {
             if (drawing) {
-                console.log("up");
                 lastPosition = { x: event.clientX, y: event.clientY };
                 mousePositions.push(lastPosition);
                 context.lineTo(lastPosition.x, lastPosition.y);
                 context.stroke();
-                console.log(JSON.stringify(mousePositions));
                 mousePositions = [];
             }
             drawing = false;

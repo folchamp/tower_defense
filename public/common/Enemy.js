@@ -62,7 +62,6 @@ class Enemy {
                     }
                     this.actualHP = Math.min(this.enemyData.maxHP, this.actualHP + 400);
                 }
-                // console.log(`${this.position.x}, ${this.position.y}, ${timePassed}`);
             }
         } else {
             this.position.x += xVelocity;
