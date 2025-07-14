@@ -13,8 +13,6 @@ modifier le mot-clef regen du boss pour qu'elle soit plus efficace (genre 5x plu
 next focus : readability
 retirer la musique des éléments préchargés
 virer les maps à route unique (pas assez lisibles) ???
-mettre un cap au dégâts des super-contrôle
-mettre un cap à la vitesse de déplacement des monstres
 revoir la clarté de monstres, ajouter un mini-bestiaire en début de vague 
 séparer le lore, les joueurs ne veulent pas lire de lore en plein affrontement de vague ou pendant les phases de préparation
 bug carte non-trouvée (j'ai l'impression que le reset a lieu deux fois ???)

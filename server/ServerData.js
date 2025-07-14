@@ -20,6 +20,7 @@ class ServerData {
     static DIFFICULTY_FACTOR = 3;
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.9995;
+    static MAX_DAMAGE = 8000;
     static caches = [
         { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2050, "y": 1180 }, title: "Petite boîte", description: "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour." },
         { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2050, "y": 1230 }, title: "Dalle disjointe", description: "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve." },
@@ -414,7 +415,7 @@ class ServerData {
             imageName: "boss_enemy",
             maxHP: 200000,
             reward: 25,
-            abilities: ["immunity", "summoner", "regenerates"]
+            abilities: ["immunity", "summoner", "regenerates_boss"]
         },
 
         brute_enemy: {

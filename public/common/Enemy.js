@@ -65,6 +65,12 @@ class Enemy {
                     }
                     this.actualHP = Math.min(this.enemyData.maxHP, this.actualHP + 400);
                 }
+                if (this.hasAbility("regenerates_boss")) {
+                    if (this.actualHP < this.enemyData.maxHP) {
+                        this.regenerateTimer = 150;
+                    }
+                    this.actualHP = Math.min(this.enemyData.maxHP, this.actualHP + 3000);
+                }
             }
         } else {
             this.position.x += xVelocity;
@@ -99,7 +105,7 @@ class Enemy {
         return this.enemyData.abilities !== undefined && this.enemyData.abilities.includes(name);
     }
     hit(damage, special) {
-        if (this.hasAbility("accelerates")) {
+        if (this.hasAbility("accelerates") && this.enemyData.speed <= 0.45) {
             this.enemyData.speed += 0.005;
         }
         if (this.hasAbility("jump_forward_on_hit")) {

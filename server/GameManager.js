@@ -513,7 +513,7 @@ class GameManager {
         // also remove the towers ?
         let data = { reloadTime: 9999, range: 0, damage: 0, speed: 0.01, color: "blue", size: 2, special: [], towerSize: 24, initialAngle: Math.PI / 2 };
         this.gameElements.towers.forEach((tower) => {
-            if (Util.distance(tower.position, controlTower.position) <= controlTower.towerData.auraData.auraRadius && controlTower.towerID !== tower.towerID) {
+            if (Util.distance(tower.position, controlTower.position) <= controlTower.towerData.auraData.auraRadius && controlTower.towerID !== tower.towerID && !tower.hasSpecial("tiring")) {
                 tower.isAlive = false;
                 if (tower.towerData.reloadTime !== undefined && tower.towerData.reloadTime < data.reloadTime) {
                     data.reloadTime = tower.towerData.reloadTime;
@@ -561,9 +561,9 @@ class GameManager {
                 controlTower.towerData.range = newTowerData.range;
                 controlTower.towerData.size = newTowerData.towerSize;
                 controlTower.towerData.initialAngle = newTowerData.initialAngle;
-                controlTower.towerData.name = "upgraded_control_tower";
+                // controlTower.towerData.name = "upgraded_control_tower";
                 controlTower.towerData.bulletData = {
-                    damage: newTowerData.damage,
+                    damage: Math.min(newTowerData.damage, ServerData.MAX_DAMAGE),
                     speed: newTowerData.speed,
                     color: newTowerData.color,
                     size: newTowerData.size,
