@@ -18,7 +18,7 @@ class PingManager {
             "Placez une tour ici",
             "Placez un tour de contrôle ici",
             "Je suis trop pauvre",
-            "Plus d'actions",
+            "Aucune action dispo",
             "Longue vie au développeur ♥"
         ]
 

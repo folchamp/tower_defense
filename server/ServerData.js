@@ -21,9 +21,9 @@ class ServerData {
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.9995;
     static caches = [
-        { position : { "x": 2050, "y": 1180 }, title : "Petite boîte", description : "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour."},
-        { position : { "x": 2050, "y": 1230 }, title : "Dalle disjointe", description : "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve."},
-        { position : { "x": 2000, "y": 1230 }, title : "Armoire dissimulée", description : "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné."},
+        { cacheEffect : "+2⭐ +2 cartes", position : { "x": 2050, "y": 1180 }, title : "Petite boîte", description : "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour."},
+        { cacheEffect : "+2⭐ +2 cartes", position : { "x": 2050, "y": 1230 }, title : "Dalle disjointe", description : "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve."},
+        { cacheEffect : "+2⭐ +2 cartes", position : { "x": 2000, "y": 1230 }, title : "Armoire dissimulée", description : "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné."},
     ]
     static generateInitialHandData() {
         let handData = [];
@@ -193,23 +193,23 @@ class ServerData {
         { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 650, sellprice: 1000 },
 
         { action: "power", text: "nouveau magasin", type: "new_shop", price: 400, sellprice: 400 },
-        { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
-        { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 },
-        { action: "power", text: "gagner 300💶", type: "gain_money_1", price: 100, sellprice: 200 },
-        { action: "power", text: "gagner 600💶", type: "gain_money_2", price: 300, sellprice: 600 },
+        { action: "power", text: "+2 cartes", type: "draw_two", price: 100, sellprice: 200 },
+        { action: "power", text: "+3⭐", type: "three_actions", price: 100, sellprice: 200 },
+        { action: "power", text: "+300🪙", type: "gain_money_1", price: 100, sellprice: 200 },
+        { action: "power", text: "+600🪙", type: "gain_money_2", price: 300, sellprice: 600 },
 
         { action: "power", text: "pioche pour tous", type: "everyone_draws", price: 200, sellprice: 400 },
-        // { action: "power", text: "gagner 300💶", type: "gain_money_1", price: 100, sellprice: 200 },
+        // { action: "power", text: "gagner 300🪙", type: "gain_money_1", price: 100, sellprice: 200 },
         // { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
         // { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 },
-        // { action: "power", text: "gagner 600💶", type: "gain_money_2", price: 300, sellprice: 600 }
+        // { action: "power", text: "gagner 600🪙", type: "gain_money_2", price: 300, sellprice: 600 }
 
     ]
-    // { action: "power", text: "une carte, une action, 100💶", type: "gain_all", price: 50, sellprice: 100 },
+    // { action: "power", text: "une carte, une action, 100🪙", type: "gain_all", price: 50, sellprice: 100 },
     // { action: "power", text: "dégâts des tours++", type: "damage_up", price: 300, sellprice: 600 },
     // { action: "power", text: "cadence de tir des tours++", type: "fire_rate_up", price: 300, sellprice: 600 },
     // { action: "power", text: "piocher deux cartes", type: "draw_two", price: 100, sellprice: 200 },
-    // { action: "power", text: "gagner 300 💶", type: "gain_money_1", price: 100, sellprice: 200 },
+    // { action: "power", text: "gagner 300 🪙", type: "gain_money_1", price: 100, sellprice: 200 },
     // { action: "power", text: "gagner trois actions", type: "three_actions", price: 100, sellprice: 200 }
     // { action: "build", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
     // { action: "build", text: "Tour de glace", type: "ice_tower", price: 700, sellprice: 1400 }, // temp
@@ -494,7 +494,7 @@ class ServerData {
         },
         {
             title: "Fragment d’échange radio",
-            description: "- Tu crois qu’on peut gagner ? - Gagner ? Non. Mais tenir un jour de plus, oui. Et après, on verra.",
+            description: "- Tu crois qu’on peut gagner ?<br>- Gagner ? Non. Mais tenir un jour de plus, oui. Et après, on verra.",
             imageName: "artifact"
         },
         {

@@ -20,7 +20,7 @@ class ShopCard {
         this.shopCardPriceContainer = Util.quickElement("shopCardPriceContainer", "span", this.shopCardContainer);
         // this.sellBuyButton = Util.quickElement("sellBuyButton", "button", this.shopCardContainer);
         this.shopCardTextContainer.innerHTML = `${this.cardData.text}`;
-        this.shopCardPriceContainer.innerHTML = `${this.cardData.sellprice}💶`;
+        this.shopCardPriceContainer.innerHTML = `${this.cardData.sellprice}🪙`;
         if (this.cardFateType === "buy") {
             // this.sellBuyButton.innerHTML = "acheter";
         } else if (this.cardFateType === "sell") {

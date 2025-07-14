@@ -19,7 +19,7 @@ class Card {
         }
         this.cardPriceContainer = Util.quickElement("cardPriceContainer", "div", this.cardContainer);
         this.cardTextContainer.innerHTML = cardData.text;
-        this.cardPriceContainer.innerHTML = `${cardData.price}💶`;
+        this.cardPriceContainer.innerHTML = `${cardData.price}🪙`;
 
         Util.hide(this.cardContainer);
 

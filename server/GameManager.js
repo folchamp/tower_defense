@@ -680,7 +680,7 @@ class GameManager {
             console.log(player)
             console.log(`artifact picked up : ${data.artifactID}`);
             console.log(data);
-            let cardData = { action: "power", text: "Artefact (50💶)", type: "gain_money_3", price: 1, sellprice: 250 };
+            let cardData = { action: "power", text: "Artefact (50🪙)", type: "gain_money_3", price: 1, sellprice: 250 };
             player.discard.push(cardData);
             this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         } else {

@@ -3,6 +3,7 @@ Envoyer le nom de la carte
 Aficher le nom et la description de la carte
 détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
 afficher la portée au survol 
+win and lose screen + stats
 
 cartes à usage unique
 achat simultané en magasin, possibilité d'erreurs

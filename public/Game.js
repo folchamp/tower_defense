@@ -295,7 +295,7 @@ class Game {
                         ELEMENTS["infoPopupBigTitle"].innerHTML = cache.cacheData.title;
                         ELEMENTS["infoPopupSubtitle"].innerHTML = "";
                         ELEMENTS["infoPopupDescription"].innerHTML = cache.cacheData.description;
-                        ELEMENTS["infoPopupVrac"].innerHTML = "";
+                        ELEMENTS["infoPopupVrac"].innerHTML = cache.cacheData.cacheEffect;
                         ELEMENTS["infoPopupImage"].src = `images/${cache.imageName}.png`;
                         socket.emit("message",
                             { message: "cache_picked_up", cacheID: cache.cacheID, playerID: this.session.playerID });
@@ -393,7 +393,7 @@ class Game {
         Util.emptyElement(ELEMENTS["playerList"]);
         data.playerList.forEach((player) => {
             let playerListElement = Util.quickElement("playerListElement", "li", ELEMENTS["playerList"]);
-            playerListElement.innerText = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 💶: ${player.money} || ${player.playerName}`;
+            playerListElement.innerText = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 🪙: ${player.money} || ${player.playerName}`;
             if (player.playerName === this.session.getPlayerName()) {
                 ELEMENTS["myResources"].innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 🪙: ${player.money}`;
             }
