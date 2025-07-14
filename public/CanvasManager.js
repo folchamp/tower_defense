@@ -281,6 +281,16 @@ class CanvasManager {
                         artifact.position.y + this.offset.y - ClientData.TOWER_HALF_SIZE,
                     );
                 });
+            }else if (order === "caches") {
+                // CACHES
+                this.gameElements[order].forEach((cache) => {
+                    this.context.fillStyle = "black";
+                    this.context.drawImage(
+                        ClientData.images[cache.imageName],
+                        cache.position.x + this.offset.x - ClientData.TOWER_HALF_SIZE,
+                        cache.position.y + this.offset.y - ClientData.TOWER_HALF_SIZE,
+                    );
+                });
             }
         });
         if (this.pingData) {

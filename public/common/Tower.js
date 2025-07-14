@@ -56,7 +56,7 @@ class Tower {
                     this.specialData.shots = 1;
                 }
 
-            } else {
+            } else if (!this.hasSpecial("tiring")) {
                 this.totalTimePassed = this.towerData.reloadTime;
             }
         }

@@ -5,12 +5,13 @@ class Game {
         ClientData.loadImages();
 
         this.gameElements = {
-            drawOrder: ["auras", "towers", "artifacts", "enemies", "bullets", "routes"],
+            drawOrder: ["routes", "auras", "caches", "artifacts", "towers", "enemies", "bullets"],
             auras: [],
             towers: [],
             enemies: [],
             bullets: [],
             artifacts: [],
+            caches: [],
             routes: [[{ x: 0, y: 0 }]]
         };
         this.session = new Session();
@@ -286,6 +287,21 @@ class Game {
                         console.log(artifact);
                     }
                 });
+                this.gameElements.caches.forEach((cache) => {
+                    // CACHES
+                    if (Util.distance(offsetPosition, cache.position) <= 16) {
+                        // TODO open the cache
+                        Util.show(ELEMENTS["infoPopupContainer"]);
+                        ELEMENTS["infoPopupBigTitle"].innerHTML = cache.cacheData.title;
+                        ELEMENTS["infoPopupSubtitle"].innerHTML = "";
+                        ELEMENTS["infoPopupDescription"].innerHTML = cache.cacheData.description;
+                        ELEMENTS["infoPopupVrac"].innerHTML = "";
+                        ELEMENTS["infoPopupImage"].src = `images/${cache.imageName}.png`;
+                        socket.emit("message",
+                            { message: "cache_picked_up", cacheID: cache.cacheID, playerID: this.session.playerID });
+                        console.log(cache);
+                    }
+                });
             }
         }
         if (eventType === "mouseenter") {
@@ -429,9 +445,11 @@ class Game {
         let enemies = data.gameElements.enemies;
         let towers = data.gameElements.towers;
         let artifacts = data.gameElements.artifacts;
+        let caches = data.gameElements.caches;
         let towerIDsToRemove = data.gameElements.towerIDsToRemove;
         let enemyIDsToRemove = data.gameElements.enemyIDsToRemove;
         let artifactIDsToRemove = data.gameElements.artifactIDsToRemove;
+        let cacheIDsToRemove = data.gameElements.cacheIDsToRemove;
         // towers
         towers.forEach((newTower) => {
             for (let index = 0; index < this.gameElements.towers.length; index++) {
@@ -465,6 +483,15 @@ class Game {
             console.log(artifact);
             this.gameElements.artifacts.push(artifact);
         });
+        // caches
+        caches.forEach((cacheData) => {
+            console.log("new cache !");
+            console.log(cacheData);
+            const cache = new Cache(cacheData.cacheData, cacheData.position, cacheData.cacheID);
+            cache.load(cacheData);
+            console.log(cache);
+            this.gameElements.caches.push(cache);
+        });
         // clean towers
         towerIDsToRemove.forEach((towerIDToRemove) => {
             let indexToRemove;
@@ -492,7 +519,7 @@ class Game {
                 this.gameElements.enemies.splice(indexToRemove, 1);
             }
         });
-        // clean enemies
+        // clean artifacts
         artifactIDsToRemove.forEach((artifactIDToRemove) => {
             let indexToRemove;
             for (let index = 0; index < this.gameElements.artifacts.length; index++) {
@@ -504,6 +531,20 @@ class Game {
             if (indexToRemove !== undefined) {
                 console.log("remove artifact");
                 this.gameElements.artifacts.splice(indexToRemove, 1);
+            }
+        });
+        // clean caches
+        cacheIDsToRemove.forEach((cacheIDToRemove) => {
+            let indexToRemove;
+            for (let index = 0; index < this.gameElements.caches.length; index++) {
+                const cache = this.gameElements.caches[index];
+                if (cache.cacheID === cacheIDToRemove) {
+                    indexToRemove = index;
+                }
+            }
+            if (indexToRemove !== undefined) {
+                console.log("remove cache");
+                this.gameElements.caches.splice(indexToRemove, 1);
             }
         });
         // clean bullets

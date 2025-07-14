@@ -4,6 +4,7 @@ const { Maps } = require("./Maps.js");
 const { ServerData } = require("./ServerData.js");
 const { ShopManager } = require("./ShopManager.js");
 const { Artifact } = require("../public/common/Artifact.js");
+const { Cache } = require("../public/common/Cache.js");
 const { Bullet } = require("../public/common/Bullet.js");
 const { Tower } = require("../public/common/Tower.js");
 const { Enemy } = require("../public/common/Enemy.js");
@@ -73,7 +74,7 @@ class GameManager {
             this.drawTime();
             this.drawTime();
             this.refreshPlayerActions()
-            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1.25;
+            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1;
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
             this.shopManager.resplenish();
             this.playerManager.refreshPlayerList();
@@ -96,7 +97,11 @@ class GameManager {
             enemies: [],
             bullets: [],
             artifacts: [],
+            caches: []
         };
+        for (let index = 0; index < 3; index++) {
+            this.gameElements.caches.push(new Cache(ServerData.caches[index], ServerData.caches[index].position, Util.getNewID()));
+        }
         this.hasStarted = false;
         this.isLost = false;
         this.shopManager.reset();
@@ -121,9 +126,11 @@ class GameManager {
             enemies: [],
             towers: [],
             artifacts: [],
+            caches: [],
             towerIDsToRemove: [],
             enemyIDsToRemove: [],
-            artifactIDsToRemove: []
+            artifactIDsToRemove: [],
+            cacheIDsToRemove: []
         }
     }
     checkGameWon() {
@@ -279,7 +286,9 @@ class GameManager {
                 if (chosenEnemy !== undefined && !tooFar) {
                     tower.setTarget(chosenEnemy);
                 }
-                this.newGameStateElements.towers.push(tower);
+                if (tower.hasTarget()) {
+                    this.newGameStateElements.towers.push(tower);
+                }
             }
             tower.move(timePassed);
             if (tower.stockedBullet) {
@@ -438,6 +447,9 @@ class GameManager {
                 spaceLeft = true;
             }
         });
+        if (data.cardData.type === "tiring_tower") {
+            spaceLeft = true;
+        }
         return spaceLeft;
     }
     isInsideControlZone(data) {
@@ -447,6 +459,9 @@ class GameManager {
                 isInside = true;
             }
         });
+        if (data.cardData.type === "tiring_tower") {
+            isInside = true;
+        }
         return isInside;
     }
     cleanAfterCardSucces(data) {
@@ -621,8 +636,7 @@ class GameManager {
             let towerData = ServerData.towers[cardData.type];
             let tower = new Tower(cardData, Util.copyObject(towerData), position, player.playerName, Util.getNewID());
             if (tower.towerData.name === "tiring_tower") {
-                console.log("top");
-                tower.totalTimePassed === 25000;
+                tower.totalTimePassed = 50000;
             }
             this.gameElements.towers.push(tower);
             if (tower.towerData.auraData !== undefined) {
@@ -673,9 +687,26 @@ class GameManager {
             console.log("artifact not found");
         }
     }
+    pickCacheUp(data) {
+        let player = this.playerManager.players[data.playerID]
+        this.gameElements.caches.forEach((cache) => {
+            if (data.cacheID === cache.cacheID && cache.status === "closed") {
+                cache.open();
+                this.newGameStateElements.caches.push(cache);
+                this.playerDraw(player.playerID);
+                this.playerDraw(player.playerID);
+                player.actualAmountOfActions += 2;
+                this.playerManager.refreshPlayerList();
+                this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+            }
+        });
+    }
     listener(data) {
         if (data.message === "artifact_picked_up") {
             this.pickArtifactUp(data);
+        }
+        if (data.message === "cache_picked_up") {
+            this.pickCacheUp(data);
         }
         if (data.message === "client_ping") {
             this.broadcast({

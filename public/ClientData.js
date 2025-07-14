@@ -51,7 +51,9 @@ class ClientData {
         "upgraded_control_tower",
         "micro_agence_tower",
         "artifact",
-        "tiring_tower"
+        "tiring_tower",
+        "cache_open",
+        "cache_closed"
     ];
     static images = {};
     static loadImages() {

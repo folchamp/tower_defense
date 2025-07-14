@@ -1,4 +1,9 @@
 ***************** Todo *****************
+Envoyer le nom de la carte
+Aficher le nom et la description de la carte
+détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
+afficher la portée au survol 
+
 cartes à usage unique
 achat simultané en magasin, possibilité d'erreurs
 créer une fonction splice from array avec une fonction
@@ -7,31 +12,16 @@ ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs
 personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
 certaines tours ont une portée minimum
-certaines tours tirent en masse pendant quelques secondes puis s'épuisent
-
 sound design
 - one audio class that listens to socket messages
 - sound for shooting
 - sound for building
-
 nouvelles barres de vie
 réassigner les images
-
-Envoyer le nom de la carte
-Aficher le nom et la description de la carte
-
 stats
 - tower built -> add player id
 - munition shot -> add player id + tower id
 - enemy killed -> add player id + tower id
-
-__cartes__ 
-tous les joueurs piochent une carte
-chaque joueur gagne une action
-tout le monde gagne de la thune
-add 1 permanent action (tower)
-déclenche les tourelles économiques
-récupération de la première carte de la défausse (ne marche pas quand la défausse est vide !!!)
 
 *** credits     ***
 Dark Post Apocalyptic Background 1 (-5db).wav by SolarPhasing -- https://freesound.org/s/436041/ -- License: Attribution 4.0
@@ -46,7 +36,6 @@ certaines cartes voient leur effet multiplié par la quantité de réputation qu
 système de campagne plutôt que de high score ? Carte aléatoire pour plus de variété ?
 système de réputation (tour de contrôle, cartes coopératives etc.)
 code couleur pour les cartes (construction, pouvoir, coopération, réputation)
-détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
 système de coût supplémentaire pour les cartes fortes (sacrifice 1 = défausser la première carte de se main) (trouver un mot-clef sympa)
 les monstres ont une « valeur de difficulté » qui détermine leur fréquence
 poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat précise ?)
@@ -61,7 +50,6 @@ shop closes when you click anywhere else (idem player screen)
 bug : when you select a tower, you can't move the canvas anymore without building the tower
 déconnexion pas prise en compte ? (le programme compte les joueurs déconnectés)
 - quand il y a une déconnexion, pinger tous les joueurs pour voir qui est encore là ?
-
 connection and disconnection : check if it really works
 bug affichage des thunes
 la dépense de thunes et son affichage buggent parfois
@@ -88,6 +76,11 @@ un joueur peut construire des bases de tourelles qui rendent les tourelles posé
 chaque joueur défend sa zone ?
 
 ***************** Cards *****************
+chaque joueur gagne une action
+tout le monde gagne de la thune
+add 1 permanent action (tower)
+déclenche les tourelles économiques
+récupération de la première carte de la défausse (ne marche pas quand la défausse est vide !!!)
 carte qui ajoute une carte rare au magasin (remplace la première carte, la plus ancienne)
 augmente temporairement la portée/vitesse/dégâts de toutes les tours
 l'ennemi ciblé devient la cible prioritaire de toutes les tours
@@ -116,13 +109,9 @@ accélérer x2, x4
 no need to click an empty zone to use a power card
 tutoriel
 enemies use a virtual grid pathfinding
-some enemies fly
 tower:hover displays stats
-enemies are vehicles
-some towers slow down the enemies
 some towers have aoe damage
 sell a tower you don't want anymore
-afficher la portée au survol 
 
 ***************** could ***************** 
 circular action wheel

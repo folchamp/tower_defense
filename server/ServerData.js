@@ -10,16 +10,21 @@ class ServerData {
     static SMART_AIM = 10;
     static ARTIFACT_SPAWN_CHANCE = 100;
     // static ARTIFACT_SPAWN_CHANCE = 10; // for testing
-    // static STARTING_MONEY = 6000;
-    static STARTING_MONEY = 450000; // for testing
+    static STARTING_MONEY = 6000;
+    // static STARTING_MONEY = 450000; // for testing
     static ENEMIES_INTERVAL = 300;
     static ENEMY_STARTING_POSITION = { x: 0, y: 0 };
     static STARTING_HAND_SIZE = 3;
     static HAND_SIZE = 8;
     static SHOP_SIZE = 8;
-    static DIFFICULTY_FACTOR = 1.5;
+    static DIFFICULTY_FACTOR = 3;
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.9995;
+    static caches = [
+        { position : { "x": 2050, "y": 1180 }, title : "Petite boîte", description : "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour."},
+        { position : { "x": 2050, "y": 1230 }, title : "Dalle disjointe", description : "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve."},
+        { position : { "x": 2000, "y": 1230 }, title : "Armoire dissimulée", description : "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné."},
+    ]
     static generateInitialHandData() {
         let handData = [];
         // let control = Util.copyObject(this.shopCardsData[0]);
@@ -149,7 +154,7 @@ class ServerData {
         tiring_tower: {
             name: "tiring_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 300, size : 20,
-            bulletData: { damage: 450, speed: 0.8, color: "black", size: 2 }
+            bulletData: { damage: 450, speed: 0.8, color: "black", size: 2, special: ["tiring"] }
         },
     };
     static basicCardsData = [
@@ -439,7 +444,7 @@ class ServerData {
         },
         {
             title: "Schéma trouvé dans un abri isolé",
-            description: "« Une carte. Des flèches. Quelques équations mathémathiques. Au centre, une annotation griffonnée à la hâte. « C’est là qu’elle est née. C’est là qu’on la tuera. » Aucun nom, aucune signature. Juste une phrase. « J’y vais seul. Si je ne reviens pas, prévenez mes enfants. »",
+            description: "Une carte. Des flèches. Quelques équations mathémathiques. Au centre, une annotation griffonnée à la hâte. « C’est là qu’elle est née. C’est là qu’on la tuera. » Aucun nom, aucune signature. Juste une phrase. « J’y vais seul. Si je ne reviens pas, prévenez mes enfants. »",
             imageName: "artifact"
         },
         {
