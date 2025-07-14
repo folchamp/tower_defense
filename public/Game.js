@@ -26,6 +26,7 @@ class Game {
         this.deckDisplayer = new DeckDisplayer();
         this.pingManager = new PingManager((data) => { this.sendPingCallback(data); }, (data) => { this.canvasManager.displayPing(data); });
         this.soundManager = new SoundManager();
+        this.rolesManager = new RolesManager();
 
         this.hand = [];
         this.grabbedCard = undefined;
@@ -131,7 +132,8 @@ class Game {
 
         socket.on("message", (data) => {
             let message = data.message;
-            if (message !== "server_refresh_game_state") {
+            if (message === "server_send_roles") {
+                this.rolesManager.displayRolesChoice(data);
             }
             if (message === "server_refreshPlayerList") {
                 this.refreshPlayerList(data);
@@ -146,7 +148,6 @@ class Game {
                 this.drawCards(data);
             }
             if (message === "server_construction_successful") {
-                console.log(data);
                 this.constructionSuccessful(data);
             }
             if (message === "server_refresh_game_state") {
@@ -265,7 +266,6 @@ class Game {
                         ELEMENTS["infoPopupVrac"].innerHTML =
                             `${ClientData.towersDescriptions[tower.towerData.name].capacity}`;
                         ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
-                        console.log(tower.towerData.name);
                         setTimeout(() => {
                             // TODO quickfix, may not be necessary anymore
                             ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
@@ -284,7 +284,6 @@ class Game {
                         ELEMENTS["infoPopupImage"].src = `images/${artifact.artifactData.imageName}.png`;
                         socket.emit("message",
                             { message: "artifact_picked_up", artifactID: artifact.artifactID, playerID: this.session.playerID });
-                        console.log(artifact);
                     }
                 });
                 this.gameElements.caches.forEach((cache) => {
@@ -299,7 +298,6 @@ class Game {
                         ELEMENTS["infoPopupImage"].src = `images/${cache.imageName}.png`;
                         socket.emit("message",
                             { message: "cache_picked_up", cacheID: cache.cacheID, playerID: this.session.playerID });
-                        console.log(cache);
                     }
                 });
             }
@@ -421,7 +419,6 @@ class Game {
         for (let attribute in data.gameElements) {
             this.gameElements[attribute] = data.gameElements[attribute];
         }
-        console.log(this.gameElements.artifacts);
         for (let index = 0; index < this.gameElements.enemies.length; index++) {
             const enemyData = this.gameElements.enemies[index];
             const enemy = new Enemy(enemyData.position, enemyData.direction, enemyData.enemyData);
@@ -476,20 +473,14 @@ class Game {
         });
         // artifacts
         artifacts.forEach((artifactData) => {
-            console.log("new artifact !");
-            console.log(artifactData);
             const artifact = new Artifact(artifactData.artifactData, artifactData.position, artifactData.artifactID);
             artifact.load(artifactData);
-            console.log(artifact);
             this.gameElements.artifacts.push(artifact);
         });
         // caches
         caches.forEach((cacheData) => {
-            console.log("new cache !");
-            console.log(cacheData);
             const cache = new Cache(cacheData.cacheData, cacheData.position, cacheData.cacheID);
             cache.load(cacheData);
-            console.log(cache);
             this.gameElements.caches.push(cache);
         });
         // clean towers

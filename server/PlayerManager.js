@@ -39,6 +39,7 @@ class PlayerManager {
         }
         this.amountOfPlayers = count;
         console.log(`${count} players active`);
+        console.log("------------------------------------");
     }
     disconnect(socketID) {
         for (let playerID in this.players) {
@@ -54,6 +55,9 @@ class PlayerManager {
     connect(playerID, socketID, playerName) {
         if (this.players[playerID] === undefined) {
             this.players[playerID] = new Player(playerName, playerID, socketID);
+            console.log("NEW PLAYER ARRIVED");
+        } else {
+            console.log("Old player returned");
         }
         this.players[playerID].connected = true;
         this.broadcast({ message: "server_new_player_arrived", playerID: playerID, socketID: socketID });

@@ -21,10 +21,18 @@ class ServerData {
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.9995;
     static caches = [
-        { cacheEffect : "+2⭐ +2 cartes", position : { "x": 2050, "y": 1180 }, title : "Petite boîte", description : "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour."},
-        { cacheEffect : "+2⭐ +2 cartes", position : { "x": 2050, "y": 1230 }, title : "Dalle disjointe", description : "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve."},
-        { cacheEffect : "+2⭐ +2 cartes", position : { "x": 2000, "y": 1230 }, title : "Armoire dissimulée", description : "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné."},
+        { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2050, "y": 1180 }, title: "Petite boîte", description: "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour." },
+        { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2050, "y": 1230 }, title: "Dalle disjointe", description: "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve." },
+        { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2000, "y": 1230 }, title: "Armoire dissimulée", description: "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné." },
     ]
+    static roles = [
+        { roles: "ingénieur" },
+        { roles: "stratége" },
+        { roles: "éclaireur" },
+        { roles: "gardien" },
+        { roles: "soldat" },
+        { roles: "économiste" },
+    ];
     static generateInitialHandData() {
         let handData = [];
         // let control = Util.copyObject(this.shopCardsData[0]);
@@ -61,6 +69,7 @@ class ServerData {
                 shopCard.range = ServerData.towers[shopCard.type].range;
             }
             shopContent.push(shopCard);
+            // display shop in console
             console.log(shopCard.text);
         }
         return shopContent;
@@ -153,7 +162,7 @@ class ServerData {
         },
         tiring_tower: {
             name: "tiring_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1000, range: 300, size : 20,
+            reloadTime: 1000, range: 300, size: 20,
             bulletData: { damage: 450, speed: 0.8, color: "black", size: 2, special: ["tiring"] }
         },
     };

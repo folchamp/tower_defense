@@ -102,6 +102,7 @@ class GameManager {
         for (let index = 0; index < 3; index++) {
             this.gameElements.caches.push(new Cache(ServerData.caches[index], ServerData.caches[index].position, Util.getNewID()));
         }
+        this.roles = [];
         this.hasStarted = false;
         this.isLost = false;
         this.shopManager.reset();
@@ -148,7 +149,7 @@ class GameManager {
         }
     }
     sendPlayerGameData(player) {
-        this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID });
+        this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.role });
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
@@ -213,9 +214,7 @@ class GameManager {
                     this.gameElements.enemies[index] = this.gameElements.enemies.pop();
                 }
                 if (Util.randomValue(0, ServerData.ARTIFACT_SPAWN_CHANCE) === 0) {
-                    console.log("artifact spawns");
                     let newArtifact = new Artifact(Util.copyObject(Util.randomFromArray(ServerData.artifacts)), Util.copyObject(enemy.position), Util.getNewID());
-                    console.log(newArtifact);
                     this.gameElements.artifacts.push(newArtifact);
                     this.newGameStateElements.artifacts.push(newArtifact);
                 }
@@ -394,7 +393,26 @@ class GameManager {
         if (player.handData === undefined) {
             player.handData = ServerData.generateInitialHandData();
         }
+        if (player.role === undefined) {
+            this.sendRoles(player);
+        }
         this.sendPlayerGameData(player);
+    }
+    createRole() {
+        let role = Util.randomFromArray(ServerData.roles);
+        role.roleID = Util.getNewID();
+        return role;
+    }
+    sendRoles(player) {
+        // TODO roles
+        if (player.roles === undefined) {
+            player.roles = [this.createRole(), this.createRole(), this.createRole()];
+            this.roles = [...this.roles, ...player.roles];
+        }
+        console.log(this.roles);
+        console.log("-");
+        console.log(player.roles);
+        this.broadcast({ message: "server_send_roles", recipient: player.playerID, roles: player.roles });
     }
     buy(data) {
         let player = this.playerManager.players[data.playerID];
@@ -677,9 +695,6 @@ class GameManager {
         if (indexToRemove !== undefined) {
             this.gameElements.artifacts.splice(indexToRemove, 1);
             this.newGameStateElements.artifactIDsToRemove.push(artifactID);
-            console.log(player)
-            console.log(`artifact picked up : ${data.artifactID}`);
-            console.log(data);
             let cardData = { action: "power", text: "Artefact (50🪙)", type: "gain_money_3", price: 1, sellprice: 250 };
             player.discard.push(cardData);
             this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
