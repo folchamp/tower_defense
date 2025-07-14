@@ -5,6 +5,7 @@ détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter 
 afficher la portée au survol 
 win and lose screen + stats
 rôles
+bug cumul pinge
 
 cartes à usage unique
 achat simultané en magasin, possibilité d'erreurs

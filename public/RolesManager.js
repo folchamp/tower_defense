@@ -6,6 +6,7 @@ class RolesManager {
     }
     displayRolesChoice(data) {
         this.roles = data.roles;
-        alert(this.roles);
+        console.log("roles : ");
+        console.log(this.roles);
     }
 }
