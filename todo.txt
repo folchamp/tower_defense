@@ -1,52 +1,48 @@
 ***************** Todo *****************
+bloquer le magasin pendant deux secondes après un achat
 Envoyer le nom de la map
 Aficher le nom et la description de la map
-détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
-afficher la portée au survol 
-win and lose screen + stats
-rôles
+texte d'accueil dans le bestiaire
 bug cumul ping
-
 créer un menu qui donne accès au lore, bestiaire etc.
-prévoir une manière de modifier ou choisir la difficulté
-modifier le mot-clef regen du boss pour qu'elle soit plus efficace (genre 5x plus efficace)
-next focus : readability
-retirer la musique des éléments préchargés
-virer les maps à route unique (pas assez lisibles) ???
 revoir la clarté de monstres, ajouter un mini-bestiaire en début de vague 
 séparer le lore, les joueurs ne veulent pas lire de lore en plein affrontement de vague ou pendant les phases de préparation
+placer les notifications d'accueil, de description de map, de cache et de choix de rôle dans un système unique
+descriptions plus proches du visuel du monstre dans le bestiaire
+achat simultané en magasin, possibilité d'erreurs
+
+win and lose screen + stats
+détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
+afficher la portée au survol 
+rôles
+prévoir une manière de modifier ou choisir la difficulté
+next focus : readability
+virer les maps à route unique (pas assez lisibles) ???
 bug carte non-trouvée (j'ai l'impression que le reset a lieu deux fois ???)
 cleaner les valeurs fixes dans tout le code, mettre des paramètres à la place
-placer les notifications d'accueil, de description de map, de cache et de choix de rôle dans un système unique
-
-texte d'accueil dans le bestiaire
-descriptions plus proches du visuel du monstre dans le bestiaire
 grotte pour l'arrivée des monstres
 moins de monstres moins vite, mais plus forts
 vagues aléatoires basées sur les forces des monstres
-
 --- roles ---
-ingénieur : tours de contrôle moins chères et plus spacieuses
-récolteur : les points d'action non-dépensés se transforment en thunes
-
+- ingénieur : tours de contrôle moins chères et plus spacieuses
+- récolteur : les points d'action non-dépensés se transforment en thunes
 carte destruction de tour
 déploiement mobile
 balise-relais (mini tour de contrôle)
 cartes à usage unique
-achat simultané en magasin, possibilité d'erreurs
 créer une fonction splice from array avec une fonction
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 protéger le serveur contre les crashs
 personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
 certaines tours ont une portée minimum
-sound design
+--- sound design ---
 - one audio class that listens to socket messages
 - sound for shooting
 - sound for building
 nouvelles barres de vie
 réassigner les images
-stats
+--- stats ---
 - tower built -> add player id
 - munition shot -> add player id + tower id
 - enemy killed -> add player id + tower id
