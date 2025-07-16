@@ -19,6 +19,12 @@ bug carte non-trouvée (j'ai l'impression que le reset a lieu deux fois ???)
 cleaner les valeurs fixes dans tout le code, mettre des paramètres à la place
 placer les notifications d'accueil, de description de map, de cache et de choix de rôle dans un système unique
 
+texte d'accueil dans le bestiaire
+descriptions plus proches du visuel du monstre dans le bestiaire
+grotte pour l'arrivée des monstres
+moins de monstres moins vite, mais plus forts
+vagues aléatoires basées sur les forces des monstres
+
 --- roles ---
 ingénieur : tours de contrôle moins chères et plus spacieuses
 récolteur : les points d'action non-dépensés se transforment en thunes
