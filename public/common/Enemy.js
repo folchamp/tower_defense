@@ -105,7 +105,7 @@ class Enemy {
         return this.enemyData.abilities !== undefined && this.enemyData.abilities.includes(name);
     }
     hit(damage, special) {
-        if (this.hasAbility("accelerates") && this.enemyData.speed <= 0.45) {
+        if (this.hasAbility("accelerates") && this.enemyData.speed <= 0.3) {
             this.enemyData.speed += 0.01;
         }
         if (this.hasAbility("jump_forward_on_hit")) {
