@@ -276,7 +276,7 @@ class Game {
                     // ARTIFACTS
                     if (Util.distance(offsetPosition, artifact.position) <= 16) {
                         // let artifactData = Util.randomFromArray(ClientData.artifactsDescription);
-                        Util.show(ELEMENTS["infoPopupContainer"]);
+                        // Util.show(ELEMENTS["infoPopupContainer"]); // TODO
                         ELEMENTS["infoPopupBigTitle"].innerHTML = artifact.artifactData.title;
                         ELEMENTS["infoPopupSubtitle"].innerHTML = "";
                         ELEMENTS["infoPopupDescription"].innerHTML = artifact.artifactData.description;
@@ -290,7 +290,7 @@ class Game {
                     // CACHES
                     if (Util.distance(offsetPosition, cache.position) <= 16) {
                         // TODO open the cache
-                        Util.show(ELEMENTS["infoPopupContainer"]);
+                        // Util.show(ELEMENTS["infoPopupContainer"]); // TODO
                         ELEMENTS["infoPopupBigTitle"].innerHTML = cache.cacheData.title;
                         ELEMENTS["infoPopupSubtitle"].innerHTML = "";
                         ELEMENTS["infoPopupDescription"].innerHTML = cache.cacheData.description;
