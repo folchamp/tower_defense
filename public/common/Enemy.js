@@ -106,7 +106,7 @@ class Enemy {
     }
     hit(damage, special) {
         if (this.hasAbility("accelerates") && this.enemyData.speed <= 0.45) {
-            this.enemyData.speed += 0.005;
+            this.enemyData.speed += 0.01;
         }
         if (this.hasAbility("jump_forward_on_hit")) {
             this.position.x = this.direction.x;

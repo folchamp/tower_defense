@@ -164,7 +164,7 @@ class ServerData {
         tiring_tower: {
             name: "tiring_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 300, size: 20,
-            bulletData: { damage: 450, speed: 0.8, color: "black", size: 2, special: ["tiring"] }
+            bulletData: { damage: 300, speed: 0.8, color: "black", size: 2, special: ["tiring"] }
         },
     };
     static basicCardsData = [
@@ -204,6 +204,7 @@ class ServerData {
 
         { action: "power", text: "nouveau magasin", type: "new_shop", price: 400, sellprice: 400 },
         { action: "power", text: "+2 cartes", type: "draw_two", price: 100, sellprice: 200 },
+        { action: "power", text: "+2 cartes", type: "draw_two", price: 100, sellprice: 200 }, // two times
         { action: "power", text: "+3⭐", type: "three_actions", price: 100, sellprice: 200 },
         { action: "power", text: "+300🪙", type: "gain_money_1", price: 100, sellprice: 200 },
         { action: "power", text: "+600🪙", type: "gain_money_2", price: 300, sellprice: 600 },

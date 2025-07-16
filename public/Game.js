@@ -27,6 +27,7 @@ class Game {
         this.pingManager = new PingManager((data) => { this.sendPingCallback(data); }, (data) => { this.canvasManager.displayPing(data); });
         this.soundManager = new SoundManager();
         this.rolesManager = new RolesManager();
+        this.loreManager = new LoreManager();
 
         this.hand = [];
         this.grabbedCard = undefined;
@@ -78,18 +79,9 @@ class Game {
             }
             if (event.code === "Escape") {
                 this.closeAllPopups();
-                Util.hide(ELEMENTS["infoPopupContainer"]);
+                this.loreManager.closePopup();
                 // this.soundManager.go();
             }
-        });
-
-        ELEMENTS["infoPopupCloseButton"].addEventListener("click", (event) => {
-            Util.hide(ELEMENTS["infoPopupContainer"]);
-            // this.soundManager.go();
-        });
-
-        ELEMENTS["continueButton"].addEventListener("click", (event) => {
-            Util.hide(ELEMENTS["infoPopupContainer"]);
         });
 
         // MENU BUTTONS
@@ -275,13 +267,19 @@ class Game {
                 this.gameElements.artifacts.forEach((artifact) => {
                     // ARTIFACTS
                     if (Util.distance(offsetPosition, artifact.position) <= 16) {
-                        // let artifactData = Util.randomFromArray(ClientData.artifactsDescription);
-                        // Util.show(ELEMENTS["infoPopupContainer"]); // TODO
-                        ELEMENTS["infoPopupBigTitle"].innerHTML = artifact.artifactData.title;
-                        ELEMENTS["infoPopupSubtitle"].innerHTML = "";
-                        ELEMENTS["infoPopupDescription"].innerHTML = artifact.artifactData.description;
-                        ELEMENTS["infoPopupVrac"].innerHTML = "";
-                        ELEMENTS["infoPopupImage"].src = `images/${artifact.artifactData.imageName}.png`;
+                        ELEMENTS["playersButton"].classList.add("animateButton");
+                        setTimeout(() => {
+                            ELEMENTS["playersButton"].classList.remove("animateButton");
+                        }, 500);
+                        this.loreManager.addLoreElement(
+                            {
+                                title: artifact.artifactData.title,
+                                subtitle: "",
+                                description: artifact.artifactData.description,
+                                vrac: "",
+                                imageName: `images/${artifact.artifactData.imageName}.png`
+                            }
+                        );
                         socket.emit("message",
                             { message: "artifact_picked_up", artifactID: artifact.artifactID, playerID: this.session.playerID });
                     }
@@ -289,13 +287,19 @@ class Game {
                 this.gameElements.caches.forEach((cache) => {
                     // CACHES
                     if (Util.distance(offsetPosition, cache.position) <= 16) {
-                        // TODO open the cache
-                        // Util.show(ELEMENTS["infoPopupContainer"]); // TODO
-                        ELEMENTS["infoPopupBigTitle"].innerHTML = cache.cacheData.title;
-                        ELEMENTS["infoPopupSubtitle"].innerHTML = "";
-                        ELEMENTS["infoPopupDescription"].innerHTML = cache.cacheData.description;
-                        ELEMENTS["infoPopupVrac"].innerHTML = cache.cacheData.cacheEffect;
-                        ELEMENTS["infoPopupImage"].src = `images/${cache.imageName}.png`;
+                        ELEMENTS["playersButton"].classList.add("animateButton");
+                        setTimeout(() => {
+                            ELEMENTS["playersButton"].classList.remove("animateButton");
+                        }, 500);
+                        this.loreManager.addLoreElement(
+                            {
+                                title: cache.cacheData.title,
+                                subtitle: "",
+                                description: cache.cacheData.description,
+                                vrac: cache.cacheData.cacheEffect,
+                                imageName: `images/${cache.imageName}.png`
+                            }
+                        );
                         socket.emit("message",
                             { message: "cache_picked_up", cacheID: cache.cacheID, playerID: this.session.playerID });
                     }

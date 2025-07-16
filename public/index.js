@@ -40,7 +40,8 @@ const elementNames = [
     "infoPopupVrac",
     "infoPopupCloseButton",
     "infoPopupImage",
-    "continueButton"
+    "continueButton",
+    "loreListContainer"
 ]
 
 const audioURLs = {
