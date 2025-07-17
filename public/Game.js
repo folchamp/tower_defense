@@ -26,7 +26,7 @@ class Game {
         this.deckDisplayer = new DeckDisplayer();
         this.pingManager = new PingManager((data) => { this.sendPingCallback(data); }, (data) => { this.canvasManager.displayPing(data); });
         this.soundManager = new SoundManager();
-        this.rolesManager = new RolesManager();
+        this.rolesManager = new RolesManager((chosenRole) => { this.rolesCallback(chosenRole); });
         this.loreManager = new LoreManager();
 
         this.loreManager.addLoreElement(
@@ -196,6 +196,9 @@ class Game {
                 this.pingManager.displayPing(data);
             }
         });
+    }
+    rolesCallback(chosenrole) {
+        socket.emit("message", { message: "client_chosen_role", playerID: this.session.playerID, role: chosenrole });
     }
     sendPingCallback(data) {
         socket.emit("message", {

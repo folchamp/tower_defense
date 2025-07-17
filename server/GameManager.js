@@ -85,6 +85,7 @@ class GameManager {
         }
     }
     reset() {
+        let randomCacheFactor = Util.randomValue(0, 100);
         this.mapNumber = Util.randomValue(0, Maps.allMaps.length - 1);
         console.log(`Map number : ${this.mapNumber}`);
         this.timeLost = 0;
@@ -99,8 +100,13 @@ class GameManager {
             artifacts: [],
             caches: []
         };
+
         for (let index = 0; index < 3; index++) {
-            this.gameElements.caches.push(new Cache(ServerData.caches[index], ServerData.caches[index].position, Util.getNewID()));
+            this.gameElements.caches.push(
+                new Cache(
+                    ServerData.caches[(index + randomCacheFactor) % ServerData.caches.length],
+                    ServerData.cachePositions[index],
+                    Util.getNewID()));
         }
         this.roles = [];
         this.hasStarted = false;
@@ -399,7 +405,7 @@ class GameManager {
         this.sendPlayerGameData(player);
     }
     createRole() {
-        let role = Util.randomFromArray(ServerData.roles);
+        let role = Util.copyObject(Util.randomFromArray(ServerData.roles));
         role.roleID = Util.getNewID();
         return role;
     }
@@ -409,9 +415,6 @@ class GameManager {
             player.roles = [this.createRole(), this.createRole(), this.createRole()];
             this.roles = [...this.roles, ...player.roles];
         }
-        console.log(this.roles);
-        console.log("-");
-        console.log(player.roles);
         this.broadcast({ message: "server_send_roles", recipient: player.playerID, roles: player.roles });
     }
     buy(data) {
@@ -717,6 +720,16 @@ class GameManager {
         });
     }
     listener(data) {
+        if (data.message === "client_chosen_role") {
+            this.playerManager.players[data.playerID].roles.forEach((role) => {
+                if (role.roleID === data.role) {
+                    console.log(`YOU ARE ${role.role} NOW`);
+                    console.log(this.playerManager.players[data.playerID]);
+                    this.playerManager.players[data.playerID].role = role.role;
+                }
+            });
+            console.log(data);
+        }
         if (data.message === "artifact_picked_up") {
             this.pickArtifactUp(data);
         }

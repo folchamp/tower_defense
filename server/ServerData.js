@@ -21,42 +21,71 @@ class ServerData {
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.9995;
     static MAX_DAMAGE = 8000;
+    static cachePositions = [
+        { "x": 2050, "y": 1180 }, { "x": 2050, "y": 1230 }, { "x": 2000, "y": 1230 },
+    ]
     static caches = [
-        { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2050, "y": 1180 }, title: "Petite boîte", description: "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour." },
-        { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2050, "y": 1230 }, title: "Dalle disjointe", description: "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve." },
-        { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2000, "y": 1230 }, title: "Armoire dissimulée", description: "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné." },
+        {
+            cacheEffect: "+2⭐ +2 cartes", title: "Petite boîte",
+            description: "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour."
+        },
+        {
+            cacheEffect: "+2⭐ +2 cartes", title: "Dalle disjointe",
+            description: "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve."
+        },
+        {
+            cacheEffect: "+2⭐ +2 cartes", title: "Armoire dissimulée",
+            description: "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné."
+        },
+        {
+            cacheEffect: "+2⭐ +2 cartes", title: "Boite à gants d'une épave",
+            description: "La dernière fois que vous avez vu un véhicule de ce genre, c'était dans les manuels d'histoire importés de la Terre. Dans la boite à gants, vous trouvez une arme de poing et quelques vivres."
+        },
+        {
+            cacheEffect: "+2⭐ +2 cartes", title: "Trésor enfoui",
+            description: "Cette habitation avait un joli jardin, avant que les thirkas ne le souillent. Vous apercevez, près de racines d'un vieux tronc, un petite boite métallique. Elle contient de chocolat. De quoi donner du beaume au cœur des enfants du bastion."
+        },
+        {
+            cacheEffect: "+2⭐ +2 cartes", title: "Transport écrasé",
+            description: "C'était probablement un vaisseau cargo destiné à ravitailler les mondes incapables de faire pousser leur propre nourriture. La plupart des sacs sont éventrés mais vous en trouvez quelques uns qui valent la peine d'être rapportés au bastion."
+        },
     ]
     static roles = [
+        {
+            role: "sans rôle",
+            firstAbility: "Aucune capacité",
+            secondAbility: "Aucune capacité"
+        },
         {
             role: "ingénieur",
             firstAbility: "Les tours de contrôle ont 6 emplacements",
             secondAbility: "Placer une tour de contrôle coûte 250 de moins"
         },
-        {
-            role: "stratége",
-            firstAbility: "Commence le tour avec 4 actions",
-            secondAbility: "Pioche 4 cartes s'il commence la vague avec une main vide"
-        },
-        {
-            role: "éclaireur",
-            firstAbility: "Les tours de base coûtent 100 de moins",
-            secondAbility: "Les micro-agences sont gratuites"
-        },
-        {
-            role: "gardien",
-            firstAbility: "Blah blah",
-            secondAbility: "Empêche l'ennemi d'arriver jusqu'au bastion, à tout prix"
-        },
-        {
-            role: "soldat",
-            firstAbility: "Truc chose",
-            secondAbility: "Rôle polyvalent"
-        },
-        {
-            role: "économiste",
-            firstAbility: "Commence la partie avec une banque",
-            secondAbility: "Grapille des ressources sur le champ de bataille pour les distribuer à ses compagnons"
-        },
+        // {
+        //     role: "stratége",
+        //     firstAbility: "Commence le tour avec 4 actions",
+        //     secondAbility: "Pioche 4 cartes s'il commence la vague avec une main vide"
+        // },
+        // {
+        //     role: "éclaireur",
+        //     firstAbility: "Les tours de base coûtent 100 de moins",
+        //     secondAbility: "Les micro-agences sont gratuites"
+        // },
+        // {
+        //     role: "gardien",
+        //     firstAbility: "Blah blah",
+        //     secondAbility: "Empêche l'ennemi d'arriver jusqu'au bastion, à tout prix"
+        // },
+        // {
+        //     role: "soldat",
+        //     firstAbility: "Truc chose",
+        //     secondAbility: "Rôle polyvalent"
+        // },
+        // {
+        //     role: "économiste",
+        //     firstAbility: "Commence la partie avec une banque",
+        //     secondAbility: "Grapille des ressources sur le champ de bataille pour les distribuer à ses compagnons"
+        // },
     ];
     static generateInitialHandData() {
         let handData = [];

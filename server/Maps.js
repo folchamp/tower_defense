@@ -67,7 +67,7 @@ class Maps {
             description: "Les survivants de ce bastion se sont retranchés derrière des murailles d'un autre âge. Cependant, au fil des attaques, deux brêches sont apparues et les thiraks s'y engouffrent sous le feu des tourelles."
         }, {
             name: "Halte de l'Exode", // 2
-            description: "[TODO : texte descriptif à écrire]"
+            description: "Cet endroit était une station de repos pour les voyageurs parcourant de très longues distances. Un endroit calme où s'arrêter temporairement avant de reprendre la route. Les derniers voyageurs à y être arrivés y sont toujours, depuis des années et des années, espérant que l'invasion thirak prenne fin avant de reprendre leur vie détruite."
         }, {
             name: "Refuge de Kaël-Sur", // 3 
             description: "Kaël-Sur est un gigantesque canyon qui parcourt pratiquement la moitié de l'équateur de la planète Nahrûn, désertique et parsemée de failles profondes. Failles maintenant habitées par des Thirak à la recherche du dernier bastion humain de ce monde."
@@ -76,19 +76,19 @@ class Maps {
             description: "La Station Auréole est une vieille installation astronomique située dans une forêt, sur un monde vierge et moyennement hostile. Ce monde était parfaitement situé pour observer le reste de l'univers à distance. Ou pour être vu par lui. Ce fut un des premiers à subir les attaques thiraks et, contre toute attente, un des derniers encore debout."
         }, {
             name: "Dôme d’Ysil", // 5
-            description: "[TODO : texte descriptif à écrire]"
+            description: "Construite à l'intérieur d'un immense dôme, cette station botanique expérimentale est devenue un des derniers endroits de poésie et de beauté. Toute la nuit, les thiraks rodent à proximité, heurtant les parois de temps à autres, désireux de détruire les arbres, les fleurs et les humains."
         }, {
             name: "Portail d'Althir", // 6
-            description: "[TODO : texte descriptif à écrire]"
+            description: "Cet endroit n'était pas un portail à proprement parler, mais plutôt un phare pour guider les vaisseaux lors de longs voyages. Aujourd'hui, c'est un cimetière de carcasses et, chaque jour, de nouvelles flottes viennent s'écraser au milieu des autres épaves."
         }, {
             name: "Havre de la Faille", // 7
-            description: "[TODO : texte descriptif à écrire]"
+            description: "Le bastion du hâvre de la faille doit sa survie aux anomalies gravitationnelles qui l'agitent. Les thiraks y sont particulièrement sensibles, rendant la défense du lieu aisé. Pour l'instant."
         }, {
             name: "Bastion de la Crête du Serpent", // 8
             description: "Ce bastion se situe en haut de la montagne d'un monde géant, deux fois plus large que la Terre, perdu il y a maintenant de nombreuses années. Les réfugiés, cependant, n'ont rien perdu de la combattivité de leurs ancêtres et tiennent les thiraks à distance aisément grâce aux lacets qui mènent au sommet."
         }, {
             name: "Tourbière de l'Ordalie", // 9
-            description: "[TODO : texte descriptif à écrire]"
+            description: "À peu près la moitié de la planète sur laquelle se situe la tourbière de l'Ordalie est constituée de marécages et de rivières de petite profondeur. Les thiraks s'y déplacent avec difficulté, donnent aux tourelles le temps d'ajuster leurs tirs."
         }, {
             name: "Abri de la Crevasse", // 10
             description: "Une large crevasse forme une barrière naturelle entre le campement des Thiraks et l’abri des survivants. Par moments, un éclat de rire parcourt les couloirs du bastion lorsqu’un Thirak perd l’équilibre et disparaît dans le vide. Ces instants de soulagement sont rares, presque enfantins."
@@ -100,10 +100,10 @@ class Maps {
             description: "Dans un ancien palais appartenant à une célébrité d'un monde aujourd'hui disparu se terrent quelques humains, maintenus en vie par le courage d'un groupe d'ingénieurs qui peinent à maintenir en bon état les tourelles déployées le long des coursives."
         }, {
             name: "La demeure de deux qui restent", // 13
-            description: "[TODO : texte descriptif à écrire]"
+            description: "Ça fait dix ans, maintenant, que la Terre est considérée perdue par le reste de l'univers. En fait, dans les débris d'une ville de l'ancienne Europe résident encore quelques courageux. Invisibles, mobiles, ils font preuve de toute l'intelligence humaine pour nettoyer leur monde d'origine... mais le travail demandé est surhumain."
         }, {
             name: "Cavité de Morn", // 14
-            description: "[TODO : texte descriptif à écrire]"
+            description: "Sur une planète anciennement volcanique et hyper fertile, le bastion de la Cavité de Morn tient bon, dissimulé sous les racines d'immenses arbres. Les survivants observent les thiraks arpenter les forêts et les détruire, petit à petit."
         }
     ]
 }

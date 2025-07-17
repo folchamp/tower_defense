@@ -1,10 +1,5 @@
 ***************** Todo *****************
 grotte pour l'arrivée des monstres
-QuickElement en structure ! (avec this en paramètre pour donner accès aux éléments)
-créer un menu qui donne accès au lore, bestiaire etc.
-séparer le lore, les joueurs ne veulent pas lire de lore en plein affrontement de vague ou pendant les phases de préparation
-placer les notifications d'accueil, de description de map, de cache et de choix de rôle dans un système unique
-achat simultané en magasin, possibilité d'erreurs
 rôles
 
 --- roles ---

@@ -1,7 +1,8 @@
 "use strict";
 
 class RolesManager {
-    constructor() {
+    constructor(callback) {
+        this.callback = callback;
         Util.quickStructure(
             ["rolesPopupContainer",
                 ["rolesChoiceContainer",
@@ -32,6 +33,7 @@ class RolesManager {
             this.roleSecondAbilityText.innerHTML = `- ${role.secondAbility}`;
             this.roleContainer.addEventListener("click", (data) => {
                 Util.hide(this.rolesPopupContainer);
+                this.callback(role.roleID);
             });
         })
         console.log("roles : ");
