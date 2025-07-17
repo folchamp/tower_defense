@@ -1,6 +1,4 @@
 ***************** Todo *****************
-bug cumul ping
-
 Elements.get("...") to avoid the initial document.getElementById("...")
 QuickElement en structure ! (avec this en paramètre pour donner accès aux éléments)
 créer un menu qui donne accès au lore, bestiaire etc.
