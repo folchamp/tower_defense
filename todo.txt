@@ -7,6 +7,8 @@ win and lose screen + stats
 rôles
 bug cumul ping
 
+Elements.get("...") to avoid the initial document.getElementById("...")
+QuickElement en structure ! (avec this en paramètre pour donner accès aux éléments)
 créer un menu qui donne accès au lore, bestiaire etc.
 prévoir une manière de modifier ou choisir la difficulté
 modifier le mot-clef regen du boss pour qu'elle soit plus efficace (genre 5x plus efficace)
