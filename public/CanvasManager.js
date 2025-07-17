@@ -89,13 +89,12 @@ class CanvasManager {
         this.loop();
     }
     displayPing(data) {
-        this.pingData = data;
-        this.pingCounter++;
+        if (this.pingData === undefined) {
+            this.pingData = [];
+        }
+        this.pingData.push(data);
         setTimeout(() => {
-            this.pingCounter--;
-            if (this.pingCounter < 1) {
-                this.pingData = undefined;
-            }
+            this.pingData.shift();
         }, 3500);
     }
     autoresize() {
@@ -281,7 +280,7 @@ class CanvasManager {
                         artifact.position.y + this.offset.y - ClientData.TOWER_HALF_SIZE,
                     );
                 });
-            }else if (order === "caches") {
+            } else if (order === "caches") {
                 // CACHES
                 this.gameElements[order].forEach((cache) => {
                     this.context.fillStyle = "black";
@@ -293,11 +292,13 @@ class CanvasManager {
                 });
             }
         });
-        if (this.pingData) {
-            this.context.fillStyle = "black";
-            this.context.drawImage(ClientData.images["ping"], this.pingData.position.x + this.offset.x - 50, this.pingData.position.y + this.offset.y - 100);
-            this.context.fillText(`${this.pingData.pingText}`, this.pingData.position.x + this.offset.x - this.context.measureText(this.pingData.pingText).width / 2, this.pingData.position.y + this.offset.y + 25);
-            this.context.fillText(`${this.pingData.sender}`, this.pingData.position.x + this.offset.x - this.context.measureText(this.pingData.sender).width / 2, this.pingData.position.y + this.offset.y + 15);
+        if (this.pingData !== undefined) {
+            this.pingData.forEach((pingData) => {
+                this.context.fillStyle = "black";
+                this.context.drawImage(ClientData.images["ping"], pingData.position.x + this.offset.x - 50, pingData.position.y + this.offset.y - 100);
+                this.context.fillText(`${pingData.pingText}`, pingData.position.x + this.offset.x - this.context.measureText(pingData.pingText).width / 2, pingData.position.y + this.offset.y + 25);
+                this.context.fillText(`${pingData.sender}`, pingData.position.x + this.offset.x - this.context.measureText(pingData.sender).width / 2, pingData.position.y + this.offset.y + 15);
+            });
         }
         if (this.mouseDrawData.draw) {
             let imageName;

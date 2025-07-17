@@ -85,13 +85,13 @@ class GameManager {
         }
     }
     reset() {
-        let mapNumber = Util.randomValue(0, Maps.allMaps.length - 1);
-        console.log(`Map number : ${mapNumber}`);
+        this.mapNumber = Util.randomValue(0, Maps.allMaps.length - 1);
+        console.log(`Map number : ${this.mapNumber}`);
         this.timeLost = 0;
         this.enemiesLeftToSpawn = 0;
         this.globalEnemyStrength = 0;
         this.gameElements = {
-            routes: Maps.allMaps[mapNumber],
+            routes: Maps.allMaps[this.mapNumber],
             auras: [],
             towers: [],
             enemies: [],
@@ -149,7 +149,7 @@ class GameManager {
         }
     }
     sendPlayerGameData(player) {
-        this.broadcast({ message: "server_get_your_game_data_boy", gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.role });
+        this.broadcast({ message: "server_get_your_game_data_boy", mapInfo: Maps.mapDescriptions[this.mapNumber], gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.role });
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }

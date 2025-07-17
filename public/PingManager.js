@@ -6,7 +6,6 @@ class PingManager {
         this.displayPing = displayPing;
 
         this.pingSendContainer = ELEMENTS["pingSendContainer"];
-        this.pingRecieveContainer = ELEMENTS["pingRecieveContainer"];
         this.offsetPosition = { x: 0, y: 0 };
 
         this.pings = [

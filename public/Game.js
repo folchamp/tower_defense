@@ -383,6 +383,14 @@ class Game {
         this.session.setPlayerName(playerName);
     }
     refreshGameData(data) {
+        this.loreManager.addLoreElement(
+            {
+                title: data.mapInfo.name,
+                subtitle: "",
+                description: data.mapInfo.description,
+                vrac: "",
+                imageName: `images/map.png`
+            });
         this.hand = [];
         if (this.grabbedCard) {
             this.grabbedCard.attach();

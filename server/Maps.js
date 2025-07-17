@@ -67,28 +67,28 @@ class Maps {
             description: "Les survivants de ce bastion se sont retranchés derrière des murailles d'un autre âge. Cependant, au fil des attaques, deux brêches sont apparues et les thiraks s'y engouffrent sous le feu des tourelles."
         }, {
             name: "Halte de l'Exode", // 2
-            description: ""
+            description: "[TODO : texte descriptif à écrire]"
         }, {
-            name: "Refuge de Kaël-Sur", // 3 // TODO
-            description: "Kaël-Sur est un gigantesque canyon qui parcourt pratiquement la moitié de l'équateur de la planète "
+            name: "Refuge de Kaël-Sur", // 3 
+            description: "Kaël-Sur est un gigantesque canyon qui parcourt pratiquement la moitié de l'équateur de la planète Nahrûn, désertique et parsemée de failles profondes. Failles maintenant habitées par des Thirak à la recherche du dernier bastion humain de ce monde."
         }, {
             name: "Station Auréole", // 4
             description: "La Station Auréole est une vieille installation astronomique située dans une forêt, sur un monde vierge et moyennement hostile. Ce monde était parfaitement situé pour observer le reste de l'univers à distance. Ou pour être vu par lui. Ce fut un des premiers à subir les attaques thiraks et, contre toute attente, un des derniers encore debout."
         }, {
             name: "Dôme d’Ysil", // 5
-            description: ""
+            description: "[TODO : texte descriptif à écrire]"
         }, {
             name: "Portail d'Althir", // 6
-            description: ""
+            description: "[TODO : texte descriptif à écrire]"
         }, {
             name: "Havre de la Faille", // 7
-            description: ""
+            description: "[TODO : texte descriptif à écrire]"
         }, {
             name: "Bastion de la Crête du Serpent", // 8
             description: "Ce bastion se situe en haut de la montagne d'un monde géant, deux fois plus large que la Terre, perdu il y a maintenant de nombreuses années. Les réfugiés, cependant, n'ont rien perdu de la combattivité de leurs ancêtres et tiennent les thiraks à distance aisément grâce aux lacets qui mènent au sommet."
         }, {
             name: "Tourbière de l'Ordalie", // 9
-            description: ""
+            description: "[TODO : texte descriptif à écrire]"
         }, {
             name: "Abri de la Crevasse", // 10
             description: "Une large crevasse forme une barrière naturelle entre le campement des Thiraks et l’abri des survivants. Par moments, un éclat de rire parcourt les couloirs du bastion lorsqu’un Thirak perd l’équilibre et disparaît dans le vide. Ces instants de soulagement sont rares, presque enfantins."
@@ -97,13 +97,13 @@ class Maps {
             description: "Sur un monde d'eau, les survivants de ce bastion ont élu domicile dans une grotte au bord d'une plage. Depuis que les thiraks ont perçu leur présence, leur abri paraît de plus en plus étroit. Les ressources diminuent."
         }, {
             name: "Citadelle des Vents", // 12
-            description: "Dans un ancien palais appartenant à une célébrité d'un monde aujourd'hui disparu se terrent quelques humains, maintenus en vie par le courage de quelques ingénieurs qui peinent à maintenir en bon état les tourelles déployées le long des coursives."
+            description: "Dans un ancien palais appartenant à une célébrité d'un monde aujourd'hui disparu se terrent quelques humains, maintenus en vie par le courage d'un groupe d'ingénieurs qui peinent à maintenir en bon état les tourelles déployées le long des coursives."
         }, {
             name: "La demeure de deux qui restent", // 13
-            description: ""
+            description: "[TODO : texte descriptif à écrire]"
         }, {
             name: "Cavité de Morn", // 14
-            description: ""
+            description: "[TODO : texte descriptif à écrire]"
         }
     ]
 }

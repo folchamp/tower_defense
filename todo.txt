@@ -1,6 +1,4 @@
 ***************** Todo *****************
-Envoyer le nom de la map
-Aficher le nom et la description de la map
 bug cumul ping
 
 Elements.get("...") to avoid the initial document.getElementById("...")
