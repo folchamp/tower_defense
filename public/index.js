@@ -87,3 +87,26 @@ const ELEMENTS = Util.getElements(elementNames);
 const socket = io();
 
 const game = new Game();
+
+let thingsLol = {};
+
+// TODO use this, it's powerful
+
+// Util.quickStructure(
+//     ["PlayerContainer",
+//         ["PlayerHeaderContainer",
+//             "playerNameText",
+//             "playerLevelText"
+//         ],
+//         ["playerDescriptionContainer",
+//             "playerDescriptionText",
+//             ["playerSubDescriptionContainer",
+//                 "playerStrengthText",
+//                 "playerAgilityText",
+//                 "playerFunText",
+//             ]
+//         ]
+//     ],
+//     document.body,
+//     thingsLol
+// );

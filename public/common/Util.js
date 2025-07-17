@@ -4,6 +4,24 @@ class Util {
     constructor() {
         throw "this class is supposed to be static, don't try to instantiate it";
     }
+    static quickStructure(structure, parent, self) {
+        if (typeof structure === "string") {
+            // TODO créer l'élément
+            if (structure.endsWith("Text")) {
+                self[structure] = Util.quickElement(structure, "span", parent);
+            } else if (structure.endsWith("Container")) {
+                self[structure] = Util.quickElement(structure, "div", parent);
+            } else {
+                throw `Type not supported : ${structure}`;
+            }
+        } else {
+            let name = structure.shift();
+            self[name] = Util.quickElement(name, "div", parent);
+            structure.forEach((structurePart) => {
+                Util.quickStructure(structurePart, self[name], self);
+            });
+        }
+    }
     static quickElement(name, type, parent) {
         let element = document.createElement(type);
         element.classList.add(name);
@@ -23,7 +41,7 @@ class Util {
     }
     static loadSounds(urls) {
         let audios = {};
-        for(let name in urls) {
+        for (let name in urls) {
             let url = urls[name];
             let element = new Audio(url);
             audios[name] = element;

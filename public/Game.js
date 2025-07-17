@@ -157,9 +157,23 @@ class Game {
             }
             if (message === "server_score") {
                 if (data.win) {
-                    alert(`Victoire\nScore : ${data.score}\nVague : ${data.waveCounter}`);
+                    this.loreManager.displayLoreElement(
+                        {
+                            title: "Victoire",
+                            subtitle: "Les survivants triomphent",
+                            description: "Et tout à coup, les assauts cessèrent. En quelques minutes, la poussière de la bataille retomba, laissant voir un champ de bataille couvert de carcasses mi-organiques, mi-mécaniques. Du bastion, prudemment, sortent quelques ingénieurs pour remettre en était les tourelles, en attente de la prochaine tentative d'invasion.<br>En attendant, l'espoir subsiste.",
+                            vrac: `Score : ${data.score}\nVague : ${data.waveCounter}`,
+                            imageName: `images/wonder_tower.png`
+                        });
                 } else {
-                    alert(`Défaite\nScore : ${data.score}\nVague : ${data.waveCounter}`);
+                    this.loreManager.displayLoreElement(
+                        {
+                            title: "Défaite",
+                            subtitle: "Les thiraks pénètrent dans le bastion",
+                            description: "Et tout à coup, les assauts cessèrent, en même temps que la résistance et la combattivité humaine. Lorsque les premiers thiraks atteignirent les parties civilisées de l'abri, la panique submergea les survivants, qui tentèrent en vain d'échapper à leur transformation. Même les enfants ne furent épargnés. Ils serviront de chair à canon pour les futures invasions.",
+                            vrac: `Score : ${data.score}\nVague : ${data.waveCounter}`,
+                            imageName: `images/wonder_tower.png`
+                        });
                 }
             }
             if (message === "server_shop_content") {

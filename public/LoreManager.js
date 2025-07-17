@@ -26,6 +26,14 @@ class LoreManager {
         });
         return alreadyPresent;
     }
+    displayLoreElement(data) {
+        Util.show(ELEMENTS["infoPopupContainer"]);
+        ELEMENTS["infoPopupBigTitle"].innerHTML = data.title;
+        ELEMENTS["infoPopupSubtitle"].innerHTML = data.subtitle;
+        ELEMENTS["infoPopupDescription"].innerHTML = data.description;
+        ELEMENTS["infoPopupVrac"].innerHTML = data.vrac;
+        ELEMENTS["infoPopupImage"].src = data.imageName;
+    }
     addLoreElement(data) {
         if (!this.loreAlreadyPresent(data)) {
             ELEMENTS["playersButton"].classList.add("animateButton");
@@ -40,16 +48,8 @@ class LoreManager {
             loreImage.src = data.imageName;
 
             loreButtonContainer.addEventListener("click", (event) => {
-                Util.show(ELEMENTS["infoPopupContainer"]); // TODO
-                ELEMENTS["infoPopupBigTitle"].innerHTML = data.title;
-                ELEMENTS["infoPopupSubtitle"].innerHTML = data.subtitle;
-                ELEMENTS["infoPopupDescription"].innerHTML = data.description;
-                ELEMENTS["infoPopupVrac"].innerHTML = data.vrac;
-                ELEMENTS["infoPopupImage"].src = data.imageName;
+                this.displayLoreElement(data);
             });
         }
-    }
-    showLore(data) {
-
     }
 }

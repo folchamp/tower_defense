@@ -8,7 +8,7 @@ placer les notifications d'accueil, de description de map, de cache et de choix 
 descriptions plus proches du visuel du monstre dans le bestiaire
 achat simultané en magasin, possibilité d'erreurs
 
-win and lose screen + stats
+stats
 détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
 afficher la portée au survol 
 rôles
