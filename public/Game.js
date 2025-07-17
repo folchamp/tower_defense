@@ -29,6 +29,16 @@ class Game {
         this.rolesManager = new RolesManager();
         this.loreManager = new LoreManager();
 
+        this.loreManager.addLoreElement(
+            {
+                title: "Cycle inconnu",
+                subtitle: "Bastion B633",
+                description: "L'humain fut autrefois le maître de l'univers mais quelque chose s'est produit, il y a très longtemps, qui l'a détruit, éparpillé, mis sur la défensive. Aujourd'hui, les bastions humains survivent ci et là contre d'incessantes attaques mi-organiques, mi-robotiques.",
+                vrac: "L'huile a tout contaminé. Ils arrivent.",
+                imageName: `images/wonder_tower.png`
+            }
+        );
+
         this.hand = [];
         this.grabbedCard = undefined;
         this.mousePosition = { x: 0, y: 0 };
@@ -229,48 +239,9 @@ class Game {
                     });
                 }
             } else {
-                this.gameElements.enemies.forEach((enemy) => {
-                    // ENEMIES
-                    if (Util.distance(offsetPosition, enemy.position) <= 16) {
-                        Util.show(ELEMENTS["infoPopupContainer"]);
-                        ELEMENTS["infoPopupBigTitle"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].loreName;
-                        ELEMENTS["infoPopupSubtitle"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].abilities;
-                        ELEMENTS["infoPopupDescription"].innerHTML = ClientData.enemiesDescriptions[enemy.enemyData.name].description;
-                        ELEMENTS["infoPopupVrac"].innerHTML =
-                            `Endurance : ${enemy.enemyData.maxHP} || Récompense : ${enemy.enemyData.reward}`;
-                        if (enemy.enemyData.abilities !== undefined) {
-                            ELEMENTS["infoPopupVrac"].innerHTML += `<br>${JSON.stringify(enemy.enemyData.abilities)}`
-                        }
-                        ELEMENTS["infoPopupImage"].src = `images/${enemy.enemyData.imageName}.png`;
-                    }
-                });
-                this.gameElements.towers.forEach((tower) => {
-                    // TOWERS
-                    if (Util.distance(offsetPosition, tower.position) <= 16) {
-                        Util.show(ELEMENTS["infoPopupContainer"]);
-                        ELEMENTS["infoPopupBigTitle"].innerHTML = `Codename : ${tower.towerData.name.toUpperCase()}`;
-                        if (tower.towerData.bulletData !== undefined && tower.towerData.bulletData.special !== undefined) {
-                            ELEMENTS["infoPopupSubtitle"].innerHTML = `${JSON.stringify(tower.towerData.bulletData.special)}`;
-                        } else {
-                            ELEMENTS["infoPopupSubtitle"].innerHTML = ``;
-                        }
-                        ELEMENTS["infoPopupDescription"].innerHTML = ClientData.towersDescriptions[tower.towerData.name].description;
-                        ELEMENTS["infoPopupVrac"].innerHTML =
-                            `${ClientData.towersDescriptions[tower.towerData.name].capacity}`;
-                        ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
-                        setTimeout(() => {
-                            // TODO quickfix, may not be necessary anymore
-                            ELEMENTS["infoPopupImage"].src = `images/${tower.towerData.name}.png`;
-                        }, 1000);
-                    }
-                });
                 this.gameElements.artifacts.forEach((artifact) => {
                     // ARTIFACTS
                     if (Util.distance(offsetPosition, artifact.position) <= 16) {
-                        ELEMENTS["playersButton"].classList.add("animateButton");
-                        setTimeout(() => {
-                            ELEMENTS["playersButton"].classList.remove("animateButton");
-                        }, 500);
                         this.loreManager.addLoreElement(
                             {
                                 title: artifact.artifactData.title,
@@ -287,10 +258,6 @@ class Game {
                 this.gameElements.caches.forEach((cache) => {
                     // CACHES
                     if (Util.distance(offsetPosition, cache.position) <= 16) {
-                        ELEMENTS["playersButton"].classList.add("animateButton");
-                        setTimeout(() => {
-                            ELEMENTS["playersButton"].classList.remove("animateButton");
-                        }, 500);
                         this.loreManager.addLoreElement(
                             {
                                 title: cache.cacheData.title,
@@ -349,6 +316,15 @@ class Game {
                 auraData: tower.towerData.auraData
             });
         }
+        this.loreManager.addLoreElement(
+            {
+                title: `Codename : ${tower.towerData.name.toUpperCase()}`,
+                subtitle: tower.towerData.bulletData !== undefined && tower.towerData.bulletData.special !== undefined ? `${JSON.stringify(tower.towerData.bulletData.special)}` : "",
+                description: ClientData.towersDescriptions[tower.towerData.name].description,
+                vrac: `${ClientData.towersDescriptions[tower.towerData.name].capacity}`,
+                imageName: `images/${tower.towerData.name}.png`
+            }
+        );
     }
     cardSold(data) {
         console.log("card sold");
@@ -467,6 +443,15 @@ class Game {
             const enemy = new Enemy(enemyData.position, enemyData.direction, enemyData.enemyData);
             enemy.load(enemyData);
             this.gameElements.enemies.push(enemy);
+            this.loreManager.addLoreElement(
+                {
+                    title: ClientData.enemiesDescriptions[enemy.enemyData.name].loreName,
+                    subtitle: ClientData.enemiesDescriptions[enemy.enemyData.name].abilities,
+                    description: ClientData.enemiesDescriptions[enemy.enemyData.name].description,
+                    vrac: `Endurance : ${enemy.enemyData.maxHP} || Récompense : ${enemy.enemyData.reward} ${enemy.enemyData.abilities === undefined ? "" : "<br>" + JSON.stringify(enemy.enemyData.abilities)}`,
+                    imageName: `images/${enemy.enemyData.imageName}.png`
+                }
+            );
         });
         // bullets
         bullets.forEach((bulletData) => {

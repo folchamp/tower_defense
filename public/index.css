@@ -348,6 +348,10 @@ body {
         }
     }
 
+    #shopContainer.shopBlocked {
+        background-color: black;
+    }
+
     #shopContainer {
         top: 40px;
         left: 0;

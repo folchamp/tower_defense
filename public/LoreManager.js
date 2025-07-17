@@ -28,6 +28,10 @@ class LoreManager {
     }
     addLoreElement(data) {
         if (!this.loreAlreadyPresent(data)) {
+            ELEMENTS["playersButton"].classList.add("animateButton");
+            setTimeout(() => {
+                ELEMENTS["playersButton"].classList.remove("animateButton");
+            }, 500);
             this.loreList.push(data);
             let loreButtonContainer = Util.quickElement("loreButtonContainer", "div", ELEMENTS["loreListContainer"]);
             let loreImage = Util.quickElement("loreImage", "img", loreButtonContainer)

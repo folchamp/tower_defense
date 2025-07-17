@@ -1,8 +1,6 @@
 ***************** Todo *****************
-bloquer le magasin pendant deux secondes après un achat
 Envoyer le nom de la map
 Aficher le nom et la description de la map
-texte d'accueil dans le bestiaire
 bug cumul ping
 
 Elements.get("...") to avoid the initial document.getElementById("...")

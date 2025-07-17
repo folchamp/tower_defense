@@ -108,7 +108,7 @@ class ServerData {
         },
         quick_shooter: {
             name: "quick_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 250, range: 350,
+            reloadTime: 250, range: 300,
             bulletData: { damage: 174, speed: 0.45, color: "darkred", size: 2 }
         },
         air_shooter: {
@@ -118,7 +118,7 @@ class ServerData {
         },
         basic_shooter: {
             name: "basic_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 700, range: 400,
+            reloadTime: 700, range: 300,
             bulletData: { damage: 500, speed: 0.35, color: "lightgreen", size: 4 }
         },
         fire_tower: {
