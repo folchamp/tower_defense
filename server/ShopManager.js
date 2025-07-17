@@ -4,7 +4,7 @@ const { ServerData } = require("./ServerData");
 
 class ShopManager {
     constructor() {
-        this.reset();
+        // this.reset();
     }
     resplenish() {
         let temporaryShop = ServerData.generateShopContent();
