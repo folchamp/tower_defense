@@ -1,28 +1,29 @@
 ***************** Todo *****************
-Elements.get("...") to avoid the initial document.getElementById("...")
+grotte pour l'arrivée des monstres
 QuickElement en structure ! (avec this en paramètre pour donner accès aux éléments)
 créer un menu qui donne accès au lore, bestiaire etc.
-revoir la clarté de monstres, ajouter un mini-bestiaire en début de vague 
 séparer le lore, les joueurs ne veulent pas lire de lore en plein affrontement de vague ou pendant les phases de préparation
 placer les notifications d'accueil, de description de map, de cache et de choix de rôle dans un système unique
-descriptions plus proches du visuel du monstre dans le bestiaire
 achat simultané en magasin, possibilité d'erreurs
+rôles
 
+--- roles ---
+- ingénieur : tours de contrôle moins chères et plus spacieuses
+- récolteur : les points d'action non-dépensés se transforment en thunes
+
+revoir la clarté de monstres, ajouter un mini-bestiaire en début de vague 
+Elements.get("...") to avoid the initial document.getElementById("...")
+descriptions plus proches du visuel du monstre dans le bestiaire
 stats
 détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
 afficher la portée au survol 
-rôles
 prévoir une manière de modifier ou choisir la difficulté
 next focus : readability
 virer les maps à route unique (pas assez lisibles) ???
 bug carte non-trouvée (j'ai l'impression que le reset a lieu deux fois ???)
 cleaner les valeurs fixes dans tout le code, mettre des paramètres à la place
-grotte pour l'arrivée des monstres
 moins de monstres moins vite, mais plus forts
 vagues aléatoires basées sur les forces des monstres
---- roles ---
-- ingénieur : tours de contrôle moins chères et plus spacieuses
-- récolteur : les points d'action non-dépensés se transforment en thunes
 carte destruction de tour
 déploiement mobile
 balise-relais (mini tour de contrôle)

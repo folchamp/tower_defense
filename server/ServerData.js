@@ -27,12 +27,36 @@ class ServerData {
         { cacheEffect: "+2⭐ +2 cartes", position: { "x": 2000, "y": 1230 }, title: "Armoire dissimulée", description: "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné." },
     ]
     static roles = [
-        { roles: "ingénieur" },
-        { roles: "stratége" },
-        { roles: "éclaireur" },
-        { roles: "gardien" },
-        { roles: "soldat" },
-        { roles: "économiste" },
+        {
+            role: "ingénieur",
+            firstAbility: "Les tours de contrôle ont 6 emplacements",
+            secondAbility: "Placer une tour de contrôle coûte 250 de moins"
+        },
+        {
+            role: "stratége",
+            firstAbility: "Commence le tour avec 4 actions",
+            secondAbility: "Pioche 4 cartes s'il commence la vague avec une main vide"
+        },
+        {
+            role: "éclaireur",
+            firstAbility: "Les tours de base coûtent 100 de moins",
+            secondAbility: "Les micro-agences sont gratuites"
+        },
+        {
+            role: "gardien",
+            firstAbility: "Blah blah",
+            secondAbility: "Empêche l'ennemi d'arriver jusqu'au bastion, à tout prix"
+        },
+        {
+            role: "soldat",
+            firstAbility: "Truc chose",
+            secondAbility: "Rôle polyvalent"
+        },
+        {
+            role: "économiste",
+            firstAbility: "Commence la partie avec une banque",
+            secondAbility: "Grapille des ressources sur le champ de bataille pour les distribuer à ses compagnons"
+        },
     ];
     static generateInitialHandData() {
         let handData = [];
