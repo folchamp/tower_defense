@@ -26,51 +26,71 @@ class ServerData {
     ]
     static caches = [
         {
-            cacheEffect: "+2⭐ +2 cartes", title: "Petite boîte",
+            cacheEffect: "+2⭐ +2🎴", title: "Petite boîte",
             description: "Le couvercle grince doucement lors de l'ouverture. À l’intérieur, des cartouches alignées avec soin, comme si quelqu’un les avait rangées en prévision d’un retour."
         },
         {
-            cacheEffect: "+2⭐ +2 cartes", title: "Dalle disjointe",
+            cacheEffect: "+2⭐ +2🎴", title: "Dalle disjointe",
             description: "Sous une dalle fissurée, un coffret contient quelques réserves. Un vieux journal protège des cartouches de munitions, des rations de nourritures attendent dans quelques boîtes de conserve."
         },
         {
-            cacheEffect: "+2⭐ +2 cartes", title: "Armoire dissimulée",
+            cacheEffect: "+2⭐ +2🎴", title: "Armoire dissimulée",
             description: "Les charnières résistent un peu, puis cèdent avec un cliquetis étouffé. À l’intérieur de la cache, tout est bien rangé. Une organisation militaire, ou celle d’un esprit ordonné."
         },
         {
-            cacheEffect: "+2⭐ +2 cartes", title: "Boite à gants d'une épave",
+            cacheEffect: "+2⭐ +2🎴", title: "Boite à gants d'une épave",
             description: "La dernière fois que vous avez vu un véhicule de ce genre, c'était dans les manuels d'histoire importés de la Terre. Dans la boite à gants, vous trouvez une arme de poing et quelques vivres."
         },
         {
-            cacheEffect: "+2⭐ +2 cartes", title: "Trésor enfoui",
+            cacheEffect: "+2⭐ +2🎴", title: "Trésor enfoui",
             description: "Cette habitation avait un joli jardin, avant que les thirkas ne le souillent. Vous apercevez, près de racines d'un vieux tronc, un petite boite métallique. Elle contient de chocolat. De quoi donner du beaume au cœur des enfants du bastion."
         },
         {
-            cacheEffect: "+2⭐ +2 cartes", title: "Transport écrasé",
+            cacheEffect: "+2⭐ +2🎴", title: "Transport écrasé",
             description: "C'était probablement un vaisseau cargo destiné à ravitailler les mondes incapables de faire pousser leur propre nourriture. La plupart des sacs sont éventrés mais vous en trouvez quelques uns qui valent la peine d'être rapportés au bastion."
         },
     ]
     static roles = [
         {
-            role: "sans rôle",
+            roleName: "sans rôle",
             firstAbility: "Aucune capacité",
             secondAbility: "Aucune capacité"
         },
         {
-            role: "ingénieur",
-            firstAbility: "Les tours de contrôle ont 6 emplacements",
-            secondAbility: "Placer une tour de contrôle coûte 250 de moins"
+            roleName: "ingénieur",
+            firstAbility: "Les tours de contrôle ont 7 emplacements",
+            secondAbility: "TODO"
+            // secondAbility: "TODO : Placer une tour de contrôle coûte 250 de moins"
         },
-        // {
-        //     role: "stratége",
-        //     firstAbility: "Commence le tour avec 4 actions",
-        //     secondAbility: "Pioche 4 cartes s'il commence la vague avec une main vide"
-        // },
-        // {
-        //     role: "éclaireur",
-        //     firstAbility: "Les tours de base coûtent 100 de moins",
-        //     secondAbility: "Les micro-agences sont gratuites"
-        // },
+        {
+            roleName: "banquier",
+            firstAbility: "Commence avec une banque dans la défausse",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "stratège",
+            firstAbility: "Commence le tour avec 4 actions",
+            secondAbility: "TODO"
+            // secondAbility: "Pioche 4 cartes s'il commence la vague avec une main vide"
+        },
+        {
+            roleName: "éclaireur",
+            firstAbility: "Les tours de départ coûtent 50 de moins",
+            secondAbility: "TODO"
+            // secondAbility: "Les micro-agences sont gratuites"
+        },
+        {
+            roleName: "archiviste",
+            firstAbility: "À chaque fois que vous jouez une carte de pioche, vous piochez une carte supplémentaire.",
+            secondAbility: "TODO"
+        }, ,
+        {
+            roleName: "mécanicien",
+            firstAbility: "Chaque fois que vous construisez la dernière tour dans une zone de contrôle, gagnez 150🪙.",
+            secondAbility: "TODO"
+        },
+
+
         // {
         //     role: "gardien",
         //     firstAbility: "Blah blah",
@@ -221,10 +241,10 @@ class ServerData {
         },
     };
     static basicCardsData = [
-        { action: "build", text: "Petit canon", type: "basic_shooter", price: 200, sellprice: 400 }, // auto-include
-        { action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 }, // auto-include
-        { action: "build", text: "Arme légère", type: "quick_shooter", price: 200, sellprice: 400 }, // auto-include
-        { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },  // auto-include
+        { basic: true, action: "build", text: "Petit canon", type: "basic_shooter", price: 200, sellprice: 400 }, // auto-include
+        { basic: true, action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 }, // auto-include
+        { basic: true, action: "build", text: "Arme légère", type: "quick_shooter", price: 200, sellprice: 400 }, // auto-include
+        { basic: true, action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },  // auto-include
     ];
     static shopCardsData = [
         // autoinclude for testing
@@ -248,7 +268,7 @@ class ServerData {
         { action: "build", text: "Tour de Bandi", type: "bandi_tower", price: 400, sellprice: 800 },
         { action: "build", text: "Tour de secours", type: "tiring_tower", price: 400, sellprice: 800 },
         { action: "build", text: "Tour de corrosion", type: "decay_tower", price: 400, sellprice: 800 },
-        
+
         { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Tour de feu", type: "fire_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Tour de glace", type: "ice_tower", price: 600, sellprice: 1200 },
@@ -259,8 +279,8 @@ class ServerData {
         { action: "build", text: "Tour sniper", type: "sniper_tower", price: 800, sellprice: 1600 },
 
         { action: "power", text: "nouveau magasin", type: "new_shop", price: 100, sellprice: 200 },
-        { action: "power", text: "+2 cartes", type: "draw_two", price: 100, sellprice: 200 },
-        { action: "power", text: "+2 cartes", type: "draw_two", price: 100, sellprice: 200 }, // two times
+        { action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 200 },
+        { action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 200 }, // two times
         { action: "power", text: "+3⭐", type: "three_actions", price: 100, sellprice: 200 },
         { action: "power", text: "pioche pour tous", type: "everyone_draws", price: 100, sellprice: 200 },
         { action: "power", text: "+300🪙", type: "gain_money_1", price: 100, sellprice: 200 },

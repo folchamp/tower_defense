@@ -26,7 +26,7 @@ class Game {
         this.deckDisplayer = new DeckDisplayer();
         this.pingManager = new PingManager((data) => { this.sendPingCallback(data); }, (data) => { this.canvasManager.displayPing(data); });
         this.soundManager = new SoundManager();
-        this.rolesManager = new RolesManager((chosenRole) => { this.rolesCallback(chosenRole); });
+        this.rolesManager = new RolesManager((roleID) => { this.rolesCallback(roleID); });
         this.loreManager = new LoreManager();
         this.playerListManager = new PlayerListManager((playerName) => { this.giveMoneyCallback(playerName); });
 
@@ -205,8 +205,8 @@ class Game {
         socket.emit("message", { message: "client_give_money", playerID: this.session.playerID, moneyReceiver: playerName });
         console.log(playerName);
     }
-    rolesCallback(chosenrole) {
-        socket.emit("message", { message: "client_chosen_role", playerID: this.session.playerID, role: chosenrole });
+    rolesCallback(roleID) {
+        socket.emit("message", { message: "client_chosen_role", playerID: this.session.playerID, roleID: roleID });
     }
     sendPingCallback(data) {
         socket.emit("message", {

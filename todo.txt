@@ -1,12 +1,14 @@
 ***************** Roadmap *****************
 - rôles (6 rôles)
-- vagues plus aléatoires (pas toujours les mêmes dans le même ordre)
 
 - musique (début de vague, ambiance construction, ambiance action)
 - détection de la déconnexion
 - revoir la description des monstres
 - shop closes when you click anywhere else (idem player screen)
 - wipe card (no reward)
+- caches commes les artefacts
+- menu d'accueil
+- tour carte ? Tour action ?
 
 ***************** Todo *****************
 icone par joueur pour les pings

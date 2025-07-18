@@ -30,7 +30,7 @@ class RolesManager {
                 this
             );
             this.rolesTitleText.innerHTML = "Choisissez votre rôle";
-            this.roleTitleText.innerHTML = role.role;
+            this.roleTitleText.innerHTML = role.roleName;
             this.roleFirstAbilityText.innerHTML = `- ${role.firstAbility}`;
             this.roleSecondAbilityText.innerHTML = `- ${role.secondAbility}`;
             this.roleContainer.addEventListener("click", (data) => {
