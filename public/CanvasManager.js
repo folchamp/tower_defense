@@ -144,6 +144,7 @@ class CanvasManager {
         let newTimeStamp = Date.now();
         let dt = newTimeStamp - this.lastTimeStamp;
         this.lastTimeStamp = newTimeStamp;
+        this.context.drawImage(ClientData.images["grotto_right"], -132 + this.offset.x, -132 + this.offset.y);
         this.gameElements.drawOrder.forEach((order) => {
             if (order === "routes") {
                 // ROUTE
@@ -152,10 +153,15 @@ class CanvasManager {
                 this.context.lineWidth = 40;
                 this.context.globalAlpha = 0.35;
                 this.gameElements[order].forEach((route) => {
+                    let firstElementSkipped = false;
                     this.context.beginPath()
-                    this.context.moveTo(route[0].x + this.offset.x, route[0].y + this.offset.y);
+                    this.context.moveTo(route[1].x + this.offset.x, route[1].y + this.offset.y);
                     route.forEach((point) => {
-                        this.context.lineTo(point.x + this.offset.x, point.y + this.offset.y);
+                        if (firstElementSkipped) {
+                            this.context.lineTo(point.x + this.offset.x, point.y + this.offset.y);
+                        } else {
+                            firstElementSkipped = true;
+                        }
                     });
                     this.context.stroke();
                 });
@@ -321,5 +327,6 @@ class CanvasManager {
             }
             this.context.drawImage(ClientData.images[imageName], this.mouseDrawData.x - (this.mouseDrawData.card.size ? this.mouseDrawData.card.size / 2 : ClientData.TOWER_HALF_SIZE), this.mouseDrawData.y - (this.mouseDrawData.card.size ? this.mouseDrawData.card.size / 2 : ClientData.TOWER_HALF_SIZE));
         }
+        this.context.drawImage(ClientData.images["grotto_left"], -132 + this.offset.x, -132 + this.offset.y);
     }
 }

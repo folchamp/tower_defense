@@ -12,7 +12,7 @@ class Game {
             bullets: [],
             artifacts: [],
             caches: [],
-            routes: [[{ x: 0, y: 0 }]]
+            routes: [[{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]]
         };
         this.session = new Session();
         this.canvasManager = new CanvasManager(

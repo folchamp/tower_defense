@@ -12,8 +12,10 @@ class RolesManager {
             document.body,
             this
         );
+        Util.hide(this.rolesPopupContainer);
     }
     displayRolesChoice(data) {
+        Util.show(this.rolesPopupContainer);
         this.roles = data.roles;
         this.roles.forEach((role) => {
             Util.quickStructure(

@@ -53,7 +53,9 @@ class ClientData {
         "artifact",
         "tiring_tower",
         "cache_open",
-        "cache_closed"
+        "cache_closed",
+        "grotto_right",
+        "grotto_left"
     ];
     static images = {};
     static loadImages() {
