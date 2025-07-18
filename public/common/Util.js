@@ -4,19 +4,29 @@ class Util {
     constructor() {
         throw "this class is supposed to be static, don't try to instantiate it";
     }
+    static createElement(name, parent) {
+        let elementToReturn = undefined;
+        if (name.endsWith("Text")) {
+            elementToReturn = Util.quickElement(name, "span", parent);
+        } else if (name.endsWith("Button")) {
+            elementToReturn = Util.quickElement(name, "button", parent);
+        } else if (name.endsWith("Li")) {
+            elementToReturn = Util.quickElement(name, "li", parent);
+        } else if (name.endsWith("Container")) {
+            elementToReturn = Util.quickElement(name, "div", parent);
+        } else {
+            throw "type not supported";
+        }
+        return elementToReturn;
+    }
     static quickStructure(structure, parent, self) {
         if (typeof structure === "string") {
             // TODO créer l'élément
-            if (structure.endsWith("Text")) {
-                self[structure] = Util.quickElement(structure, "span", parent);
-            } else if (structure.endsWith("Container")) {
-                self[structure] = Util.quickElement(structure, "div", parent);
-            } else {
-                throw `Type not supported : ${structure}`;
-            }
+            let name = structure;
+            self[name] = Util.createElement(name, parent);
         } else {
             let name = structure.shift();
-            self[name] = Util.quickElement(name, "div", parent);
+            self[name] = Util.createElement(name, parent);;
             structure.forEach((structurePart) => {
                 Util.quickStructure(structurePart, self[name], self);
             });

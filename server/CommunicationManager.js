@@ -25,7 +25,13 @@ class CommunicationManager {
     }
     broadcast(data) {
         this.listeners.forEach((listener) => {
-            listener(data);
+            try {
+                listener(data);
+            } catch (error) {
+                console.log(error);
+                this.io.emit("message", { message: "server_refresh_please" });
+                console.log("message sent");
+            }
         });
         if (data.message.startsWith("server")) {
             // only broadcast server messages to the clients

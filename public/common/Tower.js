@@ -35,6 +35,9 @@ class Tower {
     isTargetetBy(enemy) {
         this.targettedBy.push(enemy);
     }
+    hasBigDamage() {
+        return this.towerData.bulletData !== undefined && this.towerData.bulletData.damage >= 500;
+    }
     move(timePassed) {
         // multi-shot
         if (this.hasSpecial("triple_shot")) {

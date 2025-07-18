@@ -301,9 +301,14 @@ class CanvasManager {
         if (this.pingData !== undefined) {
             this.pingData.forEach((pingData) => {
                 this.context.fillStyle = "black";
+                this.context.font = "32px Arial";
                 this.context.drawImage(ClientData.images["ping"], pingData.position.x + this.offset.x - 50, pingData.position.y + this.offset.y - 100);
-                this.context.fillText(`${pingData.pingText}`, pingData.position.x + this.offset.x - this.context.measureText(pingData.pingText).width / 2, pingData.position.y + this.offset.y + 25);
-                this.context.fillText(`${pingData.sender}`, pingData.position.x + this.offset.x - this.context.measureText(pingData.sender).width / 2, pingData.position.y + this.offset.y + 15);
+                this.context.fillText(`${pingData.pingText}`, 
+                    pingData.position.x + this.offset.x - this.context.measureText(pingData.pingText).width / 2, 
+                    pingData.position.y + this.offset.y + 25);
+                // this.context.fillText(`${pingData.sender}`, 
+                //     pingData.position.x + this.offset.x - this.context.measureText(pingData.sender).width / 2, 
+                //     pingData.position.y + this.offset.y + 15);
             });
         }
         if (this.mouseDrawData.draw) {

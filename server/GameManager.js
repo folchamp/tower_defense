@@ -62,9 +62,21 @@ class GameManager {
             }
         });
     }
+    calcEnemiesThisWave() {
+        let wavePointsLeft = Math.round(this.waveCounter);
+        let enemies = [];
+        while (wavePointsLeft > 0) {
+            let enemyNumber = Util.randomValue(0, Math.min(wavePointsLeft, ServerData.enemies.length));
+            enemies.push(ServerData.enemies[enemyNumber]);
+            wavePointsLeft -= enemyNumber;
+        }
+        return enemies;
+    }
     sendNextWave(data) {
         this.playerManager.setReady(data.playerID);
         if (this.waveFinished === true && this.playerManager.isEveryoneReady()) {
+            // TODO calc enemies
+            // end calc enemies
             this.ecoTowersAct();
             this.playerManager.setEveryoneUnready();
             this.waveCounter++;
@@ -75,7 +87,9 @@ class GameManager {
             this.drawTime();
             this.refreshPlayerActions()
             this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1;
+            this.enemiesToFightThisWave = this.calcEnemiesThisWave();
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
+            // this.enemiesLeftToSpawn = 7;
             this.shopManager.resplenish();
             this.playerManager.refreshPlayerList();
             this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
@@ -166,7 +180,7 @@ class GameManager {
     giveReward(enemy) {
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
-            player.money += Math.max(0, enemy.enemyData.reward - this.waveCounter);
+            player.money += Math.max(0, enemy.enemyData.reward - (this.waveCounter));
         };
         this.playerManager.refreshPlayerList();
     }
@@ -279,7 +293,8 @@ class GameManager {
                 tower.hasSpecial("fire") ||
                 tower.hasSpecial("ice") ||
                 tower.hasSpecial("poison") ||
-                Util.distance(tower.position, tower.target.position) > tower.towerData.range) {
+                Util.distance(tower.position, tower.target.position) > tower.towerData.range ||
+                tower.hasBigDamage()) {
                 let chosenEnemy = undefined;
                 let tooFar = true;
                 tower.loseTarget(); // in case the enemy gets out of range
@@ -336,7 +351,8 @@ class GameManager {
         if (enemyName !== undefined) {
             newEnemyType = enemyName;
         } else {
-            newEnemyType = ServerData.enemies[Util.randomValue(Math.max(0, this.waveCounter - 3), Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
+            // newEnemyType = ServerData.enemies[Util.randomValue(Math.max(0, this.waveCounter - 3), Math.min(this.waveCounter - 1, ServerData.enemies.length - 1))];
+            newEnemyType = Util.randomFromArray(this.enemiesToFightThisWave);
         }
 
         // if (this.temporaryEnemySpawnedYet === undefined) {
@@ -719,45 +735,67 @@ class GameManager {
             }
         });
     }
+    giveMoney(data) {
+        // { message: "client_give_money", playerID: this.session.playerID, moneyReceiver: playerName }
+        let receiver = undefined;
+        let sender = this.playerManager.players[data.playerID];
+        for (let receiverID in this.playerManager.players) {
+            if (this.playerManager.players[receiverID].playerName === data.moneyReceiver) {
+                receiver = this.playerManager.players[receiverID];
+            }
+        }
+        if (receiver !== undefined && sender !== undefined && sender.money >= 100) {
+            sender.money -= 100;
+            receiver.money += 100;
+            this.playerManager.refreshPlayerList();
+        }
+    }
     listener(data) {
-        if (data.message === "client_chosen_role") {
-            this.playerManager.players[data.playerID].roles.forEach((role) => {
-                if (role.roleID === data.role) {
-                    console.log(`YOU ARE ${role.role} NOW`);
-                    console.log(this.playerManager.players[data.playerID]);
-                    this.playerManager.players[data.playerID].role = role.role;
-                }
-            });
-            console.log(data);
-        }
-        if (data.message === "artifact_picked_up") {
-            this.pickArtifactUp(data);
-        }
-        if (data.message === "cache_picked_up") {
-            this.pickCacheUp(data);
-        }
-        if (data.message === "client_ping") {
-            this.broadcast({
-                message: "server_ping", position: data.position, pingText: data.pingText, sender: data.sender
-            });
-        }
-        if (data.message === "client_next_wave") {
-            this.sendNextWave(data);
-        }
-        if (data.message === "server_refreshPlayerList") {
-            this.refreshPlayerList(data);
-        }
-        if (data.message === "client_buildTowerHere") {
-            this.buildTowerHere(data);
-        }
-        if (data.message === "server_new_player_arrived") {
-            this.newPlayerArrived(data);
-        }
-        if (data.message === "client_buy_sell") {
-            this.buySell(data);
-        }
-        if (data.message === "client_power_card") {
-            this.usePowerCard(data);
+        if (data.message.startsWith("client_") && this.playerManager.players[data.playerID] === undefined && data.message !== "client_disconnect") {
+            throw `${data.message} not connected`;
+        } else {
+            if (data.message === "client_chosen_role") {
+                this.playerManager.players[data.playerID].roles.forEach((role) => {
+                    if (role.roleID === data.role) {
+                        console.log(`YOU ARE ${role.role} NOW`);
+                        console.log(this.playerManager.players[data.playerID]);
+                        this.playerManager.players[data.playerID].role = role.role;
+                    }
+                });
+                console.log(data);
+            }
+            if (data.message === "client_give_money") {
+                this.giveMoney(data);
+            }
+            if (data.message === "artifact_picked_up") {
+                this.pickArtifactUp(data);
+            }
+            if (data.message === "cache_picked_up") {
+                this.pickCacheUp(data);
+            }
+            if (data.message === "client_ping") {
+                this.broadcast({
+                    message: "server_ping", position: data.position, pingText: data.pingText, sender: data.sender
+                });
+            }
+            if (data.message === "client_next_wave") {
+                this.sendNextWave(data);
+            }
+            if (data.message === "server_refreshPlayerList") {
+                this.refreshPlayerList(data);
+            }
+            if (data.message === "client_buildTowerHere") {
+                this.buildTowerHere(data);
+            }
+            if (data.message === "server_new_player_arrived") {
+                this.newPlayerArrived(data);
+            }
+            if (data.message === "client_buy_sell") {
+                this.buySell(data);
+            }
+            if (data.message === "client_power_card") {
+                this.usePowerCard(data);
+            }
         }
     }
 }

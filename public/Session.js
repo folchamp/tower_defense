@@ -8,7 +8,7 @@ class Session {
     fetchPlayerName() {
         let savedPlayerName = Util.getFromLocalStorage("playerName");
         if (savedPlayerName === undefined || savedPlayerName === null) {
-            savedPlayerName = "unnamed player";
+            savedPlayerName = `unnamed-${Util.randomValue(10000000, 99999999)}`;
         }
         this.setPlayerName(savedPlayerName);
         return savedPlayerName;

@@ -28,6 +28,7 @@ class Game {
         this.soundManager = new SoundManager();
         this.rolesManager = new RolesManager((chosenRole) => { this.rolesCallback(chosenRole); });
         this.loreManager = new LoreManager();
+        this.playerListManager = new PlayerListManager((playerName) => { this.giveMoneyCallback(playerName); });
 
         this.loreManager.addLoreElement(
             {
@@ -134,7 +135,10 @@ class Game {
 
         socket.on("message", (data) => {
             let message = data.message;
-            if (message === "server_send_roles") {
+            if (message === "server_refresh_please") {
+                alert("Un bug est survenu côté serveur, veuillez rafraîchir la page pour continer à jouer, s'il vous plaît.");
+            }
+            if (message === "server_send_roles" && this.isForMe(data)) {
                 this.rolesManager.displayRolesChoice(data);
             }
             if (message === "server_refreshPlayerList") {
@@ -197,12 +201,16 @@ class Game {
             }
         });
     }
+    giveMoneyCallback(playerName) {
+        socket.emit("message", { message: "client_give_money", playerID: this.session.playerID, moneyReceiver: playerName });
+        console.log(playerName);
+    }
     rolesCallback(chosenrole) {
         socket.emit("message", { message: "client_chosen_role", playerID: this.session.playerID, role: chosenrole });
     }
     sendPingCallback(data) {
         socket.emit("message", {
-            message: "client_ping", position: data.position, pingText: data.pingText, sender: this.session.getPlayerName()
+            message: "client_ping", position: data.position, pingText: data.pingText, sender: this.session.getPlayerName(), playerID: this.session.playerID
         });
     }
     newWaveArrives(data) {
@@ -385,14 +393,7 @@ class Game {
         this.shop.refreshHandData(this.hand);
     }
     refreshPlayerList(data) {
-        Util.emptyElement(ELEMENTS["playerList"]);
-        data.playerList.forEach((player) => {
-            let playerListElement = Util.quickElement("playerListElement", "li", ELEMENTS["playerList"]);
-            playerListElement.innerText = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 🪙: ${player.money} || ${player.playerName}`;
-            if (player.playerName === this.session.getPlayerName()) {
-                ELEMENTS["myResources"].innerHTML = `⭐: ${player.actualAmountOfActions}/${player.maxAmountOfActions} || 🪙: ${player.money}`;
-            }
-        });
+        this.playerListManager.refreshPlayerList(data, this.session.getPlayerName());
     }
     changePlayerName() {
         const playerName = ELEMENTS["playerNameInput"].value.substring(0, 16);

@@ -1,16 +1,12 @@
 ***************** Roadmap *****************
-- demande de rôle envoyé à tout le monde oups
 - rôles (6 rôles)
+- vagues plus aléatoires (pas toujours les mêmes dans le même ordre)
+
 - musique (début de vague, ambiance construction, ambiance action)
 - détection de la déconnexion
 - revoir la description des monstres
-- vagues plus aléatoires (pas toujours les mêmes dans le même ordre)
-- protection serveur
-- give money button
 - shop closes when you click anywhere else (idem player screen)
 - wipe card (no reward)
-- texte ping trop petit
-
 
 ***************** Todo *****************
 icone par joueur pour les pings
