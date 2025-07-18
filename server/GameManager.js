@@ -83,10 +83,10 @@ class GameManager {
             this.waveCounter++;
             this.broadcast({ message: "server_new_wave", waveCounter: this.waveCounter });
             this.waveFinished = false;
-            this.drawTime();
-            this.drawTime();
-            this.drawTime();
             this.refreshPlayerActions()
+            this.drawTime();
+            this.drawTime();
+            this.drawTime();
             this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1;
             this.enemiesToFightThisWave = this.calcEnemiesThisWave();
             this.enemiesLeftToSpawn = this.globalEnemyStrength;
@@ -170,7 +170,7 @@ class GameManager {
         }
     }
     sendPlayerGameData(player) {
-        this.broadcast({ message: "server_get_your_game_data_boy", mapInfo: Maps.mapDescriptions[this.mapNumber], gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.role });
+        this.broadcast({ message: "server_get_your_game_data_boy", mapInfo: Maps.mapDescriptions[this.mapNumber], gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.roleName });
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
     }
@@ -393,6 +393,15 @@ class GameManager {
     refreshPlayerActions() {
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
+            if (player.roleName === "guetteur") {
+                player.money += player.actualAmountOfActions * 50;
+            }
+            if (player.roleName === "observateur" && player.actualAmountOfActions === 2) {
+                this.playerDraw(player.playerID);
+            }
+            if (player.roleName === "constructeur") {
+                player.money += player.handData.length * 20;
+            }
             player.actualAmountOfActions = player.maxAmountOfActions;
         }
         this.playerManager.refreshPlayerList();
@@ -452,6 +461,12 @@ class GameManager {
         if (player.hasCard(card)) {
             player.money += card.sellprice;
             player.removeCard(card, true);
+            if (player.roleName === "investisseur") {
+                player.money += 50;
+            }
+            if (player.roleName === "marchand") {
+                player.actualAmountOfActions++;
+            }
         }
         this.playerManager.refreshPlayerList();
         this.broadcast({ message: "server_card_sold", cardID: card.cardID, recipient: player.playerID });
@@ -615,15 +630,15 @@ class GameManager {
             if (data.cardData.type === "gain_money_2") {
                 player.money += 600;
             }
-            if (data.cardData.type === "gain_all") {
-                player.money += 100;
-                this.playerDraw(data.playerID);
-                player.actualAmountOfActions += 1;
-            }
+            // if (data.cardData.type === "gain_all") {
+            //     player.money += 100;
+            //     this.playerDraw(data.playerID);
+            //     player.actualAmountOfActions += 1;
+            // }
             if (data.cardData.type === "draw_two") {
                 this.playerDraw(data.playerID);
                 this.playerDraw(data.playerID);
-                if (player.role === "archiviste") {
+                if (player.roleName === "archiviste") {
                     // if (Math.random() > 0.5) {
                     this.playerDraw(data.playerID);
                     // }
@@ -784,18 +799,40 @@ class GameManager {
             }
         });
         if (newRole) {
+            if (player.roleName === "ingénieur") {
+                player.discard.push(
+                    { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 0 }
+                );
+            }
+            if (player.roleName === "improvisateur") {
+                player.discard.push(Util.copyObject(Util.randomFromArray(ServerData.shopCardsData)));
+                player.discard.push(Util.copyObject(Util.randomFromArray(ServerData.shopCardsData)));
+            }
             if (player.roleName === "banquier") {
                 player.discard.push(
-                    { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 }
+                    { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 0 }
                 );
-                this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+                player.discard.push(
+                    { action: "power", text: "+300🪙", type: "gain_money_1", price: 100, sellprice: 0 },
+                );
+            }
+            if (player.roleName === "réserviste") {
+                player.discard.push(
+                    { action: "build", text: "Tour de secours", type: "tiring_tower", price: 0, sellprice: 0 },
+                );
             }
             if (player.roleName === "stratège") {
+                player.discard.push(
+                    { action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 0 }
+                );
                 player.maxAmountOfActions = 4;
                 player.actualAmountOfActions++;
                 this.playerManager.refreshPlayerList();
             }
             if (player.roleName === "éclaireur") {
+                player.discard.push(
+                    { action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 0, sellprice: 0 }
+                );
                 player.handData.forEach((card) => {
                     if (card.basic) {
                         card.price -= 50;
@@ -811,9 +848,9 @@ class GameManager {
                         card.price -= 50;
                     }
                 });
-                this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
-                this.broadcast({ message: "server_get_your_game_data_boy", mapInfo: Maps.mapDescriptions[this.mapNumber], gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.role });
             }
+            this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
+            this.broadcast({ message: "server_get_your_game_data_boy", mapInfo: Maps.mapDescriptions[this.mapNumber], gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.roleName });
         }
     }
     listener(data) {

@@ -13,10 +13,33 @@
 ***************** Todo *****************
 icone par joueur pour les pings
 vendre par erreur en pendant être dans la main (main en bas)
-
+--- tests des rôles ---
+constructeur : fonctionne
+mécanicien : fonctionne
+archiviste : ok
 --- roles ---
-- ingénieur : tours de contrôle moins chères et plus spacieuses
-- récolteur : les points d'action non-dépensés se transforment en thunes
+tour de contrôle gratuite mais minuscule
+Si vous commencez une manche avec 0 cartes en main, piochez 2 cartes bonus.
+Quand vous posez une tour de secours, vous gagnez 1 action.
+
+tours de contrôle moins chères
+Commencez chaque manche avec +1 action si vous avez moins de 3 cartes en main.
+Toutes vos cartes de type “Power” (pioche, actions, argent) coûtent 25% de moins.
+Les tours vendues (placées ou non) rapportent +25% de leur valeur.
+À chaque checkpoint franchi, vous recevez 1 pièce par tour encore debout dans le bastion.
+Si un Thirak est éliminé dans la dernière zone avant le bastion, piochez 1 carte.
+Les cartes de gain d’argent vous donnent +50🪙 supplémentaires.
+Chaque zone de contrôle contenant 5 tours vous donne +1 action au début de la manche.
+À chaque 5 cartes jouées, vous piochez 1 carte.
+Vous pouvez poser des Tours dans une zone de contrôle même si elle n’est pas connectée au bastion.
+Chaque cache ouverte vous donne une carte bonus invisible, que vous pouvez révéler quand vous le souhaitez.
+Vous commencez la partie avec une carte supplémentaire.
++200🪙 au début de chaque manche.
+Les cartes Pouvoir coûtent 50🪙 de moins.
+Chaque artefact ramassé vous fait gagner +1 carte bonus (tirée du deck normal).
+garde les actions de manche en manche
+Pour chaque carte restée inutilisée en fin de manche, gagnez +25🪙 (limité à 3 cartes).
+Lorsque vous jouez une carte depuis votre main et qu’il vous reste 5 cartes ou plus en main, gagnez 50🪙.
 
 Elements.get("...") to avoid the initial document.getElementById("...")
 stats
@@ -143,3 +166,15 @@ scale la taille du magasin
 piocher deux cartes pas assez cher ??? (selon Vincent)
 halo de tour de contrôle plus visible quand full
 retirer le système de vente de cartes, le remplacer par un système de destruction
+
+
+🔄 4. Cartes à effets évolutifs
+💡 Certaines cartes deviennent plus fortes… si tu ne les joues pas immédiatement.
+"Tourelle d’accumulation" : inflige 1 dégât de plus chaque tour passé dans ta main, max 5.
+"Sort chargé" : coûte -1 chaque tour non joué.
+➡️ Stratégie : arbitrer entre court terme vs long terme, anticiper les futures vagues, ou décider de sacrifier de l’efficacité immédiate.
+🪙 7. Investissement différé (bonus si pas utilisé)
+💡 Si un joueur n’utilise pas son or ce tour, il peut le mettre dans un "compte" personnel qui génère un effet plus tard.
+3 or stockés = 1 pioche bonus dans 2 tours.
+5 or stockés = accès à une carte spéciale rare à la fin de la vague.
+➡️ Stratégie : arbitrage immédiat vs croissance future.

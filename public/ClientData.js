@@ -164,6 +164,10 @@ class ClientData {
     }
 
     static towersDescriptions = {
+        "tiring_tower": {
+            "description": "Cette tourelle montée à la hâte génère une colossale puissance de feu jusqu'à la surchauffe.",
+            "capacity": "Peut être placée hors de zones de contrôle."
+        },
         "bank_tower": {
             "description": "Vestige d'un CCLA (comptoir commercial local automatisé), cette tour a été modifiée pour racler les maigres ressources qui traînent encore dans le no-man's land.",
             "capacity": "Génère 125 thunes par vague."

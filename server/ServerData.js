@@ -50,63 +50,6 @@ class ServerData {
             description: "C'était probablement un vaisseau cargo destiné à ravitailler les mondes incapables de faire pousser leur propre nourriture. La plupart des sacs sont éventrés mais vous en trouvez quelques uns qui valent la peine d'être rapportés au bastion."
         },
     ]
-    static roles = [
-        {
-            roleName: "sans rôle",
-            firstAbility: "Aucune capacité",
-            secondAbility: "Aucune capacité"
-        },
-        {
-            roleName: "ingénieur",
-            firstAbility: "Les tours de contrôle ont 7 emplacements",
-            secondAbility: "TODO"
-            // secondAbility: "TODO : Placer une tour de contrôle coûte 250 de moins"
-        },
-        {
-            roleName: "banquier",
-            firstAbility: "Commence avec une banque dans la défausse",
-            secondAbility: "TODO"
-        },
-        {
-            roleName: "stratège",
-            firstAbility: "Commence le tour avec 4 actions",
-            secondAbility: "TODO"
-            // secondAbility: "Pioche 4 cartes s'il commence la vague avec une main vide"
-        },
-        {
-            roleName: "éclaireur",
-            firstAbility: "Les tours de départ coûtent 50 de moins",
-            secondAbility: "TODO"
-            // secondAbility: "Les micro-agences sont gratuites"
-        },
-        {
-            roleName: "archiviste",
-            firstAbility: "À chaque fois que vous jouez une carte de pioche, vous piochez une carte supplémentaire.",
-            secondAbility: "TODO"
-        }, ,
-        {
-            roleName: "mécanicien",
-            firstAbility: "Chaque fois que vous construisez la dernière tour dans une zone de contrôle, gagnez 150🪙.",
-            secondAbility: "TODO"
-        },
-
-
-        // {
-        //     role: "gardien",
-        //     firstAbility: "Blah blah",
-        //     secondAbility: "Empêche l'ennemi d'arriver jusqu'au bastion, à tout prix"
-        // },
-        // {
-        //     role: "soldat",
-        //     firstAbility: "Truc chose",
-        //     secondAbility: "Rôle polyvalent"
-        // },
-        // {
-        //     role: "économiste",
-        //     firstAbility: "Commence la partie avec une banque",
-        //     secondAbility: "Grapille des ressources sur le champ de bataille pour les distribuer à ses compagnons"
-        // },
-    ];
     static generateInitialHandData() {
         let handData = [];
         // let control = Util.copyObject(this.shopCardsData[0]);
@@ -240,11 +183,86 @@ class ServerData {
             bulletData: { damage: 400, speed: 0.8, color: "black", size: 2, special: ["tiring"] }
         },
     };
+    static roles = [
+        {
+            roleName: "sans rôle",
+            firstAbility: "Aucune capacité",
+            secondAbility: "Aucune capacité"
+        },
+        {
+            roleName: "ingénieur",
+            firstAbility: "Vos tours de contrôle ont 7 emplacements",
+            secondAbility: "Vous commencez avec une tour de contrôle supplémentaire dans votre défausse."
+        },
+        {
+            roleName: "banquier",
+            firstAbility: "Vous commencez avec une banque dans la défausse",
+            secondAbility: "Vous commencez avec une carte de thunes supplémentaire dans votre défausse."
+        },
+        {
+            roleName: "stratège",
+            firstAbility: "Vous commencez chaque vague avec 4⭐",
+            secondAbility: "Vous commencez avec une carte de pioche supplémentaire dans votre défausse."
+        },
+        {
+            roleName: "éclaireur",
+            firstAbility: "Vos tourelles de départ coûtent 50🪙 de moins",
+            secondAbility: "Vous commencez avec une carte de micro-agence gratuite supplémentaire dans votre défausse."
+        },
+        {
+            roleName: "archiviste",
+            firstAbility: "À chaque fois que vous jouez une carte de pioche, +1🎴",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "mécanicien",
+            firstAbility: "Chaque fois que vous construisez la dernière tourelle dans une zone de contrôle, +150🪙",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "guetteur",
+            firstAbility: "À la fin de chaque vague, +50🪙 pour chaque point d'action non-dépensé",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "observateur",
+            firstAbility: "S'il vous reste exactement 2 actions à la fin de la vague, +2🎴",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "réserviste",
+            firstAbility: "Vous commencez la partie avec une tour de secours gratuite dans votre défausse",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "constructeur",
+            firstAbility: "+20🪙 par carte en main à la fin de chaque vague.",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "improvisateur",
+            firstAbility: "Vous commencez la partie avec deux cartes aléatoire dans votre défausse",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "investisseur",
+            firstAbility: "Vendre un carte vous rapporte +50🪙",
+            secondAbility: "TODO"
+        },
+        {
+            roleName: "marchand",
+            firstAbility: "Vendre un carte vous rapporte +1⭐",
+            secondAbility: "TODO"
+        },
+        // 🎴
+        // ⭐
+        // 🪙
+    ];
     static basicCardsData = [
         { basic: true, action: "build", text: "Petit canon", type: "basic_shooter", price: 200, sellprice: 400 }, // auto-include
         { basic: true, action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 }, // auto-include
         { basic: true, action: "build", text: "Arme légère", type: "quick_shooter", price: 200, sellprice: 400 }, // auto-include
-        { basic: true, action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },  // auto-include
+        { basic: true, action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 }  // auto-include
     ];
     static shopCardsData = [
         // autoinclude for testing
@@ -253,7 +271,7 @@ class ServerData {
         // { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         // { action: "build", text: "Tour d'orage", type: "storm_tower", price: 800, sellprice: 1000 },
         // end autoinclude for testing
-
+        { action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 },
         { action: "power", text: "super contrôle", type: "upgrade_control", price: 750, sellprice: 1500, size: 24 },
         { action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 800 },
         { action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 150, sellprice: 300 },
