@@ -1,4 +1,5 @@
 ***************** Roadmap *****************
+- demande de rôle envoyé à tout le monde oups
 - rôles (6 rôles)
 - musique (début de vague, ambiance construction, ambiance action)
 - détection de la déconnexion
@@ -8,8 +9,12 @@
 - give money button
 - shop closes when you click anywhere else (idem player screen)
 - wipe card (no reward)
+- texte ping trop petit
+
 
 ***************** Todo *****************
+icone par joueur pour les pings
+vendre par erreur en pendant être dans la main (main en bas)
 
 --- roles ---
 - ingénieur : tours de contrôle moins chères et plus spacieuses
