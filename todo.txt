@@ -1,14 +1,16 @@
+***************** Roadmap *****************
+- rôles (6 rôles)
+- musique (début de vague, ambiance construction, ambiance action)
+- détection de la déconnexion
+- revoir la description des monstres
+- vagues plus aléatoires (pas toujours les mêmes dans le même ordre)
 ***************** Todo *****************
-grotte pour l'arrivée des monstres
-rôles
 
 --- roles ---
 - ingénieur : tours de contrôle moins chères et plus spacieuses
 - récolteur : les points d'action non-dépensés se transforment en thunes
 
-revoir la clarté de monstres, ajouter un mini-bestiaire en début de vague 
 Elements.get("...") to avoid the initial document.getElementById("...")
-descriptions plus proches du visuel du monstre dans le bestiaire
 stats
 détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
 afficher la portée au survol 
