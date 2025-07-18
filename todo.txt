@@ -4,6 +4,11 @@
 - détection de la déconnexion
 - revoir la description des monstres
 - vagues plus aléatoires (pas toujours les mêmes dans le même ordre)
+- protection serveur
+- give money button
+- shop closes when you click anywhere else (idem player screen)
+- wipe card (no reward)
+
 ***************** Todo *****************
 
 --- roles ---
@@ -20,7 +25,6 @@ virer les maps à route unique (pas assez lisibles) ???
 bug carte non-trouvée (j'ai l'impression que le reset a lieu deux fois ???)
 cleaner les valeurs fixes dans tout le code, mettre des paramètres à la place
 moins de monstres moins vite, mais plus forts
-vagues aléatoires basées sur les forces des monstres
 carte destruction de tour
 déploiement mobile
 balise-relais (mini tour de contrôle)
@@ -28,7 +32,6 @@ cartes à usage unique
 créer une fonction splice from array avec une fonction
 portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
-protéger le serveur contre les crashs
 personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
 certaines tours ont une portée minimum
 --- sound design ---
@@ -47,7 +50,6 @@ Dark Post Apocalyptic Background 1 (-5db).wav by SolarPhasing -- https://freesou
 https://swarajthegreat.itch.io/post-apocalyptic-soundscapes
 
 ***************** Must ***************** 
-give money button
 indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
 piocher deux cartes : retirer la carte avant d'effectuer la pioche (sinon on pioche une carte de moins à main full)
 cartes rares (cartes identiques avec une carac surboostée)
@@ -56,20 +58,15 @@ système de campagne plutôt que de high score ? Carte aléatoire pour plus de v
 système de réputation (tour de contrôle, cartes coopératives etc.)
 code couleur pour les cartes (construction, pouvoir, coopération, réputation)
 système de coût supplémentaire pour les cartes fortes (sacrifice 1 = défausser la première carte de se main) (trouver un mot-clef sympa)
-les monstres ont une « valeur de difficulté » qui détermine leur fréquence
 poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat précise ?)
 eco towers give cards
 eco towers give actions
 enemies focus closeby towers (towers are in a 128 virtual grid)
-shop closes when you click anywhere else (idem player screen)
 
 ***************** Équilibrage *****************
 
 ***************** Bugs *****************
 bug : when you select a tower, you can't move the canvas anymore without building the tower
-déconnexion pas prise en compte ? (le programme compte les joueurs déconnectés)
-- quand il y a une déconnexion, pinger tous les joueurs pour voir qui est encore là ?
-connection and disconnection : check if it really works
 bug affichage des thunes
 la dépense de thunes et son affichage buggent parfois
 
