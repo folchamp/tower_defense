@@ -1,5 +1,8 @@
 ***************** Roadmap *****************
 - rôles (6 rôles)
+two roles !!! first selection hightlights, second sends
+hasrole instead of rolename
+roles as lore
 
 - musique (début de vague, ambiance construction, ambiance action)
 - détection de la déconnexion
@@ -18,6 +21,9 @@ constructeur : fonctionne
 mécanicien : fonctionne
 archiviste : ok
 --- roles ---
+toutes vos tours ontperce armure, glace ou feu
+refresh game state fait monter un compteur côté serveur, en l'absence de réponse pendant trop longtemps, déco automatique 
+
 tour de contrôle gratuite mais minuscule
 Si vous commencez une manche avec 0 cartes en main, piochez 2 cartes bonus.
 Quand vous posez une tour de secours, vous gagnez 1 action.
