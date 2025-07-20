@@ -449,10 +449,13 @@ class Game {
         let towers = data.gameElements.towers;
         let artifacts = data.gameElements.artifacts;
         let caches = data.gameElements.caches;
+        let auras = data.gameElements.auras;
         let towerIDsToRemove = data.gameElements.towerIDsToRemove;
         let enemyIDsToRemove = data.gameElements.enemyIDsToRemove;
         let artifactIDsToRemove = data.gameElements.artifactIDsToRemove;
         let cacheIDsToRemove = data.gameElements.cacheIDsToRemove;
+        // auras
+        this.gameElements.auras = auras; 
         // towers
         towers.forEach((newTower) => {
             for (let index = 0; index < this.gameElements.towers.length; index++) {

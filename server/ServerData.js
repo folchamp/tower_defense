@@ -129,7 +129,7 @@ class ServerData {
         },
         air_shooter: {
             name: "air_shooter", initialAngle: Math.PI / 2,
-            reloadTime: 200, range: 300,
+            reloadTime: 200, range: 300, size: 20,
             bulletData: { damage: 125, speed: 0.4, color: "blue", size: 2, special: ["armor_piercer"] }
         },
         basic_shooter: {
@@ -160,7 +160,7 @@ class ServerData {
         railgun_tower: {
             name: "railgun_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 400,
-            bulletData: { damage: 5000, speed: 0.6, color: "silver", size: 8, special: ["armor_piercer"] }
+            bulletData: { damage: 5000, speed: 0.6, color: "silver", size: 8, special: [] }
         },
         storm_tower: {
             name: "storm_tower", initialAngle: Math.PI / 2,
@@ -492,6 +492,7 @@ class ServerData {
             imageName: "strong_enemy",
             maxHP: 7000,
             reward: 25,
+            size: 32,
             abilities: ["fly", "summon_drones"]
         },
 
@@ -501,6 +502,7 @@ class ServerData {
             imageName: "tank_enemy",
             maxHP: 8000,
             reward: 25,
+            size: 19,
             abilities: ["immunity", "jump_forward_on_hit", "resistance"]
         },
 
@@ -510,6 +512,7 @@ class ServerData {
             imageName: "boss_enemy",
             maxHP: 200000,
             reward: 25,
+            size: 34,
             abilities: ["immunity", "summoner", "regenerates_boss"]
         },
 
@@ -519,6 +522,7 @@ class ServerData {
             imageName: "brute_enemy",
             maxHP: 3500,
             reward: 25,
+            size: 37,
             abilities: ["immunity"]
         },
 

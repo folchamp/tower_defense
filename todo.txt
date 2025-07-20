@@ -3,6 +3,12 @@
 two roles !!! first selection hightlights, second sends
 hasrole instead of rolename
 roles as lore
+bug rôles, attention quand on relance une game sans relancer le serveur (clean les rôles et redemander)
+barre de scroll onglet info
+tour de secours munitions ??? bug ???
+vitesse monstres bug ??? trop rapides ???
+rôles proposés doivent être uniques, mort aux doublons
+
 
 - musique (début de vague, ambiance construction, ambiance action)
 - détection de la déconnexion

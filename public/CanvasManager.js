@@ -179,6 +179,17 @@ class CanvasManager {
                     this.context.fill();
                 });
                 this.context.globalAlpha = 1;
+                this.gameElements[order].forEach((aura) => {
+                    if (aura.auraData.spaceLeft < 1) {
+                        this.context.strokeStyle = "black";
+                        this.context.beginPath();
+                        this.context.arc(
+                            aura.position.x + this.offset.x,
+                            aura.position.y + this.offset.y,
+                            aura.auraData.auraRadius, 0, 2 * Math.PI);
+                        this.context.stroke();
+                    }
+                });
             } else if (order === "towers") {
                 // TOWERS
                 this.gameElements[order].forEach((tower) => {
@@ -303,8 +314,8 @@ class CanvasManager {
                 this.context.fillStyle = "black";
                 this.context.font = "32px Arial";
                 this.context.drawImage(ClientData.images["ping"], pingData.position.x + this.offset.x - 50, pingData.position.y + this.offset.y - 100);
-                this.context.fillText(`${pingData.pingText}`, 
-                    pingData.position.x + this.offset.x - this.context.measureText(pingData.pingText).width / 2, 
+                this.context.fillText(`${pingData.pingText}`,
+                    pingData.position.x + this.offset.x - this.context.measureText(pingData.pingText).width / 2,
                     pingData.position.y + this.offset.y + 25);
                 // this.context.fillText(`${pingData.sender}`, 
                 //     pingData.position.x + this.offset.x - this.context.measureText(pingData.sender).width / 2, 
