@@ -508,7 +508,7 @@ class ServerData {
 
         boss_enemy: {
             name: "boss_enemy",
-            speed: 0.025,
+            speed: 0.05,
             imageName: "boss_enemy",
             maxHP: 600000,
             reward: 25,
@@ -518,9 +518,9 @@ class ServerData {
 
         brute_enemy: {
             name: "brute_enemy",
-            speed: 0.035,
+            speed: 0.085,
             imageName: "brute_enemy",
-            maxHP: 3500,
+            maxHP: 5000,
             reward: 25,
             size: 37,
             abilities: ["immunity"]

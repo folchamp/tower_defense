@@ -13,7 +13,7 @@ class PingManager {
             "Oui",
             "Non",
             "Danger ici",
-            "Je suis prêt",
+            "Je suis prêt·e",
             "Placez une tour ici",
             "Placez un tour de contrôle ici",
             "Je suis trop pauvre",
