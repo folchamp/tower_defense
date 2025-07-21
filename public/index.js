@@ -19,7 +19,7 @@ const elementNames = [
     "shopContentContainer",
     "nextWaveButton",
     "fullscreenButton",
-    "handButton",
+    // "handButton",
     "handContainer",
     "waveNotification",
     "deckDisplayerContainer",

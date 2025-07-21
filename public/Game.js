@@ -63,14 +63,15 @@ class Game {
             if (event.code === "KeyQ") {
                 if (document.activeElement !== ELEMENTS["playerNameInput"]) {
                     this.closeAllPopups();
-                    ELEMENTS["cardsContainer"].classList.remove("hidden");
-                    ELEMENTS["handButton"].classList.add("selectedMenuElement");
+                    // ELEMENTS["cardsContainer"].classList.remove("hidden");
+                    // ELEMENTS["handButton"].classList.add("selectedMenuElement");
                 }
             }
             if (event.code === "KeyW") {
                 if (document.activeElement !== ELEMENTS["playerNameInput"]) {
                     this.closeAllPopups();
                     ELEMENTS["shopContainer"].classList.remove("hidden");
+                    ELEMENTS["cardsContainer"].classList.add("hidden");
                     ELEMENTS["shopButton"].classList.add("selectedMenuElement");
                 }
             }
@@ -99,6 +100,7 @@ class Game {
         ELEMENTS["shopButton"].addEventListener("click", (event) => {
             this.closeAllPopups();
             ELEMENTS["shopContainer"].classList.remove("hidden");
+            ELEMENTS["cardsContainer"].classList.add("hidden");
             ELEMENTS["shopButton"].classList.add("selectedMenuElement");
         });
 
@@ -108,17 +110,24 @@ class Game {
             ELEMENTS["playersButton"].classList.add("selectedMenuElement");
         });
 
-        ELEMENTS["handButton"].addEventListener("click", (event) => {
-            this.closeAllPopups();
-            ELEMENTS["cardsContainer"].classList.remove("hidden");
-            ELEMENTS["handButton"].classList.add("selectedMenuElement");
-        });
+        // ELEMENTS["handButton"].addEventListener("click", (event) => {
+        //     this.closeAllPopups();
+        //     ELEMENTS["cardsContainer"].classList.remove("hidden");
+        //     ELEMENTS["handButton"].classList.add("selectedMenuElement");
+        // });
 
         ELEMENTS["deckDisplayerButton"].addEventListener("click", (event) => {
             this.closeAllPopups();
             ELEMENTS["deckDisplayerContainer"].classList.remove("hidden");
             ELEMENTS["deckDisplayerButton"].classList.add("selectedMenuElement");
         });
+        ELEMENTS["handContainer"].addEventListener("click", (event) => {
+            // TODO remove grabbed card
+
+            this.grabbedCard.attach();
+            this.grabbedCard = undefined;
+            this.closeAllPopups();
+        })
         // END MENU BUTTONS
 
         ELEMENTS["playerNameInput"].value = this.session.getPlayerName();
@@ -226,11 +235,12 @@ class Game {
     }
     closeAllPopups() {
         ELEMENTS["shopContainer"].classList.add("hidden");
-        ELEMENTS["cardsContainer"].classList.add("hidden");
+        // ELEMENTS["cardsContainer"].classList.add("hidden");
+        ELEMENTS["cardsContainer"].classList.remove("hidden")
         ELEMENTS["multiPlayerInfoContainer"].classList.add("hidden");
         ELEMENTS["deckDisplayerContainer"].classList.add("hidden");
 
-        ELEMENTS["handButton"].classList.remove("selectedMenuElement");
+        // ELEMENTS["handButton"].classList.remove("selectedMenuElement");
         ELEMENTS["shopButton"].classList.remove("selectedMenuElement");
         ELEMENTS["playersButton"].classList.remove("selectedMenuElement");
         ELEMENTS["deckDisplayerButton"].classList.remove("selectedMenuElement");
@@ -244,6 +254,7 @@ class Game {
     }
     canvasMouseCallback(eventType, position) {
         if (eventType === "click") {
+            this.closeAllPopups();
             this.pingManager.closePingSender();
             this.mousePosition = position;
             let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
@@ -455,7 +466,14 @@ class Game {
         let artifactIDsToRemove = data.gameElements.artifactIDsToRemove;
         let cacheIDsToRemove = data.gameElements.cacheIDsToRemove;
         // auras
-        this.gameElements.auras = auras; 
+        auras.forEach((newAura) => {
+            for (let index = 0; index < this.gameElements.auras.length; index++) {
+                const aura = this.gameElements.auras[index];
+                if (aura.position.x === newAura.position.x && aura.position.y === newAura.position.y) {
+                    this.gameElements.auras[index] = newAura;
+                }
+            }
+        });
         // towers
         towers.forEach((newTower) => {
             for (let index = 0; index < this.gameElements.towers.length; index++) {

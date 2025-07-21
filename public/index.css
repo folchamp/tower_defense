@@ -251,13 +251,13 @@ body {
         box-shadow: 0 2px 6px rgba(0, 255, 255, 0.05);
 
         #deckDisplayerButton:hover,
-        #handButton:hover,
+        /* #handButton:hover, */
         #shopButton:hover,
         #playersButton:hover,
         #nextWaveButton:hover,
         #fullscreenButton:hover,
         #deckDisplayerButton.selectedMenuElement,
-        #handButton.selectedMenuElement,
+        /* #handButton.selectedMenuElement, */
         #shopButton.selectedMenuElement,
         #playersButton.selectedMenuElement,
         #nextWaveButton.selectedMenuElement,
@@ -268,7 +268,7 @@ body {
         }
 
         #deckDisplayerButton,
-        #handButton,
+        /* #handButton, */
         #playersButton,
         #shopButton,
         #nextWaveButton,
@@ -485,20 +485,21 @@ body {
     #cardsContainer {
         background: rgba(10, 20, 30, 0.8);
         position: absolute;
-        left: 0;
-        top: 40px;
-        display: flex;
-        flex-direction: column;
+        bottom: 0px;
+        margin: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 100vw;
 
         #handContainer {
             display: flex;
-            flex-direction: column;
-            max-height: 354px;
+            width: 100vw;
             flex-wrap: wrap;
+            justify-content: center;
 
             .cardContainer {
-                transition: left 0.3s;
-                left: 0px;
+                transition: bottom 0.3s;
+                bottom: 0px;
                 position: relative;
                 box-sizing: border-box;
                 line-height: initial;
@@ -529,12 +530,12 @@ body {
             }
 
             .cardContainer:hover {
-                left: 8px;
+                bottom: 16px;
             }
 
             .unattached,
             .unattached:hover {
-                left: 8px;
+                bottom: 16px;
             }
         }
     }

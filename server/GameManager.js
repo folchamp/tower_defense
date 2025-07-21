@@ -25,6 +25,9 @@ class GameManager {
             } else if (!this.waveFinished && this.gameElements.enemies.length === 0) {
                 this.waveFinished = true;
                 this.broadcast({ message: "server_wave_finished" });
+                if (this.waveCounter === 3) {
+                    this.cleanRoles(true);
+                }
             }
         }, ServerData.ENEMIES_INTERVAL);
         this.loop();
@@ -101,6 +104,7 @@ class GameManager {
     }
     reset() {
         let randomCacheFactor = Util.randomValue(0, 100);
+        this.cleanRoles(false);
         this.mapNumber = Util.randomValue(0, Maps.allMaps.length - 1);
         console.log(`Map number : ${this.mapNumber}`);
         this.timeLost = 0;
@@ -427,7 +431,7 @@ class GameManager {
             player.handData = ServerData.generateInitialHandData();
         }
         if (player.roleName === undefined) {
-            this.sendRoles(player);
+            // this.sendRoles(player); happens at wave 4
         }
         this.sendPlayerGameData(player);
     }
@@ -443,6 +447,16 @@ class GameManager {
             this.roles = [...this.roles, ...player.roles];
         }
         this.broadcast({ message: "server_send_roles", recipient: player.playerID, roles: player.roles });
+    }
+    cleanRoles(sendProposition) {
+        for (let playerID in this.playerManager.players) {
+            let player = this.playerManager.players[playerID];
+            player.roles = undefined;
+            player.roleName = undefined;
+            if (sendProposition) {
+                this.sendRoles(player);
+            }
+        }
     }
     buy(data) {
         let player = this.playerManager.players[data.playerID];

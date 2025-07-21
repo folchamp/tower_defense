@@ -181,7 +181,8 @@ class CanvasManager {
                 this.context.globalAlpha = 1;
                 this.gameElements[order].forEach((aura) => {
                     if (aura.auraData.spaceLeft < 1) {
-                        this.context.strokeStyle = "black";
+                        this.context.strokeStyle = "darkblue";
+                        this.context.lineWidth = 2;
                         this.context.beginPath();
                         this.context.arc(
                             aura.position.x + this.offset.x,
