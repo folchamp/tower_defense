@@ -185,11 +185,6 @@ class ServerData {
     };
     static roles = [
         {
-            roleName: "sans rôle",
-            firstAbility: "Aucune capacité",
-            secondAbility: "Aucune capacité"
-        },
-        {
             roleName: "ingénieur",
             firstAbility: "Vos tours de contrôle ont 7 emplacements",
             secondAbility: "Vous commencez avec une tour de contrôle supplémentaire dans votre défausse."
@@ -212,47 +207,47 @@ class ServerData {
         {
             roleName: "archiviste",
             firstAbility: "À chaque fois que vous jouez une carte de pioche, +1🎴",
-            secondAbility: "TODO"
+            secondAbility: "Vous commencez avec une carte de pioche pour tous gratuite supplémentaire dans votre défausse."
         },
         {
             roleName: "mécanicien",
             firstAbility: "Chaque fois que vous construisez la dernière tourelle dans une zone de contrôle, +150🪙",
-            secondAbility: "TODO"
+            secondAbility: "Votre tour de contrôle de départ est gratuite mais vos tours de contrôle n'ont que trois emplacements."
         },
         {
             roleName: "guetteur",
             firstAbility: "À la fin de chaque vague, +50🪙 pour chaque point d'action non-dépensé",
-            secondAbility: "TODO"
+            secondAbility: "Vous commencez avec deux cartes de gain d'actions supplémentaire dans votre défausse."
         },
         {
             roleName: "observateur",
             firstAbility: "S'il vous reste exactement 2 actions à la fin de la vague, +2🎴",
-            secondAbility: "TODO"
+            secondAbility: "Le coût en points d'action de vos cartes pouvoir est remboursé."
         },
         {
             roleName: "réserviste",
             firstAbility: "Vous commencez la partie avec une tour de secours gratuite dans votre défausse",
-            secondAbility: "TODO"
+            secondAbility: "Vous commencez la partie avec une tour sniper très chère dans votre défausse"
         },
         {
             roleName: "constructeur",
             firstAbility: "+20🪙 par carte en main à la fin de chaque vague.",
-            secondAbility: "TODO"
+            secondAbility: "Quand vous jouez une carte construction, piochez une carte"
         },
         {
             roleName: "improvisateur",
             firstAbility: "Vous commencez la partie avec deux cartes aléatoire dans votre défausse",
-            secondAbility: "TODO"
+            secondAbility: "Vous recevez instantanément 1200🪙"
         },
         {
             roleName: "investisseur",
             firstAbility: "Vendre un carte vous rapporte +50🪙",
-            secondAbility: "TODO"
+            secondAbility: "Les artefacts que vous ramassez vont dans votre main plutôt que votre défausse"
         },
         {
             roleName: "marchand",
             firstAbility: "Vendre un carte vous rapporte +1⭐",
-            secondAbility: "TODO"
+            secondAbility: "Vendre un carte vous rapporte +1🎴"
         },
         // 🎴
         // ⭐
@@ -405,7 +400,7 @@ class ServerData {
             name: "drone_enemy",
             speed: 0.11,
             imageName: "drone_enemy",
-            maxHP: 1000,
+            maxHP: 2000,
             reward: 25,
             abilities: ["fly"]
         },

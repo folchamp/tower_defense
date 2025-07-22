@@ -15,6 +15,7 @@ class RolesManager {
         Util.hide(this.rolesPopupContainer);
     }
     displayRolesChoice(data) {
+        Util.emptyElement(this.rolesChoiceContainer);
         Util.show(this.rolesPopupContainer);
         this.roles = data.roles;
         this.roles.forEach((role) => {

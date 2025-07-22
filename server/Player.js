@@ -10,6 +10,7 @@ class Player {
         this.socketID = socketID;
         this.connected = false;
         this.ready = false;
+        this.roleName = [];
         this.reset();
     }
     getAllCards() {

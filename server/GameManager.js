@@ -25,8 +25,11 @@ class GameManager {
             } else if (!this.waveFinished && this.gameElements.enemies.length === 0) {
                 this.waveFinished = true;
                 this.broadcast({ message: "server_wave_finished" });
-                if (this.waveCounter === 3) {
-                    this.cleanRoles(true);
+                if (this.waveCounter === 1) {
+                    this.askRoles(true);
+                }
+                if (this.waveCounter === 2) {
+                    this.askRoles(false);
                 }
             }
         }, ServerData.ENEMIES_INTERVAL);
@@ -104,7 +107,7 @@ class GameManager {
     }
     reset() {
         let randomCacheFactor = Util.randomValue(0, 100);
-        this.cleanRoles(false);
+        this.cleanRoles();
         this.mapNumber = Util.randomValue(0, Maps.allMaps.length - 1);
         console.log(`Map number : ${this.mapNumber}`);
         this.timeLost = 0;
@@ -398,13 +401,13 @@ class GameManager {
     refreshPlayerActions() {
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
-            if (player.roleName === "guetteur") {
+            if (player.roleName.includes("guetteur")) {
                 player.money += player.actualAmountOfActions * 50;
             }
-            if (player.roleName === "observateur" && player.actualAmountOfActions === 2) {
+            if (player.roleName.includes("observateur") && player.actualAmountOfActions === 2) {
                 this.playerDraw(player.playerID);
             }
-            if (player.roleName === "constructeur") {
+            if (player.roleName.includes("constructeur")) {
                 player.money += player.handData.length * 20;
             }
             player.actualAmountOfActions = player.maxAmountOfActions;
@@ -430,31 +433,37 @@ class GameManager {
         if (player.handData === undefined) {
             player.handData = ServerData.generateInitialHandData();
         }
-        if (player.roleName === undefined) {
-            // this.sendRoles(player); happens at wave 4
-        }
+        Util.shuffle(ServerData.roles);
+        player.roles = [this.createRole(0), this.createRole(1), this.createRole(2)];
+        player.rolesTwo = [this.createRole(3), this.createRole(4), this.createRole(5)];
+        console.log(player);
+        this.roles = [...this.roles, ...player.roles, ...player.rolesTwo];
         this.sendPlayerGameData(player);
     }
-    createRole() {
-        let role = Util.copyObject(Util.randomFromArray(ServerData.roles));
+    createRole(index) {
+        let role = Util.copyObject(ServerData.roles[index]);
         role.roleID = Util.getNewID();
         return role;
     }
-    sendRoles(player) {
-        // TODO roles
-        if (player.roles === undefined) {
-            player.roles = [this.createRole(), this.createRole(), this.createRole()];
-            this.roles = [...this.roles, ...player.roles];
-        }
-        this.broadcast({ message: "server_send_roles", recipient: player.playerID, roles: player.roles });
+    sendRoles(player, roles) {
+        console.log(roles);
+        this.broadcast({ message: "server_send_roles", recipient: player.playerID, roles: roles });
     }
-    cleanRoles(sendProposition) {
+    cleanRoles() {
         for (let playerID in this.playerManager.players) {
             let player = this.playerManager.players[playerID];
             player.roles = undefined;
-            player.roleName = undefined;
-            if (sendProposition) {
-                this.sendRoles(player);
+            player.rolesTwo = undefined;
+            player.roleName = [];
+        }
+    }
+    askRoles(isFirst) {
+        for (let playerID in this.playerManager.players) {
+            let player = this.playerManager.players[playerID];
+            if (isFirst) {
+                this.sendRoles(player, player.roles);
+            } else {
+                this.sendRoles(player, player.rolesTwo);
             }
         }
     }
@@ -476,10 +485,11 @@ class GameManager {
         if (player.hasCard(card)) {
             player.money += card.sellprice;
             player.removeCard(card, true);
-            if (player.roleName === "investisseur") {
+            if (player.roleName.includes("investisseur")) {
                 player.money += 50;
             }
-            if (player.roleName === "marchand") {
+            if (player.roleName.includes("marchand")) {
+                this.playerDraw(data.playerID);
                 player.actualAmountOfActions++;
             }
         }
@@ -546,7 +556,9 @@ class GameManager {
     }
     cleanAfterCardSucces(data) {
         let player = this.playerManager.players[data.playerID];
-        player.actualAmountOfActions--;
+        if (!player.roleName.includes("observateur")) {
+            player.actualAmountOfActions--;
+        }
         player.money -= data.cardData.price;
         player.removeCard(data.cardData);
         this.playerManager.refreshPlayerList();
@@ -635,6 +647,9 @@ class GameManager {
             }
             if (data.cardData.type === "everyone_draws") {
                 this.drawTime();
+                if (player.roleName.includes("archiviste")) {
+                    this.playerDraw(data.playerID);
+                }
             }
             if (data.cardData.type === "new_shop") {
                 this.shopManager.reset();
@@ -656,10 +671,8 @@ class GameManager {
             if (data.cardData.type === "draw_two") {
                 this.playerDraw(data.playerID);
                 this.playerDraw(data.playerID);
-                if (player.roleName === "archiviste") {
-                    // if (Math.random() > 0.5) {
+                if (player.roleName.includes("archiviste")) {
                     this.playerDraw(data.playerID);
-                    // }
                 }
             }
             if (data.cardData.type === "three_actions") {
@@ -714,8 +727,11 @@ class GameManager {
         } else {
             success = true;
             feedbackMessage = "construction validée";
-            if (player.roleName === "mécanicien" && this.isLastTower(data)) {
+            if (player.roleName.includes("mécanicien") && this.isLastTower(data)) {
                 player.money += 150;
+            }
+            if (player.roleName.includes("constructeur")) {
+                this.playerDraw(player.playerID);
             }
             this.cleanAfterCardSucces(data);
         }
@@ -723,7 +739,12 @@ class GameManager {
             let returnData = {};
             let towerData = ServerData.towers[cardData.type];
             let tower = new Tower(cardData, Util.copyObject(towerData), position, player.playerName, Util.getNewID());
-            if (player.roleName === "ingénieur" && tower.towerData.name === "control_tower") {
+            if (player.roleName.includes("mécanicien") && tower.towerData.name === "control_tower") {
+                tower.towerData.auraData = Util.copyObject(tower.towerData.auraData);
+                tower.towerData.auraData.spaceLeft = 3;
+                tower.towerData.auraData.auraColor = "orange";
+            }
+            if (player.roleName.includes("ingénieur") && tower.towerData.name === "control_tower") {
                 tower.towerData.auraData = Util.copyObject(tower.towerData.auraData);
                 tower.towerData.auraData.spaceLeft = 7;
                 tower.towerData.auraData.auraColor = "red";
@@ -771,7 +792,11 @@ class GameManager {
             this.gameElements.artifacts.splice(indexToRemove, 1);
             this.newGameStateElements.artifactIDsToRemove.push(artifactID);
             let cardData = { action: "power", text: "Artefact (50🪙)", type: "gain_money_3", price: 1, sellprice: 250 };
-            player.discard.push(this.newCard(cardData));
+            if (player.roleName.includes("investisseur")) {
+                player.handData.push(this.newCard(cardData));
+            } else {
+                player.discard.push(this.newCard(cardData));
+            }
             this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         } else {
             console.log("artifact not found");
@@ -812,26 +837,40 @@ class GameManager {
     }
     setRole(data) {
         let newRole = false;
+        let newRoleName;
         let player = this.playerManager.players[data.playerID];
         player.roles.forEach((role) => {
             if (role.roleID === data.roleID) {
                 newRole = true;
                 console.log(`YOU ARE ${role.roleName} NOW`);
-                player.roleName = role.roleName;
+                player.roleName.push(role.roleName);
                 player.roles = [role];
+                newRoleName = role.roleName;
+            }
+        });
+        player.rolesTwo.forEach((role) => {
+            if (role.roleID === data.roleID) {
+                newRole = true;
+                console.log(`YOU ARE ${role.roleName} NOW`);
+                player.roleName.push(role.roleName);
+                player.rolesTwo = [role];
+                newRoleName = role.roleName;
             }
         });
         if (newRole) {
-            if (player.roleName === "ingénieur") {
-                player.discard.push(
-                    this.newCard({ action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 0 })
-                );
+            if (newRoleName === "ingénieur") {
+                player.discard.push(this.newCard({ action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 0 }));
             }
-            if (player.roleName === "improvisateur") {
+            if (newRoleName === "guetteur") {
+                player.discard.push(this.newCard({ action: "power", text: "+3⭐", type: "three_actions", price: 100, sellprice: 200 }));
+                player.discard.push(this.newCard({ action: "power", text: "+3⭐", type: "three_actions", price: 100, sellprice: 200 }));
+            }
+            if (newRoleName === "improvisateur") {
                 player.discard.push(this.newCard(Util.copyObject(Util.randomFromArray(ServerData.shopCardsData))));
                 player.discard.push(this.newCard(Util.copyObject(Util.randomFromArray(ServerData.shopCardsData))));
+                player.money += 1200;
             }
-            if (player.roleName === "banquier") {
+            if (newRoleName === "banquier") {
                 player.discard.push(
                     this.newCard({ action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 0 })
                 );
@@ -839,12 +878,11 @@ class GameManager {
                     this.newCard({ action: "power", text: "+300🪙", type: "gain_money_1", price: 100, sellprice: 0 })
                 );
             }
-            if (player.roleName === "réserviste") {
-                player.discard.push(
-                    this.newCard({ action: "build", text: "Tour de secours", type: "tiring_tower", price: 0, sellprice: 0 })
-                );
+            if (newRoleName === "réserviste") {
+                player.discard.push(this.newCard({ action: "build", text: "Tour de secours", type: "tiring_tower", price: 0, sellprice: 0 }));
+                player.discard.push(this.newCard({ action: "build", text: "Tour sniper", type: "sniper_tower", price: 1200, sellprice: 0 }));
             }
-            if (player.roleName === "stratège") {
+            if (newRoleName === "stratège") {
                 player.discard.push(
                     this.newCard({ action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 0 })
                 );
@@ -852,7 +890,12 @@ class GameManager {
                 player.actualAmountOfActions++;
                 this.playerManager.refreshPlayerList();
             }
-            if (player.roleName === "éclaireur") {
+            if (newRoleName === "archiviste") {
+                player.discard.push(
+                    this.newCard({ action: "power", text: "pioche pour tous", type: "everyone_draws", price: 0, sellprice: 0 })
+                );
+            }
+            if (newRoleName === "éclaireur") {
                 player.discard.push(
                     this.newCard({ action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 0, sellprice: 0 })
                 );
@@ -869,6 +912,23 @@ class GameManager {
                 player.deck.forEach((card) => {
                     if (card.basic) {
                         card.price -= 50;
+                    }
+                });
+            }
+            if (newRoleName === "mécanicien") {
+                player.handData.forEach((card) => {
+                    if (card.basic && card.type === "control_tower") {
+                        card.price = 0;
+                    }
+                });
+                player.discard.forEach((card) => {
+                    if (card.basic && card.type === "control_tower") {
+                        card.price = 0;
+                    }
+                });
+                player.deck.forEach((card) => {
+                    if (card.basic && card.type === "control_tower") {
+                        card.price = 0;
                     }
                 });
             }
