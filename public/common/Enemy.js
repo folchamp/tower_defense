@@ -114,7 +114,6 @@ class Enemy {
         }
         if (this.enemyData.maxHP > 2250 && special !== undefined && special.includes("armor_piercer")) {
             this.actualHP -= damage;
-            this.actualHP -= damage;
             this.piercingTimer = 150;
         }
         if (special !== undefined && special.includes("fire") && !this.hasAbility("immunity")) {

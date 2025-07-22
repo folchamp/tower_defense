@@ -20,7 +20,7 @@ class ServerData {
     static DIFFICULTY_FACTOR = 3;
     static CHAIN_LIGHTNING_RANGE = 750;
     static SUMMON_CHANCE = 0.9995;
-    static MAX_DAMAGE = 8000;
+    static MAX_DAMAGE = 5000;
     static cachePositions = [
         { "x": 2050, "y": 1180 }, { "x": 2050, "y": 1230 }, { "x": 2000, "y": 1230 },
     ]
@@ -155,12 +155,12 @@ class ServerData {
         sniper_tower: {
             name: "sniper_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 600,
-            bulletData: { damage: 8000, speed: 0.8, color: "black", size: 5 }
+            bulletData: { damage: 4000, speed: 0.8, color: "black", size: 5 }
         },
         railgun_tower: {
             name: "railgun_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 400,
-            bulletData: { damage: 5000, speed: 0.8, color: "silver", size: 8, special: [] }
+            bulletData: { damage: 4000, speed: 0.8, color: "silver", size: 8, special: [] }
         },
         storm_tower: {
             name: "storm_tower", initialAngle: Math.PI / 2,
@@ -457,7 +457,7 @@ class ServerData {
             name: "infected_enemy",
             speed: 0.065,
             imageName: "infected_enemy",
-            maxHP: 4000,
+            maxHP: 5000,
             reward: 25,
             size: 30,
             abilities: ["fly"]
@@ -467,7 +467,7 @@ class ServerData {
             name: "elite_enemy",
             speed: 0.06,
             imageName: "elite_enemy",
-            maxHP: 5000,
+            maxHP: 10000,
             reward: 25,
             abilities: ["summon_drones"]
         },
@@ -485,7 +485,7 @@ class ServerData {
             name: "strong_enemy",
             speed: 0.04,
             imageName: "strong_enemy",
-            maxHP: 7000,
+            maxHP: 15000,
             reward: 25,
             size: 32,
             abilities: ["fly", "summon_drones"]
@@ -495,7 +495,7 @@ class ServerData {
             name: "tank_enemy",
             speed: 0.03,
             imageName: "tank_enemy",
-            maxHP: 8000,
+            maxHP: 20000,
             reward: 25,
             size: 19,
             abilities: ["immunity", "jump_forward_on_hit", "resistance"]
@@ -503,9 +503,9 @@ class ServerData {
 
         boss_enemy: {
             name: "boss_enemy",
-            speed: 0.025,
+            speed: 0.05,
             imageName: "boss_enemy",
-            maxHP: 200000,
+            maxHP: 600000,
             reward: 25,
             size: 34,
             abilities: ["immunity", "summoner", "regenerates_boss"]
@@ -513,9 +513,9 @@ class ServerData {
 
         brute_enemy: {
             name: "brute_enemy",
-            speed: 0.035,
+            speed: 0.085,
             imageName: "brute_enemy",
-            maxHP: 3500,
+            maxHP: 5000,
             reward: 25,
             size: 37,
             abilities: ["immunity"]
