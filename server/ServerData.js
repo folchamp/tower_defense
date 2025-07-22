@@ -110,47 +110,47 @@ class ServerData {
         maki_tower: {
             name: "maki_tower", initialAngle: Math.PI / 4,
             reloadTime: 800, range: 200,
-            bulletData: { damage: 2000, speed: 0.8, color: "pink", size: 7 }
+            bulletData: { damage: 2000, speed: 0.55, color: "pink", size: 7 }
         },
         bandi_tower: {
             name: "bandi_tower", initialAngle: Math.PI / 2,
             reloadTime: 900, range: 200,
-            bulletData: { damage: 2500, speed: 0.8, color: "yellow", size: 7 }
+            bulletData: { damage: 2500, speed: 0.55, color: "yellow", size: 7 }
         },
         explosive_shooter: {
             name: "explosive_shooter", initialAngle: Math.PI / 2,
             reloadTime: 800, range: 200,
-            bulletData: { damage: 1000, speed: 0.8, color: "red", size: 5 }
+            bulletData: { damage: 1000, speed: 0.55, color: "red", size: 5 }
         },
         quick_shooter: {
             name: "quick_shooter", initialAngle: Math.PI / 2,
             reloadTime: 250, range: 300,
-            bulletData: { damage: 174, speed: 0.8, color: "darkred", size: 2 }
+            bulletData: { damage: 174, speed: 0.55, color: "darkred", size: 2 }
         },
         air_shooter: {
             name: "air_shooter", initialAngle: Math.PI / 2,
             reloadTime: 200, range: 300, size: 20,
-            bulletData: { damage: 125, speed: 0.8, color: "blue", size: 2, special: ["armor_piercer"] }
+            bulletData: { damage: 125, speed: 0.55, color: "blue", size: 2, special: ["armor_piercer"] }
         },
         basic_shooter: {
             name: "basic_shooter", initialAngle: Math.PI / 2,
             reloadTime: 700, range: 300,
-            bulletData: { damage: 500, speed: 0.8, color: "lightgreen", size: 4 }
+            bulletData: { damage: 500, speed: 0.55, color: "lightgreen", size: 4 }
         },
         fire_tower: {
             name: "fire_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 200,
-            bulletData: { damage: 100, speed: 0.8, color: "orange", size: 3, special: ["fire"] }
+            bulletData: { damage: 100, speed: 0.55, color: "orange", size: 3, special: ["fire"] }
         },
         ice_tower: {
             name: "ice_tower", initialAngle: Math.PI / 2,
             reloadTime: 1200, range: 200,
-            bulletData: { damage: 100, speed: 0.8, color: "#739BD0", size: 3, special: ["ice"] }
+            bulletData: { damage: 100, speed: 0.55, color: "#739BD0", size: 3, special: ["ice"] }
         },
         venom_tower: {
             name: "venom_tower", initialAngle: Math.PI / 2,
             reloadTime: 900, range: 200,
-            bulletData: { damage: 300, speed: 0.8, color: "purple", size: 3, special: ["poison"] }
+            bulletData: { damage: 300, speed: 0.55, color: "purple", size: 3, special: ["poison"] }
         },
         sniper_tower: {
             name: "sniper_tower", initialAngle: Math.PI / 2,
@@ -160,27 +160,27 @@ class ServerData {
         railgun_tower: {
             name: "railgun_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 400,
-            bulletData: { damage: 4000, speed: 0.8, color: "silver", size: 8, special: [] }
+            bulletData: { damage: 4000, speed: 0.55, color: "silver", size: 8, special: [] }
         },
         storm_tower: {
             name: "storm_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 200,
-            bulletData: { damage: 100, speed: 0.8, color: "cyan", size: 3, special: ["chain_lightning"] }
+            bulletData: { damage: 100, speed: 0.55, color: "cyan", size: 3, special: ["chain_lightning"] }
         },
         decay_tower: {
             name: "decay_tower", initialAngle: Math.PI / 2,
             reloadTime: 200, range: 200,
-            bulletData: { damage: 100, speed: 0.8, color: "darkgreen", size: 5, special: ["armor_piercer"] }
+            bulletData: { damage: 100, speed: 0.55, color: "darkgreen", size: 5, special: ["armor_piercer"] }
         },
         multi_shot_tower: {
             name: "multi_shot_tower", initialAngle: 3 * Math.PI / 4,
             reloadTime: 1000, range: 200,
-            bulletData: { damage: 400, speed: 0.8, color: "white", size: 2, special: ["triple_shot"] }
+            bulletData: { damage: 400, speed: 0.55, color: "white", size: 2, special: ["triple_shot"] }
         },
         tiring_tower: {
             name: "tiring_tower", initialAngle: Math.PI / 2,
             reloadTime: 1000, range: 300, size: 20,
-            bulletData: { damage: 400, speed: 0.8, color: "black", size: 2, special: ["tiring"] }
+            bulletData: { damage: 400, speed: 0.55, color: "black", size: 2, special: ["tiring"] }
         },
     };
     static roles = [

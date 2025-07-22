@@ -1,8 +1,8 @@
 ***************** Roadmap *****************
+roles as lore
 - rôles (6 rôles)
 two roles !!! first selection hightlights, second sends
 hasrole instead of rolename
-roles as lore
 barre de scroll onglet info
 tour de secours munitions ??? bug ???
 rôles proposés doivent être uniques, mort aux doublons

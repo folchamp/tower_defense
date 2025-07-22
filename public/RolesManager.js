@@ -36,7 +36,7 @@ class RolesManager {
             this.roleSecondAbilityText.innerHTML = `- ${role.secondAbility}`;
             this.roleContainer.addEventListener("click", (data) => {
                 Util.hide(this.rolesPopupContainer);
-                this.callback(role.roleID);
+                this.callback(role.roleID, role);
             });
         })
         console.log("roles : ");

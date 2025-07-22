@@ -556,7 +556,7 @@ class GameManager {
     }
     cleanAfterCardSucces(data) {
         let player = this.playerManager.players[data.playerID];
-        if (!player.roleName.includes("observateur")) {
+        if (!(player.roleName.includes("observateur") && data.cardData.action === "power")) {
             player.actualAmountOfActions--;
         }
         player.money -= data.cardData.price;
@@ -797,6 +797,7 @@ class GameManager {
             } else {
                 player.discard.push(this.newCard(cardData));
             }
+            this.broadcast({ message: "server_get_your_game_data_boy", mapInfo: Maps.mapDescriptions[this.mapNumber], gameElements: this.gameElements, handData: player.handData, recipient: player.playerID, role: player.roleName });
             this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         } else {
             console.log("artifact not found");
@@ -804,6 +805,9 @@ class GameManager {
     }
     newCard(card) {
         card.cardID = Util.getNewID();
+        if (card.action === "build") {
+            card.range = ServerData.towers[card.type].range;
+        }
         return card;
     }
     pickCacheUp(data) {
@@ -871,34 +875,24 @@ class GameManager {
                 player.money += 1200;
             }
             if (newRoleName === "banquier") {
-                player.discard.push(
-                    this.newCard({ action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 0 })
-                );
-                player.discard.push(
-                    this.newCard({ action: "power", text: "+300🪙", type: "gain_money_1", price: 100, sellprice: 0 })
-                );
+                player.discard.push(this.newCard({ action: "build", subType: "support", text: "Banque", type: "bank_tower", price: 400, sellprice: 0 }));
+                player.discard.push(this.newCard({ action: "power", text: "+300🪙", type: "gain_money_1", price: 100, sellprice: 0 }));
             }
             if (newRoleName === "réserviste") {
                 player.discard.push(this.newCard({ action: "build", text: "Tour de secours", type: "tiring_tower", price: 0, sellprice: 0 }));
                 player.discard.push(this.newCard({ action: "build", text: "Tour sniper", type: "sniper_tower", price: 1200, sellprice: 0 }));
             }
             if (newRoleName === "stratège") {
-                player.discard.push(
-                    this.newCard({ action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 0 })
-                );
+                player.discard.push(this.newCard({ action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 0 }));
                 player.maxAmountOfActions = 4;
                 player.actualAmountOfActions++;
                 this.playerManager.refreshPlayerList();
             }
             if (newRoleName === "archiviste") {
-                player.discard.push(
-                    this.newCard({ action: "power", text: "pioche pour tous", type: "everyone_draws", price: 0, sellprice: 0 })
-                );
+                player.discard.push(this.newCard({ action: "power", text: "pioche pour tous", type: "everyone_draws", price: 0, sellprice: 0 }));
             }
             if (newRoleName === "éclaireur") {
-                player.discard.push(
-                    this.newCard({ action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 0, sellprice: 0 })
-                );
+                player.discard.push(this.newCard({ action: "build", subType: "support", text: "Micro-agence", type: "micro_agence_tower", price: 0, sellprice: 0 }));
                 player.handData.forEach((card) => {
                     if (card.basic) {
                         card.price -= 50;
