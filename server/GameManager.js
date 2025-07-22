@@ -446,6 +446,9 @@ class GameManager {
         if (player.handData === undefined) {
             player.handData = ServerData.generateInitialHandData();
         }
+        this.generateRoles(player);
+    }
+    generateRoles(player) {
         Util.shuffle(ServerData.roles);
         player.roles = [this.createRole(0), this.createRole(1), this.createRole(2)];
         player.rolesTwo = [this.createRole(3), this.createRole(4), this.createRole(5)];
@@ -467,6 +470,7 @@ class GameManager {
             player.roles = undefined;
             player.rolesTwo = undefined;
             player.roleName = [];
+            this.generateRoles(player);
         }
     }
     askRoles(isFirst) {
