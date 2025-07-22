@@ -1,4 +1,11 @@
 ***************** Roadmap *****************
+boss un poil plus lent
+15 secondes après le premier prêt
+gestion de la déconnexion
+reconnexion quand playerID est déconnecté (garder liste de joueur déconnectés ?)
+vous ne possédez pas cette carte
+
+
 barre de scroll onglet info
 
 - musique (début de vague, ambiance construction, ambiance action)
