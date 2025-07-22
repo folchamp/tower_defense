@@ -11,7 +11,11 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     pingInterval: 10000, // Ping tous les 10s
-    pingTimeout: 10000    // Déconnecte après 5s sans réponse
+    pingTimeout: 10000,    // Déconnecte après 5s sans réponse
+    cors: {
+        origin: "https://folchamp.itch.io/one-last-shelter",
+        methods: ["GET", "POST"]
+    }
 });
 
 const communicationManager = new CommunicationManager(io);

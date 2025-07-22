@@ -84,6 +84,6 @@ const AUDIO = Util.loadSounds(audioURLs);
 
 const ELEMENTS = Util.getElements(elementNames);
 
-const socket = io();
+const socket = io("https://one-last-shelter.onrender.com/");
 
 const game = new Game();
