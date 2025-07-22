@@ -17,7 +17,6 @@ class GameManager {
         this.shopManager = new ShopManager();
 
         this.reset();
-        this.lastTimeStamp = Date.now();
         setInterval(() => {
             if (this.enemiesLeftToSpawn > 0) {
                 this.spawnEnemy();
@@ -33,7 +32,10 @@ class GameManager {
                 }
             }
         }, ServerData.ENEMIES_INTERVAL);
-        this.loop();
+        setTimeout(() => {
+            this.lastTimeStamp = Date.now();
+            this.loop();
+        }, 2000);
     }
     loop() {
         let now = Date.now();
