@@ -58,6 +58,7 @@ class PlayerManager {
             console.log("NEW PLAYER ARRIVED");
         } else {
             console.log("Old player returned");
+            this.players[playerID].socketID = socketID;
         }
         this.players[playerID].connected = true;
         this.broadcast({ message: "server_new_player_arrived", playerID: playerID, socketID: socketID });
