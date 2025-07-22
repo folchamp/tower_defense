@@ -1,32 +1,18 @@
 ***************** Roadmap *****************
-15 secondes après le premier prêt
-Intégrer un déplacement ZQSD ou avec les touches fléchées pour la carte 
-
 barre de scroll onglet info
-
-- musique (début de vague, ambiance construction, ambiance action)
-- détection de la déconnexion
-- revoir la description des monstres
-- wipe card (no reward)
-- caches commes les artefacts
-- menu d'accueil
-- tour carte ? Tour action ?
-
-***************** Todo *****************
+musique (début de vague, ambiance construction, ambiance action)
+revoir la description des monstres
+wipe card (no reward)
+caches commes les artefacts
+menu d'accueil
+tour carte ? Tour action ?
 icone par joueur pour les pings
-vendre par erreur en pendant être dans la main (main en bas)
---- tests des rôles ---
-constructeur : fonctionne
-mécanicien : fonctionne
-archiviste : ok
---- roles ---
+***************** Rôles *****************
 toutes vos tours ontperce armure, glace ou feu
 refresh game state fait monter un compteur côté serveur, en l'absence de réponse pendant trop longtemps, déco automatique 
-
 tour de contrôle gratuite mais minuscule
 Si vous commencez une manche avec 0 cartes en main, piochez 2 cartes bonus.
 Quand vous posez une tour de secours, vous gagnez 1 action.
-
 tours de contrôle moins chères
 Commencez chaque manche avec +1 action si vous avez moins de 3 cartes en main.
 Toutes vos cartes de type “Power” (pioche, actions, argent) coûtent 25% de moins.
@@ -45,7 +31,7 @@ Chaque artefact ramassé vous fait gagner +1 carte bonus (tirée du deck normal)
 garde les actions de manche en manche
 Pour chaque carte restée inutilisée en fin de manche, gagnez +25🪙 (limité à 3 cartes).
 Lorsque vous jouez une carte depuis votre main et qu’il vous reste 5 cartes ou plus en main, gagnez 50🪙.
-
+***************** TODO *****************
 Elements.get("...") to avoid the initial document.getElementById("...")
 stats
 détailler la carte sélectionnée (dans la main, pas dans le magasin), ajouter un texte de détail pour chaque carte
@@ -65,21 +51,19 @@ portée sur tablette
 ennemi qui absorbe les dégâts à la place d'un autre
 personnage jouable à déplacer au clic sur le plateau de jeu, tire automatiquement comme une tourelle
 certaines tours ont une portée minimum
---- sound design ---
+nouvelles barres de vie
+réassigner les images
+***************** Sound Design *****************
 - one audio class that listens to socket messages
 - sound for shooting
 - sound for building
-nouvelles barres de vie
-réassigner les images
---- stats ---
+***************** Stats *****************
 - tower built -> add player id
 - munition shot -> add player id + tower id
 - enemy killed -> add player id + tower id
-
-*** credits     ***
+***************** Crédits *****************
 Dark Post Apocalyptic Background 1 (-5db).wav by SolarPhasing -- https://freesound.org/s/436041/ -- License: Attribution 4.0
 https://swarajthegreat.itch.io/post-apocalyptic-soundscapes
-
 ***************** Must ***************** 
 indicateur du nombre de places des tours (halo disparaît quand elle est pleine)
 piocher deux cartes : retirer la carte avant d'effectuer la pioche (sinon on pioche une carte de moins à main full)
@@ -93,18 +77,14 @@ poser une tour sur une autre pour l'améliorer (chaque tour améliore une stat p
 eco towers give cards
 eco towers give actions
 enemies focus closeby towers (towers are in a 128 virtual grid)
-
 ***************** Équilibrage *****************
-
 ***************** Bugs *****************
 bug : when you select a tower, you can't move the canvas anymore without building the tower
 bug affichage des thunes
 la dépense de thunes et son affichage buggent parfois
-
 ***************** Victoire *****************
 Je pensais aussi à quelque chose de plus agressif, genre devoir construire des tourelles d'oppression sur l'entièreté de la ligne des ennemis pour gagner
 Quand on arrive à relier le début du chemin à la fin du chemin avec des tourelles d'oppression, la partie est gagnée pour les joueurs
-
 ***************** Réflexions nocturnes *****************
 cartes actions gratuites
 rendre gratuite la carte +3 actions
@@ -121,7 +101,6 @@ les joueurs peuvent prendre un rôle et débloquer une tourelle unique vraiment 
 un des rôles peut construire une tourelle d'alimentation électrique qui lui permet de donner un boost de puissance aux autre tourelles
 un joueur peut construire des bases de tourelles qui rendent les tourelles posées dessus plus puissantes
 chaque joueur défend sa zone ?
-
 ***************** Cards *****************
 chaque joueur gagne une action
 tout le monde gagne de la thune
@@ -145,7 +124,6 @@ duplicate card
 wipe all
 upgrade : shoot closest
 upgrade : don't shoot an enemy that's already targetted by another tower
-
 ***************** Should ***************** 
 deck size and discard size are always displayed
 chemin aléatoire
@@ -159,12 +137,10 @@ enemies use a virtual grid pathfinding
 tower:hover displays stats
 some towers have aoe damage
 sell a tower you don't want anymore
-
 ***************** could ***************** 
 circular action wheel
 undo tower construction
 hotkey to reach beginning and end of route
-
 ***************** Won't ***************** 
 magasin perso avec les cartes pouvoir
 scale la taille du magasin
@@ -172,14 +148,13 @@ piocher deux cartes pas assez cher ??? (selon Vincent)
 halo de tour de contrôle plus visible quand full
 retirer le système de vente de cartes, le remplacer par un système de destruction
 
-
-🔄 4. Cartes à effets évolutifs
-💡 Certaines cartes deviennent plus fortes… si tu ne les joues pas immédiatement.
+Cartes à effets évolutifs
+Certaines cartes deviennent plus fortes si tu ne les joues pas immédiatement.
 "Tourelle d’accumulation" : inflige 1 dégât de plus chaque tour passé dans ta main, max 5.
 "Sort chargé" : coûte -1 chaque tour non joué.
-➡️ Stratégie : arbitrer entre court terme vs long terme, anticiper les futures vagues, ou décider de sacrifier de l’efficacité immédiate.
-🪙 7. Investissement différé (bonus si pas utilisé)
-💡 Si un joueur n’utilise pas son or ce tour, il peut le mettre dans un "compte" personnel qui génère un effet plus tard.
+Stratégie : arbitrer entre court terme vs long terme, anticiper les futures vagues, ou décider de sacrifier de l’efficacité immédiate.
+Investissement différé (bonus si pas utilisé)
+Si un joueur n’utilise pas son or ce tour, il peut le mettre dans un "compte" personnel qui génère un effet plus tard.
 3 or stockés = 1 pioche bonus dans 2 tours.
 5 or stockés = accès à une carte spéciale rare à la fin de la vague.
-➡️ Stratégie : arbitrage immédiat vs croissance future.
+Stratégie : arbitrage immédiat vs croissance future.
