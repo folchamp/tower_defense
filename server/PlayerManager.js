@@ -71,6 +71,7 @@ class PlayerManager {
     }
     listener(data) {
         if (data.message === "client_disconnect") {
+            console.log("disconnexion (before unload)");
             this.disconnect(data.socketID);
         };
         if (data.message === "client_connection") {

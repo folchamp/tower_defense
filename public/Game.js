@@ -43,6 +43,16 @@ class Game {
         this.hand = [];
         this.grabbedCard = undefined;
         this.mousePosition = { x: 0, y: 0 };
+        this.readyCounter = -1;
+
+        setInterval(() => {
+            console.log(this.readyCounter);
+            this.readyCounter--;
+            if (this.readyCounter > 0) {
+                console.log("lol");
+                ELEMENTS["nextWaveButton"].value = `Prêt·e (${this.readyCounter})`;
+            }
+        }, 1000);
 
         document.body.addEventListener("mousemove", (event) => {
             this.mousePosition.x = event.clientX;
@@ -53,6 +63,13 @@ class Game {
         //     this.mouseClick(event);
         // });
 
+
+        window.addEventListener("beforeunload", () => {
+            socket.emit("message", { message: "client_disconnect", playerID: this.session.playerID });
+            // socket.disconnect(); 
+        });
+
+
         document.body.addEventListener("keydown", (event) => {
             console.log(event.code);
             if (event.code === "Space") {
@@ -60,14 +77,27 @@ class Game {
                     this.readyForNextWave();
                 }
             }
-            if (event.code === "KeyQ") {
+            if (event.code === "KeyW") {
                 if (document.activeElement !== ELEMENTS["playerNameInput"]) {
-                    this.closeAllPopups();
-                    // ELEMENTS["cardsContainer"].classList.remove("hidden");
-                    // ELEMENTS["handButton"].classList.add("selectedMenuElement");
+                    this.canvasManager.offset.y += 200;
                 }
             }
-            if (event.code === "KeyW") {
+            if (event.code === "KeyA") {
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.canvasManager.offset.x += 200;
+                }
+            }
+            if (event.code === "KeyS") {
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.canvasManager.offset.y -= 200;
+                }
+            }
+            if (event.code === "KeyD") {
+                if (document.activeElement !== ELEMENTS["playerNameInput"]) {
+                    this.canvasManager.offset.x -= 200;
+                }
+            }
+            if (event.code === "KeyQ") {
                 if (document.activeElement !== ELEMENTS["playerNameInput"]) {
                     this.closeAllPopups();
                     ELEMENTS["shopContainer"].classList.remove("hidden");
@@ -189,6 +219,9 @@ class Game {
                         });
                 }
             }
+            if (message === "server_start_ready_counter") {
+                this.readyCounter = 15;
+            }
             if (message === "server_shop_content") {
                 this.shop.refreshShopContent(data.shopContent);
             }
@@ -233,6 +266,8 @@ class Game {
     }
     newWaveArrives(data) {
         Util.hide(ELEMENTS["readyDisplayer"]);
+        ELEMENTS["nextWaveButton"].value = `Prêt·e`;
+        this.readyCounter = -1;
         this.waveNotifier.notifyNextWave(data.waveCounter);
         // AUDIO["wave_start"].play();
         console.log("new wave");

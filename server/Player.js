@@ -53,10 +53,14 @@ class Player {
                         }
                     }
                 }
-            })
+            });
         }
         if (!hasGivenCard) {
             console.log(`cards don't match, the player doesn't have the card`);
+            console.log("----------------- cardData -----------------");
+            console.log(cardData);
+            console.log("----------------- handData -----------------");
+            console.log(this.handData);
         }
         return hasGivenCard;
     }

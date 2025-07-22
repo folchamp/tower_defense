@@ -66,6 +66,7 @@ class ServerData {
         // handData.push(draw);
         // autoinclude for testing
         ServerData.basicCardsData.forEach((card) => {
+            card = Util.copyObject(card);
             card.cardID = Util.getNewID();
             if (card.action === "build") {
                 card.range = ServerData.towers[card.type].range;
@@ -503,7 +504,7 @@ class ServerData {
 
         boss_enemy: {
             name: "boss_enemy",
-            speed: 0.05,
+            speed: 0.048,
             imageName: "boss_enemy",
             maxHP: 600000,
             reward: 25,

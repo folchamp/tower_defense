@@ -1,10 +1,6 @@
 ***************** Roadmap *****************
-boss un poil plus lent
 15 secondes après le premier prêt
-gestion de la déconnexion
-reconnexion quand playerID est déconnecté (garder liste de joueur déconnectés ?)
-vous ne possédez pas cette carte
-
+Intégrer un déplacement ZQSD ou avec les touches fléchées pour la carte 
 
 barre de scroll onglet info
 

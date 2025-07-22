@@ -25,10 +25,10 @@ class GameManager {
             } else if (!this.waveFinished && this.gameElements.enemies.length === 0) {
                 this.waveFinished = true;
                 this.broadcast({ message: "server_wave_finished" });
-                if (this.waveCounter === 1) {
+                if (this.waveCounter === 2) {
                     this.askRoles(true);
                 }
-                if (this.waveCounter === 2) {
+                if (this.waveCounter === 4) {
                     this.askRoles(false);
                 }
             }
@@ -79,30 +79,42 @@ class GameManager {
         }
         return enemies;
     }
+    startWave() {
+        this.forcestartCounterStarted = false;
+        // TODO calc enemies
+        // end calc enemies
+        this.ecoTowersAct();
+        this.playerManager.setEveryoneUnready();
+        this.waveCounter++;
+        this.broadcast({ message: "server_new_wave", waveCounter: this.waveCounter });
+        this.waveFinished = false;
+        this.refreshPlayerActions()
+        this.drawTime();
+        this.drawTime();
+        this.drawTime();
+        this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1;
+        this.enemiesToFightThisWave = this.calcEnemiesThisWave();
+        this.enemiesLeftToSpawn = this.globalEnemyStrength;
+        // this.enemiesLeftToSpawn = 7;
+        this.shopManager.resplenish();
+        this.playerManager.refreshPlayerList();
+        this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
+        if (this.wonderBuilt) {
+            this.spawnEnemy("boss_enemy");
+        }
+    }
     sendNextWave(data) {
         this.playerManager.setReady(data.playerID);
-        if (this.waveFinished === true && this.playerManager.isEveryoneReady()) {
-            // TODO calc enemies
-            // end calc enemies
-            this.ecoTowersAct();
-            this.playerManager.setEveryoneUnready();
-            this.waveCounter++;
-            this.broadcast({ message: "server_new_wave", waveCounter: this.waveCounter });
-            this.waveFinished = false;
-            this.refreshPlayerActions()
-            this.drawTime();
-            this.drawTime();
-            this.drawTime();
-            this.globalEnemyStrength += ServerData.DIFFICULTY_FACTOR + this.waveCounter * 1;
-            this.enemiesToFightThisWave = this.calcEnemiesThisWave();
-            this.enemiesLeftToSpawn = this.globalEnemyStrength;
-            // this.enemiesLeftToSpawn = 7;
-            this.shopManager.resplenish();
-            this.playerManager.refreshPlayerList();
-            this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
-            if (this.wonderBuilt) {
-                this.spawnEnemy("boss_enemy");
-            }
+        if (this.waveFinished === true && (this.playerManager.isEveryoneReady())) {
+            this.startWave();
+        } else if (!this.forcestartCounterStarted) {
+            this.forcestartCounterStarted = true;
+            this.broadcast({ message: "server_start_ready_counter" });
+            setTimeout(() => {
+                if (this.waveFinished && this.forcestartCounterStarted) {
+                    this.startWave();
+                }
+            }, 16000);
         }
     }
     reset() {
@@ -131,6 +143,7 @@ class GameManager {
                     Util.getNewID()));
         }
         this.roles = [];
+        this.forcestartCounterStarted = false;
         this.hasStarted = false;
         this.isLost = false;
         this.shopManager.reset();
