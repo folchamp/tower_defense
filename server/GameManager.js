@@ -107,7 +107,7 @@ class GameManager {
         this.playerManager.setReady(data.playerID);
         if (this.waveFinished === true && (this.playerManager.isEveryoneReady())) {
             this.startWave();
-        } else if (!this.forcestartCounterStarted) {
+        } else if (!this.forcestartCounterStarted && this.waveFinished) {
             this.forcestartCounterStarted = true;
             this.broadcast({ message: "server_start_ready_counter" });
             setTimeout(() => {

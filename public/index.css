@@ -50,8 +50,10 @@ body {
             border-top: 1px solid #ccc;
             padding: 8px;
             cursor: pointer;
+            flex-direction: column;
 
             .roleTitleText {
+                font-weight: bold;
                 width: 200px;
                 flex-shrink: 0;
                 flex-grow: 0;
