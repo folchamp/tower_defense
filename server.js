@@ -22,8 +22,8 @@ communicationManager.addListener((data) => { gameManager.listener(data); });
 
 app.use(express.static("public"));
 
-server.listen(3000, () => {
-    console.log("server running at http://localhost:3000");
+server.listen(80, () => {
+    console.log("server running at http://localhost:80");
 });
 
 // const my_socket = io.sockets.sockets.get('YnwlYH-gCKT2K9jEAAAu');

@@ -39,7 +39,5 @@ class RolesManager {
                 this.callback(role.roleID, role);
             });
         })
-        console.log("roles : ");
-        console.log(this.roles);
     }
 }

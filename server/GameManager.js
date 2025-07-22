@@ -436,7 +436,6 @@ class GameManager {
         Util.shuffle(ServerData.roles);
         player.roles = [this.createRole(0), this.createRole(1), this.createRole(2)];
         player.rolesTwo = [this.createRole(3), this.createRole(4), this.createRole(5)];
-        console.log(player);
         this.roles = [...this.roles, ...player.roles, ...player.rolesTwo];
         this.sendPlayerGameData(player);
     }
