@@ -264,10 +264,10 @@ class ServerData {
         { basic: true, action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 }, // auto-include
         { basic: true, action: "build", text: "Arme légère", type: "quick_shooter", price: 200, sellprice: 400 }, // auto-include
         { basic: true, action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 }  // auto-include
-        , { action: "build", text: "Tour de glace", type: "ice_tower", price: 400, sellprice: 800 },
-        { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
-        { action: "build", text: "Tour de feu", type: "fire_tower", price: 600, sellprice: 1200 },
-        { action: "build", text: "Tour mouton", type: "sheep_tower", price: 800, sellprice: 1600 },
+        // , { action: "build", text: "Tour de glace", type: "ice_tower", price: 400, sellprice: 800 },
+        // { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
+        // { action: "build", text: "Tour de feu", type: "fire_tower", price: 600, sellprice: 1200 },
+        // { action: "build", text: "Tour mouton", type: "sheep_tower", price: 800, sellprice: 1600 },
 
     ];
     static shopCardsData = [
