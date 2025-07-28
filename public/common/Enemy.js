@@ -159,6 +159,7 @@ class Enemy {
                 maxHP: 800,
                 reward: 1
             }
+            this.actualHP = Math.min(this.enemyData.maxHP, this.actualHP);
         }
     }
 }

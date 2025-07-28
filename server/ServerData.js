@@ -97,8 +97,8 @@ class ServerData {
 
         sheep_tower: {
             name: "sheep_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1000, range: 400, size: 24,
-            bulletData: { damage: 1, speed: 0.55, color: "white", size: 8, special: ["sheep"] }
+            reloadTime: 1200, range: 200, size: 24,
+            bulletData: { damage: 1, speed: 0.20, color: "white", size: 8, special: ["sheep"] }
         },
         bank_tower: {
             name: "bank_tower", type: "support", moneyPerWave: 125
