@@ -55,7 +55,10 @@ class ClientData {
         "cache_open",
         "cache_closed",
         "grotto_right",
-        "grotto_left"
+        "grotto_left",
+        "shield",
+        "sheep_tower",
+        "sheep_enemy"
     ];
     static images = {};
     static loadImages() {
@@ -227,6 +230,10 @@ class ClientData {
         "sniper_tower": {
             "description": "Surélevée, cette tourelle semble réfléchir avant de lâcher un trait noir d’une létalité rare.",
             "capacity": "Dégâts très élevés, portée extrême."
+        },
+        "sheep_tower": {
+            "description": "Cette tourelle envoie une grosse flasque de savon sur l'ennemi, ce qui rend ses circuits huileux inefficaces.",
+            "capacity": "Dégâts nuls. Transforme le thirak ciblé en une masse savonneuse inutile."
         },
         "storm_tower": {
             "description": "Système de tir simple, munitions ultra-technologiques qui rebondissent entre les ennemis. Nom de code : STORM",

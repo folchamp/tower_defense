@@ -317,6 +317,7 @@ class GameManager {
                 tower.hasSpecial("fire") ||
                 tower.hasSpecial("ice") ||
                 tower.hasSpecial("poison") ||
+                tower.hasSpecial("sheep") ||
                 Util.distance(tower.position, tower.target.position) > tower.towerData.range ||
                 tower.hasBigDamage()) {
                 let chosenEnemy = undefined;
@@ -406,9 +407,9 @@ class GameManager {
             this.playerDraw(playerID);
         }
     }
-    playerDraw(playerID) {
+    playerDraw(playerID, triggeredByACard) {
         let player = this.playerManager.players[playerID];
-        let drawnCards = player.draw();
+        let drawnCards = player.draw(triggeredByACard);
         this.broadcast({ message: "server_draw_cards", recipient: player.playerID, drawnCards: drawnCards });
         this.broadcast({ message: "server_all_your_cards_bro", allCards: player.getAllCards(), recipient: player.playerID });
         this.broadcast({ message: "server_shop_content", shopContent: this.shopManager.shopContent });
@@ -666,7 +667,7 @@ class GameManager {
             if (data.cardData.type === "everyone_draws") {
                 this.drawTime();
                 if (player.roleName.includes("archiviste")) {
-                    this.playerDraw(data.playerID);
+                    this.playerDraw(data.playerID, true);
                 }
             }
             if (data.cardData.type === "new_shop") {
@@ -687,10 +688,10 @@ class GameManager {
             //     player.actualAmountOfActions += 1;
             // }
             if (data.cardData.type === "draw_two") {
-                this.playerDraw(data.playerID);
-                this.playerDraw(data.playerID);
+                this.playerDraw(data.playerID, true);
+                this.playerDraw(data.playerID, true);
                 if (player.roleName.includes("archiviste")) {
-                    this.playerDraw(data.playerID);
+                    this.playerDraw(data.playerID, true);
                 }
             }
             if (data.cardData.type === "three_actions") {
@@ -898,7 +899,7 @@ class GameManager {
             }
             if (newRoleName === "réserviste") {
                 player.discard.push(this.newCard({ action: "build", text: "Tour de secours", type: "tiring_tower", price: 0, sellprice: 0 }));
-                player.discard.push(this.newCard({ action: "build", text: "Tour sniper", type: "sniper_tower", price: 1200, sellprice: 0 }));
+                player.discard.push(this.newCard({ action: "build", text: "Tour mouton", type: "sheep_tower", price: 800, sellprice: 0 },));
             }
             if (newRoleName === "stratège") {
                 player.discard.push(this.newCard({ action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 0 }));

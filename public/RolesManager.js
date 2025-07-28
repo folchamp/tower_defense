@@ -30,7 +30,7 @@ class RolesManager {
                 this.rolesChoiceContainer,
                 this
             );
-            this.rolesTitleText.innerHTML = "Choisissez votre rôle";
+            this.rolesTitleText.innerHTML = "Choisissez votre spécialisation";
             this.roleTitleText.innerHTML = role.roleName;
             this.roleFirstAbilityText.innerHTML = `- ${role.firstAbility}`;
             this.roleSecondAbilityText.innerHTML = `- ${role.secondAbility}`;

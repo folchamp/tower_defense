@@ -8,6 +8,7 @@ class CanvasManager {
 
         this.context = this.canvas.getContext("2d");
         this.lastTimeStamp = Date.now();
+        this.cancelClick = false;
         this.moving = false;
         this.mouseDrawData = { draw: false, card: "basic_shooter" };
         this.offset = { x: 0, y: 0 };
@@ -35,7 +36,12 @@ class CanvasManager {
 
         this.canvas.addEventListener("click", (event) => {
             let position = this.getMousePosition(event);
-            this.mouseCallback("click", position);
+            // alert(`${this.touchStartPosition.x}, ${this.touchStartPosition.y}, ${position.x}, ${position.y}`);
+            if (this.cancelClick) {
+                this.cancelClick = false;
+            } else {
+                this.mouseCallback("click", position);
+            }
         });
 
         this.canvas.addEventListener("contextmenu", (event) => {
@@ -113,6 +119,9 @@ class CanvasManager {
             this.offset.x -= this.touchStartPosition.x - position.x;
             this.offset.y -= this.touchStartPosition.y - position.y;
         }
+        if (this.moving && (this.touchStartPosition.x !== position.x || this.touchStartPosition.y !== position.y)) {
+            this.cancelClick = true;
+        }
         this.touchStartPosition = position;
     }
     touchend(touch, trueClick) {
@@ -120,8 +129,11 @@ class CanvasManager {
         this.touchStartPosition = position;
         if (trueClick) {
             // if the mouse is used to move the canvas around, we don't want it to trigger a click on mouseup
-            // TODO check if this really works
-            this.mouseCallback("click", position);
+            if (this.cancelClick) {
+                this.cancelClick = false;
+            } else {
+                this.mouseCallback("click", position);
+            }
         }
         this.moving = false;
     }
@@ -238,17 +250,44 @@ class CanvasManager {
                         this.context.fillRect(enemy.position.x - 8 + this.offset.x, enemy.position.y + this.offset.y - 16, ClientData.HEALTH_BAR_SIZE, 4);
                         this.context.fillStyle = "lightgreen";
                         this.context.fillRect(enemy.position.x - 8 + this.offset.x, enemy.position.y - 16 + this.offset.y, (enemy.actualHP / enemy.enemyData.maxHP) * ClientData.HEALTH_BAR_SIZE, 4);
-                        if (enemy.resistanceTimer !== undefined && enemy.resistanceTimer > 0) {
-                            this.context.globalAlpha = 0.5;
-                            this.context.fillStyle = "blue";
+                        // *****************************************************************************
+                        // timers and animations
+                        // *****************************************************************************
+                        if (enemy.onIce) {
+                            this.context.globalAlpha = 1;
+                            this.context.fillStyle = "lightblue";
                             this.context.fillRect(
                                 enemy.position.x - size * 2 + this.offset.x,
-                                enemy.position.y - size * 2 + this.offset.y,
+                                enemy.position.y + size * 2 + this.offset.y,
                                 size * 4,
-                                size * 4
+                                6
                             );
+                        }
+                        if (enemy.onFire) {
                             this.context.globalAlpha = 1;
-
+                            this.context.fillStyle = "red";
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x,
+                                enemy.position.y + size * 2 + this.offset.y,
+                                size * 4,
+                                6
+                            );
+                        }
+                        if (enemy.onPoison) {
+                            this.context.globalAlpha = 1;
+                            this.context.fillStyle = "darkgreen";
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x,
+                                enemy.position.y + size * 2 + this.offset.y,
+                                size * 4,
+                                6
+                            );
+                        }
+                        if (enemy.resistanceTimer !== undefined && enemy.resistanceTimer > 0) {
+                            this.context.globalAlpha = 1;
+                            this.context.drawImage(ClientData.images["shield"],
+                                enemy.position.x - size + this.offset.x,
+                                enemy.position.y - size + this.offset.y);
                         }
                         if (enemy.regenerateTimer !== undefined && enemy.regenerateTimer > 0) {
                             this.context.globalAlpha = 0.5;
@@ -266,10 +305,37 @@ class CanvasManager {
                             this.context.fillRect(
                                 enemy.position.x - size * 2 + this.offset.x,
                                 enemy.position.y - size * 2 + this.offset.y,
-                                size * 4,
+                                3,
+                                size * 4
+                            );
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x + (size * 1),
+                                enemy.position.y - size * 2 + this.offset.y,
+                                3,
+                                size * 4
+                            );
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x + (size * 2),
+                                enemy.position.y - size * 2 + this.offset.y,
+                                3,
+                                size * 4
+                            );
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x + (size * 3),
+                                enemy.position.y - size * 2 + this.offset.y,
+                                3,
+                                size * 4
+                            );
+                            this.context.fillRect(
+                                enemy.position.x - size * 2 + this.offset.x + (size * 4),
+                                enemy.position.y - size * 2 + this.offset.y,
+                                3,
                                 size * 4
                             );
                         }
+                        // *****************************************************************************
+                        // end timers and animations
+                        // *****************************************************************************
                         this.context.globalAlpha = 1;
 
                     }
@@ -318,7 +384,7 @@ class CanvasManager {
                 this.context.fillText(`${pingData.pingText}`,
                     pingData.position.x + this.offset.x - this.context.measureText(pingData.pingText).width / 2,
                     pingData.position.y + this.offset.y + 25);
-                // this.context.fillText(`${pingData.sender}`, 
+                // this.context.fillText(`${ pingData.sender }`, 
                 //     pingData.position.x + this.offset.x - this.context.measureText(pingData.sender).width / 2, 
                 //     pingData.position.y + this.offset.y + 15);
             });

@@ -14,6 +14,7 @@ class Enemy {
         this.routeID = 0;
         this.onFire = false;
         this.onIce = false;
+        this.onPoison = false;
         // this.specialCounters = {};
     }
     load(data) {
@@ -29,6 +30,7 @@ class Enemy {
         this.routeID = data.routeID;
         this.onFire = data.onFire;
         this.onIce = data.onIce;
+        this.onPoison = data.onPoison;
         // this.specialCounters = data.specialCounters;
 
         this.speed = data.speed;
@@ -50,6 +52,7 @@ class Enemy {
         }
         if (this.piercingTimer) {
             this.piercingTimer -= timePassed;
+            this.resistanceTimer = 0;
         }
 
         if (this.distance(this.position, this.direction) < Math.sqrt(xVelocity * xVelocity + yVelocity * yVelocity)) {
@@ -57,9 +60,10 @@ class Enemy {
                 this.reachTurret = true;
             } else {
                 this.routeCheckPoint++;
+                this.onPoison = false;
                 this.position.x = this.direction.x;
                 this.position.y = this.direction.y;
-                if (this.hasAbility("regenerates")) {
+                if (this.hasAbility("regenerates") && !this.onIce && !this.onFire && !this.onPoison) {
                     if (this.actualHP < this.enemyData.maxHP) {
                         this.regenerateTimer = 150;
                     }
@@ -69,19 +73,27 @@ class Enemy {
                     if (this.actualHP < this.enemyData.maxHP) {
                         this.regenerateTimer = 150;
                     }
-                    this.actualHP = Math.min(this.enemyData.maxHP, this.actualHP + 3000);
+                    this.actualHP = Math.min(this.enemyData.maxHP, this.actualHP + 800);
                 }
+                this.onIce = false;
             }
         } else {
             this.position.x += xVelocity;
             this.position.y += yVelocity;
         }
-        if (this.onFire && this.actualHP > 5) {
-            this.actualHP -= 5;
+        if (this.onFire && this.actualHP > 7) {
+            this.actualHP -= 7;
+        } else {
+            this.onFire = false;
+        }
+        if (this.onPoison && this.actualHP > 15) {
+            this.actualHP -= 15;
+        } else {
+            this.onPoison = false;
         }
         if (this.onIce) {
-            this.position.x -= xVelocity * 0.25;
-            this.position.y -= yVelocity * 0.25;
+            this.position.x -= xVelocity * 0.50;
+            this.position.y -= yVelocity * 0.50;
         }
 
     }
@@ -112,26 +124,41 @@ class Enemy {
             this.position.x = this.direction.x;
             this.position.y = this.direction.y;
         }
-        if (this.enemyData.maxHP > 2250 && special !== undefined && special.includes("armor_piercer")) {
+        if (special !== undefined && special.includes("armor_piercer")) {
             this.actualHP -= damage;
             this.piercingTimer = 150;
+            this.resistanceTimer = 0;
         }
         if (special !== undefined && special.includes("fire") && !this.hasAbility("immunity")) {
             this.onFire = true;
+            this.onIce = false;
         }
         if (special !== undefined && special.includes("ice") && !this.hasAbility("immunity")) {
             this.onIce = true;
+            this.onFire = false;
         }
         if (special !== undefined && special.includes("poison") && !this.hasAbility("immunity")) {
+            this.onPoison = true;
             this.routeCheckPoint = Math.max(this.routeCheckPoint - 1, 0);
         }
-        if (!this.hasAbility("resistant") || damage <= 500) {
-            this.actualHP -= damage; // actual damage formula
-        } else {
+        if (this.hasAbility("resistant") && damage > 500) {
             this.resistanceTimer = 150;
+            this.actualHP -= (0.20 * damage); // actual damage formula
+        } else {
+            this.actualHP -= damage; // actual damage formula
         }
         if (this.actualHP <= 0) {
             this.alive = false;
+        }
+        if (special !== undefined && special.includes("sheep") && !this.hasAbility("immunity")) {
+            this.enemyData =
+            {
+                name: "sheep_enemy",
+                speed: 0.11,
+                imageName: "sheep_enemy",
+                maxHP: 800,
+                reward: 1
+            }
         }
     }
 }

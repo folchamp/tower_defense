@@ -1,36 +1,76 @@
--------------------------------- DONE --------------------------------
-
--------------------------------- TODO --------------------------------
-clean console.log
-write patchnote
-barre de scroll onglet info (60vh)
-drag&drop pour déplacer la carte avec un objet en main place l'objet
-le guetteur a une description qui est basée sur le fait de recevoir le rôle en début de jeu
-C'est possible que la corrosion ne fonctionne plus ? (check perce-armure)
-in-game patchnotes
-indicateur main pleine
-bug cartes de pioche
-cliquer sur prêt ferme les autres menus
-clic droit quand objet en main = dismiss
-Équilibrer les tourelles "Corrosion" et "Perce-armure". Pour le moment, elles ont un rôle similaire mais la Corrosion est meilleure pour un prix équivalent. 
-Empêcher le fait de recevoir trop de fois de suite dans le magasin le même type de cartes, j'ai passé 5 tours à ne rien acheter parce que soit j'avais déjà soit ça n'était pas utile
-spécialisation au lieu de rôle
-Refresh la sélection des rôles pour 1000 de thunes quand rien ne nous plait
-Refresh la map pour 1000 de thunes quand rien ne nous plait
-immunity = -90% damage 
+    VISUELS
+nouvelle animation pour l'armor-piercing (traits rouges)
+animation pour la tour de glace
+ice slow must be readable
+l'armor-piercing retire l'animation resistance
+nouvelle animation pour la résistance (petit bouclier bleu)
 changer la forme des animations pour plus de lisibilité (shield, piecing etc.)
 ne pas afficher l'animation d'immune quand perce-armure s'applique (immune-timer = 0 pour éviter qu'elle s'appliquer à la fin de perce-armure)
-flyers are immune to control
-ice slows hard until next checkpoint
-venom sets on fire
-revoir le rôle tourelle sniper
-fire and venom remove regenerate
-fire can kill
-ice slows 50% (must be readable)
 slowed ennemies have an animation
 fired enemies have an animation
 venomed enemies have an animation
-boucle sans fin venimeuse (elle doit retirer regenerate)
-nouvelle tour qui transforme les ennemis en un gros ennemi mais sans capacité
+indicateur main pleine (main devient rouge)
+inversion des images du swarm_enemy avec celle du crawler pour la cohérence 
+
+    ÉQUILIBRAGE
+regen du boss diminuée
+feu, glace et poison retirent l'effet regenerate
+la glace se retire à chaque checkpoint
+le feu fait plus de dégâts
+le feu ne peut toujours pas tuer (!)
+le poison fait des dégâts sur le temps (plus de deux fois moins que le feu)
+Équilibrer les tourelles "Corrosion" et "Perce-armure". 
+La tour de glace coûte moins cher
+la glace s'arrête à chaque checkpoint
+la glace ralentit de 50% (sauf immunité)
+les volants sont immunisés au poison, à la glace et au feu
+flyers are immune to control
+venom sets on fire
+fire and venom remove regenerate
+ice slows hard until next checkpoint
 réduire la vie des boss (200 000)
+resistance = -75% damage 
+augmentation de la vitesse d'attaque de la tour de glace
+resistance : 20% de dégâts subis
+dégâts du poison sont uppés à 30
+le poison disparaît à chaque checkpoint
+
+feu éteint glace et inversément
+onfire et onpoison disparaissent quand l'ennemi atteint 1hp 
+immunity from sheep
+revoir le rôle tourelle sniper -> tour mouton (réserviste)
+
+    QUALITY OF LIFE
+barre de scroll onglet info (60vh)
+clic droit quand objet en main = dismiss
+drag&drop pour déplacer la carte avec un objet en main place l'objet
+
+    BUGS 
+correction d'un bug de taille avec les swarm_enemies (vermine)
+le guetteur a une description qui est basée sur le fait de recevoir le rôle en début de jeu
+perce-armure fonction sur tout le monde (dégâts bonus imparables)
+C'est possible que la corrosion ne fonctionne plus ? (check perce-armure)
+spécialisation au lieu de rôle
+boucle sans fin venimeuse (elle doit retirer regenerate)
+draw ne bug plus (on peut monter à 8 cartes avec la carte draw_two)
+bug cartes de pioche
+
+    NOUVEAUTÉS
+nouvelle tour qui transforme les ennemis en un gros ennemi mais sans capacité
+la tour d'inutilité transforme en mouton 
+-------------------------------- DONE --------------------------------
+-------------------------------- TODO --------------------------------
+write patchnote
+in-game patchnotes
 remind and display version number 
+
+rollback 
+- index.js
+- server.js
+- index.html
+
+-------------------------------- ABANDONNED --------------------------------
+cliquer sur prêt ferme les autres menus
+Refresh la sélection des rôles pour 1000 de thunes quand rien ne nous plait
+Refresh la map pour 1000 de thunes quand rien ne nous plait
+Empêcher le fait de recevoir trop de fois de suite dans le magasin le même type de cartes, j'ai passé 5 tours à ne rien acheter parce que soit j'avais déjà soit ça n'était pas utile

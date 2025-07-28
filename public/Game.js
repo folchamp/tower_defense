@@ -39,6 +39,28 @@ class Game {
                 imageName: `images/wonder_tower.png`
             }
         );
+        
+        this.loreManager.addLoreElement(
+            {
+                title: "Version 1.1",
+                subtitle: "Mise à jour",
+                description: `
+                    <strong>Visuel</strong><br>
+                    Nouvelles animations pour la tourelle perce-armure, la tourelle de glace, la tourelle de feu, la tourelle de poison et l'effet résistance.<br>
+                    Quand la main est pleine, c'est désormais visible.<br>
+                    Les sprites du crawler et du swarm sont inversés.<br>
+                    <strong>Équilibrage</strong> 
+                    Régénération du boss diminuée, régénération retirée par les effets feu, glace et poison, la glace disparaît à chaque checkpoint, les dégâts du feu sont augmentés, le poison fait des dégâts sur le temps, corrosion et perce-armure sont rééquilibrés, la tour de glace est rééquilibrée, les volants sont immunisés aux effets, la résistance des monstres est diminuéele feu fait fondre la glace, la glace éteint le feu<br>
+                    Rework du rôle réserviste<br>
+                    <strong>Quality of Life</strong>
+                    Barre de scroll dans les infos, le clic droit dépose la carte tenue en main, on peut déplacer la map avec une carte en main
+                    <strong>Nouvelle tour</strong>
+                    Surprise !
+                `,
+                vrac: "",
+                imageName: `images/wonder_tower.png`
+            }
+        );
 
         this.hand = [];
         this.grabbedCard = undefined;
@@ -46,10 +68,8 @@ class Game {
         this.readyCounter = -1;
 
         setInterval(() => {
-            console.log(this.readyCounter);
             this.readyCounter--;
             if (this.readyCounter > 0) {
-                console.log("lol");
                 ELEMENTS["nextWaveButton"].value = `Prêt·e (${this.readyCounter})`;
             }
         }, 1000);
@@ -153,9 +173,10 @@ class Game {
         });
         ELEMENTS["handContainer"].addEventListener("click", (event) => {
             // TODO remove grabbed card
-
-            this.grabbedCard.attach();
-            this.grabbedCard = undefined;
+            if (this.grabbedCard) {
+                this.grabbedCard.attach();
+                this.grabbedCard = undefined;
+            }
             this.closeAllPopups();
         })
         // END MENU BUTTONS
@@ -369,8 +390,14 @@ class Game {
             this.canvasManager.mouseDrawData.y = position.y;
         }
         if (eventType === "contextmenu") {
-            let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
-            this.pingManager.openPingSender(position, offsetPosition);
+            if (this.grabbedCard !== undefined) {
+                this.grabbedCard.attach();
+                this.grabbedCard = undefined;
+                this.canvasManager.mouseDrawData.draw = false;
+            } else {
+                let offsetPosition = { x: position.x - this.canvasManager.offset.x, y: position.y - this.canvasManager.offset.y };
+                this.pingManager.openPingSender(position, offsetPosition);
+            }
         }
     }
     cardClickCallback(card) {
@@ -417,6 +444,7 @@ class Game {
         }
         this.hand[cardIndexToRemove].destroy(); // remove the card element from DOM
         this.hand.splice(cardIndexToRemove, 1); // remove the card from the hand list
+        this.checkIfHandIsFull();
         this.shop.refreshHandData(this.hand);
     }
     readCardFeedback(data) {
@@ -435,6 +463,7 @@ class Game {
             this.hand[cardIndexToRemove].destroy(); // remove the card element from DOM
             this.hand.splice(cardIndexToRemove, 1); // remove the card from the hand list
             this.canvasManager.mouseDrawData.draw = false; // stop pre-drawing the newly built tower
+            this.checkIfHandIsFull();
             this.shop.refreshHandData(this.hand);
         }
     }
@@ -445,7 +474,15 @@ class Game {
             card.appendTo(ELEMENTS["handContainer"]);
             card.show();
         });
+        this.checkIfHandIsFull();
         this.shop.refreshHandData(this.hand);
+    }
+    checkIfHandIsFull() {
+        if (this.hand.length > 7) {
+            ELEMENTS["handContainer"].classList.add("handFull");
+        } else {
+            ELEMENTS["handContainer"].classList.remove("handFull");
+        }
     }
     refreshPlayerList(data) {
         this.playerListManager.refreshPlayerList(data, this.session.getPlayerName());
@@ -476,6 +513,7 @@ class Game {
             card.appendTo(ELEMENTS["handContainer"]);
             card.show();
         });
+        this.checkIfHandIsFull();
         this.shop.refreshHandData(this.hand);
         for (let attribute in data.gameElements) {
             this.gameElements[attribute] = data.gameElements[attribute];

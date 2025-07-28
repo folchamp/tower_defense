@@ -95,6 +95,11 @@ class ServerData {
     static ROUTE = [{ "x": 200, "y": 0 }, { "x": 475, "y": 281 }, { "x": 605, "y": 318 }, { "x": 710, "y": 337 }, { "x": 892, "y": 344 }, { "x": 1108, "y": 338 }, { "x": 1211, "y": 387 }, { "x": 1263, "y": 463 }, { "x": 1267, "y": 555 }, { "x": 1229, "y": 612 }, { "x": 1116, "y": 631 }, { "x": 969, "y": 654 }, { "x": 802, "y": 660 }, { "x": 683, "y": 649 }, { "x": 601, "y": 676 }, { "x": 554, "y": 739 }, { "x": 542, "y": 823 }, { "x": 546, "y": 889 }, { "x": 573, "y": 946 }, { "x": 638, "y": 999 }, { "x": 749, "y": 1023 }, { "x": 831, "y": 1003 }, { "x": 928, "y": 976 }, { "x": 1025, "y": 994 }, { "x": 1151, "y": 1021 }, { "x": 1286, "y": 1049 }, { "x": 1339, "y": 1089 }, { "x": 3200, "y": 3000 }]
     static towers = {
 
+        sheep_tower: {
+            name: "sheep_tower", initialAngle: Math.PI / 2,
+            reloadTime: 1000, range: 400, size: 24,
+            bulletData: { damage: 1, speed: 0.55, color: "white", size: 8, special: ["sheep"] }
+        },
         bank_tower: {
             name: "bank_tower", type: "support", moneyPerWave: 125
         },
@@ -131,7 +136,12 @@ class ServerData {
         air_shooter: {
             name: "air_shooter", initialAngle: Math.PI / 2,
             reloadTime: 200, range: 300, size: 20,
-            bulletData: { damage: 125, speed: 0.55, color: "blue", size: 2, special: ["armor_piercer"] }
+            bulletData: { damage: 100, speed: 0.55, color: "blue", size: 2, special: ["armor_piercer"] }
+        },
+        decay_tower: {
+            name: "decay_tower", initialAngle: Math.PI / 2,
+            reloadTime: 175, range: 200,
+            bulletData: { damage: 125, speed: 0.55, color: "darkgreen", size: 5, special: ["armor_piercer"] }
         },
         basic_shooter: {
             name: "basic_shooter", initialAngle: Math.PI / 2,
@@ -145,7 +155,7 @@ class ServerData {
         },
         ice_tower: {
             name: "ice_tower", initialAngle: Math.PI / 2,
-            reloadTime: 1200, range: 200,
+            reloadTime: 500, range: 200,
             bulletData: { damage: 100, speed: 0.55, color: "#739BD0", size: 3, special: ["ice"] }
         },
         venom_tower: {
@@ -168,11 +178,6 @@ class ServerData {
             reloadTime: 1000, range: 200,
             bulletData: { damage: 100, speed: 0.55, color: "cyan", size: 3, special: ["chain_lightning"] }
         },
-        decay_tower: {
-            name: "decay_tower", initialAngle: Math.PI / 2,
-            reloadTime: 200, range: 200,
-            bulletData: { damage: 100, speed: 0.55, color: "darkgreen", size: 5, special: ["armor_piercer"] }
-        },
         multi_shot_tower: {
             name: "multi_shot_tower", initialAngle: 3 * Math.PI / 4,
             reloadTime: 1000, range: 200,
@@ -188,27 +193,27 @@ class ServerData {
         {
             roleName: "ingénieur",
             firstAbility: "Vos tours de contrôle ont 7 emplacements",
-            secondAbility: "Vous commencez avec une tour de contrôle supplémentaire dans votre défausse."
+            secondAbility: "Vous recevez une tour de contrôle supplémentaire dans votre défausse."
         },
         {
             roleName: "banquier",
-            firstAbility: "Vous commencez avec une banque dans la défausse",
-            secondAbility: "Vous commencez avec une carte de thunes supplémentaire dans votre défausse."
+            firstAbility: "Vous recevez une banque dans la défausse",
+            secondAbility: "Vous recevez une carte de thunes supplémentaire dans votre défausse."
         },
         {
             roleName: "stratège",
             firstAbility: "Vous commencez chaque vague avec 4⭐",
-            secondAbility: "Vous commencez avec une carte de pioche supplémentaire dans votre défausse."
+            secondAbility: "Vous recevez une carte de pioche supplémentaire dans votre défausse."
         },
         {
             roleName: "éclaireur",
             firstAbility: "Vos tourelles de départ coûtent 50🪙 de moins",
-            secondAbility: "Vous commencez avec une carte de micro-agence gratuite supplémentaire dans votre défausse."
+            secondAbility: "Vous recevez une carte de micro-agence gratuite supplémentaire dans votre défausse."
         },
         {
             roleName: "archiviste",
             firstAbility: "À chaque fois que vous jouez une carte de pioche, +1🎴",
-            secondAbility: "Vous commencez avec une carte de pioche pour tous gratuite supplémentaire dans votre défausse."
+            secondAbility: "Vous recevez une carte de pioche pour tous gratuite supplémentaire dans votre défausse."
         },
         {
             roleName: "mécanicien",
@@ -218,7 +223,7 @@ class ServerData {
         {
             roleName: "guetteur",
             firstAbility: "À la fin de chaque vague, +50🪙 pour chaque point d'action non-dépensé",
-            secondAbility: "Vous commencez avec deux cartes de gain d'actions supplémentaire dans votre défausse."
+            secondAbility: "Vous recevez deux cartes de gain d'actions supplémentaire dans votre défausse."
         },
         {
             roleName: "observateur",
@@ -227,8 +232,8 @@ class ServerData {
         },
         {
             roleName: "réserviste",
-            firstAbility: "Vous commencez la partie avec une tour de secours gratuite dans votre défausse",
-            secondAbility: "Vous commencez la partie avec une tour sniper très chère dans votre défausse"
+            firstAbility: "Vous recevez une tour de secours gratuite dans votre défausse",
+            secondAbility: "Vous recevez une tour mouton dans votre défausse"
         },
         {
             roleName: "constructeur",
@@ -237,7 +242,7 @@ class ServerData {
         },
         {
             roleName: "improvisateur",
-            firstAbility: "Vous commencez la partie avec deux cartes aléatoire dans votre défausse",
+            firstAbility: "Vous recevez avec deux cartes aléatoire dans votre défausse",
             secondAbility: "Vous recevez instantanément 1200🪙"
         },
         {
@@ -259,6 +264,11 @@ class ServerData {
         { basic: true, action: "build", text: "Lance-grenade", type: "explosive_shooter", price: 200, sellprice: 400 }, // auto-include
         { basic: true, action: "build", text: "Arme légère", type: "quick_shooter", price: 200, sellprice: 400 }, // auto-include
         { basic: true, action: "build", subType: "support", text: "Tour de contrôle", type: "control_tower", price: 500, sellprice: 1000 }  // auto-include
+        , { action: "build", text: "Tour de glace", type: "ice_tower", price: 400, sellprice: 800 },
+        { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
+        { action: "build", text: "Tour de feu", type: "fire_tower", price: 600, sellprice: 1200 },
+        { action: "build", text: "Tour mouton", type: "sheep_tower", price: 800, sellprice: 1600 },
+
     ];
     static shopCardsData = [
         // autoinclude for testing
@@ -281,16 +291,17 @@ class ServerData {
         { action: "build", text: "Tour de Maki", type: "maki_tower", price: 400, sellprice: 800 },
         { action: "build", text: "Tour de Bandi", type: "bandi_tower", price: 400, sellprice: 800 },
         { action: "build", text: "Tour de secours", type: "tiring_tower", price: 400, sellprice: 800 },
-        { action: "build", text: "Tour de corrosion", type: "decay_tower", price: 400, sellprice: 800 },
+        { action: "build", text: "Tour de glace", type: "ice_tower", price: 400, sellprice: 800 },
 
+        { action: "build", text: "Tour de corrosion", type: "decay_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Tour venimeuse", type: "venom_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Tour de feu", type: "fire_tower", price: 600, sellprice: 1200 },
-        { action: "build", text: "Tour de glace", type: "ice_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Tour d'orage", type: "storm_tower", price: 600, sellprice: 1200 },
         { action: "build", text: "Tir multiple", type: "multi_shot_tower", price: 600, sellprice: 1200 },
 
         { action: "build", text: "Canon rail", type: "railgun_tower", price: 800, sellprice: 1600 },
         { action: "build", text: "Tour sniper", type: "sniper_tower", price: 800, sellprice: 1600 },
+        { action: "build", text: "Tour mouton", type: "sheep_tower", price: 800, sellprice: 1600 },
 
         { action: "power", text: "nouveau magasin", type: "new_shop", price: 100, sellprice: 200 },
         { action: "power", text: "+2🎴", type: "draw_two", price: 100, sellprice: 200 },
@@ -385,7 +396,7 @@ class ServerData {
             maxHP: 1000,
             reward: 25,
             size: 24,
-            abilities: ["fly"]
+            abilities: ["fly", "immunity"]
         },
 
         crawler_enemy: {
@@ -394,7 +405,8 @@ class ServerData {
             imageName: "crawler_enemy",
             maxHP: 1500,
             reward: 25,
-            abilities: ["accelerates", "resistant"]
+            abilities: ["accelerates", "resistant"],
+            size: 30
         },
 
         drone_enemy: {
@@ -403,7 +415,7 @@ class ServerData {
             imageName: "drone_enemy",
             maxHP: 2000,
             reward: 25,
-            abilities: ["fly"]
+            abilities: ["fly", "immunity"]
         },
 
         basic_enemy: {
@@ -461,7 +473,7 @@ class ServerData {
             maxHP: 5000,
             reward: 25,
             size: 30,
-            abilities: ["fly"]
+            abilities: ["fly", "immunity"]
         },
 
         elite_enemy: {
@@ -489,7 +501,7 @@ class ServerData {
             maxHP: 15000,
             reward: 25,
             size: 32,
-            abilities: ["fly", "summon_drones"]
+            abilities: ["fly", "summon_drones", "immunity"]
         },
 
         tank_enemy: {
@@ -506,7 +518,7 @@ class ServerData {
             name: "boss_enemy",
             speed: 0.048,
             imageName: "boss_enemy",
-            maxHP: 600000,
+            maxHP: 200000,
             reward: 25,
             size: 34,
             abilities: ["immunity", "summoner", "regenerates_boss"]

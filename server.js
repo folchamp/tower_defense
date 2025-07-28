@@ -17,7 +17,10 @@ const io = new Server(server, {
         methods: ["GET", "POST"]
     }
 });
-
+// const io = new Server(server, {
+//     pingInterval: 10000, // Ping tous les 10s
+//     pingTimeout: 10000,    // Déconnecte après 5s sans réponse
+// });
 const communicationManager = new CommunicationManager(io);
 const broadcast = communicationManager.getBroadcastMethod();
 

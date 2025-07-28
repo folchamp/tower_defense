@@ -354,6 +354,9 @@ body {
         }
 
         #loreListContainer {
+            height: 60vh;
+            overflow-y: scroll;
+
             .loreButtonContainer:hover {
                 background-color: rgb(51, 44, 45);
             }
@@ -492,6 +495,10 @@ body {
         left: 50%;
         transform: translateX(-50%);
         max-width: 100vw;
+
+        #handContainer.handFull {
+            background-color: rgba(250, 0, 0, 0.7);
+        }
 
         #handContainer {
             display: flex;

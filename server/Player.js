@@ -24,9 +24,9 @@ class Player {
         this.discard = [];
         // hand is reset somewhere else
     }
-    draw() {
+    draw(triggeredByACard) {
         let cardsToReturn = [];
-        if (this.handData.length < ServerData.HAND_SIZE) {
+        if (this.handData.length < ServerData.HAND_SIZE || (triggeredByACard && this.handData.length < ServerData.HAND_SIZE + 1)) {
             if (this.deck.length === 0) {
                 while (this.discard.length) {
                     this.deck.push(this.discard.pop());
