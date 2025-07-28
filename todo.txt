@@ -33,6 +33,7 @@ venomed enemies have an animation
 boucle sans fin venimeuse (elle doit retirer regenerate)
 nouvelle tour qui transforme les ennemis en un gros ennemi mais sans capacité
 réduire la vie des boss (200 000)
+remind and display version number 
 
 
 
