@@ -52,9 +52,9 @@ class Game {
                     <strong>Équilibrage</strong> 
                     Régénération du boss diminuée, régénération retirée par les effets feu, glace et poison, la glace disparaît à chaque checkpoint, les dégâts du feu sont augmentés, le poison fait des dégâts sur le temps, corrosion et perce-armure sont rééquilibrés, la tour de glace est rééquilibrée, les volants sont immunisés aux effets, la résistance des monstres est diminuéele feu fait fondre la glace, la glace éteint le feu<br>
                     Rework du rôle réserviste<br>
-                    <strong>Quality of Life</strong>
+                    <strong>Quality of Life</strong><br>
                     Barre de scroll dans les infos, le clic droit dépose la carte tenue en main, on peut déplacer la map avec une carte en main
-                    <strong>Nouvelle tour</strong>
+                    <strong>Nouvelle tour</strong><br>
                     Surprise !
                 `,
                 vrac: "",
